@@ -1,4 +1,5 @@
 #include "shader.h"
+#include <fstream>
 
 Shader::Shader()
 {
@@ -23,7 +24,7 @@ bool Shader::Initialize()
 {
   m_shaderProg = glCreateProgram();
 
-  if (m_shaderProg == 0) 
+  if (m_shaderProg == 0)
   {
     std::cerr << "Error creating shader program\n";
     return false;
@@ -35,47 +36,56 @@ bool Shader::Initialize()
 // Use this method to add shaders to the program. When finished - call finalize()
 bool Shader::AddShader(GLenum ShaderType)
 {
-  std::string s;
+  std::string s, temp, filename;
+  std::string filepath = "../src/shaders/";
 
   if(ShaderType == GL_VERTEX_SHADER)
   {
-    s = "#version 330\n \
-          \
-          layout (location = 0) in vec3 v_position; \
-          layout (location = 1) in vec3 v_color; \
-          \
-          smooth out vec3 color; \
-          \
-          uniform mat4 projectionMatrix; \
-          uniform mat4 viewMatrix; \
-          uniform mat4 modelMatrix; \
-          \
-          void main(void) \
-          { \
-            vec4 v = vec4(v_position, 1.0); \
-            gl_Position = (projectionMatrix * viewMatrix * modelMatrix) * v; \
-            color = v_color; \
-          } \
-          ";
+    filename = "vshader.txt";
+    filepath.append(filename);
+    std::ifstream vertex_shader;
+    vertex_shader.open(filepath);
+    if(vertex_shader.is_open())
+    {
+        while(getline(vertex_shader, temp))
+        {
+            s.append(temp);
+            s.append("\n");
+        }
+
+        vertex_shader.close();
+    }
+    else
+    {
+        std::cout << "Incorrect file name for vertex shader given.\n";
+    }
+
   }
   else if(ShaderType == GL_FRAGMENT_SHADER)
   {
-    s = "#version 330\n \
-          \
-          smooth in vec3 color; \
-          \
-          out vec4 frag_color; \
-          \
-          void main(void) \
-          { \
-             frag_color = vec4(color.rgb, 1.0); \
-          } \
-          ";
+      filename = "fshader.txt";
+      filepath.append(filename);
+      std::ifstream fragment_shader;
+      fragment_shader.open(filepath);
+      if(fragment_shader.is_open())
+      {
+          while(getline(fragment_shader, temp))
+          {
+              s.append(temp);
+              s.append("\n");
+          }
+
+          fragment_shader.close();
+      }
+      else
+      {
+          std::cout << "Incorrect file name for fragment shader given.\n";
+      }
   }
 
   GLuint ShaderObj = glCreateShader(ShaderType);
 
-  if (ShaderObj == 0) 
+  if (ShaderObj == 0)
   {
     std::cerr << "Error creating shader type " << ShaderType << std::endl;
     return false;
@@ -95,7 +105,7 @@ bool Shader::AddShader(GLenum ShaderType)
   GLint success;
   glGetShaderiv(ShaderObj, GL_COMPILE_STATUS, &success);
 
-  if (!success) 
+  if (!success)
   {
     GLchar InfoLog[1024];
     glGetShaderInfoLog(ShaderObj, 1024, NULL, InfoLog);
