@@ -36,51 +36,15 @@ bool Shader::Initialize()
 // Use this method to add shaders to the program. When finished - call finalize()
 bool Shader::AddShader(GLenum ShaderType)
 {
-  std::string s, temp, filename;
-  std::string filepath = "../src/shaders/";
+  std::string s;
 
   if(ShaderType == GL_VERTEX_SHADER)
   {
-    filename = "vshader.txt";
-    filepath.append(filename);
-    std::ifstream vertex_shader;
-    vertex_shader.open(filepath);
-    if(vertex_shader.is_open())
-    {
-        while(getline(vertex_shader, temp))
-        {
-            s.append(temp);
-            s.append("\n");
-        }
-
-        vertex_shader.close();
-    }
-    else
-    {
-        std::cout << "Incorrect file name for vertex shader given.\n";
-    }
-
+    LoadShader(&s, "vshader.txt");
   }
   else if(ShaderType == GL_FRAGMENT_SHADER)
   {
-      filename = "fshader.txt";
-      filepath.append(filename);
-      std::ifstream fragment_shader;
-      fragment_shader.open(filepath);
-      if(fragment_shader.is_open())
-      {
-          while(getline(fragment_shader, temp))
-          {
-              s.append(temp);
-              s.append("\n");
-          }
-
-          fragment_shader.close();
-      }
-      else
-      {
-          std::cout << "Incorrect file name for fragment shader given.\n";
-      }
+    LoadShader(&s, "fshader.txt");
   }
 
   GLuint ShaderObj = glCreateShader(ShaderType);
@@ -117,7 +81,28 @@ bool Shader::AddShader(GLenum ShaderType)
 
   return true;
 }
+//Loads shader from given file
+void Shader::LoadShader(std::string* s, std::string filename)
+{
+  std::string temp, filepath = "../src/shaders/";
+  filepath.append(filename);
+  std::ifstream shader;
+  shader.open(filepath);
+  if(shader.is_open())
+  {
+    while(getline(shader, temp))
+    {
+      s->append(temp);
+      s->append("\n");
+    }
 
+    shader.close();
+  }
+  else
+  {
+    std::cout << "Incorrect file name for shader given.\n";
+  }
+}
 
 // After all the shaders have been added to the program call this function
 // to link and validate the program.

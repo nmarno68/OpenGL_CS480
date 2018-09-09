@@ -1,4 +1,4 @@
-/home/natalie/workspaces/cs480Arnold/computer-graphics/PA1/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/natalie/workspaces/cs480Arnold/computer-graphics/PA1/cmake-build-debug/CMakeFiles/Tutorial_SUCCESSFUL.dir
-/home/natalie/workspaces/cs480Arnold/computer-graphics/PA1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/natalie/workspaces/cs480Arnold/computer-graphics/PA1/cmake-build-debug/CMakeFiles/Tutorial.dir
+/home/natalie/workspaces/cs480Arnold/computer-graphics/PA2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/natalie/workspaces/cs480Arnold/computer-graphics/PA2/cmake-build-debug/CMakeFiles/Tutorial_SUCCESSFUL.dir
+/home/natalie/workspaces/cs480Arnold/computer-graphics/PA2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/natalie/workspaces/cs480Arnold/computer-graphics/PA2/cmake-build-debug/CMakeFiles/Tutorial.dir

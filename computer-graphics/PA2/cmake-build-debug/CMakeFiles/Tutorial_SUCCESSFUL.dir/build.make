@@ -43,10 +43,10 @@ RM = /home/natalie/Downloads/clion-2018.2.2/bin/cmake/linux/bin/cmake -E remove 
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/natalie/workspaces/cs480Arnold/computer-graphics/PA1
+CMAKE_SOURCE_DIR = /home/natalie/workspaces/cs480Arnold/computer-graphics/PA2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/natalie/workspaces/cs480Arnold/computer-graphics/PA1/cmake-build-debug
+CMAKE_BINARY_DIR = /home/natalie/workspaces/cs480Arnold/computer-graphics/PA2/cmake-build-debug
 
 # Utility rule file for Tutorial_SUCCESSFUL.
 
@@ -58,7 +58,7 @@ CMakeFiles/Tutorial_SUCCESSFUL: Tutorial
 	/home/natalie/Downloads/clion-2018.2.2/bin/cmake/linux/bin/cmake -E echo =====================
 	/home/natalie/Downloads/clion-2018.2.2/bin/cmake/linux/bin/cmake -E echo \ \ Compile\ complete!
 	/home/natalie/Downloads/clion-2018.2.2/bin/cmake/linux/bin/cmake -E echo =====================
-	/home/natalie/Downloads/clion-2018.2.2/bin/cmake/linux/bin/cmake -E echo /home/natalie/workspaces/cs480Arnold/computer-graphics/PA1/cmake-build-debug
+	/home/natalie/Downloads/clion-2018.2.2/bin/cmake/linux/bin/cmake -E echo /home/natalie/workspaces/cs480Arnold/computer-graphics/PA2/cmake-build-debug
 
 Tutorial_SUCCESSFUL: CMakeFiles/Tutorial_SUCCESSFUL
 Tutorial_SUCCESSFUL: CMakeFiles/Tutorial_SUCCESSFUL.dir/build.make
@@ -75,6 +75,6 @@ CMakeFiles/Tutorial_SUCCESSFUL.dir/clean:
 .PHONY : CMakeFiles/Tutorial_SUCCESSFUL.dir/clean
 
 CMakeFiles/Tutorial_SUCCESSFUL.dir/depend:
-	cd /home/natalie/workspaces/cs480Arnold/computer-graphics/PA1/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/natalie/workspaces/cs480Arnold/computer-graphics/PA1 /home/natalie/workspaces/cs480Arnold/computer-graphics/PA1 /home/natalie/workspaces/cs480Arnold/computer-graphics/PA1/cmake-build-debug /home/natalie/workspaces/cs480Arnold/computer-graphics/PA1/cmake-build-debug /home/natalie/workspaces/cs480Arnold/computer-graphics/PA1/cmake-build-debug/CMakeFiles/Tutorial_SUCCESSFUL.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/natalie/workspaces/cs480Arnold/computer-graphics/PA2/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/natalie/workspaces/cs480Arnold/computer-graphics/PA2 /home/natalie/workspaces/cs480Arnold/computer-graphics/PA2 /home/natalie/workspaces/cs480Arnold/computer-graphics/PA2/cmake-build-debug /home/natalie/workspaces/cs480Arnold/computer-graphics/PA2/cmake-build-debug /home/natalie/workspaces/cs480Arnold/computer-graphics/PA2/cmake-build-debug/CMakeFiles/Tutorial_SUCCESSFUL.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/Tutorial_SUCCESSFUL.dir/depend
 

@@ -1,4 +1,4 @@
-/home/natalie/Downloads/clion-2018.2.2/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/natalie/workspaces/cs480Arnold/computer-graphics/PA1
+/home/natalie/Downloads/clion-2018.2.2/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/natalie/workspaces/cs480Arnold/computer-graphics/PA2
 -- The C compiler identification is GNU 7.3.0
 -- The CXX compiler identification is GNU 7.3.0
 -- Check for working C compiler: /usr/bin/cc
@@ -50,4 +50,4 @@ This warning is for project developers.  Use -Wno-dev to suppress it.
 -- Found GLM: /usr/include  
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/natalie/workspaces/cs480Arnold/computer-graphics/PA1/cmake-build-debug
+-- Build files have been written to: /home/natalie/workspaces/cs480Arnold/computer-graphics/PA2/cmake-build-debug
