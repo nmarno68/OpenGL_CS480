@@ -1,4 +1,4 @@
-# PA1: Spinning Cube
+# PA2: Interaction: Menus, Keyboard, and Mouse
 
 # Dependencies, Building, and Running
 
@@ -54,3 +54,4 @@ OpenGL 3.3 will run on the [ubuntu.cse.unr.edu](https://ubuntu.cse.unr.edu/) web
 ```bash
 /usr/NX/scripts/vgl/vglrun ./Tutorial
 ```
+# Cube Controls
