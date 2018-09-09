@@ -9,16 +9,16 @@ This project builds on the concepts in PA1 and incorporates user controls on the
 ## Cube Controls
 
 ### Keyboard
-a - stop/start orbit and rotation (direction of orbit and rotation is maintained, not reset)
-f - stop/start orbit
-d - stop/start rotation
-s - reverse orbit and rotation
-w - reverse orbit
-e - reverse rotation
+a - stop/start orbit and rotation (direction of orbit and rotation is maintained, not reset)  
+f - stop/start orbit  
+d - stop/start rotation  
+s - reverse orbit and rotation    
+w - reverse orbit  
+e - reverse rotation  
 
 ### Mouse
-Left Button - reverse rotation
-Right Button - reverse orbit
-Middle Button - stop/start orbit and rotation (direction of orbit and rotation is maintained, not reset)
+Left Button - reverse rotation  
+Right Button - reverse orbit  
+Middle Button - stop/start orbit and rotation (direction of orbit and rotation is maintained, not reset)  
 
 
