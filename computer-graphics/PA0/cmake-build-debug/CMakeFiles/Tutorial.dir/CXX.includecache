@@ -23,16 +23,14 @@ glm/gtc/type_ptr.hpp
 -
 glm/gtx/rotate_vector.hpp
 -
-SDL2/SDL.h
--
 
-../include/object.h
+../include/shader.h
 vector
 -
 graphics_headers.h
 ../include/graphics_headers.h
 
-/home/natalie/workspaces/cs480Arnold/computer-graphics/PA2/src/object.cpp
-object.h
-/home/natalie/workspaces/cs480Arnold/computer-graphics/PA2/src/object.h
+/home/natalie/workspaces/cs480Arnold/computer-graphics/PA0/src/shader.cpp
+shader.h
+/home/natalie/workspaces/cs480Arnold/computer-graphics/PA0/src/shader.h
 

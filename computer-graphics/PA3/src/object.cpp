@@ -84,7 +84,7 @@ Object::~Object()
   Indices.clear();
 }
 
-void Object::Update(unsigned int dt, char key, bool new_event)
+void Object::Update(unsigned int dt, char key, bool new_event, glm::mat4 origin)
 {
     //if something changed, update object states
     if(new_event)
@@ -119,35 +119,35 @@ void Object::Update(unsigned int dt, char key, bool new_event)
           rev_rotate = !rev_rotate;
       }
     }
-    if(moving_orbit)
+  if(moving_orbit)
+  {
+    if(rev_orbit)
     {
-      if(rev_orbit)
-      {
-        orbit_angle -= dt * M_PI / 1000;
-        model = glm::translate(glm::mat4(1.0f), glm::vec3(sin(orbit_angle / 2) * 8, -sin(orbit_angle/2) * 2, cos(orbit_angle / 2) * 8));
-      }
-      else
-      {
-        orbit_angle += dt * M_PI / 1000;
-        model = glm::translate(glm::mat4(1.0f), glm::vec3(sin(orbit_angle / 2) * 8, -sin(orbit_angle/2) * 2, cos(orbit_angle / 2) * 8));
-      }
+      orbit_angle -= dt * M_PI / 1000;
+      model = glm::translate(origin , glm::vec3(sin(orbit_angle / 2) * 8, -sin(orbit_angle/2) * 2, cos(orbit_angle / 2) * 8));
     }
     else
     {
-      model = glm::translate(glm::mat4(1.0f), glm::vec3(sin(orbit_angle / 2) * 8, -sin(orbit_angle/2) * 2, cos(orbit_angle / 2) * 8));
+      orbit_angle += dt * M_PI / 1000;
+      model = glm::translate(origin , glm::vec3(sin(orbit_angle / 2) * 8, -sin(orbit_angle/2) * 2, cos(orbit_angle / 2) * 8));
     }
-    if(moving_rotate)
+  }
+  else
+  {
+    model = glm::translate(origin , glm::vec3(sin(orbit_angle / 2) * 8, -sin(orbit_angle/2) * 2, cos(orbit_angle / 2) * 8));
+  }
+  if(moving_rotate)
+  {
+    if(rev_rotate)
     {
-      if(rev_rotate)
-      {
-        rotate_angle -= dt * M_PI / 1000;
-      }
-      else
-      {
-        rotate_angle += dt * M_PI / 1000;
-      }
+      rotate_angle -= dt * M_PI / 1000;
     }
-    model = glm::rotate(model, (rotate_angle) * 2, glm::vec3(0.0, 1.0, 0.0));
+    else
+    {
+      rotate_angle += dt * M_PI / 1000;
+    }
+  }
+  model = glm::rotate(model, (rotate_angle) * 2, glm::vec3(0.0, 1.0, 0.0));
 }
 
 glm::mat4 Object::GetModel()
