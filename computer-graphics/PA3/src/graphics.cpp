@@ -44,8 +44,9 @@ bool Graphics::Initialize(int width, int height)
     return false;
   }
 
-  // Create the object
+  // Create the objects
   m_cube = new Object();
+  m_cube->createMoon();
 
   // Set up the shaders
   m_shader = new Shader();
@@ -110,7 +111,7 @@ bool Graphics::Initialize(int width, int height)
 void Graphics::Update(unsigned int dt, char key, bool new_event, glm::mat4 origin)
 {
   // Update the object
-  m_cube->Update(dt, key, new_event, origin);
+  m_cube->Update(dt, key, new_event, origin, 1, 1, 1, 1);
 }
 
 void Graphics::Render()
@@ -128,7 +129,11 @@ void Graphics::Render()
 
   // Render the object
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_cube->GetModel()));
+
   m_cube->Render();
+
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_cube->m_moon->GetModel()));
+  m_cube->m_moon->Render();
 
   // Get any errors from OpenGL
   auto error = glGetError();

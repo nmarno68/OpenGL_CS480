@@ -76,6 +76,8 @@ Object::Object()
   glGenBuffers(1, &IB);
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IB);
   glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * Indices.size(), &Indices[0], GL_STATIC_DRAW);
+
+  m_moon = NULL;
 }
 
 Object::~Object()
@@ -84,7 +86,7 @@ Object::~Object()
   Indices.clear();
 }
 
-void Object::Update(unsigned int dt, char key, bool new_event, glm::mat4 origin)
+void Object::Update(unsigned int dt, char key, bool new_event, glm::mat4 origin, int orbit_speed, int tip, int rotate_speed, float scale)
 {
     //if something changed, update object states
     if(new_event)
@@ -119,23 +121,30 @@ void Object::Update(unsigned int dt, char key, bool new_event, glm::mat4 origin)
           rev_rotate = !rev_rotate;
       }
     }
+
+
+
   if(moving_orbit)
   {
     if(rev_orbit)
     {
       orbit_angle -= dt * M_PI / 1000;
-      model = glm::translate(origin , glm::vec3(sin(orbit_angle / 2) * 8, -sin(orbit_angle/2) * 2, cos(orbit_angle / 2) * 8));
     }
     else
     {
       orbit_angle += dt * M_PI / 1000;
-      model = glm::translate(origin , glm::vec3(sin(orbit_angle / 2) * 8, -sin(orbit_angle/2) * 2, cos(orbit_angle / 2) * 8));
     }
   }
-  else
+  model = glm::translate(origin , glm::vec3(sin(orbit_speed * orbit_angle / 2) * 5, tip * -sin(orbit_speed * orbit_angle/2), cos(orbit_speed * orbit_angle / 2) * 5));
+
+
+
+  if(m_moon != NULL)
   {
-    model = glm::translate(origin , glm::vec3(sin(orbit_angle / 2) * 8, -sin(orbit_angle/2) * 2, cos(orbit_angle / 2) * 8));
+    m_moon->UpdateSubObject(dt, key, new_event, model, -2, -2, 2, .25);
   }
+
+
   if(moving_rotate)
   {
     if(rev_rotate)
@@ -147,8 +156,63 @@ void Object::Update(unsigned int dt, char key, bool new_event, glm::mat4 origin)
       rotate_angle += dt * M_PI / 1000;
     }
   }
-  model = glm::rotate(model, (rotate_angle) * 2, glm::vec3(0.0, 1.0, 0.0));
+  model = glm::rotate(model, (rotate_speed * rotate_angle) * 2, glm::vec3(0.0, 1.0, 0.0));
+
+  model = glm::scale(model, glm::vec3(scale, scale, scale));
+
 }
+
+void Object::UpdateSubObject(unsigned int dt, char key, bool new_event, glm::mat4 origin, int orbit_speed, int tip, int rotate_speed, float scale)
+{
+
+  if(new_event)
+  {
+    switch (key) {
+      case '<':
+        moving_orbit = !moving_orbit;
+        break;
+      case '>':
+        moving_rotate = !moving_rotate;
+        break;
+      case '^':
+        rev_orbit = !rev_orbit;
+        break;
+      case '_':
+        rev_rotate = !rev_rotate;
+    }
+  }
+
+  if(moving_orbit)
+  {
+    if(rev_orbit)
+    {
+      orbit_angle -= dt * M_PI / 1000;
+    }
+    else
+    {
+      orbit_angle += dt * M_PI / 1000;
+    }
+  }
+  model = glm::translate(origin , glm::vec3(sin(orbit_speed * orbit_angle / 2) * 5, tip * -sin(orbit_speed * orbit_angle/2), cos(orbit_speed * orbit_angle / 2) * 5));
+
+
+  if(moving_rotate)
+  {
+    if(rev_rotate)
+    {
+      rotate_angle -= dt * M_PI / 1000;
+    }
+    else
+    {
+      rotate_angle += dt * M_PI / 1000;
+    }
+  }
+  model = glm::rotate(model, (rotate_speed * rotate_angle) * 2, glm::vec3(0.0, 1.0, 0.0));
+
+  model = glm::scale(model, glm::vec3(scale, scale, scale));
+
+}
+
 
 glm::mat4 Object::GetModel()
 {
@@ -170,4 +234,12 @@ void Object::Render()
 
   glDisableVertexAttribArray(0);
   glDisableVertexAttribArray(1);
+}
+void Object::createMoon()
+{
+  m_moon = new Object();
+}
+Object* Object::getMoon()
+{
+  return m_moon;
 }

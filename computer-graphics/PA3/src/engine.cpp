@@ -108,6 +108,18 @@ void Engine::Keyboard()
       case SDLK_e:
         m_key = 'e';
         break;
+      case SDLK_UP:
+        m_key = '^';
+        break;
+      case SDLK_DOWN:
+        m_key = '_';
+        break;
+      case SDLK_LEFT:
+        m_key = '<';
+        break;
+      case SDLK_RIGHT:
+        m_key = '>';
+        break;
       default:
         break;
     }

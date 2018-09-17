@@ -6,34 +6,6 @@
 
 #IncludeRegexTransform: 
 
-../include/camera.h
-graphics_headers.h
-../include/graphics_headers.h
-
-../include/engine.h
-sys/time.h
--
-assert.h
--
-SDL2/SDL.h
--
-window.h
-../include/window.h
-graphics.h
-../include/graphics.h
-
-../include/graphics.h
-iostream
--
-graphics_headers.h
-../include/graphics_headers.h
-camera.h
-../include/camera.h
-shader.h
-../include/shader.h
-object.h
-../include/object.h
-
 ../include/graphics_headers.h
 iostream
 -
@@ -60,19 +32,7 @@ vector
 graphics_headers.h
 ../include/graphics_headers.h
 
-../include/shader.h
-vector
--
-graphics_headers.h
-../include/graphics_headers.h
-
-../include/window.h
-SDL2/SDL.h
--
-string
--
-
-/home/natalie/workspaces/cs480Arnold/computer-graphics/PA3/src/engine.cpp
-engine.h
-/home/natalie/workspaces/cs480Arnold/computer-graphics/PA3/src/engine.h
+/home/natalie/workspaces/cs480Arnold/computer-graphics/PA3/src/object.cpp
+object.h
+/home/natalie/workspaces/cs480Arnold/computer-graphics/PA3/src/object.h
 
