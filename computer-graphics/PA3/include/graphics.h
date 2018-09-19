@@ -15,8 +15,11 @@ class Graphics
     Graphics();
     ~Graphics();
     bool Initialize(int width, int height);
-    void Update(unsigned int dt, char key, bool new_event, glm::mat4 origin);
+    void Update(unsigned int dt);
     void Render();
+
+    Object *m_cube;
+    Object *m_lil_cube;
 
   private:
     std::string ErrorString(GLenum error);
@@ -28,7 +31,7 @@ class Graphics
     GLint m_viewMatrix;
     GLint m_modelMatrix;
 
-    Object *m_cube;
+
 };
 
 #endif /* GRAPHICS_H */

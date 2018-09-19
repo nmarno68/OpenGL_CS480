@@ -9,15 +9,31 @@ class Object
   public:
     Object();
     ~Object();
-    void Update(unsigned int dt, char key, bool new_event, glm::mat4 origin, int orbit_speed, int tip, int rotate_speed, float scale);
-    void UpdateSubObject(unsigned int dt, char key, bool new_event, glm::mat4 origin, int orbit_speed, int tip, int rotate_speed, float scale);
+    void Update(unsigned int dt, glm::mat4 origin);
     void Render();
-    void createMoon();
-    Object* getMoon();
+
+    void StopStartAll();
+    void StopStartOrbit();
+    void StopStartRotation();
+    void ReverseAll();
+    void ReverseOrbit();
+    void ReverseRoatation();
+    void IncreaseOrbitSpeed();
+    void IncreaseRotationSpeed();
+    void DecreaseOrbitSpeed();
+    void DecreaseRoationSpeed();
+    void IncreaseOrbitWidth();
+    void IncreaseOrbitLength();
+    void DecreaseOrbitWidth();
+    void DecreaseOrbitLength();
+    void IncreaseSize();
+    void DecreaseSize();
+    void ResetAll();
+
+    void SetValues(float o_vel, float r_vel, float o_width, float o_length, float new_scale);
 
     glm::mat4 GetModel();
-
-    Object * m_moon;
+    glm::mat4 GetLocation();
 
   private:
     glm::mat4 model;
@@ -27,7 +43,8 @@ class Object
     GLuint VB;
     GLuint IB;
 
-    float angle, orbit_angle, rotate_angle;
+    float orbit_angle, rotate_angle, orbit_vel, rotate_vel, scale, orbit_width, orbit_length;
+    float og_orbit_vel, og_rotate_vel, og_scale, og_orbit_width, og_orbit_length;
     bool moving_orbit, moving_rotate, rev_orbit, rev_rotate;
 };
 
