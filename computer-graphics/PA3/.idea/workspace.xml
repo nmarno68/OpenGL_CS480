@@ -40,13 +40,13 @@
         <counts>
           <entry key="cpp" value="3933" />
           <entry key="h" value="989" />
-          <entry key="md" value="1504" />
+          <entry key="md" value="1505" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="ObjectiveC" value="4922" />
-          <entry key="PLAIN_TEXT" value="1504" />
+          <entry key="PLAIN_TEXT" value="1505" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.cidr.testingFrameworks.usages" />
@@ -80,8 +80,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="162" column="42" selection-start-line="162" selection-start-column="42" selection-end-line="162" selection-end-column="42" />
+            <state relative-caret-position="220">
+              <caret line="166" column="29" lean-forward="true" selection-start-line="166" selection-start-column="29" selection-end-line="166" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -267,12 +267,12 @@
       <workItem from="1536870814373" duration="4432000" />
       <workItem from="1537071809164" duration="15332000" />
       <workItem from="1537304874918" duration="24084000" />
-      <workItem from="1537339437112" duration="1475000" />
+      <workItem from="1537339437112" duration="1618000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46193000" />
+    <option name="totallyTimeSpent" value="46336000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1299" height="743" extended-state="6" />
@@ -360,8 +360,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="162" column="42" selection-start-line="162" selection-start-column="42" selection-end-line="162" selection-end-column="42" />
+        <state relative-caret-position="220">
+          <caret line="166" column="29" lean-forward="true" selection-start-line="166" selection-start-column="29" selection-end-line="166" selection-end-column="29" />
         </state>
       </provider>
     </entry>

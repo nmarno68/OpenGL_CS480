@@ -165,6 +165,7 @@ for funsies.
     <tr>
         <td>Reset All Adjustments</td>
         <td><kbd>q</kbd></td>
+        <td><kbd>q</kbd></td>
     </tr>
 
 </table>
