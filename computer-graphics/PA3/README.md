@@ -129,38 +129,38 @@ for funsies.
     </tr>
     <tr>
         <td>Decrease Orbit Speed</td>
-        <td>Hold <kbd>  </kbd></td>
-        <td>Hold <kbd>Shift</kbd> + <kbd></kbd></td>
+        <td>Hold <kbd>k</kbd></td>
+        <td>Hold <kbd>Shift</kbd> + <kbd>k</kbd></td>
     </tr>
     <tr>
         <td>Increase Rotation Speed</td>
-        <td>Hold <kbd>  </kbd></td>
-        <td>Hold <kbd>Shift</kbd> + <kbd></kbd></td>
+        <td>Hold <kbd>m</kbd></td>
+        <td>Hold <kbd>Shift</kbd> + <kbd>m</kbd></td>
     </tr>
     <tr>
         <td>Decrease Rotation Speed</td>
-        <td>Hold <kbd>  </kbd></td>
-        <td>Hold <kbd>Shift</kbd> + <kbd></kbd></td>
+        <td>Hold <kbd>n</kbd></td>
+        <td>Hold <kbd>Shift</kbd> + <kbd>n</kbd></td>
     </tr>
     <tr>
         <td>Increase Orbit Width</td>
-        <td>Hold <kbd>  </kbd></td>
-        <td>Hold <kbd>Shift</kbd> + <kbd></kbd></td>
+        <td>Hold <kbd>h</kbd></td>
+        <td>Hold <kbd>Shift</kbd> + <kbd>h</kbd></td>
     </tr>
     <tr>
         <td>Decrease Orbit Width</td>
-        <td>Hold <kbd>  </kbd></td>
-        <td>Hold <kbd>Shift</kbd> + <kbd></kbd></td>
+        <td>Hold <kbd>g</kbd></td>
+        <td>Hold <kbd>Shift</kbd> + <kbd>g</kbd></td>
     </tr>
     <tr>
         <td>Increase Orbit Length</td>
-        <td>Hold <kbd>  </kbd></td>
-        <td>Hold <kbd>Shift</kbd> + <kbd></kbd></td>
+        <td>Hold <kbd>b</kbd></td>
+        <td>Hold <kbd>Shift</kbd> + <kbd>b</kbd></td>
     </tr>
     <tr>
         <td>Decrease Orbit Length</td>
-        <td>Hold <kbd>  </kbd></td>
-        <td>Hold <kbd>Shift</kbd> + <kbd></kbd></td>
+        <td>Hold <kbd>v</kbd></td>
+        <td>Hold <kbd>Shift</kbd> + <kbd>v</kbd></td>
     </tr>
     <tr>
         <td>Reset All Adjustments</td>
