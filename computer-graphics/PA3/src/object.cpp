@@ -68,12 +68,14 @@ Object::Object()
   og_orbit_width = 1;
   og_orbit_length = 1;
   og_scale = 1;
+  og_tip = 1;
 
   orbit_vel = og_orbit_vel;
   rotate_vel = og_rotate_vel;
   orbit_width = og_orbit_width;
   orbit_length = og_orbit_length;
   scale = og_scale;
+  tip = og_tip;
 
   moving_orbit = true;
   moving_rotate = true;
@@ -109,7 +111,7 @@ void Object::Update(unsigned int dt, glm::mat4 origin)
       orbit_angle += (dt * M_PI / 1000) * orbit_vel;
     }
   }
-  model = glm::translate(origin, glm::vec3(sin(orbit_angle) * orbit_width, 0.0, cos(orbit_angle) * orbit_length));
+  model = glm::translate(origin, glm::vec3(sin(orbit_angle) * orbit_width, -sin(orbit_angle) * tip, cos(orbit_angle) * orbit_length));
 
 
   if(moving_rotate)
@@ -268,21 +270,24 @@ void Object::ResetAll()
   orbit_width = og_orbit_width;
   orbit_length = og_orbit_length;
   scale = og_scale;
+  tip = og_tip;
 }
 
-void Object::SetValues(float o_vel, float r_vel, float o_width, float o_length, float new_scale)
+void Object::SetValues(float o_vel, float r_vel, float o_width, float o_length, float new_scale, float new_tip)
 {
   og_orbit_vel = o_vel;
   og_rotate_vel = r_vel;
   og_orbit_width = o_width;
   og_orbit_length = o_length;
   og_scale = new_scale;
+  og_tip = new_tip;
 
   orbit_vel = og_orbit_vel;
   rotate_vel = og_rotate_vel;
   orbit_width = og_orbit_width;
   orbit_length = og_orbit_length;
   scale = og_scale;
+  tip = og_tip;
 
 }
 

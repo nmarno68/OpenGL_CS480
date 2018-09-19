@@ -49,8 +49,8 @@ bool Graphics::Initialize(int width, int height)
   m_lil_cube = new Object();
 
   //Set the object values - float o_vel, float r_vel, float o_width, float o_length, float new_scale
-  m_cube->SetValues(.5, 2, 5, 5, 1);
-  m_lil_cube->SetValues(1, 3, 5, 5, .25);
+  m_cube->SetValues(.5, 2, 5, 5, 1, 1);
+  m_lil_cube->SetValues(2, 3, 5, 5, .25, -1);
 
   // Set up the shaders
   m_shader = new Shader();

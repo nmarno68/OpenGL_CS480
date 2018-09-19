@@ -63,7 +63,7 @@ This project builds on the concepts in PA1 and PA2. A moon object has been added
 This section is devided into two parts, one for the required controls and one for the conrols that were done
 for funsies.
 
-## Required Controls
+### Required Controls
 
 <table>
     <tr>
@@ -104,7 +104,7 @@ for funsies.
 
 </table>
 
-## Extra Controls for Funsies
+### Extra Controls for Funsies
 
 <table>
     <tr>
@@ -169,4 +169,8 @@ for funsies.
     </tr>
 
 </table>
+
+### Other Notes
+Both objects are circling with a sleight tip in their orbit, the moon tipping to the right and the planet
+tipping to the left.
 
