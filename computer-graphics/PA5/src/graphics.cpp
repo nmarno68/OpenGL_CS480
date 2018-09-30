@@ -45,10 +45,12 @@ bool Graphics::Initialize(int width, int height)
   }
 
   // Create the objects
-  m_cube = new Object("board.obj");
+  m_cube = new Object("earth.obj", "earth.mtl");
+  m_moon = new Object("earth.obj", "earth.mtl");
 
-  //Set the object values - float o_vel, float r_vel, float o_width, float o_length, float new_scale
-  m_cube->SetValues(.5, 2, 5, 5, 1, 1);
+  //Set the object values - float o_vel, float r_vel, float o_width, float o_length, float new_scale, tip
+  m_cube->SetValues(.5, 1, 0, 0, 2, 0);
+  m_moon->SetValues(-1, 1, 4, 4, .75, 0);
 
   // Set up the shaders
   m_shader = new Shader();
@@ -114,6 +116,7 @@ void Graphics::Update(unsigned int dt)
 {
   // Update the planet
   m_cube->Update(dt, glm::mat4(1.0f));
+  m_moon->Update(dt, m_cube->GetLocation());
 
 }
 
@@ -135,6 +138,11 @@ void Graphics::Render()
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_cube->GetModel()));
 
   m_cube->Render();
+
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_moon->GetModel()));
+
+  m_moon->Render();
+
 
   // Get any errors from OpenGL
   auto error = glGetError();

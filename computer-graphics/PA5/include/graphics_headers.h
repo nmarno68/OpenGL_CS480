@@ -33,4 +33,5 @@ struct Vertex
   Vertex(glm::vec3 v, glm::vec2 c, glm::vec3 n): vertex(v), texture(c), normal(n) {}
 };
 
+
 #endif /* GRAPHICS_HEADERS_H */

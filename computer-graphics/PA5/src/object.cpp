@@ -1,15 +1,18 @@
 #include "object.h"
 
 
-Object::Object(std::string filename) //each time we initialize a planet we give a different
+Object::Object(std::string filename, std::string textname) //each time we initialize a planet we give a different
 {                                     //file name for the object (because each has a different texture)
                                       //however, every planet will be the same size when we load them because
                                       //scaling in the code is more precise than creating them at a certain size in blender
 
  //File Path to find object name
   std::string filepath = "../src/objects/";
+  std::string textpath = "../src/objects/";
 
  //append the given filename
+
+  textname = textpath.append(textname);
   filepath.append(filename);
 
  //Assimp object loading
@@ -23,31 +26,10 @@ Object::Object(std::string filename) //each time we initialize a planet we give 
   //Extracting the mesh from the scene
   const aiMesh* mesh = m_scene->mMeshes[0]; //for our purposes, we just have the one mesh
 
-  int m_texture_index = mesh->mMaterialIndex; //where the texture is??
+  //This is the same process of constructing the vertices and indices that we did when we
+  //were writing our own object loader
+  InitMesh(mesh);
 
-  const aiVector3D Zero3D(0.0f, 0.0f, 0.0f);
-
-  for(int i = 0; i < mesh->mNumVertices; i++)
-  {
-    const aiVector3D* pPos = &(mesh->mVertices[i]);
-    const aiVector3D* pNormal = mesh->HasNormals() ? &(mesh->mNormals[i]) : &Zero3D;
-    const aiVector3D* pTexCoord = mesh->HasTextureCoords(0) ? &(mesh->mTextureCoords[0][i]) : &Zero3D;
-
-    Vertex v(glm::vec3(pPos->x, pPos->y, pPos->z),
-             glm::vec2(pTexCoord->x, pTexCoord->y),
-             glm::vec3(pNormal->x, pNormal->y, pNormal->z));
-
-    Vertices.push_back(v);
-  }
-
-  for (unsigned int i = 0 ; i < mesh->mNumFaces ; i++)
-  {
-    const aiFace& Face = mesh->mFaces[i];
-    assert(Face.mNumIndices == 3);
-    Indices.push_back(Face.mIndices[0]);
-    Indices.push_back(Face.mIndices[1]);
-    Indices.push_back(Face.mIndices[2]);
-  }
 
   orbit_angle = 0.0f;
   rotate_angle = 0.0f;
@@ -151,6 +133,38 @@ void Object::Render()
   glDisableVertexAttribArray(0);
   glDisableVertexAttribArray(1);
 }
+
+void Object::InitMesh(const aiMesh* mesh)
+{
+  int m_texture_index = mesh->mMaterialIndex; //where the texture is??
+
+  //This is the same process of constructing the vertices and indices that we did when we
+  //were writing our own object loader
+  const aiVector3D Zero3D(0.0f, 0.0f, 0.0f);
+
+  for(int i = 0; i < mesh->mNumVertices; i++)
+  {
+    const aiVector3D* pPos = &(mesh->mVertices[i]);
+    const aiVector3D* pNormal = mesh->HasNormals() ? &(mesh->mNormals[i]) : &Zero3D;
+    const aiVector3D* pTexCoord = mesh->HasTextureCoords(0) ? &(mesh->mTextureCoords[0][i]) : &Zero3D;
+
+    Vertex v(glm::vec3(pPos->x, pPos->y, pPos->z),
+             glm::vec2(pTexCoord->x, pTexCoord->y),
+             glm::vec3(pNormal->x, pNormal->y, pNormal->z));
+
+    Vertices.push_back(v);
+  }
+
+  for (unsigned int i = 0 ; i < mesh->mNumFaces ; i++)
+  {
+    const aiFace& Face = mesh->mFaces[i];
+    assert(Face.mNumIndices == 3);
+    Indices.push_back(Face.mIndices[0]);
+    Indices.push_back(Face.mIndices[1]);
+    Indices.push_back(Face.mIndices[2]);
+  }
+}
+
 
 void Object::StopStartAll()
 {

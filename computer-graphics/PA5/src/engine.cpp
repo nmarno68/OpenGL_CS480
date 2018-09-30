@@ -99,6 +99,9 @@ void Engine::Keyboard()
       case SDLK_ESCAPE:                 //the control functions still exist in the object class
         m_running = false;
         break;
+
+      case SDLK_a:
+        m_graphics->m_cube->StopStartOrbit();
     }
   }
 }

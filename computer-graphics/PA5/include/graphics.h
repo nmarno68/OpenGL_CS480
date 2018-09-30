@@ -19,7 +19,7 @@ class Graphics
     void Render();
 
     Object *m_cube;
-    Object *m_lil_cube;
+    Object *m_moon;
 
   private:
     std::string ErrorString(GLenum error);

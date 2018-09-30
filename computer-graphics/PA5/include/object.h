@@ -9,13 +9,20 @@
 #include <assimp/postprocess.h>
 #include <assimp/color4.h>
 
+struct Texture
+{
+  GLuint id;
+  std::string type;
+  aiString path;
+};
 class Object
 {
   public:
-    Object(std::string filename);
+    Object(std::string filename, std::string textname);
     ~Object();
     void Update(unsigned int dt, glm::mat4 origin);
     void Render();
+    void InitMesh(const aiMesh* mesh);
 
     void StopStartAll();          //
     void StopStartOrbit();        //
@@ -50,6 +57,7 @@ class Object
     glm::mat4 model;
 
     const aiScene* m_scene;
+    std::vector<Texture> m_Textures;
 
     std::vector<Vertex> Vertices;
     std::vector<unsigned int> Indices;
@@ -59,6 +67,8 @@ class Object
     float orbit_angle, rotate_angle, orbit_vel, rotate_vel, scale, orbit_width, orbit_length, tip;
     float og_orbit_vel, og_rotate_vel, og_scale, og_orbit_width, og_orbit_length, og_tip;
     bool moving_orbit, moving_rotate, rev_orbit, rev_rotate;
+
+
 
 };
 
