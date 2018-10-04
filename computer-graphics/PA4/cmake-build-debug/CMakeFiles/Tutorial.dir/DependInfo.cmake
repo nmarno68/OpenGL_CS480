@@ -4,13 +4,13 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA3/src/camera.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA3/cmake-build-debug/CMakeFiles/Tutorial.dir/src/camera.cpp.o"
-  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA3/src/engine.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA3/cmake-build-debug/CMakeFiles/Tutorial.dir/src/engine.cpp.o"
-  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA3/src/graphics.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA3/cmake-build-debug/CMakeFiles/Tutorial.dir/src/graphics.cpp.o"
-  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA3/src/main.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA3/cmake-build-debug/CMakeFiles/Tutorial.dir/src/main.cpp.o"
-  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA3/src/object.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA3/cmake-build-debug/CMakeFiles/Tutorial.dir/src/object.cpp.o"
-  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA3/src/shader.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA3/cmake-build-debug/CMakeFiles/Tutorial.dir/src/shader.cpp.o"
-  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA3/src/window.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA3/cmake-build-debug/CMakeFiles/Tutorial.dir/src/window.cpp.o"
+  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA4/src/camera.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA4/cmake-build-debug/CMakeFiles/Tutorial.dir/src/camera.cpp.o"
+  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA4/src/engine.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA4/cmake-build-debug/CMakeFiles/Tutorial.dir/src/engine.cpp.o"
+  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA4/src/graphics.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA4/cmake-build-debug/CMakeFiles/Tutorial.dir/src/graphics.cpp.o"
+  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA4/src/main.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA4/cmake-build-debug/CMakeFiles/Tutorial.dir/src/main.cpp.o"
+  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA4/src/object.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA4/cmake-build-debug/CMakeFiles/Tutorial.dir/src/object.cpp.o"
+  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA4/src/shader.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA4/cmake-build-debug/CMakeFiles/Tutorial.dir/src/shader.cpp.o"
+  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA4/src/window.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA4/cmake-build-debug/CMakeFiles/Tutorial.dir/src/window.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
