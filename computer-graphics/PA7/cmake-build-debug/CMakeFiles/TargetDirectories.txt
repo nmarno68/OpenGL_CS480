@@ -1,0 +1,4 @@
+/home/natalie/workspaces/cs480Arnold/computer-graphics/PA6/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/natalie/workspaces/cs480Arnold/computer-graphics/PA6/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/natalie/workspaces/cs480Arnold/computer-graphics/PA6/cmake-build-debug/CMakeFiles/Textures_SUCCESSFUL.dir
+/home/natalie/workspaces/cs480Arnold/computer-graphics/PA6/cmake-build-debug/CMakeFiles/Textures.dir
