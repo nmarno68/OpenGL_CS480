@@ -1,24 +1,18 @@
 #include "object.h"
 
-Object::Object(std::string filename, std::vector<std::string> textpaths) //each time we initialize a planet we give a different
+Object::Object(std::string filename) //each time we initialize a planet we give a different
 {                                     //file name for the object (because each has a different texture)
                                       //however, every planet will be the same size when we load them because
                                       //scaling in the code is more precise than creating them at a certain size in blender
-
  //File Path to find object name
-  std::string filepath = "../assets/objects/";
-  std::string textpath = "../assets/textures/";
+  m_objDirectory = "../assets/objects/";
+  m_textDirectory = "../assets/textures/";
 
  //append the given filename
 
   //sorting out texture files because existence is pain
 
-  filepath.append(filename);
-  for(int i = 0; i < textpaths.size(); i++)
-  {
-    textpaths[i] = textpath + textpaths[i];
-  }
-
+  m_objDirectory.append(filename);
 
  //Assimp object loading
 
@@ -26,11 +20,11 @@ Object::Object(std::string filename, std::vector<std::string> textpaths) //each 
   Assimp::Importer importer;
 
   //Reading the file in one line, bless
-  m_scene = importer.ReadFile(filepath, aiProcess_Triangulate);
+  m_scene = importer.ReadFile(m_objDirectory, aiProcess_Triangulate);
 
   //This is the same process of constructing the vertices and indices that we did when we
   //were writing our own object loader
-  InitMesh(textpaths);
+  InitMesh();
 
   orbit_angle = 0.0f;
   rotate_angle = 0.0f;
@@ -119,13 +113,11 @@ void Object::Render()
 
   for(int i = 0; i < meshes.size(); i++)
   {
-    std::cout << "Attempting render, meshes size: " << meshes.size() << std::endl;
     meshes[i].Draw();
   }
-  std::cout << "Thru Render" << std::endl;
 }
 
-void Object::InitMesh(std::vector<std::string> textpaths)
+void Object::InitMesh()
 {
 
   //This is the same process of constructing the vertices and indices that we did when we
@@ -133,11 +125,8 @@ void Object::InitMesh(std::vector<std::string> textpaths)
 
   const aiVector3D Zero3D(0.0f, 0.0f, 0.0f);
 
-  std::cout << "numMeshes: " << m_scene->mNumMeshes << std::endl;
-
   for(int j = 0; j < m_scene->mNumMeshes; j++)
   {
-    std::cout << "Mesh " << j << std::endl;
 
     std::vector<Vertex> tempVert;
     std::vector<unsigned int> tempInd;
@@ -156,7 +145,7 @@ void Object::InitMesh(std::vector<std::string> textpaths)
 
       tempVert.push_back(v);
     }
-    std::cout << "Vertices Complete" << std::endl;
+
     for (unsigned int i = 0; i < m_scene->mMeshes[j]->mNumFaces; i++)
     {
       const aiFace &Face = m_scene->mMeshes[j]->mFaces[i];
@@ -166,27 +155,48 @@ void Object::InitMesh(std::vector<std::string> textpaths)
       tempInd.push_back(Face.mIndices[2]);
     }
 
-    std::cout << "Indices Complete" << std::endl;
     //Texture crap
+
+    temptexture = loadMaterialTextures(m_scene->mMaterials[m_scene->mMeshes[j]->mMaterialIndex], aiTextureType_DIFFUSE);
+
+
+    Mesh* v = new Mesh(tempVert, tempInd, temptexture);
+    meshes.push_back(*v);
+
+  }
+
+}
+
+std::vector<GLuint> Object::loadMaterialTextures(aiMaterial *mat, aiTextureType type)
+{
+  std::vector<GLuint> textures;
+
+  for(unsigned int i = 0; i < mat->GetTextureCount(type); i++)
+  {
+    GLuint texture;
+    aiString str;
+    std::string t_path;
+    mat->GetTexture(type, i, &str);
+
+    t_path = m_textDirectory + str.C_Str();
+
     Magick::Blob my_blob;
     Magick::Image image;
     unsigned int* data;
 
     try {
-      image.read(textpaths[j]); //the texture for the mesh we're on
+      image.read(t_path); //the texture for the mesh we're on
       image.write(&my_blob, "RGBA");
     }
     catch (Magick::Error& Error) {
-      std::cout << "Error loading texture '" << textpaths[j] << "': " << Error.what() << std::endl;
+      std::cout << "Error loading texture '" << t_path << "': " << Error.what() << std::endl;
     }
 
-    std::cout << "Texture Loaded into Image" << std::endl;
-    temptexture.resize(1);
     //Pointing our GLuint pointer to a place in the gpu
-    glGenTextures(1, &temptexture[0]); //assuming one texture per mesh right now...
+    glGenTextures(1, &texture);
 
     //Specifies the type of texture the pointer is pointing at (still nothing actually there)
-    glBindTexture(GL_TEXTURE_2D, temptexture[0]);
+    glBindTexture(GL_TEXTURE_2D, texture);
 
     //Reading our texture data into the place we set up in memory
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image.columns(), image.rows(), 0, GL_RGBA, GL_UNSIGNED_BYTE, my_blob.data());
@@ -199,16 +209,10 @@ void Object::InitMesh(std::vector<std::string> textpaths)
     //We can access the texture with m_textureObj in the gpu so we dont need it no mo.
     glBindTexture(GL_TEXTURE_2D, 0);
 
-    std::cout << "Complete Binding" << std::endl;
-    Mesh* v = new Mesh(tempVert, tempInd, temptexture);
-    meshes.push_back(*v);
-    std::cout << "Push TextureObj" << std::endl;
-
+    textures.push_back(texture);
   }
-
+  return textures;
 }
-
-
 
 
 void Object::StopStartAll()

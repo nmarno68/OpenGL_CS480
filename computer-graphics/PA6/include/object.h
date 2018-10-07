@@ -6,11 +6,12 @@
 class Object
 {
   public:
-    Object(std::string filename, std::vector<std::string> textpaths);
+    Object(std::string filename);
     ~Object();
     void Update(unsigned int dt, glm::mat4 origin);
     void Render();
-    void InitMesh(std::vector<std::string> textpaths);
+    void InitMesh();
+    std::vector<GLuint> loadMaterialTextures(aiMaterial *mat, aiTextureType type);
 
     void StopStartAll();          //
     void StopStartOrbit();        //
@@ -46,14 +47,12 @@ class Object
 
     const aiScene* m_scene;
 
+    std::string m_textDirectory;
+    std::string m_objDirectory;
+
     std::vector<Mesh> meshes;
     std::vector<Vertex> Vertices;
     std::vector<unsigned int> Indices;
-    GLuint VB;
-    GLuint IB;
-
-    //Generic GLuint object pointer to the gpu
-    GLuint m_textureObj;
 
     float orbit_angle, rotate_angle, orbit_vel, rotate_vel, scale, orbit_width, orbit_length, tip;
     float og_orbit_vel, og_rotate_vel, og_scale, og_orbit_width, og_orbit_length, og_tip;

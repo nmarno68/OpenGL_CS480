@@ -45,21 +45,16 @@ bool Graphics::Initialize(int width, int height)
   }
 
 
-  // Create the objects
-  std::vector<std::string> v = {"granite.jpg", "checker.jpg"};
-  std::vector<std::string> v2 = {"moon.jpg"};
-
-  m_earth = new Object("buddha.obj", v);
-  m_moon = new Object("earth2.obj", v2);
-
-
+  //create objects
+  m_earth = new Object("buddha.obj");
+  m_moon = new Object("earth2.obj");
 
 
 
 
   //Set the object values - float o_vel, float r_vel, float o_width, float o_length, float new_scale, tip
   m_earth->SetValues(.5, .05, 0, 0, 1, 0);
-  m_moon->SetValues(.1, .3, 7, 7, 2, 1);
+  m_moon->SetValues(.1, .3, 7, 7, 0, 1);
 
 
 
@@ -160,7 +155,6 @@ void Graphics::Render()
   m_moon->Render();
 
 
-  std::cout << "Thru Render" << std::endl;
 
 
 
