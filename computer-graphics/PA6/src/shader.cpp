@@ -84,7 +84,7 @@ bool Shader::AddShader(GLenum ShaderType)
 //Loads shader from given file
 void Shader::LoadShader(std::string* s, std::string filename)
 {
-  std::string temp, filepath = "../src/shaders/";
+  std::string temp, filepath = "../assets/shaders/";
   filepath.append(filename);
   std::ifstream shader;
   shader.open(filepath);

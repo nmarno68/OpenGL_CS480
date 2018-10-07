@@ -33,7 +33,7 @@ Object::Object(std::string filename, std::string textname) //each time we initia
 
   Magick::Blob my_blob;
   Magick::Image image;
-  unsigned int* data;
+  //unsigned int* data;
 
   try {
     //std::cout << textpath << std::endl;
@@ -58,11 +58,11 @@ Object::Object(std::string filename, std::string textname) //each time we initia
   glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image.columns(), image.rows(), 0, GL_RGBA, GL_UNSIGNED_BYTE, my_blob.data());
 
   //"fits" the texture to our object in the way we want it to
-  //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-  //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-  glGenerateMipmap(GL_TEXTURE_2D);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+  //glGenerateMipmap(GL_TEXTURE_2D);
 
-  //Releasing out texture into the wild because we did all the things
+  //Releasing our texture into the wild because we did all the things
   //We can access the texture with m_textureObj in the gpu so we dont need it no mo.
   glBindTexture(GL_TEXTURE_2D, 0);
 
@@ -97,6 +97,7 @@ Object::Object(std::string filename, std::string textname) //each time we initia
   glGenBuffers(1, &VB);
   glBindBuffer(GL_ARRAY_BUFFER, VB);
   glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * Vertices.size(), &Vertices[0], GL_STATIC_DRAW);
+                //TARGET          DATA SIZE                     Starting point   why static not stream?
 
   glGenBuffers(1, &IB);
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IB);
@@ -114,7 +115,7 @@ void Object::Update(unsigned int dt, glm::mat4 origin)
 {
 
   //Axis of rotation - determined by tilt
-  //model = glm::rotate(model, (float) (23.5), glm::vec3(0.0, 0.0, 1.0));
+
 
 
   if(moving_orbit)
@@ -142,9 +143,12 @@ void Object::Update(unsigned int dt, glm::mat4 origin)
       rotate_angle += (dt * M_PI / 1000) * rotate_vel;
     }
   }
-  model = glm::rotate(model, (rotate_angle), glm::vec3(0.0, 1.0, 0.0)); //This axis needs to be dependent on tilt
 
-  model = glm::scale(model, glm::vec3(scale, scale, scale));
+  model = glm::rotate(model, (float) (.1), glm::vec3(0.0, 0.0, 1.0));
+
+  model = glm::rotate(model, (rotate_angle), glm::vec3(-.4, 1.0, 0.0)); //This axis needs to be dependent on tilt
+
+  model = glm::scale(model, glm::vec3(scale, scale/1.1, scale));
 
 }
 
@@ -164,16 +168,23 @@ void Object::Render()
   glEnableVertexAttribArray(0);
   glEnableVertexAttribArray(1);
 
+  //bind VBO for our current object BEFORE creating our attribute pointers
+  //else who knows what the pointers would be set to
+  //binding to glarraybuffer cause thats where the vertex stuff goes
   glBindBuffer(GL_ARRAY_BUFFER, VB);
+
+  //Attribute pointers (layout location, num vals, normalize data (no thanks), stride, offset)
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
   glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, texture));
 
+  //Bind indices data
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IB);
 
-  //Basically saying that we're using a texture
+  //Basically saying that we're using texture 0
   glActiveTexture(GL_TEXTURE0);
 
   //Binding the object's texture that we initialized
+  //this is the current texture you sampling from
   glBindTexture(GL_TEXTURE_2D, m_textureObj);
 
 

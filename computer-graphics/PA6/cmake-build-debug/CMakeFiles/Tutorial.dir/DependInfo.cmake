@@ -4,13 +4,13 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA5/src/camera.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA5/cmake-build-debug/CMakeFiles/Tutorial.dir/src/camera.cpp.o"
-  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA5/src/engine.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA5/cmake-build-debug/CMakeFiles/Tutorial.dir/src/engine.cpp.o"
-  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA5/src/graphics.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA5/cmake-build-debug/CMakeFiles/Tutorial.dir/src/graphics.cpp.o"
-  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA5/src/main.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA5/cmake-build-debug/CMakeFiles/Tutorial.dir/src/main.cpp.o"
-  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA5/src/object.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA5/cmake-build-debug/CMakeFiles/Tutorial.dir/src/object.cpp.o"
-  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA5/src/shader.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA5/cmake-build-debug/CMakeFiles/Tutorial.dir/src/shader.cpp.o"
-  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA5/src/window.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA5/cmake-build-debug/CMakeFiles/Tutorial.dir/src/window.cpp.o"
+  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA6/src/camera.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA6/cmake-build-debug/CMakeFiles/Tutorial.dir/src/camera.cpp.o"
+  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA6/src/engine.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA6/cmake-build-debug/CMakeFiles/Tutorial.dir/src/engine.cpp.o"
+  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA6/src/graphics.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA6/cmake-build-debug/CMakeFiles/Tutorial.dir/src/graphics.cpp.o"
+  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA6/src/main.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA6/cmake-build-debug/CMakeFiles/Tutorial.dir/src/main.cpp.o"
+  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA6/src/object.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA6/cmake-build-debug/CMakeFiles/Tutorial.dir/src/object.cpp.o"
+  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA6/src/shader.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA6/cmake-build-debug/CMakeFiles/Tutorial.dir/src/shader.cpp.o"
+  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA6/src/window.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA6/cmake-build-debug/CMakeFiles/Tutorial.dir/src/window.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -25,6 +25,7 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../include"
   "/usr/include/SDL2"
+  "/usr/local/include/ImageMagick-7"
   )
 
 # Targets to which this target links.

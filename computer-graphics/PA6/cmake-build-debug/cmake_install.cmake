@@ -1,4 +1,4 @@
-# Install script for directory: /home/natalie/workspaces/cs480Arnold/computer-graphics/PA5
+# Install script for directory: /home/natalie/workspaces/cs480Arnold/computer-graphics/PA6
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA5/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA6/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

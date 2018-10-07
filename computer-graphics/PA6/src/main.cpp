@@ -6,7 +6,7 @@
 int main(int argc, char **argv)
 {
   // Start an engine and run it then cleanup after
-  Engine *engine = new Engine("Object Loading", 1000, 750);
+  Engine *engine = new Engine("Texture Loading", 0, 0);
   if(!engine->Initialize())
   {
     printf("The engine failed to start.\n");

@@ -1,23 +1,16 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 
-#include <vector>
-#include <string>
-#include "graphics_headers.h"
-#include <assimp/Importer.hpp>
-#include <assimp/scene.h>
-#include <assimp/postprocess.h>
-#include <assimp/color4.h>
-#include <Magick++.h>
+#include "mesh.h"
 
 class Object
 {
   public:
-    Object(std::string filename, std::string textname);
+    Object(std::string filename, std::vector<std::string> textpaths);
     ~Object();
     void Update(unsigned int dt, glm::mat4 origin);
     void Render();
-    void InitMesh(const aiMesh* mesh);
+    void InitMesh(std::vector<std::string> textpaths);
 
     void StopStartAll();          //
     void StopStartOrbit();        //
@@ -53,6 +46,7 @@ class Object
 
     const aiScene* m_scene;
 
+    std::vector<Mesh> meshes;
     std::vector<Vertex> Vertices;
     std::vector<unsigned int> Indices;
     GLuint VB;

@@ -1,18 +1,23 @@
 #include "object.h"
 
-Object::Object(std::string filename, std::string textname) //each time we initialize a planet we give a different
+Object::Object(std::string filename, std::vector<std::string> textpaths) //each time we initialize a planet we give a different
 {                                     //file name for the object (because each has a different texture)
                                       //however, every planet will be the same size when we load them because
                                       //scaling in the code is more precise than creating them at a certain size in blender
 
  //File Path to find object name
-  std::string filepath = "../src/objects/";
-  std::string textpath(filepath);
+  std::string filepath = "../assets/objects/";
+  std::string textpath = "../assets/textures/";
 
  //append the given filename
 
+  //sorting out texture files because existence is pain
+
   filepath.append(filename);
-  textpath.append(textname);
+  for(int i = 0; i < textpaths.size(); i++)
+  {
+    textpaths[i] = textpath + textpaths[i];
+  }
 
 
  //Assimp object loading
@@ -20,52 +25,12 @@ Object::Object(std::string filename, std::string textname) //each time we initia
  //Create our importer which reads the file for us, thank god
   Assimp::Importer importer;
 
-
   //Reading the file in one line, bless
   m_scene = importer.ReadFile(filepath, aiProcess_Triangulate);
 
-  //Extracting the mesh from the scene
-  const aiMesh* mesh = m_scene->mMeshes[0]; //for our purposes, we just have the one mesh
-
   //This is the same process of constructing the vertices and indices that we did when we
   //were writing our own object loader
-  InitMesh(mesh);
-
-  Magick::Blob my_blob;
-  Magick::Image image;
-  unsigned int* data;
-
-  try {
-    //std::cout << textpath << std::endl;
-    image.read(textpath);
-    //std::cout << "2" << std::endl;
-    image.write(&my_blob, "RGBA");
-    //std::cout << "3" << std::endl;
-  }
-
-  catch (Magick::Error& Error) {
-    std::cout << "Error loading texture '" << textpath << "': " << Error.what() << std::endl;
-  }
-
-
-  //Pointing our GLuint pointer to a place in the gpu
-  glGenTextures(1, &m_textureObj);
-
-  //Specifies the type of texture the pointer is pointing at (still nothing actually there)
-  glBindTexture(GL_TEXTURE_2D, m_textureObj);
-
-  //Reading our texture data into the place we set up in memory
-  glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image.columns(), image.rows(), 0, GL_RGBA, GL_UNSIGNED_BYTE, my_blob.data());
-
-  //"fits" the texture to our object in the way we want it to
-  //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-  //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-  glGenerateMipmap(GL_TEXTURE_2D);
-
-  //Releasing out texture into the wild because we did all the things
-  //We can access the texture with m_textureObj in the gpu so we dont need it no mo.
-  glBindTexture(GL_TEXTURE_2D, 0);
-
+  InitMesh(textpaths);
 
   orbit_angle = 0.0f;
   rotate_angle = 0.0f;
@@ -93,15 +58,6 @@ Object::Object(std::string filename, std::string textname) //each time we initia
   moving_rotate = true;
   rev_orbit = false;
   rev_rotate = false;
-
-  glGenBuffers(1, &VB);
-  glBindBuffer(GL_ARRAY_BUFFER, VB);
-  glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * Vertices.size(), &Vertices[0], GL_STATIC_DRAW);
-
-  glGenBuffers(1, &IB);
-  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IB);
-  glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * Indices.size(), &Indices[0], GL_STATIC_DRAW);
-
 }
 
 Object::~Object()
@@ -161,62 +117,99 @@ glm::mat4 Object::GetLocation()
 void Object::Render()
 {
 
-  glEnableVertexAttribArray(0);
-  glEnableVertexAttribArray(1);
-
-  glBindBuffer(GL_ARRAY_BUFFER, VB);
-  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
-  glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, texture));
-
-  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IB);
-
-  //Basically saying that we're using a texture
-  glActiveTexture(GL_TEXTURE0);
-
-  //Binding the object's texture that we initialized
-  glBindTexture(GL_TEXTURE_2D, m_textureObj);
-
-
-  glDrawElements(GL_TRIANGLES, Indices.size(), GL_UNSIGNED_INT, 0);
-
-  //Unbind the texture when we're done drawing
-  glBindTexture(GL_TEXTURE_2D, 0);
-
-  glDisableVertexAttribArray(0);
-  glDisableVertexAttribArray(1);
+  for(int i = 0; i < meshes.size(); i++)
+  {
+    std::cout << "Attempting render, meshes size: " << meshes.size() << std::endl;
+    meshes[i].Draw();
+  }
+  std::cout << "Thru Render" << std::endl;
 }
 
-void Object::InitMesh(const aiMesh* mesh)
+void Object::InitMesh(std::vector<std::string> textpaths)
 {
 
   //This is the same process of constructing the vertices and indices that we did when we
   //were writing our own object loader
+
   const aiVector3D Zero3D(0.0f, 0.0f, 0.0f);
 
+  std::cout << "numMeshes: " << m_scene->mNumMeshes << std::endl;
 
-  for(int i = 0; i < mesh->mNumVertices; i++)
+  for(int j = 0; j < m_scene->mNumMeshes; j++)
   {
-    const aiVector3D* pPos = &(mesh->mVertices[i]);
-    const aiVector3D* pNormal = mesh->HasNormals() ? &(mesh->mNormals[i]) : &Zero3D;
-    const aiVector3D* pTexCoord = mesh->HasTextureCoords(0) ? &(mesh->mTextureCoords[0][i]) : &Zero3D;
+    std::cout << "Mesh " << j << std::endl;
 
-    Vertex v(glm::vec3(pPos->x, pPos->y, pPos->z),
-             glm::vec2(pTexCoord->x, -pTexCoord->y),
-             glm::vec3(pNormal->x, pNormal->y, pNormal->z));
+    std::vector<Vertex> tempVert;
+    std::vector<unsigned int> tempInd;
+    std::vector<GLuint> temptexture;
 
-    Vertices.push_back(v);
-  }
 
-  for (unsigned int i = 0 ; i < mesh->mNumFaces ; i++)
-  {
-    const aiFace& Face = mesh->mFaces[i];
-    assert(Face.mNumIndices == 3);
-    Indices.push_back(Face.mIndices[0]);
-    Indices.push_back(Face.mIndices[1]);
-    Indices.push_back(Face.mIndices[2]);
+    for (int i = 0; i < m_scene->mMeshes[j]->mNumVertices; i++)
+    {
+      const aiVector3D *pPos = &(m_scene->mMeshes[j]->mVertices[i]);
+      const aiVector3D *pNormal = m_scene->mMeshes[j]->HasNormals() ? &(m_scene->mMeshes[j]->mNormals[i]) : &Zero3D;
+      const aiVector3D *pTexCoord = m_scene->mMeshes[j]->HasTextureCoords(0) ? &(m_scene->mMeshes[j]->mTextureCoords[0][i]) : &Zero3D;
+
+      Vertex v(glm::vec3(pPos->x, pPos->y, pPos->z),
+               glm::vec2(pTexCoord->x, -pTexCoord->y),
+               glm::vec3(pNormal->x, pNormal->y, pNormal->z));
+
+      tempVert.push_back(v);
+    }
+    std::cout << "Vertices Complete" << std::endl;
+    for (unsigned int i = 0; i < m_scene->mMeshes[j]->mNumFaces; i++)
+    {
+      const aiFace &Face = m_scene->mMeshes[j]->mFaces[i];
+      assert(Face.mNumIndices == 3);
+      tempInd.push_back(Face.mIndices[0]);
+      tempInd.push_back(Face.mIndices[1]);
+      tempInd.push_back(Face.mIndices[2]);
+    }
+
+    std::cout << "Indices Complete" << std::endl;
+    //Texture crap
+    Magick::Blob my_blob;
+    Magick::Image image;
+    unsigned int* data;
+
+    try {
+      image.read(textpaths[j]); //the texture for the mesh we're on
+      image.write(&my_blob, "RGBA");
+    }
+    catch (Magick::Error& Error) {
+      std::cout << "Error loading texture '" << textpaths[j] << "': " << Error.what() << std::endl;
+    }
+
+    std::cout << "Texture Loaded into Image" << std::endl;
+    temptexture.resize(1);
+    //Pointing our GLuint pointer to a place in the gpu
+    glGenTextures(1, &temptexture[0]); //assuming one texture per mesh right now...
+
+    //Specifies the type of texture the pointer is pointing at (still nothing actually there)
+    glBindTexture(GL_TEXTURE_2D, temptexture[0]);
+
+    //Reading our texture data into the place we set up in memory
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image.columns(), image.rows(), 0, GL_RGBA, GL_UNSIGNED_BYTE, my_blob.data());
+
+    //"fits" the texture to our object in the way we want it to
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    //Releasing out texture into the wild because we did all the things
+    //We can access the texture with m_textureObj in the gpu so we dont need it no mo.
+    glBindTexture(GL_TEXTURE_2D, 0);
+
+    std::cout << "Complete Binding" << std::endl;
+    Mesh* v = new Mesh(tempVert, tempInd, temptexture);
+    meshes.push_back(*v);
+    std::cout << "Push TextureObj" << std::endl;
+
   }
 
 }
+
+
+
 
 void Object::StopStartAll()
 {
