@@ -10,7 +10,7 @@ Graphics::~Graphics()
 
 }
 
-bool Graphics::Initialize(int width, int height)
+bool Graphics::Initialize(int width, int height, int argc, char **argv)
 {
   // Used for the linux OS
   #if !defined(__APPLE__) && !defined(MACOSX)
@@ -44,24 +44,18 @@ bool Graphics::Initialize(int width, int height)
     return false;
   }
 
-
   //create objects
-  m_earth = new Object("buddha.obj");
+  if (argc < 2)
+  {
+    printf("Please enter an object file name as a command line argument.\n");
+    return false;
+  }
+  m_earth = new Object(argv[1]);
   m_moon = new Object("earth2.obj");
-
-
-
 
   //Set the object values - float o_vel, float r_vel, float o_width, float o_length, float new_scale, tip
   m_earth->SetValues(.5, .05, 0, 0, 1, 0);
-  m_moon->SetValues(.1, .3, 7, 7, 0, 1);
-
-
-
-
-
-
-
+  m_moon->SetValues(.1, .3, 10, 10, 0, 1);
 
   // Set up the shaders
   m_shader = new Shader();

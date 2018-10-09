@@ -1,17 +1,13 @@
 #include "object.h"
 
-Object::Object(std::string filename) //each time we initialize a planet we give a different
-{                                     //file name for the object (because each has a different texture)
-                                      //however, every planet will be the same size when we load them because
-                                      //scaling in the code is more precise than creating them at a certain size in blender
- //File Path to find object name
+Object::Object(std::string filename)
+{
+
+ //File Path to find object name and textures
   m_objDirectory = "../assets/objects/";
   m_textDirectory = "../assets/textures/";
 
- //append the given filename
-
-  //sorting out texture files because existence is pain
-
+  //append the given filename
   m_objDirectory.append(filename);
 
  //Assimp object loading
@@ -23,7 +19,7 @@ Object::Object(std::string filename) //each time we initialize a planet we give 
   m_scene = importer.ReadFile(m_objDirectory, aiProcess_Triangulate);
 
   //This is the same process of constructing the vertices and indices that we did when we
-  //were writing our own object loader
+  //were writing our own object loader + texture stuff
   InitMesh();
 
   orbit_angle = 0.0f;
@@ -63,9 +59,8 @@ Object::~Object()
 void Object::Update(unsigned int dt, glm::mat4 origin)
 {
 
-  //Axis of rotation - determined by tilt
+  //Axis of rotation - determined by tilt - still not sure what to do here
   //model = glm::rotate(model, (float) (23.5), glm::vec3(0.0, 0.0, 1.0));
-
 
   if(moving_orbit)
   {
@@ -110,7 +105,7 @@ glm::mat4 Object::GetLocation()
 
 void Object::Render()
 {
-
+  //loop through all object meshes and draw them
   for(int i = 0; i < meshes.size(); i++)
   {
     meshes[i].Draw();
@@ -155,12 +150,14 @@ void Object::InitMesh()
       tempInd.push_back(Face.mIndices[2]);
     }
 
-    //Texture crap
-
+    //new texturey stuff - loading and initializing textures for each mesh
+    //probably would break if there were more than one texture per mesh, but we'll get there
     temptexture = loadMaterialTextures(m_scene->mMaterials[m_scene->mMeshes[j]->mMaterialIndex], aiTextureType_DIFFUSE);
 
-
+    //initializing our new mesh
     Mesh* v = new Mesh(tempVert, tempInd, temptexture);
+
+    //Pushing new mesh onto object's vector of meshes
     meshes.push_back(*v);
 
   }
@@ -171,6 +168,7 @@ std::vector<GLuint> Object::loadMaterialTextures(aiMaterial *mat, aiTextureType 
 {
   std::vector<GLuint> textures;
 
+  //for all the textures of the mesh (Diffuse textures only at this point
   for(unsigned int i = 0; i < mat->GetTextureCount(type); i++)
   {
     GLuint texture;
@@ -180,6 +178,7 @@ std::vector<GLuint> Object::loadMaterialTextures(aiMaterial *mat, aiTextureType 
 
     t_path = m_textDirectory + str.C_Str();
 
+    //Stupid image magick stuff
     Magick::Blob my_blob;
     Magick::Image image;
     unsigned int* data;
@@ -191,6 +190,8 @@ std::vector<GLuint> Object::loadMaterialTextures(aiMaterial *mat, aiTextureType 
     catch (Magick::Error& Error) {
       std::cout << "Error loading texture '" << t_path << "': " << Error.what() << std::endl;
     }
+
+    //Initializing texture object
 
     //Pointing our GLuint pointer to a place in the gpu
     glGenTextures(1, &texture);
@@ -206,9 +207,10 @@ std::vector<GLuint> Object::loadMaterialTextures(aiMaterial *mat, aiTextureType 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
     //Releasing out texture into the wild because we did all the things
-    //We can access the texture with m_textureObj in the gpu so we dont need it no mo.
+    //We can access the texture with m_textureObj in the gpu so we don't need it no mo.
     glBindTexture(GL_TEXTURE_2D, 0);
 
+    //pushing our fancy new texture object onto out vector of texture objects
     textures.push_back(texture);
   }
   return textures;
