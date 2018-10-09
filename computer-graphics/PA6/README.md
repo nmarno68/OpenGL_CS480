@@ -9,7 +9,7 @@ This project uses OpenGL 3.3. Some computers, such as virtual machines in the EC
 
 This project uses the Assimp library]. To download and install [Assimp](http://www.assimp.org/).
 
-This project uses the ImageMagick 7.0.8. To download, install, and build for linux, follow the instructions at [ImageMagick] (https://linuxconfig.org/how-to-install-imagemagick-7-on-ubuntu-18-04-linux).
+This project uses the ImageMagick 7.0.8. To download, install, and build for linux, follow the instructions at [ImageMagick](https://linuxconfig.org/how-to-install-imagemagick-7-on-ubuntu-18-04-linux).
 
 ### Ubuntu/Linux
 ```bash
