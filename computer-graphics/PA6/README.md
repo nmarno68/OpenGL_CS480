@@ -1,4 +1,4 @@
-# PA3: Moons
+# PA6 Textures
 
 # Dependencies, Building, and Running
 
@@ -59,7 +59,7 @@ OpenGL 3.3 will run on the [ubuntu.cse.unr.edu](https://ubuntu.cse.unr.edu/) web
 /usr/NX/scripts/vgl/vglrun ./Tutorial
 ```
 
-##To Run
+## To Run
 The program loads in and renders a single object file with textures. The filename should be given as a command line argument. The object file to be loaded and the material file for the object should be saved in PA6/assets/objects.
 The texture images to be loaded should be saved in PA6/assets/textures. The material files should be configured accordingly. The buddha object as well as it's textures have already been saved in the appropriate folders.
 
