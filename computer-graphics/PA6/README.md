@@ -39,7 +39,7 @@ mkdir build
 cd build
 cmake ..
 make
-./Tutorial
+./Textures
 ```
 
 ### Makefile Instructions
@@ -50,17 +50,17 @@ mkdir build
 cd build
 cp ../makefile .
 make
-./Tutorial
+./Textures
 ```
 
 ## Ubuntu.cse.unr.edu
 OpenGL 3.3 will run on the [ubuntu.cse.unr.edu](https://ubuntu.cse.unr.edu/) website. To do so follow the build instructions, but when running the Tutorial executable use this line to execute.
 ```bash
-/usr/NX/scripts/vgl/vglrun ./Tutorial
+/usr/NX/scripts/vgl/vglrun ./Textures
 ```
 
 ## To Run
-The program loads in and renders a single object file with textures. The filename should be given as a command line argument. The object file to be loaded and the material file for the object should be saved in PA6/assets/objects.
+Executable name Textures, the program loads in and renders a single object file with textures. The filename should be given as a command line argument. The object file to be loaded and the material file for the object should be saved in PA6/assets/objects.
 The texture images to be loaded should be saved in PA6/assets/textures. The material files should be configured accordingly. The buddha object as well as it's textures have already been saved in the appropriate folders.
 
 # Project Description
