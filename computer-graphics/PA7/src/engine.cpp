@@ -102,6 +102,10 @@ void Engine::Keyboard()
 
       case SDLK_a:
         m_graphics->m_earth->StopStartOrbit();
+        break;
+
+      case SDLK_UP:
+        m_graphics->m_camera->MoveForward();
     }
   }
 }

@@ -59,6 +59,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/Textures_SUCCESSFUL.dir/DependInfo.cmake"
-  "CMakeFiles/Textures.dir/DependInfo.cmake"
+  "CMakeFiles/SolarSystem_SUCCESSFUL.dir/DependInfo.cmake"
+  "CMakeFiles/SolarSystem.dir/DependInfo.cmake"
   )

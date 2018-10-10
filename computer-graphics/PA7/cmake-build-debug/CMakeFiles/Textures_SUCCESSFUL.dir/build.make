@@ -43,10 +43,10 @@ RM = /home/natalie/Downloads/clion-2018.2.2/bin/cmake/linux/bin/cmake -E remove 
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/natalie/workspaces/cs480Arnold/computer-graphics/PA6
+CMAKE_SOURCE_DIR = /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/natalie/workspaces/cs480Arnold/computer-graphics/PA6/cmake-build-debug
+CMAKE_BINARY_DIR = /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/cmake-build-debug
 
 # Utility rule file for Textures_SUCCESSFUL.
 
@@ -54,12 +54,12 @@ CMAKE_BINARY_DIR = /home/natalie/workspaces/cs480Arnold/computer-graphics/PA6/cm
 include CMakeFiles/Textures_SUCCESSFUL.dir/progress.make
 
 CMakeFiles/Textures_SUCCESSFUL: Textures
-	/home/natalie/Downloads/clion-2018.2.2/bin/cmake/linux/bin/cmake -E copy_directory /home/natalie/workspaces/cs480Arnold/computer-graphics/PA6/shaders/ /home/natalie/workspaces/cs480Arnold/computer-graphics/PA6/cmake-build-debug/shaders
+	/home/natalie/Downloads/clion-2018.2.2/bin/cmake/linux/bin/cmake -E copy_directory /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/shaders/ /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/cmake-build-debug/shaders
 	/home/natalie/Downloads/clion-2018.2.2/bin/cmake/linux/bin/cmake -E echo 
 	/home/natalie/Downloads/clion-2018.2.2/bin/cmake/linux/bin/cmake -E echo =====================
 	/home/natalie/Downloads/clion-2018.2.2/bin/cmake/linux/bin/cmake -E echo \ \ Compile\ complete!
 	/home/natalie/Downloads/clion-2018.2.2/bin/cmake/linux/bin/cmake -E echo =====================
-	/home/natalie/Downloads/clion-2018.2.2/bin/cmake/linux/bin/cmake -E echo /home/natalie/workspaces/cs480Arnold/computer-graphics/PA6/cmake-build-debug
+	/home/natalie/Downloads/clion-2018.2.2/bin/cmake/linux/bin/cmake -E echo /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/cmake-build-debug
 
 Textures_SUCCESSFUL: CMakeFiles/Textures_SUCCESSFUL
 Textures_SUCCESSFUL: CMakeFiles/Textures_SUCCESSFUL.dir/build.make
@@ -76,6 +76,6 @@ CMakeFiles/Textures_SUCCESSFUL.dir/clean:
 .PHONY : CMakeFiles/Textures_SUCCESSFUL.dir/clean
 
 CMakeFiles/Textures_SUCCESSFUL.dir/depend:
-	cd /home/natalie/workspaces/cs480Arnold/computer-graphics/PA6/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/natalie/workspaces/cs480Arnold/computer-graphics/PA6 /home/natalie/workspaces/cs480Arnold/computer-graphics/PA6 /home/natalie/workspaces/cs480Arnold/computer-graphics/PA6/cmake-build-debug /home/natalie/workspaces/cs480Arnold/computer-graphics/PA6/cmake-build-debug /home/natalie/workspaces/cs480Arnold/computer-graphics/PA6/cmake-build-debug/CMakeFiles/Textures_SUCCESSFUL.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7 /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7 /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/cmake-build-debug /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/cmake-build-debug /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/cmake-build-debug/CMakeFiles/Textures_SUCCESSFUL.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/Textures_SUCCESSFUL.dir/depend
 

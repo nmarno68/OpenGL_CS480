@@ -46,15 +46,17 @@ bool Graphics::Initialize(int width, int height)
 
 
   //create objects
-  m_earth = new Object("buddha.obj");
-  m_moon = new Object("earth2.obj");
+  m_Sun = new Object("sun.obj");
+  m_earth = new Object("earth2.obj");
+  m_moon = new Object("moon.obj");
 
 
 
 
   //Set the object values - float o_vel, float r_vel, float o_width, float o_length, float new_scale, tip
-  m_earth->SetValues(.5, .05, 0, 0, 1, 0);
-  m_moon->SetValues(.1, .3, 7, 7, 0, 1);
+  m_Sun->SetValues(0,.05, 0, 0, 2, 0);
+  m_earth->SetValues(.05, .2, 15, 15, 1, 0);
+  m_moon->SetValues(.2, .3, 3, 3, .5, 1);
 
 
 
@@ -126,7 +128,9 @@ bool Graphics::Initialize(int width, int height)
 void Graphics::Update(unsigned int dt)
 {
   // Update the planets
-  m_earth->Update(dt, glm::mat4(1.0f));
+  m_Sun->Update(dt, glm::mat4(1.0f));
+
+  m_earth->Update(dt, m_Sun->GetLocation());
   m_moon->Update(dt, m_earth->GetLocation());
 
 }
@@ -146,6 +150,10 @@ void Graphics::Render()
 
 
   // Render the objects
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_Sun->GetModel()));
+
+  m_Sun->Render();
+
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_earth->GetModel()));
 
   m_earth->Render();
@@ -153,6 +161,7 @@ void Graphics::Render()
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_moon->GetModel()));
 
   m_moon->Render();
+
 
 
 

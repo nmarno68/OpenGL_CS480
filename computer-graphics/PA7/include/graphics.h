@@ -47,10 +47,12 @@ class Graphics
     Object *m_pluto;
     Object *m_charon;
 
+    Camera *m_camera;
+
   private:
     std::string ErrorString(GLenum error);
 
-    Camera *m_camera;
+
     Shader *m_shader;
 
     GLint m_projectionMatrix;
