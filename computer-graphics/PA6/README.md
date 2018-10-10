@@ -1,4 +1,4 @@
-# PA3: Moons
+# PA6 Textures
 
 # Dependencies, Building, and Running
 
@@ -7,9 +7,9 @@ For both of the operating systems to run this project installation of these thre
 
 This project uses OpenGL 3.3. Some computers, such as virtual machines in the ECC, can not run this version. In in order to run OpenGL 2.7 follow the instructions at [Using OpenGL 2.7](https://github.com/HPC-Vis/computer-graphics/wiki/Using-OpenGL-2.7)
 
-This project uses the Assimp library]. To download and install (http://www.assimp.org/)
+This project uses the Assimp library. To download and install [Assimp](http://www.assimp.org/).
 
-This project uses the ImageMagick 7.0.8. To download, install, and build for linux, follow the instructions at (https://linuxconfig.org/how-to-install-imagemagick-7-on-ubuntu-18-04-linux)
+This project uses the ImageMagick 7.0.8. To download, install, and build for linux, follow the instructions at [ImageMagick](https://linuxconfig.org/how-to-install-imagemagick-7-on-ubuntu-18-04-linux).
 
 ### Ubuntu/Linux
 ```bash
@@ -39,7 +39,7 @@ mkdir build
 cd build
 cmake ..
 make
-./Tutorial
+./Textures
 ```
 
 ### Makefile Instructions
@@ -50,17 +50,17 @@ mkdir build
 cd build
 cp ../makefile .
 make
-./Tutorial
+./Textures
 ```
 
 ## Ubuntu.cse.unr.edu
 OpenGL 3.3 will run on the [ubuntu.cse.unr.edu](https://ubuntu.cse.unr.edu/) website. To do so follow the build instructions, but when running the Tutorial executable use this line to execute.
 ```bash
-/usr/NX/scripts/vgl/vglrun ./Tutorial
+/usr/NX/scripts/vgl/vglrun ./Textures
 ```
 
-##To Run
-The program loads in and renders a single object file with textures. The filename should be given as a command line argument. The object file to be loaded and the material file for the object should be saved in PA6/assets/objects.
+## To Run
+Executable name Textures, the program loads in and renders a single object file with textures. The filename should be given as a command line argument. The object file to be loaded and the material file for the object should be saved in PA6/assets/objects.
 The texture images to be loaded should be saved in PA6/assets/textures. The material files should be configured accordingly. The buddha object as well as it's textures have already been saved in the appropriate folders.
 
 # Project Description
