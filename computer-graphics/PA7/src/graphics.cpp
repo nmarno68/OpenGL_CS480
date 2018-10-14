@@ -54,11 +54,11 @@ bool Graphics::Initialize(int width, int height)
 
 
 
-  //Set the object values - float o_vel, float r_vel, float o_width, float o_length, float new_scale, tip
-  m_Sun->SetValues(0,.05, 0, 0, 2, 0);
-  m_earth->SetValues(.05, .2, 15, 15, 1, 0);
-  m_moon->SetValues(.2, .3, 3, 3, .5, 1);
-  m_saturn->SetValues(0.05, .2, 30, 30, 4, 0.0);
+  //Set the object values - float o_vel, float r_vel, float o_width, float o_length, float new_scale, tip, x_axis, y_axis
+  m_Sun->SetValues(0,.05, 0, 0, 2, 0, 0.0, 1.0);
+  m_earth->SetValues(.05, .2, 15, 15, 1, 0, 0.0, 1.0);
+  m_moon->SetValues(.2, .3, 3, 3, .5, 1, 0.0, 1.0);
+  m_saturn->SetValues(0.05, .2, 30, 30, 4, 0, -1.0, 2.5);
 
 
 
