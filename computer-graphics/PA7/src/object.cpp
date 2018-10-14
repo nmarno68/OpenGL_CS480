@@ -95,7 +95,7 @@ void Object::Update(unsigned int dt, glm::mat4 origin)
       rotate_angle += (dt * M_PI / 1000) * rotate_vel;
     }
   }
-  model = glm::rotate(model, (rotate_angle), glm::vec3(x_axis, y_axis, 0.0)); //This axis needs to be dependent on tilt
+  model = glm::rotate(model, (rotate_angle), glm::vec3(x_axis, y_axis, z_axis)); //This axis needs to be dependent on tilt
 
   model = glm::scale(model, glm::vec3(scale, scale, scale));
 
@@ -331,7 +331,11 @@ void Object::ResetAll()
   orbit_length = og_orbit_length;
 }
 
+<<<<<<< HEAD
 void Object::SetValues(float o_vel, float r_vel, float o_width, float o_length, float new_scale, float new_tip, float new_x_axis, float new_y_axis, float new_start_angle)
+=======
+void Object::SetValues(float o_vel, float r_vel, float o_width, float o_length, float new_scale, float new_tip, float new_x_axis, float new_y_axis, float new_z_axis)
+>>>>>>> 18ebf154a392cb8e548c2f65a3057d468abb6caa
 {
   og_orbit_vel = o_vel;
   og_rotate_vel = r_vel;
@@ -341,7 +345,11 @@ void Object::SetValues(float o_vel, float r_vel, float o_width, float o_length, 
   og_tip = new_tip;
   x_axis = new_x_axis;
   y_axis = new_y_axis;
+<<<<<<< HEAD
   start_angle = new_start_angle;
+=======
+  z_axis = new_z_axis;
+>>>>>>> 18ebf154a392cb8e548c2f65a3057d468abb6caa
 
   orbit_vel = og_orbit_vel;
   rotate_vel = og_rotate_vel;
@@ -357,15 +365,3 @@ void Object::SetValues(float o_vel, float r_vel, float o_width, float o_length, 
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-

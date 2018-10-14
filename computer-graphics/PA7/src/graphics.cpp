@@ -62,6 +62,7 @@ bool Graphics::Initialize(int width, int height)
   //m_uranus = new Object ("uranus.obj");
   //m_pluto = new Object ("pluto.obj");
 
+<<<<<<< HEAD
 
 
 
@@ -82,6 +83,13 @@ bool Graphics::Initialize(int width, int height)
   //m_neptune->SetValues();
   //m_uranus->SetValues();
   //m_pluto->SetValues();
+=======
+  //Set the object values - float o_vel, float r_vel, float o_width, float o_length, float new_scale, tip, x_axis, y_axis, z_axis
+  m_Sun->SetValues(0,.05, 0, 0, 2, 0, 0.0, 1.0, 0.0);
+  m_earth->SetValues(.05, .2, 15, 15, 1, 0, 0.0, 1.0, 0.0);
+  m_moon->SetValues(.2, .3, 3, 3, .5, 1, 0.0, 1.0, 0.0);
+  m_saturn->SetValues(.3, 0.5, 30, 30, 4, 0, -0.4, 1.0, -0.2);
+>>>>>>> 18ebf154a392cb8e548c2f65a3057d468abb6caa
 
 
 

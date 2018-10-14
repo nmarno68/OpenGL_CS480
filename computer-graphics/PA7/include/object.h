@@ -32,7 +32,11 @@ class Object
     void ResetAll();              //
 
     //This will set our planet attributes like orbit, size, speed, etc. More attributes may need to be added later
+<<<<<<< HEAD
     void SetValues(float o_vel, float r_vel, float o_width, float o_length, float new_scale, float new_tip, float new_x_axis, float new_y_axis, float new_start_angle);
+=======
+    void SetValues(float o_vel, float r_vel, float o_width, float o_length, float new_scale, float new_tip, float new_x_axis, float new_y_axis, float new_z_axis);
+>>>>>>> 18ebf154a392cb8e548c2f65a3057d468abb6caa
 
     //returns the model matrix
     glm::mat4 GetModel();
@@ -54,7 +58,11 @@ class Object
     std::vector<Vertex> Vertices;
     std::vector<unsigned int> Indices;
 
+<<<<<<< HEAD
     float orbit_angle, rotate_angle, orbit_vel, rotate_vel, scale, orbit_width, orbit_length, tip, x_axis, y_axis, start_angle;
+=======
+    float orbit_angle, rotate_angle, orbit_vel, rotate_vel, scale, orbit_width, orbit_length, tip, x_axis, y_axis, z_axis;
+>>>>>>> 18ebf154a392cb8e548c2f65a3057d468abb6caa
     float og_orbit_vel, og_rotate_vel, og_scale, og_orbit_width, og_orbit_length, og_tip;
     bool moving_orbit, moving_rotate, rev_orbit, rev_rotate;
 
