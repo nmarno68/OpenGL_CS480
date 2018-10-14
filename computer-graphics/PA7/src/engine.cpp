@@ -100,12 +100,30 @@ void Engine::Keyboard()
         m_running = false;
         break;
 
+      case SDLK_w:
+        m_graphics->m_camera->MoveForward();
+        break;
+
+      case SDLK_s:
+        m_graphics->m_camera->MoveBackward();
+        break;
+
       case SDLK_a:
-        m_graphics->m_earth->StopStartOrbit();
+        m_graphics->m_camera->MoveLeft();
+        break;
+
+      case SDLK_d:
+        m_graphics->m_camera->MoveRight();
         break;
 
       case SDLK_UP:
-        m_graphics->m_camera->MoveForward();
+        m_graphics->m_camera->MoveUp();
+        break;
+
+      case SDLK_DOWN:
+        m_graphics->m_camera->MoveDown();
+        break;
+
     }
   }
 }

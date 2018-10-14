@@ -3,6 +3,7 @@
 
 #include <SDL2/SDL.h>
 #include <string>
+#include <GL/glew.h>
 using namespace std;
 
 class Window
@@ -16,6 +17,7 @@ class Window
   private:
     SDL_Window* gWindow;
     SDL_GLContext gContext;
+    SDL_Renderer* renderer;
 };
 
 #endif /* WINDOW_H */

@@ -49,6 +49,7 @@ bool Graphics::Initialize(int width, int height)
   m_Sun = new Object("sun.obj");
   m_earth = new Object("earth2.obj");
   m_moon = new Object("moon.obj");
+  m_saturn = new Object("Saturn.obj");
 
 
 
@@ -57,8 +58,7 @@ bool Graphics::Initialize(int width, int height)
   m_Sun->SetValues(0,.05, 0, 0, 2, 0);
   m_earth->SetValues(.05, .2, 15, 15, 1, 0);
   m_moon->SetValues(.2, .3, 3, 3, .5, 1);
-
-
+  m_saturn->SetValues(0.05, .2, 30, 30, 4, 0.0);
 
 
 
@@ -133,6 +133,7 @@ void Graphics::Update(unsigned int dt)
   m_earth->Update(dt, m_Sun->GetLocation());
   m_moon->Update(dt, m_earth->GetLocation());
 
+  m_saturn->Update(dt, m_Sun->GetLocation());
 }
 
 void Graphics::Render()
@@ -161,6 +162,10 @@ void Graphics::Render()
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_moon->GetModel()));
 
   m_moon->Render();
+
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_saturn->GetModel()));
+
+  m_saturn->Render();
 
 
 
