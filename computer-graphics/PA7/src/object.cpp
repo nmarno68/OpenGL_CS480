@@ -347,15 +347,3 @@ void Object::SetValues(float o_vel, float r_vel, float o_width, float o_length, 
   tip = og_tip;
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
