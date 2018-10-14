@@ -82,5 +82,7 @@ void Camera::MoveDown()
 
 void Camera::Target(glm::vec3 position, glm::vec3 target)
 {
-
+  cameraPosition = position;
+  cameraTarget = target;
+  view = glm::lookAt(cameraPosition, cameraTarget, cameraUp);
 }

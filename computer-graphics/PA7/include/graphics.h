@@ -17,6 +17,9 @@ class Graphics
     bool Initialize(int width, int height);
     void Update(unsigned int dt);
     void Render();
+    void IncSimSpeed();
+    void DecSimSpeed();
+    void resetAll();
 
     //I thought it would be nicer if we could call them by name
     //instead of having numbers in an array
@@ -46,8 +49,10 @@ class Graphics
     Object *m_triton;
     Object *m_pluto;
     Object *m_charon;
+    Object *m_secret;
 
     Camera *m_camera;
+    int target_planet;
 
   private:
     std::string ErrorString(GLenum error);

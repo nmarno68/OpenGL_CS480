@@ -18,15 +18,16 @@ class Camera
     void MoveUp();
     void MoveDown();
     void Target(glm::vec3 position, glm::vec3 target);
-  
-  private:
-    glm::mat4 projection;
-    glm::mat4 view;
 
     glm::vec3 cameraPosition;
     glm::vec3 cameraTarget;
     glm::vec3 cameraUp;
     glm::vec3 cameraFront;
+  private:
+    glm::mat4 projection;
+    glm::mat4 view;
+
+
     float cameraSpeed;
 };
 

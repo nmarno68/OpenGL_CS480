@@ -38,6 +38,7 @@ Object::Object(std::string filename) //each time we initialize a planet we give 
   og_orbit_length = 1;// SetValues function when each planet is created.
   og_scale = 1;       //
   og_tip = 1;         //
+  start_angle = 1;
 
   //Ones that can be modified or reset to originals
   orbit_vel = og_orbit_vel;
@@ -78,6 +79,8 @@ void Object::Update(unsigned int dt, glm::mat4 origin)
       orbit_angle += (dt * M_PI / 1000) * orbit_vel;
     }
   }
+
+
   model = glm::translate(origin, glm::vec3(sin(orbit_angle) * orbit_width, -sin(orbit_angle) * tip, cos(orbit_angle) * orbit_length));
 
 
@@ -257,19 +260,19 @@ void Object::ReverseRoatation()
 
 void Object::IncreaseOrbitSpeed()
 {
-  orbit_vel += .05;
+  orbit_vel += .01;
 }
 
 void Object::IncreaseRotationSpeed()
 {
-  rotate_vel += .05;
+  rotate_vel += .01;
 }
 
 void Object::DecreaseOrbitSpeed()
 {
   if(orbit_vel > 0)
   {
-    orbit_vel -= .05;
+    orbit_vel -= .01;
   }
 }
 
@@ -277,7 +280,7 @@ void Object::DecreaseRoationSpeed()
 {
   if(rotate_vel > 0)
   {
-    rotate_vel -= .05;
+    rotate_vel -= .01;
   }
 }
 
@@ -326,11 +329,9 @@ void Object::ResetAll()
   rotate_vel = og_rotate_vel;
   orbit_width = og_orbit_width;
   orbit_length = og_orbit_length;
-  scale = og_scale;
-  tip = og_tip;
 }
 
-void Object::SetValues(float o_vel, float r_vel, float o_width, float o_length, float new_scale, float new_tip, float new_x_axis, float new_y_axis)
+void Object::SetValues(float o_vel, float r_vel, float o_width, float o_length, float new_scale, float new_tip, float new_x_axis, float new_y_axis, float new_start_angle)
 {
   og_orbit_vel = o_vel;
   og_rotate_vel = r_vel;
@@ -340,6 +341,7 @@ void Object::SetValues(float o_vel, float r_vel, float o_width, float o_length, 
   og_tip = new_tip;
   x_axis = new_x_axis;
   y_axis = new_y_axis;
+  start_angle = new_start_angle;
 
   orbit_vel = og_orbit_vel;
   rotate_vel = og_rotate_vel;
@@ -347,6 +349,11 @@ void Object::SetValues(float o_vel, float r_vel, float o_width, float o_length, 
   orbit_length = og_orbit_length;
   scale = og_scale;
   tip = og_tip;
+
+  if(new_start_angle < 0)
+  {
+    orbit_angle =  (float) M_PI;
+  }
 
 
 }

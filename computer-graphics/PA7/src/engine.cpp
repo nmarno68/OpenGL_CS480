@@ -124,6 +124,37 @@ void Engine::Keyboard()
         m_graphics->m_camera->MoveDown();
         break;
 
+      case SDLK_0:
+        m_graphics->target_planet = 0;
+        break;
+
+      case SDLK_1:
+        m_graphics->target_planet = 1;
+        break;
+
+      case SDLK_2:
+        m_graphics->target_planet = 2;
+        break;
+
+      case SDLK_3:
+        m_graphics->target_planet = 3;
+        break;
+
+      case SDLK_4:
+        m_graphics->target_planet = 4;
+        break;
+
+      case SDLK_p:
+        m_graphics->IncSimSpeed();
+        break;
+
+      case SDLK_o:
+        m_graphics->DecSimSpeed();
+        break;
+
+      case SDLK_q:
+        m_graphics->resetAll();
+
     }
   }
 }
