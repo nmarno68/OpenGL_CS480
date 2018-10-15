@@ -326,7 +326,7 @@ void Object::ResetAll()
   orbit_length = og_orbit_length;
 }
 
-void Object::SetValues(float o_vel, float r_vel, float o_width, float o_length, float new_scale, float new_tip, float new_x_axis, float new_y_axis, float new_z_axis, float new_start_angle, bool backwards)
+void Object::SetValues(float o_vel, float r_vel, float o_width, float o_length, float new_scale, float new_tip, float new_x_axis, float new_y_axis, float new_z_axis, double new_start_angle, bool backwards)
 {
   og_orbit_vel = o_vel;
   og_rotate_vel = r_vel;
