@@ -15,18 +15,22 @@ class Camera
     void MoveBackward();
     void MoveLeft();
     void MoveRight();
-    void MoveUp();
-    void MoveDown();
+    void MouseMovement(double xpos, double ypos);
+    void EnableMouse();
     void Reset();
 
     glm::vec3 cameraPosition;
     glm::vec3 cameraTarget;
     glm::vec3 cameraUp;
-    glm::vec3 cameraFront;
+    glm::vec3 cameraFront;  //our target will always be just in front of the camera position
+    bool enableMouse;
+    bool firstMouseMovement;
+
   private:
     glm::mat4 projection;
     glm::mat4 view;
 
+    double last_x, last_y, pitch, yaw;
 
     float cameraSpeed;
 };

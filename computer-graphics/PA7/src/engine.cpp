@@ -100,11 +100,11 @@ void Engine::Keyboard()
         m_running = false;
         break;
 
-      case SDLK_UP:
+      case SDLK_w:
         m_graphics->m_camera->MoveForward();
         break;
 
-      case SDLK_DOWN:
+      case SDLK_s:
         m_graphics->m_camera->MoveBackward();
         break;
 
@@ -114,14 +114,6 @@ void Engine::Keyboard()
 
       case SDLK_d:
         m_graphics->m_camera->MoveRight();
-        break;
-
-      case SDLK_w:
-        m_graphics->m_camera->MoveUp();
-        break;
-
-      case SDLK_s:
-        m_graphics->m_camera->MoveDown();
         break;
 
       case SDLK_p:
@@ -134,7 +126,37 @@ void Engine::Keyboard()
 
       case SDLK_q:
         m_graphics->resetAll();
+        break;
 
+      case SDLK_m:
+        if(m_graphics->m_camera->enableMouse)
+        {
+          SDL_SetRelativeMouseMode((SDL_bool) 0);
+          m_graphics->m_camera->enableMouse = 0;
+        }
+        else
+        {
+          SDL_SetRelativeMouseMode((SDL_bool) 1);
+          m_graphics->m_camera->enableMouse = 1;
+        }
+
+        break;
+
+      case SDLK_r:
+        m_graphics->m_camera->Reset();
+        break;
+
+
+    }
+  }
+  else if (m_event.type == SDL_MOUSEMOTION )
+  {
+    if(m_graphics->m_camera->enableMouse)
+    {
+      int x, y;
+      x = m_event.motion.xrel;
+      y = m_event.motion.yrel;
+      m_graphics->m_camera->MouseMovement(x, y);
     }
   }
 }

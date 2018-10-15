@@ -1,5 +1,6 @@
 #include <window.h>
 
+
 Window::Window()
 {
   gWindow = NULL;
