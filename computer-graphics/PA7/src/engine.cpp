@@ -100,11 +100,11 @@ void Engine::Keyboard()
         m_running = false;
         break;
 
-      case SDLK_w:
+      case SDLK_UP:
         m_graphics->m_camera->MoveForward();
         break;
 
-      case SDLK_s:
+      case SDLK_DOWN:
         m_graphics->m_camera->MoveBackward();
         break;
 
@@ -116,32 +116,12 @@ void Engine::Keyboard()
         m_graphics->m_camera->MoveRight();
         break;
 
-      case SDLK_UP:
+      case SDLK_w:
         m_graphics->m_camera->MoveUp();
         break;
 
-      case SDLK_DOWN:
+      case SDLK_s:
         m_graphics->m_camera->MoveDown();
-        break;
-
-      case SDLK_0:
-        m_graphics->target_planet = 0;
-        break;
-
-      case SDLK_1:
-        m_graphics->target_planet = 1;
-        break;
-
-      case SDLK_2:
-        m_graphics->target_planet = 2;
-        break;
-
-      case SDLK_3:
-        m_graphics->target_planet = 3;
-        break;
-
-      case SDLK_4:
-        m_graphics->target_planet = 4;
         break;
 
       case SDLK_p:

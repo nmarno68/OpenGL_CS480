@@ -47,52 +47,93 @@ bool Graphics::Initialize(int width, int height)
 
   //create objects
   m_Sun = new Object("sun.obj");
+
+  m_mars = new Object ("mars.obj");
+  m_phobos = new Object("phobos.obj");
+  m_deimos = new Object("deimos.obj");
+
+  m_venus = new Object ("venus.obj");
+
   m_earth = new Object("earth2.obj");
   m_moon = new Object("moon.obj");
+
+  m_mercury = new Object ("mercury.obj");
+
+  m_jupiter = new Object ("jupiter.obj");
+  m_ganymede = new Object ("ganymede.obj");
+  m_callisto = new Object ("callisto.obj");
+  m_io = new Object ("io.obj");
+  m_europa = new Object ("europa.obj");
+
   m_saturn = new Object("Saturn.obj");
+  m_titan = new Object("titon.obj");
+  m_enceladus = new Object("enceladus.obj");
+
+  m_neptune = new Object ("neptune.obj");
+  m_triton = new Object("triton.obj");
+
+  m_uranus = new Object ("uranus.obj");
+  m_titania = new Object ("titania.obj");
+  m_oberon = new Object ("oberon.obj");
+  m_umbriel = new Object ("umbriel.obj");
+  m_ariel = new Object ("ariel.obj");
+  m_miranda = new Object ("miranda.obj");
+
   m_secret = new Object("moon.obj");
+  m_pluto = new Object ("pluto.obj");
+  m_charon = new Object("charon.obj");
 
 
+  std:cout << "Seg" << std::endl;
 
-  m_mars = new Object ("moon.obj");
-  m_venus = new Object ("moon.obj");
-  //m_mercury = new Object ("mercury.obj");
-  //m_jupiter = new Object ("jupiter.obj");
-  //m_neptune = new Object ("neptune.obj");
-  //m_uranus = new Object ("uranus.obj");
-  //m_pluto = new Object ("pluto.obj");
+  //Set the object values - float o_vel, float r_vel, float o_width, float o_length, float new_scale, tip, x_axis, y_axis, z_axis, start_angle, backwards
 
-<<<<<<< HEAD
+  m_Sun->SetValues( 0,.0002, 0, 0, 2, 0, 0.0, 1.0, 0.0, 0, 0);                              //start angle just starts the orbit in a different place in the circle
+                                                                                            //in terms of pi. Ex. M_PI would start the orbit halfway around the sun
+                                                                                            //this is needed for moons with the same orbit, and pluto and charon because
+                                                                                            //they orbit each other. I already set them
+  m_mars->SetValues(.002, .002, 4, 4, .005, 0, -0.4, 1, -0.2, 0, 0);
+  m_phobos->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);               //Needs values
+  m_deimos->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);               //Needs values
 
 
+  m_venus->SetValues(.002, .003, 6, 6, .01, 0, 0, 1, 0, 0, 1);
 
-  //Set the object values - float o_vel, float r_vel, float o_width, float o_length, float new_scale, tip, x_axis, y_axis, start_angle
-  m_Sun->SetValues(0,.05, 0, 0, 2, 0, 0.0, 1.0, 1);
-  m_earth->SetValues(.05, .2, 15, 15, 1, 0, 0.0, 1.0, 1);
-  m_moon->SetValues(.2, .3, 3, 3, .5, 1, 0.0, 1.0, 1);
-  m_saturn->SetValues(0.05, .2, 30, 30, 4, 0, -1.0, 2.5, 1);
+
+  m_earth->SetValues(.0005, .002, 8, 8, .01, 0, -0.4, 1.0, -0.2, 0, 0);
+  m_moon->SetValues(.002, .003, .1, .1, .004, .01, 0.0, 1.0, 0.0, 0, 0);
+
+
+  m_mercury->SetValues(.003, .005, 10, 10, .005, 0, 0, 1, 0, 0, 0);
+
+
+  m_jupiter->SetValues(.0002, .003, 40, 40, .5, 0, 0, 1, 0, 0, 0);
+  m_ganymede->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);             //Needs values
+  m_callisto->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);             //Needs values
+  m_io->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);                   //Needs values
+  m_europa->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);               //Needs values
+
+
+  m_saturn->SetValues(.0006, 0.005, 80, 80, .25, 0, -0.4, 1.0, -0.2, 0, 0);
+  m_titan->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);                //Needs values
+  m_enceladus->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);            //Needs values
+
+
+  m_neptune->SetValues(.005, .03, 200, 200, .25, 0, -0.4, 1, -0.2, 0, 0);
+  m_triton->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);               //Needs values
+
+
+  m_uranus->SetValues(.005, .3, 160, 160, .25, 0, 1, 0, .5, 0, 0);
+  m_titania->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);              //Needs values
+  m_oberon->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);               //Needs values
+  m_umbriel->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);              //Needs values
+  m_ariel->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);                //Needs values
+  m_miranda->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);              //Needs values
 
   //pluto and charon
-  m_secret->SetValues(.05, 0, 50, 50, 0, 0, 0, 1.0, 1);
-
-  m_mars->SetValues(.5, .2, 5, 5, 1, 0, 0, 1, -1);
-
-  m_venus->SetValues(.5, .3, 5, 5, 1, 0, 0, 1, 1);
-  //m_mercury->SetValues();
-  //m_jupiter->SetValues();
-  //m_neptune->SetValues();
-  //m_uranus->SetValues();
-  //m_pluto->SetValues();
-=======
-  //Set the object values - float o_vel, float r_vel, float o_width, float o_length, float new_scale, tip, x_axis, y_axis, z_axis
-  m_Sun->SetValues(0,.05, 0, 0, 2, 0, 0.0, 1.0, 0.0);
-  m_earth->SetValues(.05, .2, 15, 15, 1, 0, 0.0, 1.0, 0.0);
-  m_moon->SetValues(.2, .3, 3, 3, .5, 1, 0.0, 1.0, 0.0);
-  m_saturn->SetValues(.3, 0.5, 30, 30, 4, 0, -0.4, 1.0, -0.2);
->>>>>>> 18ebf154a392cb8e548c2f65a3057d468abb6caa
-
-
-
+  m_secret->SetValues(.005, 0, 250, 250, 0, 0, 0, 1.0, 0, 0, 0);
+  m_pluto->SetValues(.005, .03, .5, .5, .005, 0, 0, 1, 0, 0, 0);
+  m_charon->SetValues(.005, .02, .5, .5, .005, 0, 0, 1, 0, M_PI, 0);
 
 
 
@@ -161,16 +202,40 @@ void Graphics::Update(unsigned int dt)
   // Update the planets
   m_Sun->Update(dt, glm::mat4(1.0f));
 
+  m_mars->Update(dt, m_Sun->GetLocation());
+  m_phobos->Update(dt, m_mars->GetLocation());
+  m_deimos->Update(dt, m_mars->GetLocation());
+
+  m_venus->Update(dt,m_Sun->GetLocation());
+
   m_earth->Update(dt, m_Sun->GetLocation());
   m_moon->Update(dt, m_earth->GetLocation());
 
+  m_mercury->Update(dt, m_Sun->GetLocation());
+
+  m_jupiter->Update(dt, m_Sun->GetLocation());
+  m_ganymede->Update(dt, m_jupiter->GetLocation());
+  m_callisto->Update(dt, m_jupiter->GetLocation());
+  m_io->Update(dt, m_jupiter->GetLocation());
+  m_europa->Update(dt, m_jupiter->GetLocation());
+
   m_saturn->Update(dt, m_Sun->GetLocation());
+  m_titan->Update(dt, m_saturn->GetLocation());
+  m_enceladus->Update(dt, m_saturn->GetLocation());
+
+  m_neptune->Update(dt, m_Sun->GetLocation());
+  m_triton->Update(dt, m_neptune->GetLocation());
+
+  m_uranus->Update(dt, m_Sun->GetLocation());
+  m_titania->Update(dt, m_uranus->GetLocation());
+  m_oberon->Update(dt, m_uranus->GetLocation());
+  m_umbriel->Update(dt, m_uranus->GetLocation());
+  m_ariel->Update(dt, m_uranus->GetLocation());
+  m_miranda->Update(dt, m_uranus->GetLocation());
 
   m_secret->Update(dt, m_Sun->GetLocation());
-
-  m_mars->Update(dt, m_secret->GetLocation());
-
-  m_venus->Update(dt,m_secret->GetLocation());
+  m_pluto->Update(dt, m_secret->GetLocation());
+  m_charon->Update(dt, m_secret->GetLocation());
 
 }
 
@@ -193,6 +258,28 @@ void Graphics::Render()
 
   m_Sun->Render();
 
+
+
+
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_mars->GetModel()));
+
+  m_mars->Render();
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_deimos->GetModel()));
+
+  m_deimos->Render();
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_phobos->GetModel()));
+
+  m_phobos->Render();
+
+
+
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_venus->GetModel()));
+
+  m_venus->Render();
+
+
+
+
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_earth->GetModel()));
 
   m_earth->Render();
@@ -201,52 +288,88 @@ void Graphics::Render()
 
   m_moon->Render();
 
+
+
+
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_mercury->GetModel()));
+
+  m_mercury->Render();
+
+
+
+
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_jupiter->GetModel()));
+
+  m_jupiter->Render();
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_callisto->GetModel()));
+
+  m_callisto->Render();
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_io->GetModel()));
+
+  m_io->Render();
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_ganymede->GetModel()));
+
+  m_ganymede->Render();
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_europa->GetModel()));
+
+  m_europa->Render();
+
+
+
+
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_saturn->GetModel()));
 
   m_saturn->Render();
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_titan->GetModel()));
+
+  m_titan->Render();
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_enceladus->GetModel()));
+
+  m_enceladus->Render();
+
+
+
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_neptune->GetModel()));
+
+  m_neptune->Render();
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_triton->GetModel()));
+
+  m_triton->Render();
+
+
+
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_uranus->GetModel()));
+
+  m_uranus->Render();
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_titania->GetModel()));
+
+  m_titania->Render();
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_umbriel->GetModel()));
+
+  m_umbriel->Render();
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_oberon->GetModel()));
+
+  m_oberon->Render();
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_ariel->GetModel()));
+
+  m_ariel->Render();
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_miranda->GetModel()));
+
+  m_miranda->Render();
+
+
 
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_secret->GetModel()));
 
   m_secret->Render();
 
-
-    glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_mars->GetModel()));
-
-  m_mars->Render();
-
-     glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_venus->GetModel()));
-
-  m_venus->Render();
-  /*
-
-     glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_mercury->GetModel()));
-
-  m_mercury->Render();
-
-     glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_jupiter->GetModel()));
-
-  m_jupiter->Render();
-
-     glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_neptune->GetModel()));
-
-  m_neptune->Render();
-
-     glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_uranus->GetModel()));
-
-  m_uranus->Render();
-
-     glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_pluto->GetModel()));
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_pluto->GetModel()));
 
   m_pluto->Render();
 
-  */
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_charon->GetModel()));
 
-
-
-
-
-
-
+  m_charon->Render();
 
 
   // Get any errors from OpenGL
@@ -307,15 +430,12 @@ void Graphics::IncSimSpeed()
   m_saturn->IncreaseOrbitSpeed();
   m_saturn->IncreaseRotationSpeed();
 
-
-
-
   m_mars->IncreaseRotationSpeed();
   m_mars->IncreaseOrbitSpeed();
 
   m_venus->IncreaseRotationSpeed();
   m_venus->IncreaseOrbitSpeed();
-/*
+
   m_mercury->IncreaseRotationSpeed();
   m_mercury->IncreaseOrbitSpeed();
 
@@ -330,8 +450,6 @@ void Graphics::IncSimSpeed()
 
   m_pluto->IncreaseRotationSpeed();
   m_pluto->IncreaseOrbitSpeed();
-   *
-   */
 }
 
 void Graphics::DecSimSpeed()
@@ -357,7 +475,7 @@ void Graphics::DecSimSpeed()
 
   m_venus->DecreaseRoationSpeed();
   m_venus->DecreaseOrbitSpeed();
-/*
+
   m_mercury->DecreaseRoationSpeed();
   m_mercury->DecreaseOrbitSpeed();
 
@@ -373,7 +491,6 @@ void Graphics::DecSimSpeed()
   m_pluto->DecreaseRoationSpeed();
   m_pluto->DecreaseOrbitSpeed();
 
-   */
 }
 
 void Graphics::resetAll()
@@ -392,7 +509,7 @@ void Graphics::resetAll()
   m_mars->ResetAll();
 
   m_venus->ResetAll();
-/*
+
   m_mercury->ResetAll();
 
   m_jupiter->ResetAll();
@@ -402,5 +519,5 @@ void Graphics::resetAll()
   m_uranus->ResetAll();
 
   m_pluto-> ResetAll();
-   */
+
 }

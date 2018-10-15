@@ -17,7 +17,7 @@ class Camera
     void MoveRight();
     void MoveUp();
     void MoveDown();
-    void Target(glm::vec3 position, glm::vec3 target);
+    void Reset();
 
     glm::vec3 cameraPosition;
     glm::vec3 cameraTarget;

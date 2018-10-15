@@ -17,9 +17,9 @@ bool Camera::Initialize(int w, int h)
   //  ...Like you should update it before you render more dynamic 
   //  for this project having them static will be fine
 
-  cameraSpeed = .05;
+  cameraSpeed = .025;
 
-  cameraPosition = glm::vec3(0.0, 8.0, -30.0);
+  cameraPosition = glm::vec3(0.0, 0.0, -30.0);
   cameraTarget = glm::vec3(0.0, 0.0, 0.0);
   cameraUp = glm::vec3(0.0, 1.0, 0.0);
   cameraFront = glm::vec3(0.0, 0.0, 1.0);
@@ -46,43 +46,43 @@ glm::mat4 Camera::GetView()
 void Camera::MoveForward()
 {
   cameraPosition -= cameraSpeed * (cameraPosition - cameraTarget);
+  cameraTarget -= normalize(cameraPosition - cameraTarget);
   view = glm::lookAt(cameraPosition, cameraTarget, cameraUp);
 }
 
 void Camera::MoveBackward()
 {
   cameraPosition += cameraSpeed * (cameraPosition - cameraTarget);
+  cameraTarget += normalize(cameraPosition - cameraTarget);
   view = glm::lookAt(cameraPosition, cameraTarget, cameraUp);
 }
 
 void Camera::MoveLeft()
 {
-  cameraPosition += cameraSpeed * (glm::cross((cameraPosition - cameraTarget)  ,cameraUp));
+  cameraTarget += cameraSpeed * (glm::cross((cameraPosition - cameraTarget)  ,cameraUp));
   view = glm::lookAt(cameraPosition, cameraTarget, cameraUp);
 }
 
 void Camera::MoveRight()
 {
-  cameraPosition -= cameraSpeed * (glm::cross((cameraPosition - cameraTarget)  ,cameraUp));
+  cameraTarget -= cameraSpeed * (glm::cross((cameraPosition - cameraTarget)  ,cameraUp));
   view = glm::lookAt(cameraPosition, cameraTarget, cameraUp);
 }
 
 void Camera::MoveUp()
 {
-  cameraPosition += glm::vec3(0.0, 1.0, 0.0);
+  cameraTarget += glm::vec3(0.0, 0.5, 0.0);
   view = glm::lookAt(cameraPosition, cameraTarget, cameraUp);
 }
 
 void Camera::MoveDown()
 {
-  cameraPosition -= glm::vec3(0.0, 1.0, 0.0);
+  cameraTarget -= glm::vec3(0.0, 0.5, 0.0);
   view = glm::lookAt(cameraPosition, cameraTarget, cameraUp);
 
 }
 
-void Camera::Target(glm::vec3 position, glm::vec3 target)
+void Camera::Reset()
 {
-  cameraPosition = position;
-  cameraTarget = target;
-  view = glm::lookAt(cameraPosition, cameraTarget, cameraUp);
+
 }

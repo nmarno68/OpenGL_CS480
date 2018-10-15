@@ -38,7 +38,6 @@ Object::Object(std::string filename) //each time we initialize a planet we give 
   og_orbit_length = 1;// SetValues function when each planet is created.
   og_scale = 1;       //
   og_tip = 1;         //
-  start_angle = 1;
 
   //Ones that can be modified or reset to originals
   orbit_vel = og_orbit_vel;
@@ -63,10 +62,6 @@ Object::~Object()
 
 void Object::Update(unsigned int dt, glm::mat4 origin)
 {
-
-  //Axis of rotation - determined by tilt
-  //model = glm::rotate(model, (float) (23.5), glm::vec3(0.0, 0.0, 1.0));
-
 
   if(moving_orbit)
   {
@@ -331,11 +326,7 @@ void Object::ResetAll()
   orbit_length = og_orbit_length;
 }
 
-<<<<<<< HEAD
-void Object::SetValues(float o_vel, float r_vel, float o_width, float o_length, float new_scale, float new_tip, float new_x_axis, float new_y_axis, float new_start_angle)
-=======
-void Object::SetValues(float o_vel, float r_vel, float o_width, float o_length, float new_scale, float new_tip, float new_x_axis, float new_y_axis, float new_z_axis)
->>>>>>> 18ebf154a392cb8e548c2f65a3057d468abb6caa
+void Object::SetValues(float o_vel, float r_vel, float o_width, float o_length, float new_scale, float new_tip, float new_x_axis, float new_y_axis, float new_z_axis, float new_start_angle, bool backwards)
 {
   og_orbit_vel = o_vel;
   og_rotate_vel = r_vel;
@@ -345,11 +336,12 @@ void Object::SetValues(float o_vel, float r_vel, float o_width, float o_length, 
   og_tip = new_tip;
   x_axis = new_x_axis;
   y_axis = new_y_axis;
-<<<<<<< HEAD
-  start_angle = new_start_angle;
-=======
   z_axis = new_z_axis;
->>>>>>> 18ebf154a392cb8e548c2f65a3057d468abb6caa
+
+  if(backwards)
+  {
+    rev_rotate = true;
+  }
 
   orbit_vel = og_orbit_vel;
   rotate_vel = og_rotate_vel;
@@ -358,10 +350,18 @@ void Object::SetValues(float o_vel, float r_vel, float o_width, float o_length, 
   scale = og_scale;
   tip = og_tip;
 
-  if(new_start_angle < 0)
-  {
-    orbit_angle =  (float) M_PI;
-  }
+  //starting a planets orbit in a different place (for things that have similar orbits)
+  orbit_angle =  new_start_angle;
 
 
+  temp_scale = og_scale;
+  temp_width = og_orbit_width;
+  temp_length = og_orbit_length;
+
+}
+void Object::SetScaledValues(float s_scale, float s_width, float s_length)
+{
+  scaled_scale = s_scale;
+  scaled_width = s_width;
+  scaled_length = s_length;
 }
