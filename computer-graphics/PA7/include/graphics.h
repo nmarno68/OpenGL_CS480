@@ -24,6 +24,7 @@ class Graphics
 
     //I thought it would be nicer if we could call them by name
     //instead of having numbers in an array
+    Object *m_milkyway;
     Object *m_Sun;
     Object *m_mercury;
     Object *m_venus;

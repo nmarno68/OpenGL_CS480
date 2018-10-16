@@ -51,6 +51,11 @@ glm::mat4 Camera::GetView()
   return view;
 }
 
+glm::mat4 Camera::GetLocation()
+{
+  return glm::translate(glm::mat4(1.0f), cameraPosition);
+}
+
 void Camera::MoveForward()
 {
   cameraPosition += cameraSpeed * cameraFront;

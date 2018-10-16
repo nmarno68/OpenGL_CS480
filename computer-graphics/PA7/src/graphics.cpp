@@ -46,6 +46,8 @@ bool Graphics::Initialize(int width, int height)
 
 
   //create objects
+  m_milkyway = new Object("milkyway.obj");
+
   m_Sun = new Object("sun.obj");
 
   m_mars = new Object ("mars.obj");
@@ -84,37 +86,37 @@ bool Graphics::Initialize(int width, int height)
   m_charon = new Object("charon.obj");
 
 
-  std:cout << "Seg" << std::endl;
 
   //Set the object values - float o_vel, float r_vel, float o_width, float o_length, float new_scale, tip, x_axis, y_axis, z_axis, start_angle, backwards
+  m_milkyway->SetValues(0, 0, 0, 0, 300, 0, 0, 1.0, 0, 0, 0);
 
   m_Sun->SetValues( 0,.0002, 0, 0, 2, 0, 0.0, 1.0, 0.0, 0, 0);                              //start angle just starts the orbit in a different place in the circle
                                                                                             //in terms of pi. Ex. M_PI would start the orbit halfway around the sun
                                                                                             //this is needed for moons with the same orbit, and pluto and charon because
                                                                                             //they orbit each other. I already set them
-  m_mars->SetValues(.0002, .002, 4, 4, .005, 0, -0.4, 1, -0.2, 0, 0);                        //for the moons, lets just have them all the same distance from the planet
+  m_mars->SetValues(.0002, .002, 4, 4, .005, 0, -0.4, 1, -0.2, .2*M_PI, 0);                        //for the moons, lets just have them all the same distance from the planet
   m_phobos->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);               //Needs values        //for simplicity sake
   m_deimos->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, M_PI, 0);               //Needs values
 
 
-  m_venus->SetValues(.0002, .003, 6, 6, .01, 0, 0, 1, 0, 0, 1);
+  m_venus->SetValues(.0002, .003, 6, 6, .01, 0, 0, 1, 0, .3*M_PI, 1);
 
 
   m_earth->SetValues(.0005, .002, 8, 8, .01, 0, -0.4, 1.0, -0.2, 0, 0);
   m_moon->SetValues(.002, .003, .1, .1, .004, .01, 0.0, 1.0, 0.0, 0, 0);
 
 
-  m_mercury->SetValues(.0003, .005, 10, 10, .005, 0, 0, 1, 0, 0, 0);
+  m_mercury->SetValues(.0003, .005, 10, 10, .005, 0, 0, 1, 0, .4*M_PI, 0);
 
 
-  m_jupiter->SetValues(.0002, .003, 40, 40, .5, 0, 0, 1, 0, 0, 0);
+  m_jupiter->SetValues(.0002, .003, 40, 40, .5, 0, 0, 1, 0, .7*M_PI, 0);
   m_ganymede->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, .5 * M_PI, 0);             //Needs values
   m_callisto->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, M_PI, 0);             //Needs values
   m_io->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, .75*M_PI, 0);                   //Needs values
   m_europa->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);               //Needs values
 
 
-  m_saturn->SetValues(.0006, 0.005, 80, 80, .25, 0, -0.4, 1.0, -0.2, 0, 0);
+  m_saturn->SetValues(.0006, 0.005, 80, 80, .25, 0, -0.4, 1.0, -0.2, .25*M_PI, 0);
   m_titan->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, M_PI, 0);                //Needs values
   m_enceladus->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);            //Needs values
 
@@ -123,7 +125,7 @@ bool Graphics::Initialize(int width, int height)
   m_triton->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);               //Needs values
 
 
-  m_uranus->SetValues(.00025, .003, 160, 160, .25, 0, 1, 0, .5, 0, 0);
+  m_uranus->SetValues(.00025, .003, 160, 160, .25, 0, 1, 0, .5, .8* M_PI, 0);
   m_titania->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, .2 * M_PI, 0);              //Needs values
   m_oberon->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, .4 * M_PI, 0);               //Needs values
   m_umbriel->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, .6 * M_PI, 0);              //Needs values
@@ -131,7 +133,7 @@ bool Graphics::Initialize(int width, int height)
   m_miranda->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);              //Needs values
 
   //pluto and charon
-  m_secret->SetValues(.0005, 0, 250, 250, 0, 0, 0, 1.0, 0, 0, 0);
+  m_secret->SetValues(.0005, 0, 250, 250, 0, 0, 0, 1.0, 0, .7*M_PI, 0);
   m_pluto->SetValues(.005, .03, .5, .5, .005, 0, 0, 1, 0, 0, 0);
   m_charon->SetValues(.005, .02, .5, .5, .005, 0, 0, 1, 0, M_PI, 0);
 
@@ -150,7 +152,7 @@ bool Graphics::Initialize(int width, int height)
   m_venus->SetScaledValues(1, 8, 8, 1);
 
 
-  m_earth->SetScaledValues(1, 12, 12, 1);
+  m_earth->SetScaledValues(1, 20, 20, 1);
   m_moon->SetScaledValues(1, 2, 2, 1);
 
 
@@ -252,6 +254,8 @@ bool Graphics::Initialize(int width, int height)
 void Graphics::Update(unsigned int dt)
 {
   // Update the planets
+  m_milkyway->Update(dt, m_camera->GetLocation());
+
   m_Sun->Update(dt, glm::mat4(1.0f));
 
   m_mars->Update(dt, m_Sun->GetLocation());
@@ -306,6 +310,11 @@ void Graphics::Render()
 
 
   // Render the objects
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_milkyway->GetModel()));
+
+  m_milkyway->Render();
+
+
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_Sun->GetModel()));
 
   m_Sun->Render();

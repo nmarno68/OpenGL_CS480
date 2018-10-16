@@ -19,6 +19,7 @@ class Camera
     void MoveUp();
     void EnableMouse();
     void Reset();
+    glm::mat4 GetLocation();
 
     glm::vec3 cameraPosition;
     glm::vec3 cameraTarget;

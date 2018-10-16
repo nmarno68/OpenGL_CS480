@@ -260,7 +260,7 @@ void Object::IncreaseOrbitSpeed()
 
 void Object::IncreaseRotationSpeed()
 {
-  rotate_vel += .01;
+  rotate_vel += .02;
 }
 
 void Object::DecreaseOrbitSpeed()
@@ -275,7 +275,7 @@ void Object::DecreaseRoationSpeed()
 {
   if(rotate_vel > 0)
   {
-    rotate_vel -= .01;
+    rotate_vel -= .02;
   }
 }
 
