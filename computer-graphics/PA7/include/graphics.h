@@ -20,6 +20,7 @@ class Graphics
     void IncSimSpeed();
     void DecSimSpeed();
     void resetAll();
+    void scaledView();
 
     //I thought it would be nicer if we could call them by name
     //instead of having numbers in an array

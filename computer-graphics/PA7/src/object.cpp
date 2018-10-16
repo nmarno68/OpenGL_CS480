@@ -324,6 +324,7 @@ void Object::ResetAll()
   rotate_vel = og_rotate_vel;
   orbit_width = og_orbit_width;
   orbit_length = og_orbit_length;
+  scale = og_scale;
 }
 
 void Object::SetValues(float o_vel, float r_vel, float o_width, float o_length, float new_scale, float new_tip, float new_x_axis, float new_y_axis, float new_z_axis, double new_start_angle, bool backwards)
@@ -352,16 +353,17 @@ void Object::SetValues(float o_vel, float r_vel, float o_width, float o_length, 
 
   //starting a planets orbit in a different place (for things that have similar orbits)
   orbit_angle =  new_start_angle;
-
-
-  temp_scale = og_scale;
-  temp_width = og_orbit_width;
-  temp_length = og_orbit_length;
-
 }
-void Object::SetScaledValues(float s_scale, float s_width, float s_length)
+void Object::SetScaledValues(float s_scale, float s_width, float s_length, bool scale_up)
 {
   scaled_scale = s_scale;
   scaled_width = s_width;
   scaled_length = s_length;
+}
+
+void Object::UseScaled()
+{
+  orbit_length = scaled_length;
+  orbit_width = scaled_width;
+  scale = scaled_scale;
 }

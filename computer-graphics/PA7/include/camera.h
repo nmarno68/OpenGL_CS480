@@ -16,6 +16,7 @@ class Camera
     void MoveLeft();
     void MoveRight();
     void MouseMovement(double xpos, double ypos);
+    void MoveUp();
     void EnableMouse();
     void Reset();
 

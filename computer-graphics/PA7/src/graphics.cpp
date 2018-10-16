@@ -92,19 +92,19 @@ bool Graphics::Initialize(int width, int height)
                                                                                             //in terms of pi. Ex. M_PI would start the orbit halfway around the sun
                                                                                             //this is needed for moons with the same orbit, and pluto and charon because
                                                                                             //they orbit each other. I already set them
-  m_mars->SetValues(.002, .002, 4, 4, .005, 0, -0.4, 1, -0.2, 0, 0);                        //for the moons, lets just have them all the same distance from the planet
+  m_mars->SetValues(.0002, .002, 4, 4, .005, 0, -0.4, 1, -0.2, 0, 0);                        //for the moons, lets just have them all the same distance from the planet
   m_phobos->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);               //Needs values        //for simplicity sake
   m_deimos->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, M_PI, 0);               //Needs values
 
 
-  m_venus->SetValues(.002, .003, 6, 6, .01, 0, 0, 1, 0, 0, 1);
+  m_venus->SetValues(.0002, .003, 6, 6, .01, 0, 0, 1, 0, 0, 1);
 
 
   m_earth->SetValues(.0005, .002, 8, 8, .01, 0, -0.4, 1.0, -0.2, 0, 0);
   m_moon->SetValues(.002, .003, .1, .1, .004, .01, 0.0, 1.0, 0.0, 0, 0);
 
 
-  m_mercury->SetValues(.003, .005, 10, 10, .005, 0, 0, 1, 0, 0, 0);
+  m_mercury->SetValues(.0003, .005, 10, 10, .005, 0, 0, 1, 0, 0, 0);
 
 
   m_jupiter->SetValues(.0002, .003, 40, 40, .5, 0, 0, 1, 0, 0, 0);
@@ -119,11 +119,11 @@ bool Graphics::Initialize(int width, int height)
   m_enceladus->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);            //Needs values
 
 
-  m_neptune->SetValues(.005, .03, 200, 200, .25, 0, -0.4, 1, -0.2, 0, 0);
+  m_neptune->SetValues(.0005, .005, 200, 200, .25, 0, -0.4, 1, -0.2, 0, 0);
   m_triton->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);               //Needs values
 
 
-  m_uranus->SetValues(.005, .3, 160, 160, .25, 0, 1, 0, .5, 0, 0);
+  m_uranus->SetValues(.00025, .003, 160, 160, .25, 0, 1, 0, .5, 0, 0);
   m_titania->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, .2 * M_PI, 0);              //Needs values
   m_oberon->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, .4 * M_PI, 0);               //Needs values
   m_umbriel->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, .6 * M_PI, 0);              //Needs values
@@ -131,9 +131,61 @@ bool Graphics::Initialize(int width, int height)
   m_miranda->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);              //Needs values
 
   //pluto and charon
-  m_secret->SetValues(.005, 0, 250, 250, 0, 0, 0, 1.0, 0, 0, 0);
+  m_secret->SetValues(.0005, 0, 250, 250, 0, 0, 0, 1.0, 0, 0, 0);
   m_pluto->SetValues(.005, .03, .5, .5, .005, 0, 0, 1, 0, 0, 0);
   m_charon->SetValues(.005, .02, .5, .5, .005, 0, 0, 1, 0, M_PI, 0);
+
+
+
+
+  //Setting Scaled Values - float s_scale, float s_width, float s_length, bool scale_up
+
+  m_Sun->SetScaledValues(1, 0, 0, 0);
+
+  m_mars->SetScaledValues(1, 4, 4, 1);
+  m_phobos->SetScaledValues(0, 2, 2, 1);
+  m_deimos->SetScaledValues(0, 2, 2, 1);
+
+
+  m_venus->SetScaledValues(1, 8, 8, 1);
+
+
+  m_earth->SetScaledValues(1, 12, 12, 1);
+  m_moon->SetScaledValues(1, 2, 2, 1);
+
+
+  m_mercury->SetScaledValues(1, 16, 16, 1);
+
+
+  m_jupiter->SetScaledValues(1, 20, 20, 0);
+  m_ganymede->SetScaledValues(1, 2, 2, 1);
+  m_callisto->SetScaledValues(1, 2, 2, 1);
+  m_io->SetScaledValues(1, 2, 2, 1);
+  m_europa->SetScaledValues(1, 2, 2, 1);
+
+
+  m_saturn->SetScaledValues(1, 24, 24, 0);
+  m_titan->SetScaledValues(1, 2, 2, 1);
+  m_enceladus->SetScaledValues(1, 2, 2, 1);
+
+
+  m_neptune->SetScaledValues(1, 28, 28, 0);
+  m_triton->SetScaledValues(1, 2, 2, 1);
+
+
+  m_uranus->SetScaledValues(1, 32, 32, 0);
+  m_titania->SetScaledValues(1, 2, 2, 1);
+  m_oberon->SetScaledValues(1, 2, 2, 1);
+  m_umbriel->SetScaledValues( 1, 2, 2, 1);
+  m_ariel->SetScaledValues( 1, 2, 2, 1);
+  m_miranda->SetScaledValues( 1, 2, 2, 1);
+
+  //pluto and charon
+  m_secret->SetScaledValues(0, 40, 40, 0);
+  m_pluto->SetScaledValues( 1, 4, 4, 1);
+  m_charon->SetScaledValues( 1, 4, 4, 1);
+
+
 
 
 
@@ -520,4 +572,33 @@ void Graphics::resetAll()
 
   m_pluto-> ResetAll();
 
+}
+
+void Graphics::scaledView()
+{
+  m_secret->UseScaled();
+
+  m_Sun->UseScaled();
+
+  m_earth->UseScaled();
+
+  m_moon->UseScaled();
+
+  m_saturn->UseScaled();
+
+  m_mars->UseScaled();
+
+  m_venus->UseScaled();
+
+  m_mercury->UseScaled();
+
+  m_jupiter->UseScaled();
+
+  m_neptune->UseScaled();
+
+  m_uranus->UseScaled();
+
+  m_pluto->UseScaled();
+
+  m_charon->UseScaled();
 }

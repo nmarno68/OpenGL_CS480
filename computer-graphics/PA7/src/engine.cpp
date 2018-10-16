@@ -128,6 +128,14 @@ void Engine::Keyboard()
         m_graphics->resetAll();
         break;
 
+      case SDLK_l:
+        m_graphics->scaledView();
+        break;
+
+      case SDLK_SPACE:
+        m_graphics->m_camera->MoveUp();
+        break;
+
       case SDLK_m:
         if(m_graphics->m_camera->enableMouse)
         {

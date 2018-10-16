@@ -30,10 +30,11 @@ class Object
     void IncreaseSize();          //
     void DecreaseSize();          //
     void ResetAll();              //
+    void UseScaled();
 
     //This will set our planet attributes like orbit, size, speed, etc. More attributes may need to be added later
     void SetValues(float o_vel, float r_vel, float o_width, float o_length, float new_scale, float new_tip, float new_x_axis, float new_y_axis, float new_z_axis, double new_start_angle, bool backwards);
-    void SetScaledValues(float s_scale, float s_wdith, float s_length);
+    void SetScaledValues(float s_scale, float s_wdith, float s_length, bool scale_up);
 
     //returns the model matrix
     glm::mat4 GetModel();
@@ -58,7 +59,7 @@ class Object
     float rotate_angle, orbit_vel, rotate_vel, scale, orbit_width, orbit_length, tip, x_axis, y_axis, z_axis;
     float og_orbit_vel, og_rotate_vel, og_scale, og_orbit_width, og_orbit_length, og_tip;
     bool moving_orbit, moving_rotate, rev_orbit, rev_rotate;
-    float scaled_scale, scaled_width, scaled_length, temp_scale, temp_width, temp_length;
+    float scaled_scale, scaled_width, scaled_length;
     double orbit_angle;
 };
 
