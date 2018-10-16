@@ -98,9 +98,9 @@ bool Graphics::Initialize(int width, int height)
                                                                                             //in terms of pi. Ex. M_PI would start the orbit halfway around the sun
                                                                                             //this is needed for moons with the same orbit, and pluto and charon because
                                                                                             //they orbit each other. I already set them
-  m_mars->SetValues(.000125, .002, 10, 10, .005, 0, -0.4, 1, -0.2, .2*M_PI, 0);                        //for the moons, lets just have them all the same distance from the planet
-  m_phobos->SetValues(.0005, 0.002, 0.1, 0.1, 0.00125, 0, 0, 1.0, 0, 0, 0);               //Needs values        //for simplicity sake
-  m_deimos->SetValues(.0005, 0.002, 0.1, 0.1, 0.00125, 0, 0, 1.0, 0, M_PI, 0);               //Needs values
+  m_mars->SetValues(.000125, .002, 10, 10, .005, 0, -0.4, 1, -0.2, .2*M_PI, 0);             //for the moons, lets just have them all the same distance from the planet
+  m_phobos->SetValues(.0005, 0.002, 0.1, 0.1, 0.00125, 0, 0, 1.0, 0, 0, 0);                 //for simplicity sake
+  m_deimos->SetValues(.0005, 0.002, 0.1, 0.1, 0.00125, 0, 0, 1.0, 0, M_PI, 0);
 
 
   m_venus->SetValues(.0002, .003, 6, 6, .01, 0, 0, 1, 0, 1.3*M_PI, 1);
@@ -114,19 +114,19 @@ bool Graphics::Initialize(int width, int height)
 
 
   m_jupiter->SetValues(.0002, .003, 40, 40, .5, 0, 0.1, 1, 0, 1.7*M_PI, 0);
-  m_ganymede->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, .5 * M_PI, 0);             //Needs values
-  m_callisto->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, M_PI, 0);             //Needs values
-  m_io->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, .75*M_PI, 0);                   //Needs values
-  m_europa->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);               //Needs values
+  m_ganymede->SetValues(.0005, 0.002, 1.5, 1.5, .01, 0, 0, 1.0, 0, .5 * M_PI, 0);             //Needs values
+  m_callisto->SetValues(.0005, 0.002, 1.5, 1.5, .01, 0, 0, 1.0, 0, M_PI, 0);             //Needs values
+  m_io->SetValues(.0005, 0.002, 1.5, 1.5, .01, 0, 0, 1.0, 0, 1.5*M_PI, 0);                   //Needs values
+  m_europa->SetValues(.0005, 0.002, 1.5, 1.5, 0.01, 0, 0, 1.0, 0, 0, 0);               //Needs values
 
 
   m_saturn->SetValues(.0006, 0.005, 80, 80, .25, 0, -0.4, 1.0, -0.2, .25*M_PI, 0);
-  m_titan->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, M_PI, 0);                //Needs values
-  m_enceladus->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);            //Needs values
+  m_titan->SetValues(.0005, 0.002, 0.1, 0.1, 0.00125, 0, 0, 1.0, 0, M_PI, 0);                //Needs values
+  m_enceladus->SetValues(.0005, 0.002, 0.1, 0.1, 0.00125, 0, 0, 1.0, 0, 0, 0);            //Needs values
 
 
   m_neptune->SetValues(.0005, .005, 200, 200, .25, 0, -0.4, 1, -0.2, 0, 0);
-  m_triton->SetValues(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);               //Needs values
+  m_triton->SetValues(.0005, 0.002, 0.1, 0.1, 0.00125, 0, 0, 1.0, 0, 0, 0);               //Needs values
 
 
   m_uranus->SetValues(.00025, .003, 160, 160, .25, 0, 1, 0, .5, 1.8* M_PI, 0);
@@ -346,6 +346,7 @@ void Graphics::Update(unsigned int dt)
 
   }
   m_milkyway->Update(dt, m_camera->GetLocation());
+
 
 }
 

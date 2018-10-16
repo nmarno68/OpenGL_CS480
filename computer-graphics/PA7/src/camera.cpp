@@ -17,7 +17,7 @@ bool Camera::Initialize(int w, int h)
   //  ...Like you should update it before you render more dynamic 
   //  for this project having them static will be fine
 
-  cameraSpeed = .25;
+  cameraSpeed = .05;
 
   cameraPosition = glm::vec3(0.0, 0.0, 30.0);
   cameraTarget = glm::vec3(0.0, 0.0, 0.0);
@@ -82,7 +82,7 @@ void Camera::MoveRight()
 
 void Camera::MoveUp()
 {
-  cameraPosition += glm::vec3(0.0, 0.5, 0.0);
+  cameraPosition += glm::vec3(0.0, 1 * cameraSpeed, 0.0);
   view =  view = glm::lookAt( cameraPosition, cameraPosition + cameraFront , cameraUp);
 }
 
