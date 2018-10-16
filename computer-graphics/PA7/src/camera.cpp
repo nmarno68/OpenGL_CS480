@@ -113,6 +113,7 @@ void Camera::MouseMovement(double xpos, double ypos)
   direction.y = sin(glm::radians(pitch));
   direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
   cameraFront = glm::normalize(direction);
+
   // Also re-calculate the Right and Up vector
   glm::vec3 Right;
   Right = glm::normalize(glm::cross(cameraFront, glm::vec3(0.0, 1.0, 0.0)));
@@ -143,4 +144,10 @@ void Camera::Reset()
   pitch = 0;
   yaw = -90;
 
+}
+
+void Camera::PlanetView(glm::vec3 planet_pos, glm::vec3 offset)
+{
+  cameraPosition = planet_pos + offset;
+  view = glm::lookAt( cameraPosition, cameraPosition + cameraFront , cameraUp);
 }

@@ -106,6 +106,12 @@ glm::mat4 Object::GetLocation()
   return glm::translate(glm::mat4(1.0f), glm::vec3(model[3]));
 }
 
+glm::vec3 Object::GetLocationVector()
+{
+  return glm::vec3(model[3]);
+}
+
+
 void Object::Render()
 {
 
@@ -255,28 +261,32 @@ void Object::ReverseRoatation()
 
 void Object::IncreaseOrbitSpeed()
 {
-  orbit_vel += .01;
+  orbit_vel *= 1.1;
 }
 
 void Object::IncreaseRotationSpeed()
 {
-  rotate_vel += .02;
+  rotate_vel *= 1.1;
 }
 
 void Object::DecreaseOrbitSpeed()
 {
   if(orbit_vel > 0)
   {
-    orbit_vel -= .01;
+    orbit_vel /= 1.1;
   }
+  else
+    orbit_vel = 0;
 }
 
 void Object::DecreaseRoationSpeed()
 {
   if(rotate_vel > 0)
   {
-    rotate_vel -= .02;
+    rotate_vel /= 1.1;
   }
+  else
+    rotate_vel = 0;
 }
 
 void Object::IncreaseOrbitWidth()
@@ -322,9 +332,6 @@ void Object::ResetAll()
 {
   orbit_vel = og_orbit_vel;
   rotate_vel = og_rotate_vel;
-  orbit_width = og_orbit_width;
-  orbit_length = og_orbit_length;
-  scale = og_scale;
 }
 
 void Object::SetValues(float o_vel, float r_vel, float o_width, float o_length, float new_scale, float new_tip, float new_x_axis, float new_y_axis, float new_z_axis, double new_start_angle, bool backwards)
@@ -366,4 +373,11 @@ void Object::UseScaled()
   orbit_length = scaled_length;
   orbit_width = scaled_width;
   scale = scaled_scale;
+}
+
+void Object::UseActual()
+{
+  orbit_length = og_orbit_length;
+  orbit_width = og_orbit_width;
+  scale = og_scale;
 }

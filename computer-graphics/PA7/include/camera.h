@@ -20,6 +20,7 @@ class Camera
     void EnableMouse();
     void Reset();
     glm::mat4 GetLocation();
+    void PlanetView(glm::vec3 planet_pos, glm::vec3 offset);
 
     glm::vec3 cameraPosition;
     glm::vec3 cameraTarget;

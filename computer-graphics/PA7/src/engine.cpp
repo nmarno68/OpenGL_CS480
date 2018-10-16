@@ -101,18 +101,26 @@ void Engine::Keyboard()
         break;
 
       case SDLK_w:
+        m_graphics->planet_view = false;
+        m_graphics->target_planet = -1;
         m_graphics->m_camera->MoveForward();
         break;
 
       case SDLK_s:
+        m_graphics->planet_view = false;
+        m_graphics->target_planet = -1;
         m_graphics->m_camera->MoveBackward();
         break;
 
       case SDLK_a:
+        m_graphics->planet_view = false;
+        m_graphics->target_planet = -1;
         m_graphics->m_camera->MoveLeft();
         break;
 
       case SDLK_d:
+        m_graphics->planet_view = false;
+        m_graphics->target_planet = -1;
         m_graphics->m_camera->MoveRight();
         break;
 
@@ -129,7 +137,14 @@ void Engine::Keyboard()
         break;
 
       case SDLK_l:
-        m_graphics->scaledView();
+        if(m_graphics->scaled_view)
+        {
+          m_graphics->actualView();
+        }
+        else {
+          m_graphics->scaledView();
+        }
+        m_graphics->scaled_view = !m_graphics->scaled_view;
         break;
 
       case SDLK_SPACE:
@@ -151,10 +166,62 @@ void Engine::Keyboard()
         break;
 
       case SDLK_r:
+        m_graphics->planet_view = false;
+        m_graphics->target_planet = -1;
         m_graphics->m_camera->Reset();
         break;
 
+      //Planet View Mode
+      //follow sun
+      case SDLK_0:
+        m_graphics->planet_view = true;
+        m_graphics->target_planet = 0;
+        break;
 
+      case SDLK_1:
+        m_graphics->planet_view = true;
+        m_graphics->target_planet = 1;
+        break;
+
+      case SDLK_2:
+        m_graphics->planet_view = true;
+        m_graphics->target_planet = 2;
+        break;
+
+      case SDLK_3:
+        m_graphics->planet_view = true;
+        m_graphics->target_planet = 3;
+        break;
+
+      case SDLK_4:
+        m_graphics->planet_view = true;
+        m_graphics->target_planet = 4;
+        break;
+
+      case SDLK_5:
+        m_graphics->planet_view = true;
+        m_graphics->target_planet = 5;
+        break;
+
+      case SDLK_6:
+        m_graphics->planet_view = true;
+        m_graphics->target_planet = 6;
+        break;
+
+      case SDLK_7:
+        m_graphics->planet_view = true;
+        m_graphics->target_planet = 7;
+        break;
+
+      case SDLK_8:
+        m_graphics->planet_view = true;
+        m_graphics->target_planet = 8;
+        break;
+
+      case SDLK_9:
+        m_graphics->planet_view = true;
+        m_graphics->target_planet = 9;
+        break;
     }
   }
   else if (m_event.type == SDL_MOUSEMOTION )

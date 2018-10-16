@@ -43,6 +43,8 @@ class Object
     //which way it is facing. This is used when translating moons around planets. They should
     //be translating WRT the planet's GetLocation()
     glm::mat4 GetLocation();
+    glm::vec3 GetLocationVector();
+    void UseActual();
 
   private:
     glm::mat4 model;

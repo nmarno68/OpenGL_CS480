@@ -21,44 +21,55 @@ class Graphics
     void DecSimSpeed();
     void resetAll();
     void scaledView();
+    void actualView();
 
     //I thought it would be nicer if we could call them by name
     //instead of having numbers in an array
     Object *m_milkyway;
     Object *m_Sun;
+
     Object *m_mercury;
+
     Object *m_venus;
+
     Object *m_earth;
     Object *m_moon;
+
     Object *m_mars;
     Object *m_deimos;
     Object *m_phobos;
+
     Object *m_jupiter;
     Object *m_ganymede;
     Object *m_callisto;
     Object *m_io;
     Object *m_europa;
+
     Object *m_saturn;
     Object *m_titan;
     Object *m_enceladus;
+
     Object *m_uranus;
     Object *m_titania;
     Object *m_oberon;
     Object *m_umbriel;
     Object *m_ariel;
     Object *m_miranda;
+
     Object *m_neptune;
     Object *m_triton;
+
     Object *m_pluto;
     Object *m_charon;
     Object *m_secret;
 
     Camera *m_camera;
     int target_planet;
+    bool planet_view;
+    bool scaled_view;
 
   private:
     std::string ErrorString(GLenum error);
-
 
     Shader *m_shader;
 
