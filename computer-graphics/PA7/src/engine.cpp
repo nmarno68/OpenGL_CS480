@@ -133,7 +133,7 @@ void Engine::Keyboard()
         break;
 
       case SDLK_q:
-        m_graphics->resetAll();
+        m_graphics->resetAll(); //reset simulation speed
         break;
 
       case SDLK_l:
@@ -148,6 +148,8 @@ void Engine::Keyboard()
         break;
 
       case SDLK_SPACE:
+        m_graphics->planet_view = false;
+        m_graphics->target_planet = -1;
         m_graphics->m_camera->MoveUp();
         break;
 
@@ -165,7 +167,7 @@ void Engine::Keyboard()
 
         break;
 
-      case SDLK_r:
+      case SDLK_r:                        //reset camera view
         m_graphics->planet_view = false;
         m_graphics->target_planet = -1;
         m_graphics->m_camera->Reset();

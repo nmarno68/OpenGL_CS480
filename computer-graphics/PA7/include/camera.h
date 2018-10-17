@@ -28,6 +28,7 @@ class Camera
     glm::vec3 cameraFront;  //our target will always be just in front of the camera position
     bool enableMouse;
     bool firstMouseMovement;
+    float cameraSpeed;
 
   private:
     glm::mat4 projection;
@@ -35,7 +36,7 @@ class Camera
 
     double last_x, last_y, pitch, yaw;
 
-    float cameraSpeed;
+
 };
 
 #endif /* CAMERA_H */

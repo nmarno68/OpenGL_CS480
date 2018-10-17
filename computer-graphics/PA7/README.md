@@ -1,4 +1,7 @@
-# PA3: Moons
+# PA7: Solar System
+
+# Group Information
+Our group is called Tessellation and the members are Natalie Arnold and Terra Williams.  The source code for the project is found here, in Natalie's repository.
 
 # Dependencies, Building, and Running
 
@@ -6,6 +9,10 @@
 For both of the operating systems to run this project installation of these three programs are required [GLEW](http://glew.sourceforge.net/), [GLM](http://glm.g-truc.net/0.9.7/index.html), and [SDL2](https://wiki.libsdl.org/Tutorials).
 
 This project uses OpenGL 3.3. Some computers, such as virtual machines in the ECC, can not run this version. In in order to run OpenGL 2.7 follow the instructions at [Using OpenGL 2.7](https://github.com/HPC-Vis/computer-graphics/wiki/Using-OpenGL-2.7)
+
+This project uses the Assimp library. To download and install [Assimp](http://www.assimp.org/).
+
+This project uses the ImageMagick 7.0.8. To download, install, and build for linux, follow the instructions at [ImageMagick](https://linuxconfig.org/how-to-install-imagemagick-7-on-ubuntu-18-04-linux).
 
 ### Ubuntu/Linux
 ```bash
@@ -35,7 +42,7 @@ mkdir build
 cd build
 cmake ..
 make
-./Tutorial
+./SolarSystem
 ```
 
 ### Makefile Instructions
@@ -46,131 +53,126 @@ mkdir build
 cd build
 cp ../makefile .
 make
-./Tutorial
+./SolarSystem
 ```
 
 ## Ubuntu.cse.unr.edu
 OpenGL 3.3 will run on the [ubuntu.cse.unr.edu](https://ubuntu.cse.unr.edu/) website. To do so follow the build instructions, but when running the Tutorial executable use this line to execute.
 ```bash
-/usr/NX/scripts/vgl/vglrun ./Tutorial
+/usr/NX/scripts/vgl/vglrun ./SolarSystem
 ```
-
 # Project Description
-This project builds on the concepts in PA1 and PA2. A moon object has been added to orbit the planet cube. User interactions are defined below.
+This project combines all of the elements that have been covered in our class so far including keyboard interaction, object movement, object loading, and texture loading.  We have created a solar system including the sun, planets (including Pluto), and the major moons of those planets that have them.
 
 
-## Cube Controls
-This section is devided into two parts, one for the required controls and one for the conrols that were done
-for funsies.
-
-### Required Controls
+## Camera Controls
 
 <table>
     <tr>
         <th>Action</th>
-        <th>Planet Control</th>
-        <th>Moon Control</th>
+        <th>Control</th>
     </tr>
     <tr>
-        <td>Stop/Start All</td>
-        <td><kbd>a</kbd> OR Middle Mouse Button</td>
-        <td><kbd>Shift</kbd> + <kbd>a</kbd></td>
+        <td>Focus on Sun</td>
+        <td><kbd>0</kbd></td>
     </tr>
     <tr>
-        <td>Stop/Start Rotation</td>
+        <td>Focus on Mercury</td>
+        <td><kbd>1</kbd></td>
+    </tr>
+    <tr>
+        <td>Focus on Venus</td>
+        <td><kbd>2</kbd></td>
+    </tr>
+    <tr>
+        <td>Focus on Earth</td>
+        <td><kbd>3</kbd></td>
+    </tr>
+    <tr>
+        <td>Focus on Mars</td>
+        <td><kbd>4</kbd></td>
+    </tr>
+    <tr>
+        <td>Focus on Jupiter</td>
+        <td><kbd>5</kbd></td>
+    </tr>
+    <tr>
+        <td>Focus on Saturn</td>
+        <td><kbd>6</kbd></td>
+    </tr>
+    <tr>
+        <td>Focus on Uranus</td>
+        <td><kbd>7</kbd></td>
+    </tr>
+    <tr>
+        <td>Focus on Neptune</td>
+        <td><kbd>8</kbd></td>
+    </tr>
+    <tr>
+        <td>Focus on Pluto</td>
+        <td><kbd>9</kbd></td>
+    </tr>
+    <tr>
+        <td>Enable/Disable FPS Camera Mode</td>
+        <td><kbd>m</kbd></td>
+    </tr>
+    <tr>
+        <td>Reset View</td>
+        <td><kbd>r</kbd></td>
+    </tr>
+    <tr>
+        <td>Move Forward</td>
+        <td><kbd>w</kbd></td>
+    </tr>
+    <tr>
+        <td>Move Left</td>
+        <td><kbd>a</kbd></td>
+    </tr>
+    <tr>
+        <td>Move Right</td>
         <td><kbd>d</kbd></td>
-        <td><kbd>Shift</kbd> + <kbd>d</kbd> OR <kbd>🡲</kbd></td>
     </tr>
     <tr>
-        <td>Stop/Start Orbit</td>
-        <td><kbd>f</kbd></td>
-        <td><kbd>Shift</kbd> + <kbd>f</kbd> OR <kbd>🡰</kbd></td>
-    </tr>
-    <tr>
-        <td>Reverse All</td>
+        <td>Move Backward</td>
         <td><kbd>s</kbd></td>
-        <td><kbd>Shift</kbd> + <kbd>s</kbd></td>
     </tr>
     <tr>
-        <td>Reverse Rotation</td>
-        <td><kbd>e</kbd> OR Left Mouse Button</td>
-        <td><kbd>Shift</kbd> + <kbd>e</kbd> OR <kbd>🡳</kbd></td>
-    </tr>
-    <tr>
-        <td>Reverse Orbit</td>
-        <td><kbd>w</kbd> OR Right Mouse Button</td>
-        <td><kbd>Shift</kbd> + <kbd>w</kbd> OR <kbd>🡱</kbd></td>
+        <td>Move Up</td>
+        <td><kbd>SPACE</kbd></td>
     </tr>
 
 </table>
 
-### Extra Controls for Funsies
+## Simulation Controls
 
 <table>
     <tr>
         <th>Action</th>
-        <th>Planet Control</th>
-        <th>Moon Control</th>
+        <th>Control</th>
     </tr>
     <tr>
-        <td>Increase Size</td>
+        <td>Toggle Scaled View</td>
+        <td><kbd>l</kbd></td>
+    </tr>
+    <tr>
+        <td>Increase Simulation Speed</td>
+        <td>Hold <kbd>p</kbd></td>
+    </tr>
+    <tr>
+        <td>Decrease Simulation Speed</td>
         <td>Hold <kbd>o</kbd></td>
-        <td>Hold <kbd>Shift</kbd> + <kbd>o</kbd></td>
     </tr>
     <tr>
-        <td>Decrease Size </td>
-        <td>Hold <kbd>i</kbd></td>
-        <td>Hold <kbd>Shift</kbd> + <kbd>i</kbd></td>
-    </tr>
-    <tr>
-        <td>Increase Orbit Speed</td>
-        <td>Hold <kbd>l</kbd></td>
-        <td>Hold <kbd>Shift</kbd> + <kbd>l</kbd></td>
-    </tr>
-    <tr>
-        <td>Decrease Orbit Speed</td>
-        <td>Hold <kbd>k</kbd></td>
-        <td>Hold <kbd>Shift</kbd> + <kbd>k</kbd></td>
-    </tr>
-    <tr>
-        <td>Increase Rotation Speed</td>
-        <td>Hold <kbd>m</kbd></td>
-        <td>Hold <kbd>Shift</kbd> + <kbd>m</kbd></td>
-    </tr>
-    <tr>
-        <td>Decrease Rotation Speed</td>
-        <td>Hold <kbd>n</kbd></td>
-        <td>Hold <kbd>Shift</kbd> + <kbd>n</kbd></td>
-    </tr>
-    <tr>
-        <td>Increase Orbit Width</td>
-        <td>Hold <kbd>h</kbd></td>
-        <td>Hold <kbd>Shift</kbd> + <kbd>h</kbd></td>
-    </tr>
-    <tr>
-        <td>Decrease Orbit Width</td>
-        <td>Hold <kbd>g</kbd></td>
-        <td>Hold <kbd>Shift</kbd> + <kbd>g</kbd></td>
-    </tr>
-    <tr>
-        <td>Increase Orbit Length</td>
-        <td>Hold <kbd>b</kbd></td>
-        <td>Hold <kbd>Shift</kbd> + <kbd>b</kbd></td>
-    </tr>
-    <tr>
-        <td>Decrease Orbit Length</td>
-        <td>Hold <kbd>v</kbd></td>
-        <td>Hold <kbd>Shift</kbd> + <kbd>v</kbd></td>
-    </tr>
-    <tr>
-        <td>Reset All Adjustments</td>
-        <td><kbd>q</kbd></td>
+        <td>Reset Simulation Speed</td>
         <td><kbd>q</kbd></td>
     </tr>
 
 </table>
 
-### Other Notes
-Both objects are circling with a sleight tip in their orbit, the moon tipping to the right and the planet
-tipping to the left.
-
+# Extra Credit
+1) Rings on all of the gaseous planets
+2) Adjustment of Simulation Speed
+3) Switch Between Actual View and Scaled View
+4) Pluto and Charon orbit their center of mass
+5) Skybox centered on camera
+6) FPS camera movement
