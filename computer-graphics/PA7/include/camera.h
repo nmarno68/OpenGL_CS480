@@ -22,6 +22,7 @@ class Camera
     glm::mat4 GetLocation();
     void PlanetView(glm::vec3 planet_pos, glm::vec3 offset);
     void TopView();
+    void FaceFront();
 
     glm::vec3 cameraPosition;
     glm::vec3 cameraTarget;

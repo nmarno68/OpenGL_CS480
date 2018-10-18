@@ -48,6 +48,7 @@ bool Graphics::Initialize(int width, int height)
   planet_view = false;
   target_planet = -1;
   scaled_view = false;
+  top_view = false;
 
   //create objects
   m_milkyway = new Object("milkyway.obj");
@@ -107,7 +108,7 @@ bool Graphics::Initialize(int width, int height)
 
 
   m_earth->SetValues(.0005, .005825, 8, 8, .01, 0, -0.4, 1.0, -0.2, 0, 0);
-  m_moon->SetValues(.006, .01825, .05, .05, .004, -.03, 0.0, 1.0, 0.0, 0, 0);
+  m_moon->SetValues(.01825, .01825, .05, .05, .004, -.03, -0.4, 1.0, -0.2, 0, 0);
 
 
   m_mercury->SetValues(.002, .0025, 4, 4, .005, 0, 0, 1, 0, .4*M_PI, 0);
@@ -404,7 +405,7 @@ void Graphics::Update(unsigned int dt)
           m_camera->PlanetView(m_earth->GetLocationVector(), glm::vec3(0.0, 0.0, 5.0));
         }
         else {
-          m_camera->PlanetView(m_earth->GetLocationVector(), glm::vec3(0.0, 0.0, .075));
+          m_camera->PlanetView(m_earth->GetLocationVector(), glm::vec3(0.0, 0.0, .095));
         }
         break;
 

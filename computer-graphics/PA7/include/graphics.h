@@ -67,6 +67,7 @@ class Graphics
     int target_planet;
     bool planet_view;
     bool scaled_view;
+    bool top_view;
 
   private:
     std::string ErrorString(GLenum error);

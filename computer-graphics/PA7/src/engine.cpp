@@ -23,6 +23,9 @@ Engine::~Engine()
   delete m_graphics;
   m_window = NULL;
   m_graphics = NULL;
+  ImGui_ImplOpenGL3_Shutdown();
+  ImGui_ImplSDL2_Shutdown();
+  ImGui::DestroyContext();
 }
 
 bool Engine::Initialize()
@@ -43,6 +46,18 @@ bool Engine::Initialize()
     return false;
   }
 
+  //Menu
+  ImGui::CreateContext();
+  ImGuiIO& io = ImGui::GetIO(); (void) io;
+
+  ImGui_ImplSDL2_InitForOpenGL(m_window->GetSDLWindow(), m_window->GetContext());
+  ImGui_ImplOpenGL3_Init("#version 330");
+  ImGui::StyleColorsClassic();
+
+  submenu = 0;
+  subsubmenu = 0;
+
+
   // Set the time
   m_currentTimeMillis = GetCurrentTimeMillis();
 
@@ -59,16 +74,256 @@ void Engine::Run()
     // Update the DT
     m_DT = getDT();
 
+    ImGui_ImplOpenGL3_NewFrame();
+    ImGui_ImplSDL2_NewFrame(m_window->GetSDLWindow());
+    ImGui::NewFrame();
+
     // Check the keyboard input
     while(SDL_PollEvent(&m_event) != 0)
     {
-      Keyboard();                                   //////////////////////PA2//////////////////////////
+      ImGui_ImplSDL2_ProcessEvent(&m_event);
+      Keyboard();
     }
+
+
+
+
+    {
+
+      ImGui::Begin("Menu");
+
+
+        if(ImGui::Button("Camera Controls")) {
+            if(submenu == 1)
+            {
+              submenu = 0;
+            }
+            else{
+              submenu = 1;
+            }
+        }
+        if(ImGui::Button("Simulation Controls"))
+        {
+          if(submenu == 2)
+          {
+            submenu = 0;
+          }
+          else{
+            submenu = 2;
+          }
+        }
+
+        //Submenus
+        switch (submenu){
+
+          //camera submenu
+          case 1:
+            ImGui::Begin("Camera Controls");
+
+            ImGui::Text("Enable/Disable FPS Camera Mode"); ImGui::SameLine(280); ImGui::Text("E");
+
+            ImGui::Text("Move Forward"); ImGui::SameLine(280); ImGui::Text("W");
+
+            ImGui::Text("Move Left"); ImGui::SameLine(280); ImGui::Text("A");
+
+            ImGui::Text("Move Back"); ImGui::SameLine(280); ImGui::Text("S");
+
+            ImGui::Text("Move Right"); ImGui::SameLine(280); ImGui::Text("D");
+
+            ImGui::Text("Move Up"); ImGui::SameLine(253); ImGui::Text("SPACE");
+
+            if (ImGui::Button("Top View")) {
+
+              if(!m_graphics->top_view) {
+                m_graphics->m_camera->TopView();
+                m_graphics->planet_view = false;
+                m_graphics->target_planet = -1;
+                m_graphics->top_view = true;
+              }
+              else
+              {
+                m_graphics->m_camera->Reset();
+                m_graphics->top_view = false;
+                m_graphics->planet_view = false;
+                m_graphics->target_planet = -1;
+
+              }
+            }
+
+            if (ImGui::Button("Scaled View"))
+            {
+              if(m_graphics->scaled_view)
+              {
+                m_graphics->actualView();
+              }
+              else {
+                m_graphics->scaledView();
+              }
+              m_graphics->scaled_view = !m_graphics->scaled_view;
+            }
+
+            if(ImGui::Button("Planet View"))
+            {
+              if(subsubmenu == 1)
+              {
+                subsubmenu = 0;
+              }
+              else{
+                subsubmenu = 1;
+              }
+            }
+
+
+
+            ImGui::End();
+            break;
+
+            //simulation submenu
+          case 2:
+            ImGui::Begin("Simulation Controls");
+            ImGui::Text("Increase Sim Speed");
+            ImGui::SameLine(200);
+            ImGui::Text("Hold P");
+
+            ImGui::Text("Decrease Sim Speed");
+            ImGui::SameLine(200);
+            ImGui::Text("Hold O");
+
+            if(ImGui::Button("Reset Sim Speed"))
+            {
+              m_graphics->resetAll();
+            }
+
+
+            ImGui::End();
+            break;
+
+          default:
+            break;
+        }
+
+        switch(subsubmenu)
+        {
+          case 1:
+            ImGui::Begin("Planet View");
+
+              if(ImGui::Button("Sun"))
+              {
+                m_graphics->m_camera->FaceFront();
+                m_graphics->planet_view = true;
+                m_graphics->target_planet = 0;
+              }
+              ImGui::SameLine(200);
+              ImGui::Text("0");
+
+              if(ImGui::Button("Mercury"))
+              {
+                m_graphics->m_camera->FaceFront();
+                m_graphics->planet_view = true;
+                m_graphics->target_planet = 1;
+              }
+              ImGui::SameLine(200);
+              ImGui::Text("1");
+
+              if(ImGui::Button("Venus"))
+              {
+                m_graphics->m_camera->FaceFront();
+                m_graphics->planet_view = true;
+                m_graphics->target_planet = 2;
+              }
+              ImGui::SameLine(200);
+              ImGui::Text("2");
+
+              if(ImGui::Button("Earth"))
+              {
+                m_graphics->m_camera->FaceFront();
+                m_graphics->planet_view = true;
+                m_graphics->target_planet = 3;
+              }
+              ImGui::SameLine(200);
+              ImGui::Text("3");
+
+              if(ImGui::Button("Mars"))
+              {
+                m_graphics->m_camera->FaceFront();
+                m_graphics->planet_view = true;
+                m_graphics->target_planet = 4;
+              }
+              ImGui::SameLine(200);
+              ImGui::Text("4");
+
+              if(ImGui::Button("Jupiter"))
+              {
+                m_graphics->m_camera->FaceFront();
+                m_graphics->planet_view = true;
+                m_graphics->target_planet = 5;
+              }
+              ImGui::SameLine(200);
+              ImGui::Text("5");
+
+              if(ImGui::Button("Saturn"))
+              {
+                m_graphics->m_camera->FaceFront();
+                m_graphics->planet_view = true;
+                m_graphics->target_planet = 6;
+              }
+              ImGui::SameLine(200);
+              ImGui::Text("6");
+
+              if(ImGui::Button("Uranus"))
+              {
+                m_graphics->m_camera->FaceFront();
+                m_graphics->planet_view = true;
+                m_graphics->target_planet = 7;
+              }
+              ImGui::SameLine(200);
+              ImGui::Text("7");
+
+              if(ImGui::Button("Neptune"))
+              {
+                m_graphics->m_camera->FaceFront();
+                m_graphics->planet_view = true;
+                m_graphics->target_planet = 8;
+              }
+              ImGui::SameLine(200);
+              ImGui::Text("8");
+
+              if(ImGui::Button("Pluto and Charon"))
+              {
+                m_graphics->m_camera->FaceFront();
+                m_graphics->planet_view = true;
+                m_graphics->target_planet = 9;
+              }
+              ImGui::SameLine(200);
+              ImGui::Text("9");
+
+            ImGui::End();
+        }
+
+      ImGui::End();
+/*
+ * FAQ if there's time
+      if(m_graphics->planet_view)
+      {
+        switch(m_graphics->target_planet)
+        {
+          case 0:
+
+        }
+      }
+*/
+
+    }
+
 
     // Update and render the graphics
     m_graphics->Update(m_DT);
     m_newEvent = false;
+
     m_graphics->Render();
+
+    ImGui::Render();
+    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
     // Swap to the Window
     m_window->Swap();
@@ -132,28 +387,13 @@ void Engine::Keyboard()
         m_graphics->DecSimSpeed();
         break;
 
-      case SDLK_q:
-        m_graphics->resetAll(); //reset simulation speed
-        break;
-
-      case SDLK_l:
-        if(m_graphics->scaled_view)
-        {
-          m_graphics->actualView();
-        }
-        else {
-          m_graphics->scaledView();
-        }
-        m_graphics->scaled_view = !m_graphics->scaled_view;
-        break;
-
       case SDLK_SPACE:
         m_graphics->planet_view = false;
         m_graphics->target_planet = -1;
         m_graphics->m_camera->MoveUp();
         break;
 
-      case SDLK_m:
+      case SDLK_e:
         if(m_graphics->m_camera->enableMouse)
         {
           SDL_SetRelativeMouseMode((SDL_bool) 0);
@@ -164,76 +404,73 @@ void Engine::Keyboard()
           SDL_SetRelativeMouseMode((SDL_bool) 1);
           m_graphics->m_camera->enableMouse = 1;
         }
-
         break;
 
-      case SDLK_r:                        //reset camera view
-        m_graphics->planet_view = false;
-        m_graphics->target_planet = -1;
-        m_graphics->m_camera->Reset();
-        break;
 
-      case SDLK_t:
-        if(m_graphics->scaled_view) {
-          m_graphics->m_camera->TopView();
-          m_graphics->planet_view = false;
-          m_graphics->target_planet = -1;
-        }
-
-        break;
       //Planet View Mode
       //follow sun
       case SDLK_0:
+        m_graphics->m_camera->FaceFront();
         m_graphics->planet_view = true;
         m_graphics->target_planet = 0;
         break;
 
       case SDLK_1:
+        m_graphics->m_camera->FaceFront();
         m_graphics->planet_view = true;
         m_graphics->target_planet = 1;
         break;
 
       case SDLK_2:
+        m_graphics->m_camera->FaceFront();
         m_graphics->planet_view = true;
         m_graphics->target_planet = 2;
         break;
 
       case SDLK_3:
+        m_graphics->m_camera->FaceFront();
         m_graphics->planet_view = true;
         m_graphics->target_planet = 3;
         break;
 
       case SDLK_4:
+        m_graphics->m_camera->FaceFront();
         m_graphics->planet_view = true;
         m_graphics->target_planet = 4;
         break;
 
       case SDLK_5:
+        m_graphics->m_camera->FaceFront();
         m_graphics->planet_view = true;
         m_graphics->target_planet = 5;
         break;
 
       case SDLK_6:
+        m_graphics->m_camera->FaceFront();
         m_graphics->planet_view = true;
         m_graphics->target_planet = 6;
         break;
 
       case SDLK_7:
+        m_graphics->m_camera->FaceFront();
         m_graphics->planet_view = true;
         m_graphics->target_planet = 7;
         break;
 
       case SDLK_8:
+        m_graphics->m_camera->FaceFront();
         m_graphics->planet_view = true;
         m_graphics->target_planet = 8;
         break;
 
       case SDLK_9:
+        m_graphics->m_camera->FaceFront();
         m_graphics->planet_view = true;
         m_graphics->target_planet = 9;
         break;
     }
   }
+
   else if (m_event.type == SDL_MOUSEMOTION )
   {
     if(m_graphics->m_camera->enableMouse)
@@ -262,3 +499,4 @@ long long Engine::GetCurrentTimeMillis()
   long long ret = t.tv_sec * 1000 + t.tv_usec / 1000;
   return ret;
 }
+

@@ -163,3 +163,15 @@ void Camera::TopView()
 
   view = glm::lookAt( cameraPosition, cameraPosition + cameraFront , cameraUp);
 }
+void Camera::FaceFront()
+{
+  last_x = 1000;
+  last_y = 500;
+  pitch = 0;
+  yaw = -90;
+
+  cameraFront = glm::vec3(0.0, 0.0, -1.0);
+  glm::vec3 Right;
+  Right = glm::normalize(glm::cross(cameraFront, glm::vec3(0.0, 1.0, 0.0)));
+  cameraUp = glm::normalize(glm::cross(Right, cameraFront));
+}

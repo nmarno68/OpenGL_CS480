@@ -8,6 +8,9 @@
 #include "window.h"
 #include "graphics.h"
 
+
+
+
 class Engine
 {
   public:
@@ -37,6 +40,11 @@ class Engine
     unsigned int m_DT;
     long long m_currentTimeMillis;
     bool m_running;
+
+    //Menu flags
+    int submenu;
+    int subsubmenu;
+
 };
 
 #endif // ENGINE_H
