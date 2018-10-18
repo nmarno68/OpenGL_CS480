@@ -52,6 +52,11 @@ Object::Object(std::string filename) //each time we initialize a planet we give 
   moving_rotate = true;
   rev_orbit = false;
   rev_rotate = false;
+
+  //orbit offsets
+  x = 0;
+  y = 0;
+  z = 0;
 }
 
 Object::~Object()
@@ -76,7 +81,7 @@ void Object::Update(unsigned int dt, glm::mat4 origin)
   }
 
 
-  model = glm::translate(origin, glm::vec3(sin(orbit_angle) * orbit_width, -sin(orbit_angle) * tip, cos(orbit_angle) * orbit_length));
+  model = glm::translate(origin, glm::vec3((sin(orbit_angle) * orbit_width) + x, (-sin(orbit_angle) * tip) + y, (cos(orbit_angle) * orbit_length) + z));
 
 
   if(moving_rotate)
@@ -361,11 +366,38 @@ void Object::SetValues(float o_vel, float r_vel, float o_width, float o_length, 
   //starting a planets orbit in a different place (for things that have similar orbits)
   orbit_angle =  new_start_angle;
 }
-void Object::SetScaledValues(float s_scale, float s_width, float s_length, bool scale_up)
+void Object::SetScaledValues(float s_scale, float s_width, float s_length, float s_x, float s_y, float s_z, float s_tip)
 {
   scaled_scale = s_scale;
   scaled_width = s_width;
   scaled_length = s_length;
+  scale_x = s_x;
+  scale_y = s_y;
+  scale_z = s_z;
+  scale_tip = s_tip;
+
+  OrbitVertex* v;
+
+  for(double i = 0; i < 2*M_PI; i += .01)
+  {
+    //sin(orbit_angle) * orbit_width, -sin(orbit_angle) * tip, cos(orbit_angle) * orbit_length)
+    glm::vec3 pos = glm::vec3( (sin(i) * scaled_width) + scale_x, (-sin(i) * scale_tip) + scale_y, (cos(i) * scaled_length) + scale_z);
+    orbit_vertices.push_back(pos);
+  }
+  glGenVertexArrays(1, &OVAO);
+  glGenBuffers(1, &OVBO);
+
+  glBindVertexArray(OVAO);
+  glBindBuffer(GL_ARRAY_BUFFER, OVBO);
+
+  glBufferData(GL_ARRAY_BUFFER, orbit_vertices.size() * sizeof(glm::vec3), &orbit_vertices[0], GL_STATIC_DRAW);
+
+  // vertex positions
+  glEnableVertexAttribArray(0);
+  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3), (void*)0);
+
+  glBindVertexArray(0);
+
 }
 
 void Object::UseScaled()
@@ -373,6 +405,10 @@ void Object::UseScaled()
   orbit_length = scaled_length;
   orbit_width = scaled_width;
   scale = scaled_scale;
+  x = scale_x;
+  y = scale_y;
+  z = scale_z;
+  tip = scale_tip;
 }
 
 void Object::UseActual()
@@ -380,4 +416,21 @@ void Object::UseActual()
   orbit_length = og_orbit_length;
   orbit_width = og_orbit_width;
   scale = og_scale;
+  x = 0;
+  y = 0;
+  z = 0;
+  tip = og_tip;
+}
+
+void Object::RenderOrbit()
+{
+
+  glBindVertexArray(OVAO);
+
+  glLineWidth(1);
+
+  glDrawArrays(GL_LINE_LOOP, 0, (GLsizei) orbit_vertices.size());
+
+  glBindVertexArray(0);
+
 }

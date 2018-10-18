@@ -34,17 +34,17 @@ bool Shader::Initialize()
 }
 
 // Use this method to add shaders to the program. When finished - call finalize()
-bool Shader::AddShader(GLenum ShaderType)
+bool Shader::AddShader(GLenum ShaderType, std::string folder)
 {
   std::string s;
 
   if(ShaderType == GL_VERTEX_SHADER)
   {
-    LoadShader(&s, "vshader.txt");
+    LoadShader(&s, folder, "vshader.txt");
   }
   else if(ShaderType == GL_FRAGMENT_SHADER)
   {
-    LoadShader(&s, "fshader.txt");
+    LoadShader(&s, folder, "fshader.txt");
   }
 
   GLuint ShaderObj = glCreateShader(ShaderType);
@@ -82,9 +82,11 @@ bool Shader::AddShader(GLenum ShaderType)
   return true;
 }
 //Loads shader from given file
-void Shader::LoadShader(std::string* s, std::string filename)
+void Shader::LoadShader(std::string* s, std::string foldername, std::string filename)
 {
   std::string temp, filepath = "../assets/shaders/";
+  filepath.append(foldername);
+  filepath.append("/");
   filepath.append(filename);
   std::ifstream shader;
   shader.open(filepath);

@@ -33,6 +33,11 @@ struct Vertex
   Vertex(glm::vec3 v, glm::vec2 c, glm::vec3 n): vertex(v), texture(c), normal(n) {}
   //Vertex(glm::vec3 v, glm::vec2 c): vertex(v), texture(c) {}
 };
+struct OrbitVertex
+{
+  glm::vec3 vertex;
+  OrbitVertex(glm::vec3 v): vertex(v) {}
+};
 
 
 #endif /* GRAPHICS_HEADERS_H */

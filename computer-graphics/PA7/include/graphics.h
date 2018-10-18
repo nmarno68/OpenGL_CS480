@@ -72,10 +72,15 @@ class Graphics
     std::string ErrorString(GLenum error);
 
     Shader *m_shader;
+    Shader *m_orbit_shader;
 
     GLint m_projectionMatrix;
     GLint m_viewMatrix;
     GLint m_modelMatrix;
+
+    GLint m_orbitModel;
+    GLint m_orbitView;
+    GLint m_orbitProjection;
 
 
 };

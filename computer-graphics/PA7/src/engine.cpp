@@ -173,6 +173,14 @@ void Engine::Keyboard()
         m_graphics->m_camera->Reset();
         break;
 
+      case SDLK_t:
+        if(m_graphics->scaled_view) {
+          m_graphics->m_camera->TopView();
+          m_graphics->planet_view = false;
+          m_graphics->target_planet = -1;
+        }
+
+        break;
       //Planet View Mode
       //follow sun
       case SDLK_0:

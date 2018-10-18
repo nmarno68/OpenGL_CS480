@@ -92,7 +92,7 @@ bool Graphics::Initialize(int width, int height)
 
 
   //Set the object values - float o_vel, float r_vel, float o_width, float o_length, float new_scale, tip, x_axis, y_axis, z_axis, start_angle, backwards
-  m_milkyway->SetValues(0, 0, 0, 0, 400, 0, 0, 1.0, 0, 0, 0);
+  m_milkyway->SetValues(0, 0, 0, 0, 700, 0, 0, 1.0, 0, 0, 0);
 
   m_Sun->SetValues( 0,.0002, 0, 0, 2, 0, 0.0, 1.0, 0.0, 0, 0);                              //start angle just starts the orbit in a different place in the circle
                                                                                             //in terms of pi. Ex. M_PI would start the orbit halfway around the sun
@@ -107,7 +107,7 @@ bool Graphics::Initialize(int width, int height)
 
 
   m_earth->SetValues(.0005, .005825, 8, 8, .01, 0, -0.4, 1.0, -0.2, 0, 0);
-  m_moon->SetValues(.006, .01825, .1, .1, .004, .01, 0.0, 1.0, 0.0, 0, 0);
+  m_moon->SetValues(.006, .01825, .05, .05, .004, -.03, 0.0, 1.0, 0.0, 0, 0);
 
 
   m_mercury->SetValues(.002, .0025, 4, 4, .005, 0, 0, 1, 0, .4*M_PI, 0);
@@ -120,7 +120,7 @@ bool Graphics::Initialize(int width, int height)
   m_europa->SetValues(.0005, 0.002, 1.5, 1.5, 0.01, 0, 0, 1.0, 0, 0, 0);               //Needs values
 
 
-  m_saturn->SetValues(.000017, 0.005, 80, 80, .25, 0, -0.4, 1.0, -0.2, .25*M_PI, 0);
+  m_saturn->SetValues(.000017, 0.005, 80, 80, .25, 10, -0.4, 1.0, -0.2, .25*M_PI, 0);
   m_titan->SetValues(.0005, 0.002, 1, 1, 0.01, 0, 0, 1.0, 0, M_PI, 0);                //Needs values
   m_enceladus->SetValues(.0005, 0.002, 1, 1, 0.01, 0, 0, 1.0, 0, 0, 0);            //Needs values
 
@@ -137,59 +137,59 @@ bool Graphics::Initialize(int width, int height)
   m_miranda->SetValues(.0005, 0.002, 1, 1, 0.01, 0, 0, 1.0, 0, 0, 0);              //Needs values
 
   //pluto and charon
-  m_secret->SetValues(.000002, 0, 250, 250, 0, 0, 0, 1.0, 0, .7*M_PI, 0);
+  m_secret->SetValues(.000002, 0, 250, 250, 0, 20, 0, 1.0, 0, .7*M_PI, 0);
   m_pluto->SetValues(.005, .03, .3, .3, .008, 0, 0, 1, 0, 0, 0);
   m_charon->SetValues(.005, .02, .3, .3, .008, 0, 0, 1, 0, M_PI, 0);
 
 
 
 
-  //Setting Scaled Values - float s_scale, float s_width, float s_length, bool scale_up
+  //Setting Scaled Values - float s_scale, float s_width, float s_length, x, y, z
 
-  m_Sun->SetScaledValues(10, 0, 0, 0);
+  m_Sun->SetScaledValues(10, 0, 0, 0, 0, 0, 0);
 
-  m_mars->SetScaledValues(.265, 50, 50, 1);
-  m_phobos->SetScaledValues(.066, 2, 2, 1);
-  m_deimos->SetScaledValues(.066, 2, 2, 1);
-
-
-  m_venus->SetScaledValues(.475, 30, 30, 1);
+  m_mars->SetScaledValues(.5, 50, 50, 3, 0, 3, 0);
+  m_phobos->SetScaledValues(.066, 4, 4, 0, 0, 0, 0);
+  m_deimos->SetScaledValues(.066, 4, 4, 0, 0, 0, 0);
 
 
-  m_earth->SetScaledValues(.5, 40, 40, 1);
-  m_moon->SetScaledValues(.1, 3, 3, 1);
+  m_venus->SetScaledValues(.9, 30, 30, 0, 0, 0, 0);
 
 
-  m_mercury->SetScaledValues(.19, 20, 20, 1);
+  m_earth->SetScaledValues(1, 40, 40, 0, 0, 0, 0);
+  m_moon->SetScaledValues(.3, 2.75, 2.75, 0, 0, 0, -1);
 
 
-  m_jupiter->SetScaledValues(5.6, 70, 70, 0);
-  m_ganymede->SetScaledValues(.5, 15, 15, 1);
-  m_callisto->SetScaledValues(.5, 15, 15, 1);
-  m_io->SetScaledValues(.5, 15, 15, 1);
-  m_europa->SetScaledValues(.5, 15, 15, 1);
+  m_mercury->SetScaledValues(.4, 20, 20, 0, 0, -5, 0);
 
 
-  m_saturn->SetScaledValues(4.725, 110, 110, 0);
-  m_titan->SetScaledValues(.5, 15, 15, 1);
-  m_enceladus->SetScaledValues(.5, 15, 15, 1);
+  m_jupiter->SetScaledValues(5.6, 70, 70, 0, 0, 0, 0);
+  m_ganymede->SetScaledValues(.5, 15, 15, 0, 0, 0, 0);
+  m_callisto->SetScaledValues(.5, 15, 15, 0, 0, 0, 0);
+  m_io->SetScaledValues(.5, 15, 15, 0, 0, 0, 0);
+  m_europa->SetScaledValues(.5, 15, 15, 0, 0, 0, 0);
 
 
-  m_neptune->SetScaledValues(1.9, 170, 170, 0);
-  m_triton->SetScaledValues(.2, 10, 10, 1);
+  m_saturn->SetScaledValues(4.725, 110, 110, 0, 0, 0, 10);
+  m_titan->SetScaledValues(.5, 15, 15, 0, 0, 0, 0);
+  m_enceladus->SetScaledValues(.5, 15, 15, 0, 0, 0, 0);
 
 
-  m_uranus->SetScaledValues(2, 140, 140, 0);
-  m_titania->SetScaledValues(.2, 10, 10, 1);
-  m_oberon->SetScaledValues(.2, 10, 10, 1);
-  m_umbriel->SetScaledValues( .2, 10, 10, 1);
-  m_ariel->SetScaledValues( .2, 10, 10, 1);
-  m_miranda->SetScaledValues( .2, 10, 10, 1);
+  m_neptune->SetScaledValues(1.9, 170, 170, 0, 0, 0, 0);
+  m_triton->SetScaledValues(.2, 10, 10, 0, 0, 0, 0);
+
+
+  m_uranus->SetScaledValues(2, 140, 140, 0, 0, 0, 0);
+  m_titania->SetScaledValues(.2, 10, 10, 0, 0, 0, 0);
+  m_oberon->SetScaledValues(.2, 10, 10, 0, 0, 0, 0);
+  m_umbriel->SetScaledValues( .2, 10, 10, 0, 0, 0, 0);
+  m_ariel->SetScaledValues( .2, 10, 10, 0, 0, 0, 0);
+  m_miranda->SetScaledValues( .2, 10, 10, 0, 0, 0, 0);
 
   //pluto and charon
-  m_secret->SetScaledValues(0, 190, 190, 0);
-  m_pluto->SetScaledValues( .083, 2.5, 2.5, 1);
-  m_charon->SetScaledValues( .083, 2.5, 2.5, 1);
+  m_secret->SetScaledValues(0, 190, 190, -8, 0, 15, 20);
+  m_pluto->SetScaledValues( 1, 4, 4, 0, 0, 0, 0);
+  m_charon->SetScaledValues( 1, 4, 4, 0, 0, 0, 0);
 
 
 
@@ -204,14 +204,14 @@ bool Graphics::Initialize(int width, int height)
   }
 
   // Add the vertex shader
-  if(!m_shader->AddShader(GL_VERTEX_SHADER))
+  if(!m_shader->AddShader(GL_VERTEX_SHADER, "textureShaders"))
   {
     printf("Vertex Shader failed to Initialize\n");
     return false;
   }
 
   // Add the fragment shader
-  if(!m_shader->AddShader(GL_FRAGMENT_SHADER))
+  if(!m_shader->AddShader(GL_FRAGMENT_SHADER, "textureShaders"))
   {
     printf("Fragment Shader failed to Initialize\n");
     return false;
@@ -223,6 +223,43 @@ bool Graphics::Initialize(int width, int height)
     printf("Program to Finalize\n");
     return false;
   }
+
+
+
+  //
+  //setup orbit drawing shaders
+  //
+  m_orbit_shader = new Shader();
+  if(!m_orbit_shader->Initialize())
+  {
+    printf("Shader Failed to Initialize\n");
+    return false;
+  }
+
+  // Add the vertex shader
+  if(!m_orbit_shader->AddShader(GL_VERTEX_SHADER, "orbitShaders"))
+  {
+    printf("Vertex Shader failed to Initialize\n");
+    return false;
+  }
+
+  // Add the fragment shader
+  if(!m_orbit_shader->AddShader(GL_FRAGMENT_SHADER, "orbitShaders"))
+  {
+    printf("Fragment Shader failed to Initialize\n");
+    return false;
+  }
+
+  // Connect the program
+  if(!m_orbit_shader->Finalize())
+  {
+    printf("Program to Finalize\n");
+    return false;
+  }
+
+
+
+
 
   // Locate the projection matrix in the shader
   m_projectionMatrix = m_shader->GetUniformLocation("projectionMatrix");
@@ -248,6 +285,32 @@ bool Graphics::Initialize(int width, int height)
     return false;
   }
 
+
+
+
+  m_orbitProjection = m_orbit_shader->GetUniformLocation("projectionMatrix");
+  if (m_orbitProjection == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_projectionMatrix not found\n");
+    return false;
+  }
+
+  // Locate the view matrix in the shader
+  m_orbitView = m_orbit_shader->GetUniformLocation("viewMatrix");
+  if (m_orbitView == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_viewMatrix not found\n");
+    return false;
+  }
+
+  // Locate the model matrix in the shader
+  m_orbitModel = m_orbit_shader->GetUniformLocation("modelMatrix");
+  if (m_orbitModel == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_modelMatrix not found\n");
+    return false;
+  }
+
   //enable depth testing
   glEnable(GL_DEPTH_TEST);
   glDepthFunc(GL_LESS);
@@ -258,7 +321,7 @@ bool Graphics::Initialize(int width, int height)
 void Graphics::Update(unsigned int dt)
 {
   if(scaled_view) {
-    m_camera->cameraSpeed = .1;
+    m_camera->cameraSpeed = .5;
   }
   else{
     m_camera->cameraSpeed = .5;
@@ -318,7 +381,7 @@ void Graphics::Update(unsigned int dt)
       case 1:
         if(scaled_view)
         {
-          m_camera->PlanetView(m_mercury->GetLocationVector(), glm::vec3(0.0, 0.0, 1.0));
+          m_camera->PlanetView(m_mercury->GetLocationVector(), glm::vec3(0.0, 0.0, 1.75));
         }
         else {
           m_camera->PlanetView(m_mercury->GetLocationVector(), glm::vec3(0.0, 0.0, .075));
@@ -328,7 +391,7 @@ void Graphics::Update(unsigned int dt)
       case 2:
         if(scaled_view)
         {
-          m_camera->PlanetView(m_venus->GetLocationVector(), glm::vec3(0.0, 0.0, 2.0));
+          m_camera->PlanetView(m_venus->GetLocationVector(), glm::vec3(0.0, 0.0, 4.0));
         }
         else {
           m_camera->PlanetView(m_venus->GetLocationVector(), glm::vec3(0.0, 0.0, .075));
@@ -338,7 +401,7 @@ void Graphics::Update(unsigned int dt)
       case 3:
         if(scaled_view)
         {
-          m_camera->PlanetView(m_earth->GetLocationVector(), glm::vec3(0.0, 0.0, 2.0));
+          m_camera->PlanetView(m_earth->GetLocationVector(), glm::vec3(0.0, 0.0, 5.0));
         }
         else {
           m_camera->PlanetView(m_earth->GetLocationVector(), glm::vec3(0.0, 0.0, .075));
@@ -348,7 +411,7 @@ void Graphics::Update(unsigned int dt)
       case 4:
         if(scaled_view)
         {
-          m_camera->PlanetView(m_mars->GetLocationVector(), glm::vec3(0.0, 0.0, 1.5));
+          m_camera->PlanetView(m_mars->GetLocationVector(), glm::vec3(0.0, 0.0, 3));
         }
         else {
           m_camera->PlanetView(m_mars->GetLocationVector(), glm::vec3(0.0, 0.0, 0.075));
@@ -398,7 +461,7 @@ void Graphics::Update(unsigned int dt)
       case 9:
         if(scaled_view)
         {
-          m_camera->PlanetView(m_secret->GetLocationVector(), glm::vec3(0.0, 0.0, 4.0));
+          m_camera->PlanetView(m_secret->GetLocationVector(), glm::vec3(0.0, 0.0, 8));
         }
         else {
           m_camera->PlanetView(m_secret->GetLocationVector(), glm::vec3(0.0, 0.0, .5));
@@ -552,6 +615,31 @@ void Graphics::Render()
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_charon->GetModel()));
 
   m_charon->Render();
+
+
+  if(scaled_view)
+  {
+    //activate shader
+    m_orbit_shader->Enable();
+
+    glUniformMatrix4fv(m_orbitProjection, 1, GL_FALSE, glm::value_ptr(m_camera->GetProjection()));
+    glUniformMatrix4fv(m_orbitView, 1, GL_FALSE, glm::value_ptr(m_camera->GetView()));
+
+    glUniformMatrix4fv(m_orbitModel, 1, GL_FALSE, glm::value_ptr(m_Sun->GetLocation()));
+
+    //each planet call render orbit
+    m_mercury->RenderOrbit();
+    m_venus->RenderOrbit();
+    m_earth->RenderOrbit();
+    m_mars->RenderOrbit();
+    m_jupiter->RenderOrbit();
+    m_saturn->RenderOrbit();
+    m_uranus->RenderOrbit();
+    m_neptune->RenderOrbit();
+    m_secret->RenderOrbit();
+  }
+
+
 
 
   // Get any errors from OpenGL

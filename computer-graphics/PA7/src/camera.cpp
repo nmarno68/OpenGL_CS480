@@ -29,7 +29,7 @@ bool Camera::Initialize(int w, int h)
   projection = glm::perspective( 45.0f, //the FoV typically 90 degrees is good which is what this is set to
                                  float(w)/float(h), //Aspect Ratio, so Circles stay Circular
                                  0.01f, //Distance to the near plane, normally a small value like this
-                                 500.0f); //Distance to the far plane,
+                                 900.0f); //Distance to the far plane,
 
   enableMouse = 0;
   last_x = 1000;         //set to middle of screen - tweak it
@@ -149,5 +149,17 @@ void Camera::Reset()
 void Camera::PlanetView(glm::vec3 planet_pos, glm::vec3 offset)
 {
   cameraPosition = planet_pos + offset;
+  view = glm::lookAt( cameraPosition, cameraPosition + cameraFront , cameraUp);
+}
+
+void Camera::TopView()
+{
+  cameraPosition = glm::vec3(0.0, 400, 0.0);
+  cameraFront = glm::vec3(0.0, -1.0, 0.000001);
+
+  glm::vec3 Right;
+  Right = glm::normalize(glm::cross(cameraFront, glm::vec3(0.0, 1.0, 0.0)));
+  cameraUp = glm::normalize(glm::cross(Right, cameraFront));
+
   view = glm::lookAt( cameraPosition, cameraPosition + cameraFront , cameraUp);
 }
