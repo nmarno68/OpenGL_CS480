@@ -46,13 +46,14 @@ bool Engine::Initialize()
     return false;
   }
 
-  //Menu
+  //Menu Initialization
   ImGui::CreateContext();
   ImGuiIO& io = ImGui::GetIO(); (void) io;
 
   ImGui_ImplSDL2_InitForOpenGL(m_window->GetSDLWindow(), m_window->GetContext());
   ImGui_ImplOpenGL3_Init("#version 330");
   ImGui::StyleColorsClassic();
+
 
   submenu = 0;
   subsubmenu = 0;
@@ -74,6 +75,7 @@ void Engine::Run()
     // Update the DT
     m_DT = getDT();
 
+    //Menu setup for frame
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplSDL2_NewFrame(m_window->GetSDLWindow());
     ImGui::NewFrame();
@@ -86,6 +88,7 @@ void Engine::Run()
     }
 
 
+    //A ton of menu code
 
 
     {
@@ -259,19 +262,6 @@ void Engine::Run()
             ImGui::Text("9");
 
           ImGui::End();
-
-/*
- * FAQ if there's time
-      if(m_graphics->planet_view)
-      {
-        switch(m_graphics->target_planet)
-        {
-          case 0:
-
-        }
-      }
-*/
-
     }
 
 
@@ -281,6 +271,7 @@ void Engine::Run()
 
     m_graphics->Render();
 
+    //Render menus
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
@@ -309,8 +300,8 @@ void Engine::Keyboard()
     m_newEvent = true;
 
     //Handling keyboard events
-    switch (m_event.key.keysym.sym) {  //come back to controls later for individual planets maybe
-      case SDLK_ESCAPE:                 //the control functions still exist in the object class
+    switch (m_event.key.keysym.sym) {
+      case SDLK_ESCAPE:
         m_running = false;
         break;
 

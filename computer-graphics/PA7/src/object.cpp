@@ -45,7 +45,7 @@ Object::Object(std::string filename) //each time we initialize a planet we give 
   orbit_width = og_orbit_width;
   orbit_length = og_orbit_length;
   scale = og_scale;
-  tip = og_tip;//*** still needs work
+  tip = og_tip;
 
   //Orbit and rotation flags
   moving_orbit = true;
@@ -65,6 +65,7 @@ Object::~Object()
   Indices.clear();
 }
 
+//Update the object's model using all of its unique values
 void Object::Update(unsigned int dt, glm::mat4 origin)
 {
 
@@ -106,17 +107,19 @@ glm::mat4 Object::GetModel()
   return model;
 }
 
+//returns location without direction information as a mat4
 glm::mat4 Object::GetLocation()
 {
   return glm::translate(glm::mat4(1.0f), glm::vec3(model[3]));
 }
 
+//returns location without direction information as a vec3
 glm::vec3 Object::GetLocationVector()
 {
   return glm::vec3(model[3]);
 }
 
-
+//render all the object's meshes
 void Object::Render()
 {
 
@@ -164,7 +167,7 @@ void Object::InitMesh()
       tempInd.push_back(Face.mIndices[2]);
     }
 
-    //Texture crap
+    //Texture stuff
 
     temptexture = loadMaterialTextures(m_scene->mMaterials[m_scene->mMeshes[j]->mMaterialIndex], aiTextureType_DIFFUSE);
 
@@ -180,6 +183,8 @@ std::vector<GLuint> Object::loadMaterialTextures(aiMaterial *mat, aiTextureType 
 {
   std::vector<GLuint> textures;
 
+  //loading in all the diffuse textures, however we only have the capability
+  //to render one
   for(unsigned int i = 0; i < mat->GetTextureCount(type); i++)
   {
     GLuint texture;
@@ -223,7 +228,7 @@ std::vector<GLuint> Object::loadMaterialTextures(aiMaterial *mat, aiTextureType 
   return textures;
 }
 
-
+//Kept the functions from prior projects, although they didnt make the cut
 void Object::StopStartAll()
 {
     if(moving_rotate or moving_orbit)
@@ -339,6 +344,7 @@ void Object::ResetAll()
   rotate_vel = og_rotate_vel;
 }
 
+//Sets all unique values and initializes the variables calculating the update
 void Object::SetValues(float o_vel, float r_vel, float o_width, float o_length, float new_scale, float new_tip, float new_x_axis, float new_y_axis, float new_z_axis, double new_start_angle, bool backwards)
 {
   og_orbit_vel = o_vel;
@@ -351,6 +357,7 @@ void Object::SetValues(float o_vel, float r_vel, float o_width, float o_length, 
   y_axis = new_y_axis;
   z_axis = new_z_axis;
 
+  //rotation around planet's axis is reversed (Venus)
   if(backwards)
   {
     rev_rotate = true;
@@ -366,6 +373,7 @@ void Object::SetValues(float o_vel, float r_vel, float o_width, float o_length, 
   //starting a planets orbit in a different place (for things that have similar orbits)
   orbit_angle =  new_start_angle;
 }
+//Setting the aesthetic scaled values
 void Object::SetScaledValues(float s_scale, float s_width, float s_length, float s_x, float s_y, float s_z, float s_tip)
 {
   scaled_scale = s_scale;
@@ -378,12 +386,15 @@ void Object::SetScaledValues(float s_scale, float s_width, float s_length, float
 
   OrbitVertex* v;
 
+  //Generating orbit vertex array (only generated for scaled view, actual view would be useless
   for(double i = 0; i < 2*M_PI; i += .01)
   {
     //sin(orbit_angle) * orbit_width, -sin(orbit_angle) * tip, cos(orbit_angle) * orbit_length)
     glm::vec3 pos = glm::vec3( (sin(i) * scaled_width) + scale_x, (-sin(i) * scale_tip) + scale_y, (cos(i) * scaled_length) + scale_z);
     orbit_vertices.push_back(pos);
   }
+
+  //creating the VAO and VBO for drawing the orbit line
   glGenVertexArrays(1, &OVAO);
   glGenBuffers(1, &OVBO);
 
@@ -400,6 +411,7 @@ void Object::SetScaledValues(float s_scale, float s_width, float s_length, float
 
 }
 
+//switch from actual to scaled
 void Object::UseScaled()
 {
   orbit_length = scaled_length;
@@ -411,6 +423,7 @@ void Object::UseScaled()
   tip = scale_tip;
 }
 
+//switch from scaled to actual
 void Object::UseActual()
 {
   orbit_length = og_orbit_length;
@@ -422,6 +435,7 @@ void Object::UseActual()
   tip = og_tip;
 }
 
+//Rendering the orbit line
 void Object::RenderOrbit()
 {
 
@@ -429,6 +443,7 @@ void Object::RenderOrbit()
 
   glLineWidth(1);
 
+  //no indicies needed, draw arrays in line loop instead of triangles
   glDrawArrays(GL_LINE_LOOP, 0, (GLsizei) orbit_vertices.size());
 
   glBindVertexArray(0);

@@ -44,7 +44,7 @@ bool Graphics::Initialize(int width, int height)
     return false;
   }
 
-
+  //initializing camera view flags
   planet_view = false;
   target_planet = -1;
   scaled_view = false;
@@ -93,6 +93,9 @@ bool Graphics::Initialize(int width, int height)
 
 
   //Set the object values - float o_vel, float r_vel, float o_width, float o_length, float new_scale, tip, x_axis, y_axis, z_axis, start_angle, backwards
+  //Backwards sets the axis rotation (Venus is the only planet that's backwards)
+  //I am so sorry that this ugly horrible function exists
+
   m_milkyway->SetValues(0, 0, 0, 0, 700, 0, 0, 1.0, 0, 0, 0);
 
   m_Sun->SetValues( 0,.0002, 0, 0, 2, 0, 0.0, 1.0, 0.0, 0, 0);                              //start angle just starts the orbit in a different place in the circle
@@ -146,6 +149,8 @@ bool Graphics::Initialize(int width, int height)
 
 
   //Setting Scaled Values - float s_scale, float s_width, float s_length, x, y, z
+  //Scaled view values were determined a combination of scaling the actual values and
+  //adjusting for an aesthetically pleasing view
 
   m_Sun->SetScaledValues(10, 0, 0, 0, 0, 0, 0);
 
@@ -196,7 +201,7 @@ bool Graphics::Initialize(int width, int height)
 
 
 
-  // Set up the shaders
+  // Set up the lighting shaders
   m_shader = new Shader();
   if(!m_shader->Initialize())
   {
@@ -260,6 +265,10 @@ bool Graphics::Initialize(int width, int height)
 
 
 
+  //
+  //Set up original shaders to draw the sun because I just didn't know to
+  //deal with drawing the sun as a light source
+  //
   m_light_shader = new Shader();
   if(!m_light_shader->Initialize())
   {
@@ -293,7 +302,7 @@ bool Graphics::Initialize(int width, int height)
 
 
 
-  // Locate the projection matrix in the shader
+  // Locate the projection matrix in the lighting shader
   m_projectionMatrix = m_shader->GetUniformLocation("projectionMatrix");
   if (m_projectionMatrix == INVALID_UNIFORM_LOCATION)
   {
@@ -301,7 +310,7 @@ bool Graphics::Initialize(int width, int height)
     return false;
   }
 
-  // Locate the view matrix in the shader
+  // Locate the view matrix in the lighting shader
   m_viewMatrix = m_shader->GetUniformLocation("viewMatrix");
   if (m_viewMatrix == INVALID_UNIFORM_LOCATION)
   {
@@ -309,7 +318,7 @@ bool Graphics::Initialize(int width, int height)
     return false;
   }
 
-  // Locate the model matrix in the shader
+  // Locate the model matrix in the lighting shader
   m_modelMatrix = m_shader->GetUniformLocation("modelMatrix");
   if (m_modelMatrix == INVALID_UNIFORM_LOCATION)
   {
@@ -317,6 +326,7 @@ bool Graphics::Initialize(int width, int height)
     return false;
   }
 
+  //Locate the view position vector in the lighting shader
   m_viewPos = m_shader->GetUniformLocation("viewPos");
   if (m_viewPos == INVALID_UNIFORM_LOCATION)
   {
@@ -325,7 +335,7 @@ bool Graphics::Initialize(int width, int height)
   }
 
 
-
+  // Locate the projection matrix in the orbit drawing shader
   m_orbitProjection = m_orbit_shader->GetUniformLocation("projectionMatrix");
   if (m_orbitProjection == INVALID_UNIFORM_LOCATION)
   {
@@ -333,7 +343,7 @@ bool Graphics::Initialize(int width, int height)
     return false;
   }
 
-  // Locate the view matrix in the shader
+  // Locate the view matrix in the orbit drawing shader
   m_orbitView = m_orbit_shader->GetUniformLocation("viewMatrix");
   if (m_orbitView == INVALID_UNIFORM_LOCATION)
   {
@@ -341,7 +351,7 @@ bool Graphics::Initialize(int width, int height)
     return false;
   }
 
-  // Locate the model matrix in the shader
+  // Locate the model matrix in the orbit drawing shader
   m_orbitModel = m_orbit_shader->GetUniformLocation("modelMatrix");
   if (m_orbitModel == INVALID_UNIFORM_LOCATION)
   {
@@ -350,14 +360,14 @@ bool Graphics::Initialize(int width, int height)
   }
 
 
-
+  // Locate the projection matrix in the texture shader
   m_sunProjection = m_light_shader->GetUniformLocation("projectionMatrix");
   if (m_sunProjection == INVALID_UNIFORM_LOCATION)
   {
     printf("m_projectionMatrix not found\n");
     return false;
   }
-
+  // Locate the view matrix in the texture shader
   m_sunView = m_light_shader->GetUniformLocation("viewMatrix");
   if (m_sunView == INVALID_UNIFORM_LOCATION)
   {
@@ -365,7 +375,7 @@ bool Graphics::Initialize(int width, int height)
     return false;
   }
 
-  // Locate the model matrix in the shader
+  // Locate the model matrix in the texture shader
   m_sunModel = m_light_shader->GetUniformLocation("modelMatrix");
   if (m_sunModel == INVALID_UNIFORM_LOCATION)
   {
@@ -382,6 +392,7 @@ bool Graphics::Initialize(int width, int height)
 
 void Graphics::Update(unsigned int dt)
 {
+  //in case we decide to adjust the camera speed for actual view (still a little too fast)
   if(scaled_view) {
     m_camera->cameraSpeed = .5;
   }
@@ -389,6 +400,8 @@ void Graphics::Update(unsigned int dt)
     m_camera->cameraSpeed = .5;
   }
 
+
+  //Aaaaalll the updates
   m_Sun->Update(dt, glm::mat4(1.0f));
 
   m_mars->Update(dt, m_Sun->GetLocation());
@@ -426,6 +439,7 @@ void Graphics::Update(unsigned int dt)
   m_pluto->Update(dt, m_secret->GetLocation());
   m_charon->Update(dt, m_secret->GetLocation());
 
+  //updating the camera view to follow the planet, adjusting offsets for actual and scaled
   if(planet_view)
   {
     switch(target_planet)
@@ -536,6 +550,7 @@ void Graphics::Update(unsigned int dt)
     }
 
   }
+  //After the camera is done updating for planet view, update the skybox location to follow the camera
   m_milkyway->Update(dt, m_camera->GetLocation());
 
 
@@ -557,7 +572,7 @@ void Graphics::Render()
   glUniformMatrix4fv(m_viewMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetView()));
 
 
-  // Render the objects
+  // Render aaaaalll the objects
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_milkyway->GetModel()));
 
   m_milkyway->Render();
@@ -676,7 +691,7 @@ void Graphics::Render()
 
 
 
-
+  //Faking drawing the sun as a lightsource by using the old texture shader
 
   m_light_shader->Enable();
 
@@ -689,7 +704,7 @@ void Graphics::Render()
 
 
 
-
+  //rendering the orbits with their shader
   if(scaled_view)
   {
     //activate shader
@@ -756,6 +771,7 @@ std::string Graphics::ErrorString(GLenum error)
   }
 }
 
+//gradually increase sim speed for eeeeverything
 void Graphics::IncSimSpeed()
 {
   m_secret->IncreaseRotationSpeed();
@@ -847,6 +863,7 @@ void Graphics::IncSimSpeed()
   m_charon->IncreaseOrbitSpeed();
 }
 
+//gradually decrease sim speed for eeeeverything
 void Graphics::DecSimSpeed()
 {
   m_secret->DecreaseOrbitSpeed();
@@ -941,6 +958,7 @@ void Graphics::DecSimSpeed()
 
 }
 
+//reset aaaalll the views
 void Graphics::resetAll()
 {
   m_secret->ResetAll();

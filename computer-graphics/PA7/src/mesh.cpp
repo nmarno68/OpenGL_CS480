@@ -8,7 +8,7 @@ Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std:
 
   setUp();
 }
-
+//set up mesh VAO, VBO, and EBO
 void Mesh::setUp()
 {
   glGenVertexArrays(1, &VAO);
@@ -39,6 +39,7 @@ void Mesh::setUp()
   glBindVertexArray(0);
 }
 
+//rendering a single mesh
 void Mesh::Draw()
 {
   glActiveTexture(GL_TEXTURE0);

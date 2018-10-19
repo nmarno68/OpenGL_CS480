@@ -24,6 +24,8 @@ bool Camera::Initialize(int w, int h)
   cameraUp = glm::vec3(0.0, 1.0, 0.0);
   cameraFront = glm::vec3(0.0, 0.0, -1.0);
 
+  //The target of the camera for the entirety of the program is simply directly
+  //in front of it
   view = glm::lookAt( cameraPosition, cameraPosition + cameraFront , cameraUp);
 
   projection = glm::perspective( 45.0f, //the FoV typically 90 degrees is good which is what this is set to
@@ -31,12 +33,12 @@ bool Camera::Initialize(int w, int h)
                                  0.01f, //Distance to the near plane, normally a small value like this
                                  900.0f); //Distance to the far plane,
 
-  enableMouse = 0;
-  last_x = 1000;         //set to middle of screen - tweak it
+  enableMouse = 0;        //mouse motion flag
+  last_x = 1000;         //set mouse to middle of screen
   last_y = 500;
   pitch = 0;
   yaw = -90;
-  firstMouseMovement = 1;
+  firstMouseMovement = 1; //flag to start the mouse in the center of the screen (no sudden jerks)
 
   return true;
 }
@@ -51,6 +53,7 @@ glm::mat4 Camera::GetView()
   return view;
 }
 
+//returns the camera position without direction information
 glm::mat4 Camera::GetLocation()
 {
   return glm::translate(glm::mat4(1.0f), cameraPosition);
@@ -86,6 +89,7 @@ void Camera::MoveUp()
   view =  view = glm::lookAt( cameraPosition, cameraPosition + cameraFront , cameraUp);
 }
 
+//FPS style camera look around
 void Camera::MouseMovement(double xpos, double ypos)
 {
 
@@ -100,21 +104,26 @@ void Camera::MouseMovement(double xpos, double ypos)
   xpos *= sensitivity;
   ypos *= sensitivity;
 
+  //SDL relative mouse movement automatically calculates change in x and change in y
+  //theres not need to calculate the difference ourselves
   yaw   += xpos;
   pitch += -ypos;
 
+  //limiting head movement no frontflips or backflips :(
   if(pitch > 89.0f)
     pitch = 89.0f;
   if(pitch < -89.0f)
     pitch = -89.0f;
 
+  //mapping the 2D x-y coords of the mouse to 3D world
+  //with all of the fun pitch and yaw trig
   glm::vec3 direction;
   direction.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
   direction.y = sin(glm::radians(pitch));
   direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
   cameraFront = glm::normalize(direction);
 
-  // Also re-calculate the Right and Up vector
+  // Also re-calculate the Right and Up vector of the camera coord system
   glm::vec3 Right;
   Right = glm::normalize(glm::cross(cameraFront, glm::vec3(0.0, 1.0, 0.0)));
   cameraUp = glm::normalize(glm::cross(Right, cameraFront));
@@ -122,6 +131,7 @@ void Camera::MouseMovement(double xpos, double ypos)
   view = glm::lookAt(cameraPosition, cameraPosition + cameraFront, cameraUp);
 }
 
+//set mouse information when entering FPS camera mode
 void Camera::EnableMouse()
 {
   enableMouse = !enableMouse;
@@ -132,6 +142,7 @@ void Camera::EnableMouse()
 
 }
 
+//resets camera info (for planet view/ top view jumping
 void Camera::Reset()
 {
   cameraPosition = glm::vec3(0.0, 0.0, 35.0);
@@ -146,6 +157,8 @@ void Camera::Reset()
 
 }
 
+//jump to specified planet location and offset from the location
+//(further away from jupiter than pluto
 void Camera::PlanetView(glm::vec3 planet_pos, glm::vec3 offset)
 {
   cameraPosition = planet_pos + offset;
@@ -163,6 +176,8 @@ void Camera::TopView()
 
   view = glm::lookAt( cameraPosition, cameraPosition + cameraFront , cameraUp);
 }
+
+//Resets the camera and mouse information to avoid jerking motions while jumping views
 void Camera::FaceFront()
 {
   last_x = 1000;

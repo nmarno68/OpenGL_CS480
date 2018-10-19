@@ -74,6 +74,7 @@ void Window::Swap()
   SDL_GL_SwapWindow(gWindow);
 }
 
+//Menu functions were needed
 SDL_Window* Window::GetSDLWindow()
 {
   return gWindow;
