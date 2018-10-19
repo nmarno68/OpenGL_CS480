@@ -152,11 +152,11 @@ This project combines all of the elements that have been covered in our class so
     </tr>
     <tr>
         <td>Increase Simulation Speed</td>
-        <td>Hold <kbd>p</kbd></td>
+        <td>Hold <kbd>P</kbd></td>
     </tr>
     <tr>
         <td>Decrease Simulation Speed</td>
-        <td>Hold <kbd>o</kbd></td>
+        <td>Hold <kbd>O</kbd></td>
     </tr>
     <tr>
         <td>Reset Simulation Speed</td>
