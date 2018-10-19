@@ -114,23 +114,23 @@ This project combines all of the elements that have been covered in our class so
     </tr>
     <tr>
         <td>Enable/Disable FPS Camera Mode</td>
-        <td><kbd>m</kbd></td>
+        <td><kbd>E</kbd></td>
     </tr>
     <tr>
         <td>Move Forward</td>
-        <td><kbd>w</kbd></td>
+        <td><kbd>W</kbd></td>
     </tr>
     <tr>
         <td>Move Left</td>
-        <td><kbd>a</kbd></td>
+        <td><kbd>A</kbd></td>
     </tr>
     <tr>
         <td>Move Right</td>
-        <td><kbd>d</kbd></td>
+        <td><kbd>D</kbd></td>
     </tr>
     <tr>
         <td>Move Backward</td>
-        <td><kbd>s</kbd></td>
+        <td><kbd>S</kbd></td>
     </tr>
     <tr>
         <td>Move Up</td>
