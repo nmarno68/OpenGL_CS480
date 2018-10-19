@@ -117,10 +117,6 @@ This project combines all of the elements that have been covered in our class so
         <td><kbd>m</kbd></td>
     </tr>
     <tr>
-        <td>Reset View</td>
-        <td><kbd>r</kbd></td>
-    </tr>
-    <tr>
         <td>Move Forward</td>
         <td><kbd>w</kbd></td>
     </tr>
@@ -152,7 +148,7 @@ This project combines all of the elements that have been covered in our class so
     </tr>
     <tr>
         <td>Toggle Scaled View</td>
-        <td><kbd>l</kbd></td>
+        <td><kbd>Menu Button</kbd></td>
     </tr>
     <tr>
         <td>Increase Simulation Speed</td>
@@ -164,9 +160,8 @@ This project combines all of the elements that have been covered in our class so
     </tr>
     <tr>
         <td>Reset Simulation Speed</td>
-        <td><kbd>q</kbd></td>
+        <td><kbd>Menu Option</kbd></td>
     </tr>
-
 </table>
 
 # Extra Credit
@@ -176,3 +171,5 @@ This project combines all of the elements that have been covered in our class so
 4) Pluto and Charon orbit their center of mass
 5) Skybox centered on camera
 6) FPS camera movement
+7) Orbits drawn in scaled view
+8) Phong Lighting
