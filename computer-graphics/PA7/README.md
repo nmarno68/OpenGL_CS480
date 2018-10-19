@@ -148,7 +148,7 @@ This project combines all of the elements that have been covered in our class so
     </tr>
     <tr>
         <td>Toggle Scaled View</td>
-        <td><kbd>Menu Button</kbd></td>
+        <td><kbd>Menu Option</kbd></td>
     </tr>
     <tr>
         <td>Increase Simulation Speed</td>
