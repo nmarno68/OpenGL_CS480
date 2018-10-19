@@ -90,217 +90,176 @@ void Engine::Run()
 
     {
 
-      ImGui::Begin("Menu");
+          ImGui::Begin("Camera Controls");
 
+          ImGui::Text("Enable/Disable FPS Camera Mode"); ImGui::SameLine(280); ImGui::Text("E");
 
-        if(ImGui::Button("Camera Controls")) {
-            if(submenu == 1)
+          ImGui::Text("Move Forward"); ImGui::SameLine(280); ImGui::Text("W");
+
+          ImGui::Text("Move Left"); ImGui::SameLine(280); ImGui::Text("A");
+
+          ImGui::Text("Move Back"); ImGui::SameLine(280); ImGui::Text("S");
+
+          ImGui::Text("Move Right"); ImGui::SameLine(280); ImGui::Text("D");
+
+          ImGui::Text("Move Up"); ImGui::SameLine(253); ImGui::Text("SPACE");
+
+          if (ImGui::Button("Top View")) {
+
+            if(!m_graphics->top_view) {
+              m_graphics->m_camera->TopView();
+              m_graphics->planet_view = false;
+              m_graphics->target_planet = -1;
+              m_graphics->top_view = true;
+            }
+            else
             {
-              submenu = 0;
+              m_graphics->m_camera->Reset();
+              m_graphics->top_view = false;
+              m_graphics->planet_view = false;
+              m_graphics->target_planet = -1;
+
             }
-            else{
-              submenu = 1;
-            }
-        }
-        if(ImGui::Button("Simulation Controls"))
-        {
-          if(submenu == 2)
+          }
+
+          if (ImGui::Button("Scaled View"))
           {
-            submenu = 0;
+            if(m_graphics->scaled_view)
+            {
+              m_graphics->actualView();
+            }
+            else {
+              m_graphics->scaledView();
+            }
+            m_graphics->scaled_view = !m_graphics->scaled_view;
           }
-          else{
-            submenu = 2;
+
+          ImGui::End();
+
+
+          //simulation submenu
+
+          ImGui::Begin("Simulation Controls");
+          ImGui::Text("Increase Sim Speed");
+          ImGui::SameLine(200);
+          ImGui::Text("Hold P");
+
+          ImGui::Text("Decrease Sim Speed");
+          ImGui::SameLine(200);
+          ImGui::Text("Hold O");
+
+          if(ImGui::Button("Reset Sim Speed"))
+          {
+            m_graphics->resetAll();
           }
-        }
 
-        //Submenus
-        switch (submenu){
 
-          //camera submenu
-          case 1:
-            ImGui::Begin("Camera Controls");
+          ImGui::End();
 
-            ImGui::Text("Enable/Disable FPS Camera Mode"); ImGui::SameLine(280); ImGui::Text("E");
+          ImGui::Begin("Planet View");
 
-            ImGui::Text("Move Forward"); ImGui::SameLine(280); ImGui::Text("W");
-
-            ImGui::Text("Move Left"); ImGui::SameLine(280); ImGui::Text("A");
-
-            ImGui::Text("Move Back"); ImGui::SameLine(280); ImGui::Text("S");
-
-            ImGui::Text("Move Right"); ImGui::SameLine(280); ImGui::Text("D");
-
-            ImGui::Text("Move Up"); ImGui::SameLine(253); ImGui::Text("SPACE");
-
-            if (ImGui::Button("Top View")) {
-
-              if(!m_graphics->top_view) {
-                m_graphics->m_camera->TopView();
-                m_graphics->planet_view = false;
-                m_graphics->target_planet = -1;
-                m_graphics->top_view = true;
-              }
-              else
-              {
-                m_graphics->m_camera->Reset();
-                m_graphics->top_view = false;
-                m_graphics->planet_view = false;
-                m_graphics->target_planet = -1;
-
-              }
-            }
-
-            if (ImGui::Button("Scaled View"))
+            if(ImGui::Button("Sun"))
             {
-              if(m_graphics->scaled_view)
-              {
-                m_graphics->actualView();
-              }
-              else {
-                m_graphics->scaledView();
-              }
-              m_graphics->scaled_view = !m_graphics->scaled_view;
+              m_graphics->m_camera->FaceFront();
+              m_graphics->planet_view = true;
+              m_graphics->target_planet = 0;
+              m_graphics->top_view = false;
             }
-
-            if(ImGui::Button("Planet View"))
-            {
-              if(subsubmenu == 1)
-              {
-                subsubmenu = 0;
-              }
-              else{
-                subsubmenu = 1;
-              }
-            }
-
-
-
-            ImGui::End();
-            break;
-
-            //simulation submenu
-          case 2:
-            ImGui::Begin("Simulation Controls");
-            ImGui::Text("Increase Sim Speed");
             ImGui::SameLine(200);
-            ImGui::Text("Hold P");
+            ImGui::Text("0");
 
-            ImGui::Text("Decrease Sim Speed");
-            ImGui::SameLine(200);
-            ImGui::Text("Hold O");
-
-            if(ImGui::Button("Reset Sim Speed"))
+            if(ImGui::Button("Mercury"))
             {
-              m_graphics->resetAll();
+              m_graphics->m_camera->FaceFront();
+              m_graphics->planet_view = true;
+              m_graphics->target_planet = 1;
+              m_graphics->top_view = false;
             }
+            ImGui::SameLine(200);
+            ImGui::Text("1");
 
+            if(ImGui::Button("Venus"))
+            {
+              m_graphics->m_camera->FaceFront();
+              m_graphics->planet_view = true;
+              m_graphics->target_planet = 2;
+              m_graphics->top_view = false;
+            }
+            ImGui::SameLine(200);
+            ImGui::Text("2");
 
-            ImGui::End();
-            break;
+            if(ImGui::Button("Earth"))
+            {
+              m_graphics->m_camera->FaceFront();
+              m_graphics->planet_view = true;
+              m_graphics->target_planet = 3;
+              m_graphics->top_view = false;
+            }
+            ImGui::SameLine(200);
+            ImGui::Text("3");
 
-          default:
-            break;
-        }
+            if(ImGui::Button("Mars"))
+            {
+              m_graphics->m_camera->FaceFront();
+              m_graphics->planet_view = true;
+              m_graphics->target_planet = 4;
+              m_graphics->top_view = false;
+            }
+            ImGui::SameLine(200);
+            ImGui::Text("4");
 
-        switch(subsubmenu)
-        {
-          case 1:
-            ImGui::Begin("Planet View");
+            if(ImGui::Button("Jupiter"))
+            {
+              m_graphics->m_camera->FaceFront();
+              m_graphics->planet_view = true;
+              m_graphics->target_planet = 5;
+              m_graphics->top_view = false;
+            }
+            ImGui::SameLine(200);
+            ImGui::Text("5");
 
-              if(ImGui::Button("Sun"))
-              {
-                m_graphics->m_camera->FaceFront();
-                m_graphics->planet_view = true;
-                m_graphics->target_planet = 0;
-              }
-              ImGui::SameLine(200);
-              ImGui::Text("0");
+            if(ImGui::Button("Saturn"))
+            {
+              m_graphics->m_camera->FaceFront();
+              m_graphics->planet_view = true;
+              m_graphics->target_planet = 6;
+              m_graphics->top_view = false;
+            }
+            ImGui::SameLine(200);
+            ImGui::Text("6");
 
-              if(ImGui::Button("Mercury"))
-              {
-                m_graphics->m_camera->FaceFront();
-                m_graphics->planet_view = true;
-                m_graphics->target_planet = 1;
-              }
-              ImGui::SameLine(200);
-              ImGui::Text("1");
+            if(ImGui::Button("Uranus"))
+            {
+              m_graphics->m_camera->FaceFront();
+              m_graphics->planet_view = true;
+              m_graphics->target_planet = 7;
+              m_graphics->top_view = false;
+            }
+            ImGui::SameLine(200);
+            ImGui::Text("7");
 
-              if(ImGui::Button("Venus"))
-              {
-                m_graphics->m_camera->FaceFront();
-                m_graphics->planet_view = true;
-                m_graphics->target_planet = 2;
-              }
-              ImGui::SameLine(200);
-              ImGui::Text("2");
+            if(ImGui::Button("Neptune"))
+            {
+              m_graphics->m_camera->FaceFront();
+              m_graphics->planet_view = true;
+              m_graphics->target_planet = 8;
+              m_graphics->top_view = false;
+            }
+            ImGui::SameLine(200);
+            ImGui::Text("8");
 
-              if(ImGui::Button("Earth"))
-              {
-                m_graphics->m_camera->FaceFront();
-                m_graphics->planet_view = true;
-                m_graphics->target_planet = 3;
-              }
-              ImGui::SameLine(200);
-              ImGui::Text("3");
+            if(ImGui::Button("Pluto and Charon"))
+            {
+              m_graphics->m_camera->FaceFront();
+              m_graphics->planet_view = true;
+              m_graphics->target_planet = 9;
+              m_graphics->top_view = false;
+            }
+            ImGui::SameLine(200);
+            ImGui::Text("9");
 
-              if(ImGui::Button("Mars"))
-              {
-                m_graphics->m_camera->FaceFront();
-                m_graphics->planet_view = true;
-                m_graphics->target_planet = 4;
-              }
-              ImGui::SameLine(200);
-              ImGui::Text("4");
+          ImGui::End();
 
-              if(ImGui::Button("Jupiter"))
-              {
-                m_graphics->m_camera->FaceFront();
-                m_graphics->planet_view = true;
-                m_graphics->target_planet = 5;
-              }
-              ImGui::SameLine(200);
-              ImGui::Text("5");
-
-              if(ImGui::Button("Saturn"))
-              {
-                m_graphics->m_camera->FaceFront();
-                m_graphics->planet_view = true;
-                m_graphics->target_planet = 6;
-              }
-              ImGui::SameLine(200);
-              ImGui::Text("6");
-
-              if(ImGui::Button("Uranus"))
-              {
-                m_graphics->m_camera->FaceFront();
-                m_graphics->planet_view = true;
-                m_graphics->target_planet = 7;
-              }
-              ImGui::SameLine(200);
-              ImGui::Text("7");
-
-              if(ImGui::Button("Neptune"))
-              {
-                m_graphics->m_camera->FaceFront();
-                m_graphics->planet_view = true;
-                m_graphics->target_planet = 8;
-              }
-              ImGui::SameLine(200);
-              ImGui::Text("8");
-
-              if(ImGui::Button("Pluto and Charon"))
-              {
-                m_graphics->m_camera->FaceFront();
-                m_graphics->planet_view = true;
-                m_graphics->target_planet = 9;
-              }
-              ImGui::SameLine(200);
-              ImGui::Text("9");
-
-            ImGui::End();
-        }
-
-      ImGui::End();
 /*
  * FAQ if there's time
       if(m_graphics->planet_view)
@@ -413,60 +372,70 @@ void Engine::Keyboard()
         m_graphics->m_camera->FaceFront();
         m_graphics->planet_view = true;
         m_graphics->target_planet = 0;
+        m_graphics->top_view = false;
         break;
 
       case SDLK_1:
         m_graphics->m_camera->FaceFront();
         m_graphics->planet_view = true;
         m_graphics->target_planet = 1;
+        m_graphics->top_view = false;
         break;
 
       case SDLK_2:
         m_graphics->m_camera->FaceFront();
         m_graphics->planet_view = true;
         m_graphics->target_planet = 2;
+        m_graphics->top_view = false;
         break;
 
       case SDLK_3:
         m_graphics->m_camera->FaceFront();
         m_graphics->planet_view = true;
         m_graphics->target_planet = 3;
+        m_graphics->top_view = false;
         break;
 
       case SDLK_4:
         m_graphics->m_camera->FaceFront();
         m_graphics->planet_view = true;
         m_graphics->target_planet = 4;
+        m_graphics->top_view = false;
         break;
 
       case SDLK_5:
         m_graphics->m_camera->FaceFront();
         m_graphics->planet_view = true;
         m_graphics->target_planet = 5;
+        m_graphics->top_view = false;
         break;
 
       case SDLK_6:
         m_graphics->m_camera->FaceFront();
         m_graphics->planet_view = true;
         m_graphics->target_planet = 6;
+        m_graphics->top_view = false;
         break;
 
       case SDLK_7:
         m_graphics->m_camera->FaceFront();
         m_graphics->planet_view = true;
         m_graphics->target_planet = 7;
+        m_graphics->top_view = false;
         break;
 
       case SDLK_8:
         m_graphics->m_camera->FaceFront();
         m_graphics->planet_view = true;
         m_graphics->target_planet = 8;
+        m_graphics->top_view = false;
         break;
 
       case SDLK_9:
         m_graphics->m_camera->FaceFront();
         m_graphics->planet_view = true;
         m_graphics->target_planet = 9;
+        m_graphics->top_view = false;
         break;
     }
   }

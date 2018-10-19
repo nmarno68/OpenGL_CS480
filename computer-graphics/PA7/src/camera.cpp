@@ -175,3 +175,4 @@ void Camera::FaceFront()
   Right = glm::normalize(glm::cross(cameraFront, glm::vec3(0.0, 1.0, 0.0)));
   cameraUp = glm::normalize(glm::cross(Right, cameraFront));
 }
+

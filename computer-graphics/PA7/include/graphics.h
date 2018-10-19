@@ -68,12 +68,14 @@ class Graphics
     bool planet_view;
     bool scaled_view;
     bool top_view;
+    bool light;
 
   private:
     std::string ErrorString(GLenum error);
 
     Shader *m_shader;
     Shader *m_orbit_shader;
+    Shader *m_light_shader;
 
     GLint m_projectionMatrix;
     GLint m_viewMatrix;
@@ -82,6 +84,12 @@ class Graphics
     GLint m_orbitModel;
     GLint m_orbitView;
     GLint m_orbitProjection;
+
+    GLint m_sunModel;
+    GLint m_sunView;
+    GLint m_sunProjection;
+
+    GLint m_viewPos;
 
 
 };

@@ -4,14 +4,20 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/camera.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/cmake-build-debug/CMakeFiles/SolarSystem.dir/src/camera.cpp.o"
-  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/engine.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/cmake-build-debug/CMakeFiles/SolarSystem.dir/src/engine.cpp.o"
-  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/graphics.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/cmake-build-debug/CMakeFiles/SolarSystem.dir/src/graphics.cpp.o"
-  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/main.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/cmake-build-debug/CMakeFiles/SolarSystem.dir/src/main.cpp.o"
-  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/mesh.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/cmake-build-debug/CMakeFiles/SolarSystem.dir/src/mesh.cpp.o"
-  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/object.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/cmake-build-debug/CMakeFiles/SolarSystem.dir/src/object.cpp.o"
-  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/shader.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/cmake-build-debug/CMakeFiles/SolarSystem.dir/src/shader.cpp.o"
-  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/window.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/cmake-build-debug/CMakeFiles/SolarSystem.dir/src/window.cpp.o"
+  "/home/natalie/Desktop/PA7/src/camera.cpp" "/home/natalie/Desktop/PA7/cmake-build-debug/CMakeFiles/SolarSystem.dir/src/camera.cpp.o"
+  "/home/natalie/Desktop/PA7/src/engine.cpp" "/home/natalie/Desktop/PA7/cmake-build-debug/CMakeFiles/SolarSystem.dir/src/engine.cpp.o"
+  "/home/natalie/Desktop/PA7/src/graphics.cpp" "/home/natalie/Desktop/PA7/cmake-build-debug/CMakeFiles/SolarSystem.dir/src/graphics.cpp.o"
+  "/home/natalie/Desktop/PA7/src/imgui.cpp" "/home/natalie/Desktop/PA7/cmake-build-debug/CMakeFiles/SolarSystem.dir/src/imgui.cpp.o"
+  "/home/natalie/Desktop/PA7/src/imgui_demo.cpp" "/home/natalie/Desktop/PA7/cmake-build-debug/CMakeFiles/SolarSystem.dir/src/imgui_demo.cpp.o"
+  "/home/natalie/Desktop/PA7/src/imgui_draw.cpp" "/home/natalie/Desktop/PA7/cmake-build-debug/CMakeFiles/SolarSystem.dir/src/imgui_draw.cpp.o"
+  "/home/natalie/Desktop/PA7/src/imgui_impl_opengl3.cpp" "/home/natalie/Desktop/PA7/cmake-build-debug/CMakeFiles/SolarSystem.dir/src/imgui_impl_opengl3.cpp.o"
+  "/home/natalie/Desktop/PA7/src/imgui_impl_sdl.cpp" "/home/natalie/Desktop/PA7/cmake-build-debug/CMakeFiles/SolarSystem.dir/src/imgui_impl_sdl.cpp.o"
+  "/home/natalie/Desktop/PA7/src/imgui_widgets.cpp" "/home/natalie/Desktop/PA7/cmake-build-debug/CMakeFiles/SolarSystem.dir/src/imgui_widgets.cpp.o"
+  "/home/natalie/Desktop/PA7/src/main.cpp" "/home/natalie/Desktop/PA7/cmake-build-debug/CMakeFiles/SolarSystem.dir/src/main.cpp.o"
+  "/home/natalie/Desktop/PA7/src/mesh.cpp" "/home/natalie/Desktop/PA7/cmake-build-debug/CMakeFiles/SolarSystem.dir/src/mesh.cpp.o"
+  "/home/natalie/Desktop/PA7/src/object.cpp" "/home/natalie/Desktop/PA7/cmake-build-debug/CMakeFiles/SolarSystem.dir/src/object.cpp.o"
+  "/home/natalie/Desktop/PA7/src/shader.cpp" "/home/natalie/Desktop/PA7/cmake-build-debug/CMakeFiles/SolarSystem.dir/src/shader.cpp.o"
+  "/home/natalie/Desktop/PA7/src/window.cpp" "/home/natalie/Desktop/PA7/cmake-build-debug/CMakeFiles/SolarSystem.dir/src/window.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

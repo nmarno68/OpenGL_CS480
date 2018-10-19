@@ -107,30 +107,30 @@ bool Graphics::Initialize(int width, int height)
   m_venus->SetValues(.00081, .003, 6, 6, .01, 0, 0, 1, 0, 1.3*M_PI, 1);
 
 
-  m_earth->SetValues(.0005, .005825, 8, 8, .01, 0, -0.4, 1.0, -0.2, 0, 0);
+  m_earth->SetValues(.0005, .005825, 8, 8, .01, 0, -0.4, 1.0, -0.2, M_PI, 0);
   m_moon->SetValues(.01825, .01825, .05, .05, .004, -.03, -0.4, 1.0, -0.2, 0, 0);
 
 
   m_mercury->SetValues(.002, .0025, 4, 4, .005, 0, 0, 1, 0, .4*M_PI, 0);
 
 
-  m_jupiter->SetValues(.000041, .003, 40, 40, .5, 0, 0, 1, 0, 1.7*M_PI, 0);
+  m_jupiter->SetValues(.000041, .003, 40, 40, .5, 0, 0, 1, 0, 1.3*M_PI, 0);
   m_ganymede->SetValues(.0005, 0.002, 1.5, 1.5, .01, 0, 0, 1.0, 0, .5 * M_PI, 0);             //Needs values
   m_callisto->SetValues(.0005, 0.002, 1.5, 1.5, .01, 0, 0, 1.0, 0, M_PI, 0);             //Needs values
   m_io->SetValues(.0005, 0.002, 1.5, 1.5, .01, 0, 0, 1.0, 0, 1.5*M_PI, 0);                   //Needs values
   m_europa->SetValues(.0005, 0.002, 1.5, 1.5, 0.01, 0, 0, 1.0, 0, 0, 0);               //Needs values
 
 
-  m_saturn->SetValues(.000017, 0.005, 80, 80, .25, 10, -0.4, 1.0, -0.2, .25*M_PI, 0);
+  m_saturn->SetValues(.000017, 0.005, 80, 80, .25, 10, -0.4, 1.0, -0.2, .75*M_PI, 0);
   m_titan->SetValues(.0005, 0.002, 1, 1, 0.01, 0, 0, 1.0, 0, M_PI, 0);                //Needs values
   m_enceladus->SetValues(.0005, 0.002, 1, 1, 0.01, 0, 0, 1.0, 0, 0, 0);            //Needs values
 
 
-  m_neptune->SetValues(.000003, .005, 200, 200, .25, 0, -0.4, 1, -0.2, 0, 0);
+  m_neptune->SetValues(.000003, .005, 200, 200, .25, 0, -0.4, 1, -0.2, M_PI, 0);
   m_triton->SetValues(.0005, 0.002, 1, 1, 0.01, 0, 0, 1.0, 0, 0, 0);               //Needs values
 
 
-  m_uranus->SetValues(.000006, .003, 160, 160, .25, 0, 1, 0, .5, 1.8* M_PI, 0);
+  m_uranus->SetValues(.000006, .003, 160, 160, .25, 0, 1, 0, .5, 1.2* M_PI, 0);
   m_titania->SetValues(.0005, 0.002, 1, 1, 0.01, 0, 0, 1.0, 0, .4 * M_PI, 0);              //Needs values
   m_oberon->SetValues(.0005, 0.002, 1, 1, 0.01, 0, 0, 1.0, 0, .8 * M_PI, 0);               //Needs values
   m_umbriel->SetValues(.0005, 0.002, 1, 1, 0.01, 0, 0, 1.0, 0, 1.2 * M_PI, 0);              //Needs values
@@ -205,14 +205,14 @@ bool Graphics::Initialize(int width, int height)
   }
 
   // Add the vertex shader
-  if(!m_shader->AddShader(GL_VERTEX_SHADER, "textureShaders"))
+  if(!m_shader->AddShader(GL_VERTEX_SHADER, "lightingShaders"))
   {
     printf("Vertex Shader failed to Initialize\n");
     return false;
   }
 
   // Add the fragment shader
-  if(!m_shader->AddShader(GL_FRAGMENT_SHADER, "textureShaders"))
+  if(!m_shader->AddShader(GL_FRAGMENT_SHADER, "lightingShaders"))
   {
     printf("Fragment Shader failed to Initialize\n");
     return false;
@@ -260,6 +260,37 @@ bool Graphics::Initialize(int width, int height)
 
 
 
+  m_light_shader = new Shader();
+  if(!m_light_shader->Initialize())
+  {
+    printf("Shader Failed to Initialize\n");
+    return false;
+  }
+
+  // Add the vertex shader
+  if(!m_light_shader->AddShader(GL_VERTEX_SHADER, "textureShaders"))
+  {
+    printf("Vertex Shader failed to Initialize\n");
+    return false;
+  }
+
+  // Add the fragment shader
+  if(!m_light_shader->AddShader(GL_FRAGMENT_SHADER, "textureShaders"))
+  {
+    printf("Fragment Shader failed to Initialize\n");
+    return false;
+  }
+
+  // Connect the program
+  if(!m_light_shader->Finalize())
+  {
+    printf("Program to Finalize\n");
+    return false;
+  }
+
+
+
+
 
 
   // Locate the projection matrix in the shader
@@ -286,6 +317,12 @@ bool Graphics::Initialize(int width, int height)
     return false;
   }
 
+  m_viewPos = m_shader->GetUniformLocation("viewPos");
+  if (m_viewPos == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_modelMatrix not found\n");
+    return false;
+  }
 
 
 
@@ -307,6 +344,30 @@ bool Graphics::Initialize(int width, int height)
   // Locate the model matrix in the shader
   m_orbitModel = m_orbit_shader->GetUniformLocation("modelMatrix");
   if (m_orbitModel == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_modelMatrix not found\n");
+    return false;
+  }
+
+
+
+  m_sunProjection = m_light_shader->GetUniformLocation("projectionMatrix");
+  if (m_sunProjection == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_projectionMatrix not found\n");
+    return false;
+  }
+
+  m_sunView = m_light_shader->GetUniformLocation("viewMatrix");
+  if (m_sunView == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_viewMatrix not found\n");
+    return false;
+  }
+
+  // Locate the model matrix in the shader
+  m_sunModel = m_light_shader->GetUniformLocation("modelMatrix");
+  if (m_sunModel == INVALID_UNIFORM_LOCATION)
   {
     printf("m_modelMatrix not found\n");
     return false;
@@ -487,9 +548,11 @@ void Graphics::Render()
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
   // Start the correct program
-  m_shader->Enable();
+    m_shader->Enable();
+
 
   // Send in the projection and view to the shader
+  glUniform3fv(m_viewPos, 1, glm::value_ptr(m_camera->cameraPosition));
   glUniformMatrix4fv(m_projectionMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetProjection()));
   glUniformMatrix4fv(m_viewMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetView()));
 
@@ -498,12 +561,6 @@ void Graphics::Render()
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_milkyway->GetModel()));
 
   m_milkyway->Render();
-
-
-  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_Sun->GetModel()));
-
-  m_Sun->Render();
-
 
 
 
@@ -616,6 +673,21 @@ void Graphics::Render()
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_charon->GetModel()));
 
   m_charon->Render();
+
+
+
+
+
+  m_light_shader->Enable();
+
+  glUniformMatrix4fv(m_sunProjection, 1, GL_FALSE, glm::value_ptr(m_camera->GetProjection()));
+  glUniformMatrix4fv(m_sunView, 1, GL_FALSE, glm::value_ptr(m_camera->GetView()));
+  glUniformMatrix4fv(m_sunModel, 1, GL_FALSE, glm::value_ptr(m_Sun->GetModel()));
+
+  m_Sun->Render();
+
+
+
 
 
   if(scaled_view)
