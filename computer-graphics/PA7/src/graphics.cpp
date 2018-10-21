@@ -573,9 +573,11 @@ void Graphics::Render()
 
 
   // Render aaaaalll the objects
+/*
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_milkyway->GetModel()));
 
   m_milkyway->Render();
+*/
 
 
 
@@ -701,7 +703,11 @@ void Graphics::Render()
 
   m_Sun->Render();
 
+  glUniformMatrix4fv(m_sunProjection, 1, GL_FALSE, glm::value_ptr(m_camera->GetProjection()));
+  glUniformMatrix4fv(m_sunView, 1, GL_FALSE, glm::value_ptr(m_camera->GetView()));
+  glUniformMatrix4fv(m_sunModel, 1, GL_FALSE, glm::value_ptr(m_milkyway->GetModel()));
 
+  m_milkyway->Render();
 
 
   //rendering the orbits with their shader
