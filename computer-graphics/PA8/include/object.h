@@ -8,9 +8,9 @@
 class Object
 {
   public:
-    Object(std::string filename);
+    Object(std::string filename, int shape, bool needsLoading);
     ~Object();
-    void Update(unsigned int dt, glm::mat4 origin);
+    void Update(unsigned int dt, glm::mat4 origin, float scale);
     void Render();
     void InitMesh();
     std::vector<GLuint> loadMaterialTextures(aiMaterial *mat, aiTextureType type);
@@ -30,7 +30,9 @@ class Object
     void SetBullet(int m, glm::vec3 inert, bool kinObject, bool phys, glm::vec3 start);
 
     bool m_physics;
+    int m_shape;
 
+    btRigidBody* m_rigidBody;
 
   private:
     glm::mat4 model;
@@ -44,7 +46,7 @@ class Object
 
     //Bullet object characteristics?
     btDefaultMotionState* m_shapeMotionState;
-    btRigidBody* m_rigidBody;
+
 
 
     std::string m_textDirectory;

@@ -22,12 +22,18 @@ class Graphics
     bool scaled_view;
     bool top_view;
 
-  private:
-
     Object* m_boardy;
     Object* m_cyl;
     Object* m_ball;
     Object* m_cube;
+	Object* m_leftWall;
+	Object* m_rightWall;
+	Object* m_topWall;
+	Object* m_bottomWall;
+
+  private:
+
+
 
     std::string ErrorString(GLenum error);
 

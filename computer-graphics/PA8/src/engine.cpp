@@ -136,7 +136,7 @@ void Engine::Keyboard()
       case SDLK_ESCAPE:
         m_running = false;
         break;
-
+/*
       case SDLK_e:
         if (m_graphics->m_camera->enableMouse) {
           SDL_SetRelativeMouseMode((SDL_bool) 0);
@@ -147,10 +147,25 @@ void Engine::Keyboard()
           m_graphics->m_camera->enableMouse = 1;
         }
         break;
+*/
+				case SDLK_w:
+					m_graphics->m_cube->m_rigidBody->applyForce(btVector3(-.2, 0, 0), btVector3(0, 0, 0));
+					break;
+				case SDLK_a:
+					m_graphics->m_cube->m_rigidBody->applyForce(btVector3(0, 0, .2), btVector3(0, 0, 0));
+					break;
+				case SDLK_s:
+					m_graphics->m_cube->m_rigidBody->applyForce(btVector3(.2, 0, 0), btVector3(0, 0, 0));
+					break;
+				case SDLK_d:
+					m_graphics->m_cube->m_rigidBody->applyForce(btVector3(0, 0, -.2), btVector3(0, 0, 0));
+					break;
+				case SDLK_SPACE:
+					m_graphics->m_cube->m_rigidBody->applyForce(btVector3(0, 1, 0), btVector3(0, 0, 0));
+					break;
+
     }
-
-  }
-
+}
   else if (m_event.type == SDL_MOUSEMOTION )
   {
     if(m_graphics->m_camera->enableMouse)

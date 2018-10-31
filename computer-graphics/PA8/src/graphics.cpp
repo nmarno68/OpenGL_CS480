@@ -120,17 +120,23 @@ bool Graphics::Initialize(int width, int height)
 
 
 //Initializing objects
+// 1 -> plane, 2 -> sphere, 3 -> cylinder, 4 -> cube
 
-  m_boardy = new Object("UglyBoard.obj");
-  m_cyl = new Object("UglyCylinder.obj");
-  m_ball = new Object("UglySphere.obj");
-  m_cube = new Object("UglyCube.obj");
+  m_boardy = new Object("UglyBoard.obj", 1, true);
+  m_cyl = new Object("UglyCylinder.obj", 3, true);
+  m_ball = new Object("UglySphere.obj", 2, true);
+  m_cube = new Object("UglyCube.obj", 4, true);
+  m_leftWall = new Object("none", 5, false);
+  m_rightWall = new Object("none", 6, false);
+  m_topWall = new Object("none", 7, false);
+  m_bottomWall = new Object("none", 8, false);
 
 
   //SetValues scale_x, scale_y, scale_z
   m_boardy->SetValues(1.0, 2.0, 1.0);
   m_cyl->SetValues(.3, .3, .3);
   m_ball->SetValues(1, 1, 1);
+  m_cube->SetValues(1, 1, 1);
 
 //Initializing object physics
 
@@ -144,13 +150,28 @@ bool Graphics::Initialize(int width, int height)
   m_cyl->SetBullet(0, v, true, true, glm::vec3(0, 0, 0));
 
   v = glm::vec3(0, 0, 0);
-  m_ball->SetBullet(1, v, false, true, glm::vec3(0, 5, 0));
+  m_ball->SetBullet(1, v, false, true, glm::vec3(0, .5, .75));
 
+  v = glm::vec3(0, 0, 0);
+  m_cube->SetBullet(1, v, false, true, glm::vec3(0, .5, -.75));
+
+	m_leftWall->SetBullet(1, v, true, true, glm::vec3(0, 0, 1.05));
+	m_rightWall->SetBullet(1, v, true, true, glm::vec3(0, 0, -1.05));
+	m_topWall->SetBullet(1, v, true, true, glm::vec3(2.05, 0, 0));
+	m_bottomWall->SetBullet(1, v, true, true, glm::vec3(-2.05, 0, 0));
+
+  short mask = 0b11111111;
 
   //Add to dynamics world
-  m_dynamicsWorld->addRigidBody(m_boardy->GetRigidBody(), 1, 0);
-  m_dynamicsWorld->addRigidBody(m_cyl->GetRigidBody(), 1, 0);
-  m_dynamicsWorld->addRigidBody(m_ball->GetRigidBody(), 1, 1);
+  m_dynamicsWorld->addRigidBody(m_boardy->GetRigidBody(), mask, mask);
+  m_dynamicsWorld->addRigidBody(m_cyl->GetRigidBody(), mask, mask);
+  m_dynamicsWorld->addRigidBody(m_ball->GetRigidBody(), mask, mask);
+  m_dynamicsWorld->addRigidBody(m_cube->GetRigidBody(), mask, mask);
+
+	m_dynamicsWorld->addRigidBody(m_leftWall->GetRigidBody(), mask, mask);
+	m_dynamicsWorld->addRigidBody(m_rightWall->GetRigidBody(), mask, mask);
+	m_dynamicsWorld->addRigidBody(m_topWall->GetRigidBody(), mask, mask);
+	m_dynamicsWorld->addRigidBody(m_bottomWall->GetRigidBody(), mask, mask);
 
 
 
@@ -167,9 +188,10 @@ void Graphics::Update(unsigned int dt)
   m_dynamicsWorld->stepSimulation(dt, 10);
 
   //call object updates and camera updates
-  m_boardy->Update(dt, glm::mat4(1.0f));
-  m_cyl->Update(dt, glm::mat4(1.0f));
-  m_ball->Update(dt, glm::mat4(1.0f));
+  m_boardy->Update(dt, glm::mat4(1.0f), 1);
+  m_cyl->Update(dt, glm::mat4(1.0f), .25);
+  m_ball->Update(dt, glm::mat4(1.0f), .125);
+  m_cube->Update(dt, glm::mat4(1.0f), .125);
 }
 
 void Graphics::Render()
@@ -199,6 +221,9 @@ void Graphics::Render()
 
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_ball->GetModel()));
   m_ball->Render();
+
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_cube->GetModel()));
+  m_cube->Render();
 
 
 

@@ -1,31 +1,66 @@
 #include "object.h"
-
-Object::Object(std::string filename) //each time we initialize a planet we give a different
+Object::Object(std::string filename, int shape, bool needsLoading) //each time we initialize a planet we give a different
 {                                     //file name for the object (because each has a different texture)
                                       //however, every planet will be the same size when we load them because
+ 
                                       //scaling in the code is more precise than creating them at a certain size in blender
- //File Path to find object name
-  m_objDirectory = "../assets/objects/";
-  m_textDirectory = "../assets/textures/";
+	if(needsLoading)
+	{
 
- //append the given filename
+	 //File Path to find object name
+		m_objDirectory = "../assets/objects/";
+		m_textDirectory = "../assets/textures/";
 
-  //sorting out texture files because existence is pain
+	 //append the given filename
 
-  m_objDirectory.append(filename);
+		//sorting out texture files because existence is pain
 
- //Assimp object loading
+		m_objDirectory.append(filename);
 
- //Create our importer which reads the file for us, thank god
-  Assimp::Importer importer;
+	 //Assimp object loading
 
-  //Reading the file in one line, bless
-  m_scene = importer.ReadFile(m_objDirectory, aiProcess_Triangulate);
+	 //Create our importer which reads the file for us, thank god
+		Assimp::Importer importer;
 
-  //This is the same process of constructing the vertices and indices that we did when we
-  //were writing our own object loader
-  InitMesh();
+		//Reading the file in one line, bless
+		m_scene = importer.ReadFile(m_objDirectory, aiProcess_Triangulate);
 
+		//This is the same process of constructing the vertices and indices that we did when we
+		//were writing our own object loader
+		InitMesh();
+	}
+
+  m_shape = shape;
+
+  switch(shape)
+	{
+		case 1:
+			m_collisionShape = new btStaticPlaneShape(btVector3(0, 1, 0), 0);
+			break;
+		case 2:
+			m_collisionShape = new btSphereShape(.13);
+			break;
+		case 3:
+			m_collisionShape = new btCylinderShape(btVector3(.24, .24, .24));
+			break;
+		case 4:
+			m_collisionShape = new btBoxShape(btVector3(.13, .13, .13));
+			break;
+		case 5:
+			m_collisionShape = new btStaticPlaneShape(btVector3(0, 0, -1), 0);
+			break;
+		case 6:
+			m_collisionShape = new btStaticPlaneShape(btVector3(0, 0, 1), 0);
+			break;
+		case 7:
+			m_collisionShape = new btStaticPlaneShape(btVector3(-1, 0, 0), 0);
+			break;
+		case 8:
+			m_collisionShape = new btStaticPlaneShape(btVector3(1, 0, 0), 0);
+			break;
+		default:
+			break;
+	}
 }
 
 Object::~Object()
@@ -35,10 +70,10 @@ Object::~Object()
 }
 
 //Update the object's model using all of its unique values
-void Object::Update(unsigned int dt, glm::mat4 origin)
+void Object::Update(unsigned int dt, glm::mat4 origin, float scale)
 {
    // model = glm::translate(origin, glm::vec3(0, 0, 0));
-    //model = glm::scale(model, glm::vec3(scale_x, scale_y, scale_z));
+    //model = glm::scale(model, glm::vec3(.5, .5, .5));
 
       btTransform trans;
       btScalar m[16];
@@ -46,7 +81,7 @@ void Object::Update(unsigned int dt, glm::mat4 origin)
       trans.getOpenGLMatrix(m);
       model = glm::make_mat4(m);
 
-
+      model = glm::scale(model, glm::vec3(scale, scale, scale));
 
 
 
@@ -108,7 +143,7 @@ void Object::InitMesh()
       const aiVector3D *pNormal = m_scene->mMeshes[j]->HasNormals() ? &(m_scene->mMeshes[j]->mNormals[i]) : &Zero3D;
       const aiVector3D *pTexCoord = m_scene->mMeshes[j]->HasTextureCoords(0) ? &(m_scene->mMeshes[j]->mTextureCoords[0][i]) : &Zero3D;
 
-      Vertex v(glm::vec3(pPos->x * .5, pPos->y * .5, pPos->z * .5),
+      Vertex v(glm::vec3(pPos->x, pPos->y, pPos->z),
                glm::vec2(pTexCoord->x, -pTexCoord->y),
                glm::vec3(pNormal->x, pNormal->y, pNormal->z));
 
@@ -131,7 +166,7 @@ void Object::InitMesh()
         triArray[count] = btVector3(t.x, t.y, t.z);
       }
 
-      m_btTriangleObject->addTriangle(triArray[0], triArray[1], triArray[2]);
+      //m_btTriangleObject->addTriangle(triArray[0], triArray[1], triArray[2]);
     }
 
     //Texture stuff
@@ -145,7 +180,7 @@ void Object::InitMesh()
   }
 
   //Finalizing the collision object
-  m_collisionShape = new btBvhTriangleMeshShape(m_btTriangleObject, true);
+  //m_collisionShape = new btBvhTriangleMeshShape(m_btTriangleObject, true);
 
 }
 
