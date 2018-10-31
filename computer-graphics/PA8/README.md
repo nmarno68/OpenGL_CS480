@@ -1,4 +1,4 @@
-# PA7: Solar System
+# PA8: Bullet
 
 # Group Information
 Our group is called Tessellation and the members are Natalie Arnold and Terra Williams.  The source code for the project is found here, in Natalie's repository.
@@ -13,6 +13,12 @@ This project uses OpenGL 3.3. Some computers, such as virtual machines in the EC
 This project uses the Assimp library. To download and install [Assimp](http://www.assimp.org/).
 
 This project uses the ImageMagick 7.0.8. To download, install, and build for linux, follow the instructions at [ImageMagick](https://linuxconfig.org/how-to-install-imagemagick-7-on-ubuntu-18-04-linux).
+
+This project uses the Bullet3 library. Download and install on Linux with
+
+```bash
+sudo apt-get install libbullet-dev
+```
 
 ### Ubuntu/Linux
 ```bash
@@ -42,7 +48,7 @@ mkdir build
 cd build
 cmake ..
 make
-./SolarSystem
+./PA_Ugly
 ```
 
 ### Makefile Instructions
@@ -53,68 +59,23 @@ mkdir build
 cd build
 cp ../makefile .
 make
-./SolarSystem
+./PA_Ugly
 ```
 
 ## Ubuntu.cse.unr.edu
 OpenGL 3.3 will run on the [ubuntu.cse.unr.edu](https://ubuntu.cse.unr.edu/) website. To do so follow the build instructions, but when running the Tutorial executable use this line to execute.
 ```bash
-/usr/NX/scripts/vgl/vglrun ./SolarSystem
+/usr/NX/scripts/vgl/vglrun ./PA_Ugly
 ```
 # Project Description
-This project combines all of the elements that have been covered in our class so far including keyboard interaction, object movement, object loading, and texture loading.  We have created a solar system including the sun, planets (including Pluto), and the major moons of those planets that have them.
+This project introduces a physics library to the foundational object and texture loading accomplished in previous projects. Kinematic and dynamic objects are used to demonstrate collisions and effects of gravity.
 
-
-## Camera Controls
+## Cube Controls
 
 <table>
     <tr>
         <th>Action</th>
         <th>Control</th>
-    </tr>
-    <tr>
-        <td>Focus on Sun</td>
-        <td><kbd>0</kbd></td>
-    </tr>
-    <tr>
-        <td>Focus on Mercury</td>
-        <td><kbd>1</kbd></td>
-    </tr>
-    <tr>
-        <td>Focus on Venus</td>
-        <td><kbd>2</kbd></td>
-    </tr>
-    <tr>
-        <td>Focus on Earth</td>
-        <td><kbd>3</kbd></td>
-    </tr>
-    <tr>
-        <td>Focus on Mars</td>
-        <td><kbd>4</kbd></td>
-    </tr>
-    <tr>
-        <td>Focus on Jupiter</td>
-        <td><kbd>5</kbd></td>
-    </tr>
-    <tr>
-        <td>Focus on Saturn</td>
-        <td><kbd>6</kbd></td>
-    </tr>
-    <tr>
-        <td>Focus on Uranus</td>
-        <td><kbd>7</kbd></td>
-    </tr>
-    <tr>
-        <td>Focus on Neptune</td>
-        <td><kbd>8</kbd></td>
-    </tr>
-    <tr>
-        <td>Focus on Pluto</td>
-        <td><kbd>9</kbd></td>
-    </tr>
-    <tr>
-        <td>Enable/Disable FPS Camera Mode</td>
-        <td><kbd>E</kbd></td>
     </tr>
     <tr>
         <td>Move Forward</td>
@@ -125,51 +86,18 @@ This project combines all of the elements that have been covered in our class so
         <td><kbd>A</kbd></td>
     </tr>
     <tr>
+        <td>Move Back</td>
+        <td><kbd>S</kbd></td>
+    </tr>
+    <tr>
         <td>Move Right</td>
         <td><kbd>D</kbd></td>
     </tr>
     <tr>
-        <td>Move Backward</td>
-        <td><kbd>S</kbd></td>
-    </tr>
-    <tr>
-        <td>Move Up</td>
+        <td>Jump</td>
         <td><kbd>SPACE</kbd></td>
     </tr>
 
 </table>
 
-## Simulation Controls
 
-<table>
-    <tr>
-        <th>Action</th>
-        <th>Control</th>
-    </tr>
-    <tr>
-        <td>Toggle Scaled View</td>
-        <td><kbd>Menu Option</kbd></td>
-    </tr>
-    <tr>
-        <td>Increase Simulation Speed</td>
-        <td>Hold <kbd>P</kbd></td>
-    </tr>
-    <tr>
-        <td>Decrease Simulation Speed</td>
-        <td>Hold <kbd>O</kbd></td>
-    </tr>
-    <tr>
-        <td>Reset Simulation Speed</td>
-        <td><kbd>Menu Option</kbd></td>
-    </tr>
-</table>
-
-# Extra Credit
-1) Rings on all of the gaseous planets
-2) Adjustment of Simulation Speed
-3) Switch Between Actual View and Scaled View
-4) Pluto and Charon orbit their center of mass
-5) Skybox centered on camera
-6) FPS camera movement
-7) Orbits drawn in scaled view
-8) Phong Lighting
