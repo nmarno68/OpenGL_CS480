@@ -44,12 +44,12 @@ bool Graphics::Initialize(int width, int height)
     return false;
   }
 
+
+
+
   //initializing camera view flags
   scaled_view = false;
   top_view = false;
-
-
-
 
 
 
@@ -108,11 +108,49 @@ bool Graphics::Initialize(int width, int height)
   }
 
 
-  btDefaultCollisionConfiguration* collisionConfiguration = new btDefaultCollisionConfiguration();
+//Creating physics world
+  m_broadphase = new btDbvtBroadphase();
+  m_collisionConfiguration = new btDefaultCollisionConfiguration();
+  m_dispatcher = new btCollisionDispatcher(m_collisionConfiguration);
+  m_solver = new btSequentialImpulseConstraintSolver();
+
+  m_dynamicsWorld = new btDiscreteDynamicsWorld(m_dispatcher, m_broadphase, m_solver, m_collisionConfiguration);
+
+  m_dynamicsWorld->setGravity(btVector3(0, -.05, 0));
 
 
+//Initializing objects
+
+  m_boardy = new Object("UglyBoard.obj");
+  m_cyl = new Object("UglyCylinder.obj");
+  m_ball = new Object("UglySphere.obj");
+  m_cube = new Object("UglyCube.obj");
 
 
+  //SetValues scale_x, scale_y, scale_z
+  m_boardy->SetValues(1.0, 2.0, 1.0);
+  m_cyl->SetValues(.3, .3, .3);
+  m_ball->SetValues(1, 1, 1);
+
+//Initializing object physics
+
+  //inertia vector
+
+  //SetBullet - mass, inertia, kinObject , physics, initial_translate
+  glm::vec3 v(0, 0, 0);
+  m_boardy->SetBullet(0, v, true, true, glm::vec3(0, 0, 0));
+
+  v = glm::vec3(0, 0, 0);
+  m_cyl->SetBullet(0, v, true, true, glm::vec3(0, 0, 0));
+
+  v = glm::vec3(0, 0, 0);
+  m_ball->SetBullet(1, v, false, true, glm::vec3(0, 5, 0));
+
+
+  //Add to dynamics world
+  m_dynamicsWorld->addRigidBody(m_boardy->GetRigidBody(), 1, 0);
+  m_dynamicsWorld->addRigidBody(m_cyl->GetRigidBody(), 1, 0);
+  m_dynamicsWorld->addRigidBody(m_ball->GetRigidBody(), 1, 1);
 
 
 
@@ -126,9 +164,12 @@ bool Graphics::Initialize(int width, int height)
 
 void Graphics::Update(unsigned int dt)
 {
+  m_dynamicsWorld->stepSimulation(dt, 10);
+
   //call object updates and camera updates
-
-
+  m_boardy->Update(dt, glm::mat4(1.0f));
+  m_cyl->Update(dt, glm::mat4(1.0f));
+  m_ball->Update(dt, glm::mat4(1.0f));
 }
 
 void Graphics::Render()
@@ -150,6 +191,14 @@ void Graphics::Render()
 
 
   //send in model matrices and render the objects
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_boardy->GetModel()));
+  m_boardy->Render();
+
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_cyl->GetModel()));
+  m_cyl->Render();
+
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_ball->GetModel()));
+  m_ball->Render();
 
 
 

@@ -60,6 +60,7 @@
 					<Add directory="/home/natalie/workspaces/cs480Arnold/computer-graphics/PA8/include"/>
 					<Add directory="/usr/include/SDL2"/>
 					<Add directory="/usr/local/include/ImageMagick-7"/>
+					<Add directory="/usr/include/bullet"/>
 					<Add directory="/usr/include/c++/7"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
 					<Add directory="/usr/include/c++/7/backward"/>
@@ -89,6 +90,7 @@
 					<Add directory="/home/natalie/workspaces/cs480Arnold/computer-graphics/PA8/include"/>
 					<Add directory="/usr/include/SDL2"/>
 					<Add directory="/usr/local/include/ImageMagick-7"/>
+					<Add directory="/usr/include/bullet"/>
 					<Add directory="/usr/include/c++/7"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
 					<Add directory="/usr/include/c++/7/backward"/>
@@ -152,6 +154,9 @@
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 		<Unit filename="/home/natalie/workspaces/cs480Arnold/computer-graphics/PA8/CMakeModules/FindAssimp.cmake">
+			<Option virtualFolder="CMake Files\CMakeModules\"/>
+		</Unit>
+		<Unit filename="/home/natalie/workspaces/cs480Arnold/computer-graphics/PA8/CMakeModules/FindBullet.cmake">
 			<Option virtualFolder="CMake Files\CMakeModules\"/>
 		</Unit>
 		<Unit filename="/home/natalie/workspaces/cs480Arnold/computer-graphics/PA8/CMakeModules/FindGLEW.cmake">

@@ -280,6 +280,10 @@ Pinball: /usr/lib/x86_64-linux-gnu/libGLU.so
 Pinball: /usr/lib/x86_64-linux-gnu/libSDL2main.a
 Pinball: /usr/lib/x86_64-linux-gnu/libSDL2.so
 Pinball: /usr/local/lib/libMagick++-7.Q16HDRI.so
+Pinball: /usr/lib/x86_64-linux-gnu/libBulletDynamics.so
+Pinball: /usr/lib/x86_64-linux-gnu/libBulletCollision.so
+Pinball: /usr/lib/x86_64-linux-gnu/libLinearMath.so
+Pinball: /usr/lib/x86_64-linux-gnu/libBulletSoftBody.so
 Pinball: CMakeFiles/Pinball.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/natalie/workspaces/cs480Arnold/computer-graphics/PA8/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Linking CXX executable Pinball"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Pinball.dir/link.txt --verbose=$(VERBOSE)

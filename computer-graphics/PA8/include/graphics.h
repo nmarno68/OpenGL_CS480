@@ -23,6 +23,12 @@ class Graphics
     bool top_view;
 
   private:
+
+    Object* m_boardy;
+    Object* m_cyl;
+    Object* m_ball;
+    Object* m_cube;
+
     std::string ErrorString(GLenum error);
 
     Shader *m_shader;
@@ -30,6 +36,15 @@ class Graphics
     GLint m_projectionMatrix;
     GLint m_viewMatrix;
     GLint m_modelMatrix;
+
+    btBroadphaseInterface* m_broadphase;
+    btDefaultCollisionConfiguration* m_collisionConfiguration;
+    btCollisionDispatcher* m_dispatcher;
+    btSequentialImpulseConstraintSolver* m_solver;
+    btDiscreteDynamicsWorld* m_dynamicsWorld;
+
+
+
 
 };
 

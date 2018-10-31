@@ -21,12 +21,7 @@ This warning is for project developers.  Use -Wno-dev to suppress it.
 
 <FindSDL2.cmake>
 </FindSDL2.cmake>
-CMake Error at CMakeModules/FindBullet.cmake:72 (MESSAGE):
-  Bullet not found
-Call Stack (most recent call first):
-  CMakeLists.txt:12 (FIND_PACKAGE)
-
-
--- Configuring incomplete, errors occurred!
-See also "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA8/cmake-build-debug/CMakeFiles/CMakeOutput.log".
-See also "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA8/cmake-build-debug/CMakeFiles/CMakeError.log".
+-- Found Bullet: /usr/lib/x86_64-linux-gnu/libBulletDynamics.so  
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/natalie/workspaces/cs480Arnold/computer-graphics/PA8/cmake-build-debug

@@ -33,6 +33,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../include"
   "/usr/include/SDL2"
   "/usr/local/include/ImageMagick-7"
+  "/usr/include/bullet"
   )
 
 # Targets to which this target links.

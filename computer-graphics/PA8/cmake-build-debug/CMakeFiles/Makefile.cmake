@@ -37,6 +37,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/natalie/Downloads/clion-2018.2.2/bin/cmake/linux/share/cmake-3.12/Modules/ProcessorCount.cmake"
   "../CMakeLists.txt"
   "../CMakeModules/FindAssimp.cmake"
+  "../CMakeModules/FindBullet.cmake"
   "../CMakeModules/FindGLEW.cmake"
   "../CMakeModules/FindGLM.cmake"
   "../CMakeModules/FindImageMagick.cmake"
