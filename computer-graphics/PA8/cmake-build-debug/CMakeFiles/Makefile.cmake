@@ -60,6 +60,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/Pinball_SUCCESSFUL.dir/DependInfo.cmake"
-  "CMakeFiles/Pinball.dir/DependInfo.cmake"
+  "CMakeFiles/PA_Ugly_SUCCESSFUL.dir/DependInfo.cmake"
+  "CMakeFiles/PA_Ugly.dir/DependInfo.cmake"
   )

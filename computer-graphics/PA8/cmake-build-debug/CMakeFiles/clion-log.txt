@@ -21,7 +21,6 @@ This warning is for project developers.  Use -Wno-dev to suppress it.
 
 <FindSDL2.cmake>
 </FindSDL2.cmake>
--- Found Bullet: /usr/lib/x86_64-linux-gnu/libBulletDynamics.so  
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /home/natalie/workspaces/cs480Arnold/computer-graphics/PA8/cmake-build-debug
