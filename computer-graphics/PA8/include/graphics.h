@@ -32,7 +32,8 @@ class Graphics
 	Object* m_bottomWall;
 
   float ambientStrength, spotlight_brightness, spotlight_size;
-  bool spot, hard_edge;
+  bool spot, hard_edge, phong;
+  glm::vec3 ambient_color;
 
   private:
 
@@ -42,10 +43,10 @@ class Graphics
     Shader *m_gourand;
 
     //lighting variables
-    glm::vec3 m_ambientColor;
 
 
 
+    //phong
     GLint m_projectionMatrix;
     GLint m_viewMatrix;
     GLint m_modelMatrix;
@@ -58,6 +59,23 @@ class Graphics
     GLint m_specular_size;
     GLint m_ambientStrength;
     GLint m_hard_edge;
+    GLint m_ambient_color;
+
+
+    //gourand
+    GLint m_gprojectionMatrix;
+    GLint m_gviewMatrix;
+    GLint m_gmodelMatrix;
+
+    GLint m_gviewPos;
+    GLint m_gballPos;
+    GLint m_gspotlight_size;
+    GLint m_gspotlight_brightness;
+    GLint m_gspecular_brightness;
+    GLint m_gspecular_size;
+    GLint m_gambientStrength;
+    GLint m_ghard_edge;
+    GLint m_gambient_color;
 
 
     btBroadphaseInterface* m_broadphase;

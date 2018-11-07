@@ -51,7 +51,11 @@ bool Graphics::Initialize(int width, int height)
   scaled_view = false;
   top_view = false;
 
+
+
+  //
   //Initializing phong lighting shader
+  //
   m_phong = new Shader();
   if(!m_phong->Initialize())
   {
@@ -81,9 +85,44 @@ bool Graphics::Initialize(int width, int height)
   }
 
 
+  //
+  //Initializing the gourand lighting shader
+  //
+  m_gourand = new Shader();
+  if(!m_gourand->Initialize())
+  {
+    printf("Shader Failed to Initialize\n");
+    return false;
+  }
+
+  // Add the vertex shader
+  if(!m_gourand->AddShader(GL_VERTEX_SHADER, "gourandShaders"))
+  {
+    printf("Vertex Shader failed to Initialize\n");
+    return false;
+  }
+
+  // Add the fragment shader
+  if(!m_gourand->AddShader(GL_FRAGMENT_SHADER, "gourandShaders"))
+  {
+    printf("Fragment Shader failed to Initialize\n");
+    return false;
+  }
+
+  // Connect the program
+  if(!m_gourand->Finalize())
+  {
+    printf("Program to Finalize\n");
+    return false;
+  }
 
 
+
+
+
+  //
   //Locating uniforms in the phong shader
+  //
   m_projectionMatrix = m_phong->GetUniformLocation("projectionMatrix");
   if (m_projectionMatrix == INVALID_UNIFORM_LOCATION)
   {
@@ -161,6 +200,106 @@ bool Graphics::Initialize(int width, int height)
     return false;
   }
 
+  m_ambient_color = m_phong->GetUniformLocation("ambient_color");
+  if (m_ambient_color == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_ambient_color not found\n");
+    return false;
+  }
+
+
+
+
+
+  //
+  //Locating uniforms in the gourand shader
+  //
+  m_gprojectionMatrix = m_gourand->GetUniformLocation("projectionMatrix");
+  if (m_gprojectionMatrix == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_projectionMatrix not found\n");
+    return false;
+  }
+
+  m_gviewMatrix = m_gourand->GetUniformLocation("viewMatrix");
+  if (m_gviewMatrix == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_viewMatrix not found\n");
+    return false;
+  }
+
+  m_gmodelMatrix = m_gourand->GetUniformLocation("modelMatrix");
+  if (m_gmodelMatrix == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_modelMatrix not found\n");
+    return false;
+  }
+
+  m_gviewPos = m_gourand->GetUniformLocation("viewPos");
+  if (m_gviewPos == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_viewPos not found\n");
+    return false;
+  }
+
+  m_gballPos = m_gourand->GetUniformLocation("ballPos");
+  if (m_gballPos == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_ballPos not found\n");
+    return false;
+  }
+
+  m_gspotlight_size = m_gourand->GetUniformLocation("spotlight_size");
+  if (m_gspotlight_size == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_spotlight_size not found\n");
+    return false;
+  }
+
+  m_gspotlight_brightness = m_gourand->GetUniformLocation("spotlight_bright");
+  if (m_gspotlight_brightness == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_spotlight_brightness not found\n");
+    return false;
+  }
+
+  m_gspecular_brightness = m_gourand->GetUniformLocation("specularStrength");
+  if (m_gspecular_brightness == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_specular_brightness not found\n");
+    return false;
+  }
+
+  m_gspecular_size = m_gourand->GetUniformLocation("glint_radius");
+  if (m_gspecular_size == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_specular_size not found\n");
+    return false;
+  }
+
+  m_gambientStrength = m_gourand->GetUniformLocation("ambientStrength");
+  if (m_gambientStrength == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_ambientStrength not found\n");
+    return false;
+  }
+
+  m_ghard_edge = m_gourand->GetUniformLocation("hard_edge");
+  if (m_ghard_edge == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_hard_edge not found\n");
+    return false;
+  }
+
+  m_gambient_color = m_gourand->GetUniformLocation("ambient_color");
+  if (m_gambient_color == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_ambient_color not found\n");
+    return false;
+  }
+
+
+
 
   //initialize lighting values
   spotlight_size = 0; //initialize to no spotlight
@@ -168,6 +307,8 @@ bool Graphics::Initialize(int width, int height)
   ambientStrength = .3; //cause this also looks nice
   spot = true;
   hard_edge = true;
+  phong = true;
+  ambient_color = glm::vec3(1.0, 1.0, 1.0);
 
   //Creating physics world
   m_broadphase = new btDbvtBroadphase();
@@ -261,60 +402,122 @@ void Graphics::Render()
   glClearColor(0.0, 0.0, 0.2, 1.0);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-  // Start the correct program
+  if(phong) {
+    // Start the correct program
     m_phong->Enable();
 
+    //Send in ambient color
+    glUniform3fv(m_ambient_color, 1, glm::value_ptr(ambient_color));
 
-  // Send in the projection and view to the shader
-  //sending in camera position for specular lighting
-  glUniform3fv(m_viewPos, 1, glm::value_ptr(m_camera->cameraPosition));
+    //sending in camera position for specular lighting
+    glUniform3fv(m_viewPos, 1, glm::value_ptr(m_camera->cameraPosition));
 
-  //sending in ball position for spotlight
-  glUniform3fv(m_ballPos, 1, glm::value_ptr(m_ball->GetLocationVector()));
+    //sending in ball position for spotlight
+    glUniform3fv(m_ballPos, 1, glm::value_ptr(m_ball->GetLocationVector()));
 
-  //Sending Spotlight stuff
-  //spotlight brightness
-  glUniform1f(m_spotlight_brightness, (GLfloat) spotlight_brightness);
+    //Sending Spotlight stuff
+    //spotlight brightness
+    glUniform1f(m_spotlight_brightness, (GLfloat) spotlight_brightness);
 
-  //spotlight size
-  if(spot) {
-    glUniform1f(m_spotlight_size, (GLfloat) spotlight_size);  //lower means bigger
+    //spotlight size
+    if (spot) {
+      glUniform1f(m_spotlight_size, (GLfloat) spotlight_size);  //lower means bigger
+    }
+    else {
+      glUniform1f(m_spotlight_size, (GLfloat) 0);
+    }
+    //hard edge or soft edge
+    glUniform1i(m_hard_edge, hard_edge);
+
+    //ambient strength
+    glUniform1f(m_ambientStrength, (GLfloat) ambientStrength);
+
+    //Sending in view and projection
+    glUniformMatrix4fv(m_projectionMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetProjection()));
+    glUniformMatrix4fv(m_viewMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetView()));
+
+
+    //send in model matrices and render the objects
+    glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_boardy->GetModel()));
+    glUniform1f(m_specular_brightness, (GLfloat) m_boardy->specular_brightness);
+    glUniform1i(m_specular_size, (GLint) m_boardy->specular_size);
+    m_boardy->Render();
+
+    glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_cyl->GetModel()));
+    glUniform1f(m_specular_brightness, (GLfloat) m_cyl->specular_brightness);
+    glUniform1i(m_specular_size, (GLint) m_cyl->specular_size);
+    m_cyl->Render();
+
+    glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_ball->GetModel()));
+    glUniform1f(m_specular_brightness, (GLfloat) m_ball->specular_brightness);
+    glUniform1i(m_specular_size, (GLint) m_ball->specular_size);
+    m_ball->Render();
+
+    glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_cube->GetModel()));
+    glUniform1f(m_specular_brightness, (GLfloat) m_cube->specular_brightness);
+    glUniform1i(m_specular_size, (GLint) m_cube->specular_size);
+    m_cube->Render();
   }
-  else{
-    glUniform1f(m_spotlight_size, (GLfloat) 0);
+
+
+
+  else
+  {
+    m_gourand->Enable();
+
+    //Send in ambient color
+    glUniform3fv(m_gambient_color, 1, glm::value_ptr(ambient_color));
+
+    //sending in camera position for specular lighting
+    glUniform3fv(m_gviewPos, 1, glm::value_ptr(m_camera->cameraPosition));
+
+    //sending in ball position for spotlight
+    glUniform3fv(m_gballPos, 1, glm::value_ptr(m_ball->GetLocationVector()));
+
+    //Sending Spotlight stuff
+    //spotlight brightness
+    glUniform1f(m_gspotlight_brightness, (GLfloat) spotlight_brightness);
+
+    //spotlight size
+    if (spot) {
+      glUniform1f(m_gspotlight_size, (GLfloat) spotlight_size);  //lower means bigger
+    }
+    else {
+      glUniform1f(m_gspotlight_size, (GLfloat) 0);
+    }
+    //hard edge or soft edge
+    glUniform1i(m_ghard_edge, hard_edge);
+
+    //ambient strength
+    glUniform1f(m_gambientStrength, (GLfloat) ambientStrength);
+
+    //Sending in view and projection
+    glUniformMatrix4fv(m_gprojectionMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetProjection()));
+    glUniformMatrix4fv(m_gviewMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetView()));
+
+
+    //send in model matrices and render the objects
+    glUniformMatrix4fv(m_gmodelMatrix, 1, GL_FALSE, glm::value_ptr(m_boardy->GetModel()));
+    glUniform1f(m_gspecular_brightness, (GLfloat) m_boardy->specular_brightness);
+    glUniform1i(m_gspecular_size, (GLint) m_boardy->specular_size);
+    m_boardy->Render();
+
+    glUniformMatrix4fv(m_gmodelMatrix, 1, GL_FALSE, glm::value_ptr(m_cyl->GetModel()));
+    glUniform1f(m_gspecular_brightness, (GLfloat) m_cyl->specular_brightness);
+    glUniform1i(m_gspecular_size, (GLint) m_cyl->specular_size);
+    m_cyl->Render();
+
+    glUniformMatrix4fv(m_gmodelMatrix, 1, GL_FALSE, glm::value_ptr(m_ball->GetModel()));
+    glUniform1f(m_gspecular_brightness, (GLfloat) m_ball->specular_brightness);
+    glUniform1i(m_gspecular_size, (GLint) m_ball->specular_size);
+    m_ball->Render();
+
+    glUniformMatrix4fv(m_gmodelMatrix, 1, GL_FALSE, glm::value_ptr(m_cube->GetModel()));
+    glUniform1f(m_gspecular_brightness, (GLfloat) m_cube->specular_brightness);
+    glUniform1i(m_gspecular_size, (GLint) m_cube->specular_size);
+    m_cube->Render();
+
   }
-  //hard edge or soft edge
-  glUniform1i(m_hard_edge, hard_edge);
-
-  //ambient strength
-  glUniform1f(m_ambientStrength, (GLfloat) ambientStrength);
-
-  //Sending in view and projection
-  glUniformMatrix4fv(m_projectionMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetProjection()));
-  glUniformMatrix4fv(m_viewMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetView()));
-
-
-  //send in model matrices and render the objects
-  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_boardy->GetModel()));
-  glUniform1f(m_specular_brightness, (GLfloat) m_boardy->specular_brightness);
-  glUniform1i(m_specular_size, (GLint) m_boardy->specular_size);
-  m_boardy->Render();
-
-  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_cyl->GetModel()));
-  glUniform1f(m_specular_brightness, (GLfloat) m_cyl->specular_brightness);
-  glUniform1i(m_specular_size, (GLint) m_cyl->specular_size);
-  m_cyl->Render();
-
-  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_ball->GetModel()));
-  glUniform1f(m_specular_brightness, (GLfloat) m_ball->specular_brightness);
-  glUniform1i(m_specular_size, (GLint) m_ball->specular_size);
-  m_ball->Render();
-
-  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_cube->GetModel()));
-  glUniform1f(m_specular_brightness, (GLfloat) m_cube->specular_brightness);
-  glUniform1i(m_specular_size, (GLint) m_cube->specular_size);
-  m_cube->Render();
-
 
 
 

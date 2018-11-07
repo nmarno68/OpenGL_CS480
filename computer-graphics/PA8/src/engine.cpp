@@ -90,8 +90,14 @@ void Engine::Run()
 
     //menu code here plz
     {
-      ImGui::Begin("Ambient Control");
+      ImGui::Begin("Lighting Control");
+      ImGui::Checkbox("Phong/Gourand", &m_graphics->phong);
       ImGui::SliderFloat("Ambient Strength", &m_graphics->ambientStrength, 0.0, 1.0);
+      ImGui::Text("Ambient Color");
+      ImGui::SliderFloat("Red", &m_graphics->ambient_color[0], 0.0, 1.0);
+      ImGui::SliderFloat("Green", &m_graphics->ambient_color[1], 0.0, 1.0);
+      ImGui::SliderFloat("Blue", &m_graphics->ambient_color[2], 0.0, 1.0);
+
       ImGui::End();
 
 

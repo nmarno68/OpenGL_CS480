@@ -11,13 +11,14 @@ uniform sampler2D gSampler;
 uniform vec3 viewPos;
 uniform vec3 ballPos;                   //for spotlight
 uniform bool hard_edge;
-uniform float spotlight_size;             //similar to glint radius hopefully
+uniform float spotlight_size;           //similar to glint radius hopefully
 uniform float spotlight_bright;         //similar to specular strength
 uniform int glint_radius;               //determines how quickly the specular glint "drops off", the higher the number
                                         //the smaller the glint
 uniform float specularStrength;         //specular brightness, probably keep this consistent
 
 uniform float ambientStrength;
+uniform vec3 ambient_color;
 
 void main()
 {
@@ -26,7 +27,7 @@ void main()
     vec3 lightPos = vec3(0.0, 2.0, 0.0);
 
     // ambient
-    vec3 ambient = ambientStrength * vec3(1.0, 1.0, 1.0);   //scaling the light color with ambient strength
+    vec3 ambient = ambientStrength * ambient_color;   //scaling the light color with ambient strength
 
     // diffuse
     vec3 norm = normalize(Normal);
