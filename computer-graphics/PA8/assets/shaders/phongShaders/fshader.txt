@@ -10,20 +10,22 @@ out vec4 FragColor;
 uniform sampler2D gSampler;
 uniform vec3 viewPos;
 uniform vec3 ballPos;                   //for spotlight
-uniform int spotlight_size;             //similar to glint radius hopefully
+uniform bool hard_edge;
+uniform float spotlight_size;             //similar to glint radius hopefully
 uniform float spotlight_bright;         //similar to specular strength
 uniform int glint_radius;               //determines how quickly the specular glint "drops off", the higher the number
                                         //the smaller the glint
 uniform float specularStrength;         //specular brightness, probably keep this consistent
 
+uniform float ambientStrength;
+
 void main()
 {
 
     //lightPosition - we should be passing this in as a uniform but we'll get to that later
-    vec3 lightPos = vec3(0.0, 5.0, 0.0);
+    vec3 lightPos = vec3(0.0, 2.0, 0.0);
 
     // ambient
-    float ambientStrength = 0.3;                            //straightforward, strength of the ambient light
     vec3 ambient = ambientStrength * vec3(1.0, 1.0, 1.0);   //scaling the light color with ambient strength
 
     // diffuse
@@ -50,25 +52,27 @@ void main()
     //Spotlight lighting
 
     float spot;
-    bool hard_light = true;
     if(spotlight_size > 0)
     {
         vec3 light_to_ball = normalize(lightPos - ballPos);
         float dot_product = dot(light_to_ball, lightDir);
         spot = pow(max(dot_product, 0.0), spotlight_size);
+        spot *= spotlight_bright;
 
-        float threshold = 0.9;
-        if(hard_light)
+        float threshold = 0.1;  //random cutoff that I liked
+
+        if(hard_edge)
         {
             if(spot > threshold)
             {
-                spot = .7;
+                spot = spotlight_bright;
             }
             else
             {
                 spot = 0.0;
             }
         }
+
     }
     else
     {

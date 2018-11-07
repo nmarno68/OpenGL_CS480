@@ -14,7 +14,7 @@ class Object
     void Render();
     void InitMesh();
     std::vector<GLuint> loadMaterialTextures(aiMaterial *mat, aiTextureType type);
-    void SetValues(float s_x,float s_y,float s_z);
+    void SetValues(float s_x,float s_y,float s_z, float specB, int specS );
 
     //returns the model matrix
     glm::mat4 GetModel();
@@ -31,6 +31,8 @@ class Object
 
     bool m_physics;
     int m_shape;
+    float specular_brightness;
+    int specular_size;
 
     btRigidBody* m_rigidBody;
 

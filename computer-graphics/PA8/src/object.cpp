@@ -1,19 +1,12 @@
 #include "object.h"
-Object::Object(std::string filename, int shape, bool needsLoading) //each time we initialize a planet we give a different
-{                                     //file name for the object (because each has a different texture)
-                                      //however, every planet will be the same size when we load them because
- 
-                                      //scaling in the code is more precise than creating them at a certain size in blender
+Object::Object(std::string filename, int shape, bool needsLoading)
+{
 	if(needsLoading)
 	{
 
 	 //File Path to find object name
 		m_objDirectory = "../assets/objects/";
 		m_textDirectory = "../assets/textures/";
-
-	 //append the given filename
-
-		//sorting out texture files because existence is pain
 
 		m_objDirectory.append(filename);
 
@@ -232,13 +225,15 @@ std::vector<GLuint> Object::loadMaterialTextures(aiMaterial *mat, aiTextureType 
   }
   return textures;
 }
-void Object::SetValues(float s_x,float s_y,float s_z)
+void Object::SetValues(float s_x,float s_y,float s_z, float specB, int specS )
 {
   scale_x = s_x;
   scale_y = s_y;
   scale_z = s_z;
 
-
+  //setting our specular info, hopefully we will later move it into material loading...
+  specular_brightness = specB;
+  specular_size = specS;
 }
 
 void Object::SetBullet(int m, glm::vec3 inert, bool kinObject, bool phys, glm::vec3 start)

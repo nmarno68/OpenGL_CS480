@@ -31,9 +31,10 @@ class Graphics
 	Object* m_topWall;
 	Object* m_bottomWall;
 
+  float ambientStrength, spotlight_brightness, spotlight_size;
+  bool spot, hard_edge;
+
   private:
-
-
 
     std::string ErrorString(GLenum error);
 
@@ -42,11 +43,9 @@ class Graphics
 
     //lighting variables
     glm::vec3 m_ambientColor;
-    float m_ambientStrength;
-    int m_spot_size;
 
 
-    //Phong pointers
+
     GLint m_projectionMatrix;
     GLint m_viewMatrix;
     GLint m_modelMatrix;
@@ -57,18 +56,15 @@ class Graphics
     GLint m_spotlight_brightness;
     GLint m_specular_brightness;
     GLint m_specular_size;
+    GLint m_ambientStrength;
+    GLint m_hard_edge;
 
-
-    //Gourand
 
     btBroadphaseInterface* m_broadphase;
     btDefaultCollisionConfiguration* m_collisionConfiguration;
     btCollisionDispatcher* m_dispatcher;
     btSequentialImpulseConstraintSolver* m_solver;
     btDiscreteDynamicsWorld* m_dynamicsWorld;
-
-
-
 
 };
 

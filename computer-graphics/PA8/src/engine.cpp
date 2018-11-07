@@ -89,7 +89,31 @@ void Engine::Run()
 
 
     //menu code here plz
+    {
+      ImGui::Begin("Ambient Control");
+      ImGui::SliderFloat("Ambient Strength", &m_graphics->ambientStrength, 0.0, 1.0);
+      ImGui::End();
 
+
+      ImGui::Begin("Spotlight Control");
+      ImGui::Checkbox("Turn on spotlight", &m_graphics->spot);
+      if(m_graphics->spot)
+      {
+         ImGui::Checkbox("Hard edge/Soft edge", &m_graphics->hard_edge);
+      }
+      ImGui::SliderFloat("Spotlight Size", &m_graphics->spotlight_size, 200, .001);
+      ImGui::SliderFloat("Spotlight Brightness", &m_graphics->spotlight_brightness, 0, 1);
+      ImGui::End();
+
+
+      ImGui::Begin("Specular Controls");
+      ImGui::Text("Specular Brightness");
+      ImGui::SliderFloat("Ball", &m_graphics->m_ball->specular_brightness, 0, 1);
+      ImGui::SliderFloat("Board", &m_graphics->m_boardy->specular_brightness, 0, 1);
+      ImGui::SliderFloat("Cube", &m_graphics->m_cube->specular_brightness, 0, 1);
+      ImGui::SliderFloat("Cylinder", &m_graphics->m_cyl->specular_brightness, 0, 1);
+      ImGui::End();
+    }
 
 
 
