@@ -51,31 +51,30 @@ bool Graphics::Initialize(int width, int height)
   scaled_view = false;
   top_view = false;
 
-
-
-  m_shader = new Shader();
-  if(!m_shader->Initialize())
+  //Initializing phong lighting shader
+  m_phong = new Shader();
+  if(!m_phong->Initialize())
   {
     printf("Shader Failed to Initialize\n");
     return false;
   }
 
   // Add the vertex shader
-  if(!m_shader->AddShader(GL_VERTEX_SHADER, "lightingShaders"))
+  if(!m_phong->AddShader(GL_VERTEX_SHADER, "phongShaders"))
   {
     printf("Vertex Shader failed to Initialize\n");
     return false;
   }
 
   // Add the fragment shader
-  if(!m_shader->AddShader(GL_FRAGMENT_SHADER, "lightingShaders"))
+  if(!m_phong->AddShader(GL_FRAGMENT_SHADER, "phongShaders"))
   {
     printf("Fragment Shader failed to Initialize\n");
     return false;
   }
 
   // Connect the program
-  if(!m_shader->Finalize())
+  if(!m_phong->Finalize())
   {
     printf("Program to Finalize\n");
     return false;
@@ -83,32 +82,76 @@ bool Graphics::Initialize(int width, int height)
 
 
 
-  // Locate the projection matrix in the lighting shader
-  m_projectionMatrix = m_shader->GetUniformLocation("projectionMatrix");
+
+  //Locating uniforms in the phong shader
+  m_projectionMatrix = m_phong->GetUniformLocation("projectionMatrix");
   if (m_projectionMatrix == INVALID_UNIFORM_LOCATION)
   {
     printf("m_projectionMatrix not found\n");
     return false;
   }
 
-  // Locate the view matrix in the lighting shader
-  m_viewMatrix = m_shader->GetUniformLocation("viewMatrix");
+  m_viewMatrix = m_phong->GetUniformLocation("viewMatrix");
   if (m_viewMatrix == INVALID_UNIFORM_LOCATION)
   {
     printf("m_viewMatrix not found\n");
     return false;
   }
 
-  // Locate the model matrix in the lighting shader
-  m_modelMatrix = m_shader->GetUniformLocation("modelMatrix");
+  m_modelMatrix = m_phong->GetUniformLocation("modelMatrix");
   if (m_modelMatrix == INVALID_UNIFORM_LOCATION)
   {
     printf("m_modelMatrix not found\n");
     return false;
   }
 
+  m_viewPos = m_phong->GetUniformLocation("viewPos");
+  if (m_viewPos == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_modelMatrix not found\n");
+    return false;
+  }
 
-//Creating physics world
+  m_ballPos = m_phong->GetUniformLocation("ballPos");
+  if (m_ballPos == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_modelMatrix not found\n");
+    return false;
+  }
+
+  m_spotlight_size = m_phong->GetUniformLocation("spotlight_size");
+  if (m_spotlight_size == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_modelMatrix not found\n");
+    return false;
+  }
+
+  m_spotlight_brightness = m_phong->GetUniformLocation("spotlight_bright");
+  if (m_spotlight_brightness == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_modelMatrix not found\n");
+    return false;
+  }
+
+  m_specular_brightness = m_phong->GetUniformLocation("specularStrength");
+  if (m_specular_brightness == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_modelMatrix not found\n");
+    return false;
+  }
+
+  m_specular_size = m_phong->GetUniformLocation("glint_radius");
+  if (m_specular_size == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_modelMatrix not found\n");
+    return false;
+  }
+
+
+
+
+
+  //Creating physics world
   m_broadphase = new btDbvtBroadphase();
   m_collisionConfiguration = new btDefaultCollisionConfiguration();
   m_dispatcher = new btCollisionDispatcher(m_collisionConfiguration);
@@ -201,13 +244,32 @@ void Graphics::Render()
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
   // Start the correct program
-    m_shader->Enable();
+    m_phong->Enable();
 
 
   // Send in the projection and view to the shader
-  //Specular lighting uniform
-  //glUniform3fv(m_viewPos, 1, glm::value_ptr(m_camera->cameraPosition));
+  //sending in camera position for specular lighting
+  glUniform3fv(m_viewPos, 1, glm::value_ptr(m_camera->cameraPosition));
 
+  //sending in ball position for spotlight
+  glUniform3fv(m_ballPos, 1, glm::value_ptr(m_ball->GetLocationVector()));
+
+  //Sending specular values (just once for testing)
+  //specular brightness (float)
+  glUniform1f(m_specular_brightness, (GLfloat) .7);
+
+  //specular radius thing (int)
+  glUniform1i(m_specular_size, (GLint) 200);
+
+  //Sending Spotlight stuff
+  //spotlight brightness
+  glUniform1f(m_spotlight_brightness, (GLfloat) .7);
+
+  //spotlight size
+  glUniform1i(m_spotlight_size, (GLint) 5);  //lower means bigger
+
+
+  //Sending in view and projection
   glUniformMatrix4fv(m_projectionMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetProjection()));
   glUniformMatrix4fv(m_viewMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetView()));
 

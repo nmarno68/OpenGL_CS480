@@ -37,11 +37,29 @@ class Graphics
 
     std::string ErrorString(GLenum error);
 
-    Shader *m_shader;
+    Shader *m_phong;
+    Shader *m_gourand;
 
+    //lighting variables
+    glm::vec3 m_ambientColor;
+    float m_ambientStrength;
+    int m_spot_size;
+
+
+    //Phong pointers
     GLint m_projectionMatrix;
     GLint m_viewMatrix;
     GLint m_modelMatrix;
+
+    GLint m_viewPos;
+    GLint m_ballPos;
+    GLint m_spotlight_size;
+    GLint m_spotlight_brightness;
+    GLint m_specular_brightness;
+    GLint m_specular_size;
+
+
+    //Gourand
 
     btBroadphaseInterface* m_broadphase;
     btDefaultCollisionConfiguration* m_collisionConfiguration;
