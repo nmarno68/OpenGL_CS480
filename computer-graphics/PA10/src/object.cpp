@@ -1,6 +1,11 @@
 #include "object.h"
-Object::Object(std::string filename, int shape, bool needsLoading)
+Object::Object(std::string filename, int shape, bool needsLoading, float s_x, float s_y, float s_z)
 {
+
+  scale_x = s_x;
+  scale_y = s_y;
+  scale_z = s_z;
+
 	if(needsLoading)
 	{
 
@@ -51,6 +56,9 @@ Object::Object(std::string filename, int shape, bool needsLoading)
 		case 8:
 			m_collisionShape = new btStaticPlaneShape(btVector3(1, 0, 0), 0);
 			break;
+	  case 9:
+      m_collisionShape = new btBvhTriangleMeshShape(m_btTriangleObject, true);
+	    break;
 		default:
 			break;
 	}
@@ -136,7 +144,7 @@ void Object::InitMesh()
       const aiVector3D *pNormal = m_scene->mMeshes[j]->HasNormals() ? &(m_scene->mMeshes[j]->mNormals[i]) : &Zero3D;
       const aiVector3D *pTexCoord = m_scene->mMeshes[j]->HasTextureCoords(0) ? &(m_scene->mMeshes[j]->mTextureCoords[0][i]) : &Zero3D;
 
-      Vertex v(glm::vec3(pPos->x, pPos->y, pPos->z),
+      Vertex v(glm::vec3(pPos->x * scale_x, pPos->y * scale_y, pPos->z * scale_z),
                glm::vec2(pTexCoord->x, -pTexCoord->y),
                glm::vec3(pNormal->x, pNormal->y, pNormal->z));
 
@@ -159,7 +167,7 @@ void Object::InitMesh()
         triArray[count] = btVector3(t.x, t.y, t.z);
       }
 
-      //m_btTriangleObject->addTriangle(triArray[0], triArray[1], triArray[2]);
+      m_btTriangleObject->addTriangle(triArray[0], triArray[1], triArray[2]);
     }
 
     //Texture stuff
@@ -225,12 +233,8 @@ std::vector<GLuint> Object::loadMaterialTextures(aiMaterial *mat, aiTextureType 
   }
   return textures;
 }
-void Object::SetValues(float s_x,float s_y,float s_z, float specB, int specS )
+void Object::SetValues(float specB, int specS )
 {
-  scale_x = s_x;
-  scale_y = s_y;
-  scale_z = s_z;
-
   //setting our specular info, hopefully we will later move it into material loading...
   specular_brightness = specB;
   specular_size = specS;

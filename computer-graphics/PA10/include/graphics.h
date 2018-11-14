@@ -43,7 +43,7 @@ class Graphics
     Shader *m_gourand;
 
     //lighting variables
-
+    lightSource* b_1;
 
 
     //phong
@@ -61,6 +61,9 @@ class Graphics
     GLint m_hard_edge;
     GLint m_ambient_color;
 
+    GLint m_bumper1;
+    GLint m_bumper1_c;
+
 
     //gourand
     GLint m_gprojectionMatrix;
@@ -76,6 +79,9 @@ class Graphics
     GLint m_gambientStrength;
     GLint m_ghard_edge;
     GLint m_gambient_color;
+
+    GLint m_gbumper1;
+    GLint m_gbumper1_c;
 
 
     btBroadphaseInterface* m_broadphase;

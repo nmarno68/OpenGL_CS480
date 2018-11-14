@@ -8,13 +8,13 @@
 class Object
 {
   public:
-    Object(std::string filename, int shape, bool needsLoading);
+    Object(std::string filename, int shape, bool needsLoading, float s_x, float s_y, float s_z);
     ~Object();
     void Update(unsigned int dt, glm::mat4 origin, float scale);
     void Render();
     void InitMesh();
     std::vector<GLuint> loadMaterialTextures(aiMaterial *mat, aiTextureType type);
-    void SetValues(float s_x,float s_y,float s_z, float specB, int specS );
+    void SetValues(float specB, int specS );
 
     //returns the model matrix
     glm::mat4 GetModel();
@@ -33,6 +33,7 @@ class Object
     int m_shape;
     float specular_brightness;
     int specular_size;
+    bool t_mesh;
 
     btRigidBody* m_rigidBody;
 

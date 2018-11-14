@@ -20,6 +20,9 @@ uniform float specularStrength;         //specular brightness, probably keep thi
 uniform float ambientStrength;
 uniform vec3 ambient_color;
 
+uniform vec3 bumper1;
+uniform vec3 bumper1_c;
+
 void main()
 {
 
@@ -86,6 +89,7 @@ void main()
     vec3 objcol = vec3(textcol[0], textcol[1], textcol[2]);             //converting to a vec3
     vec3 result = (ambient +  spot * (diffuse + specular) ) * objcol;   //adding together all the components and multiplying with the
                                                                         //objects color to determine light absorbed and reflected
+
 
     FragColor = vec4(result, 1.0);  //adding opacity back into the result (need to make this a uniform or something
                                     //eventually....

@@ -207,6 +207,24 @@ bool Graphics::Initialize(int width, int height)
     return false;
   }
 
+  m_bumper1 = m_phong->GetUniformLocation("bumper1");
+  if (m_ambient_color == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_bumper1 not found\n");
+    return false;
+  }
+
+  m_bumper1_c = m_phong->GetUniformLocation("bumper1_c");
+  if (m_bumper1_c == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_bumper1_c not found\n");
+    return false;
+  }
+
+
+
+
+
 
 
 
@@ -322,23 +340,23 @@ bool Graphics::Initialize(int width, int height)
 
 
 //Initializing objects
-// 1 -> plane, 2 -> sphere, 3 -> cylinder, 4 -> cube
+// 1 -> plane, 2 -> sphere, 3 -> cylinder, 4 -> cube, 9 -> triangle mesh
 
-  m_boardy = new Object("UglyBoard.obj", 1, true);
-  m_cyl = new Object("UglyCylinder.obj", 3, true);
-  m_ball = new Object("UglySphere.obj", 2, true);
-  m_cube = new Object("UglyCube.obj", 4, true);
-  m_leftWall = new Object("none", 5, false);
-  m_rightWall = new Object("none", 6, false);
-  m_topWall = new Object("none", 7, false);
-  m_bottomWall = new Object("none", 8, false);
+  m_boardy = new Object("PinballBoard.obj", 9, true, 1, 1, 1);
+  m_cyl = new Object("UglyCylinder.obj", 9, true, .3, .3, .3);
+  m_ball = new Object("UglySphere.obj", 2, true, 1, 1, 1);
+  m_cube = new Object("UglyCube.obj", 4, true, 1, 1, 1);
+ // m_leftWall = new Object("none", 5, false);
+ // m_rightWall = new Object("none", 6, false);
+ // m_topWall = new Object("none", 7, false);
+ // m_bottomWall = new Object("none", 8, false);
 
 
   //SetValues scale_x, scale_y, scale_z, specular_brightness, specular_size (only on rendered objects)
-  m_boardy->SetValues(1.0, 2.0, 1.0, .5, 5);
-  m_cyl->SetValues(.3, .3, .3, .7, 32);
-  m_ball->SetValues(1, 1, 1, .7, 150);
-  m_cube->SetValues(1, 1, 1, .7, 300);
+  m_boardy->SetValues(.5, 150);
+  m_cyl->SetValues(.7, 32);
+  m_ball->SetValues(.7, 150);
+  m_cube->SetValues(.7, 300);
 
 //Initializing object physics
 
@@ -357,10 +375,10 @@ bool Graphics::Initialize(int width, int height)
   v = glm::vec3(0, 0, 0);
   m_cube->SetBullet(1, v, false, true, glm::vec3(0, .5, -.75));
 
-	m_leftWall->SetBullet(1, v, true, true, glm::vec3(0, 0, 1.05));
-	m_rightWall->SetBullet(1, v, true, true, glm::vec3(0, 0, -1.05));
-	m_topWall->SetBullet(1, v, true, true, glm::vec3(2.05, 0, 0));
-	m_bottomWall->SetBullet(1, v, true, true, glm::vec3(-2.05, 0, 0));
+	//m_leftWall->SetBullet(1, v, true, true, glm::vec3(0, 0, 1.05));
+	//m_rightWall->SetBullet(1, v, true, true, glm::vec3(0, 0, -1.05));
+	//m_topWall->SetBullet(1, v, true, true, glm::vec3(2.05, 0, 0));
+	//m_bottomWall->SetBullet(1, v, true, true, glm::vec3(-2.05, 0, 0));
 
   short mask = 0b11111111;
 
@@ -370,10 +388,15 @@ bool Graphics::Initialize(int width, int height)
   m_dynamicsWorld->addRigidBody(m_ball->GetRigidBody(), mask, mask);
   m_dynamicsWorld->addRigidBody(m_cube->GetRigidBody(), mask, mask);
 
-	m_dynamicsWorld->addRigidBody(m_leftWall->GetRigidBody(), mask, mask);
-	m_dynamicsWorld->addRigidBody(m_rightWall->GetRigidBody(), mask, mask);
-	m_dynamicsWorld->addRigidBody(m_topWall->GetRigidBody(), mask, mask);
-	m_dynamicsWorld->addRigidBody(m_bottomWall->GetRigidBody(), mask, mask);
+	//m_dynamicsWorld->addRigidBody(m_leftWall->GetRigidBody(), mask, mask);
+	//m_dynamicsWorld->addRigidBody(m_rightWall->GetRigidBody(), mask, mask);
+	//m_dynamicsWorld->addRigidBody(m_topWall->GetRigidBody(), mask, mask);
+	//m_dynamicsWorld->addRigidBody(m_bottomWall->GetRigidBody(), mask, mask);
+
+
+
+	//Additional Light Sources
+	b_1 = new lightSource(glm::vec3 (1.0, 0.0, 1.0), m_cyl->GetLocationVector() * (float) 1.1);
 
 
 
@@ -391,7 +414,7 @@ void Graphics::Update(unsigned int dt)
 
   //call object updates and camera updates
   m_boardy->Update(dt, glm::mat4(1.0f), 1);
-  m_cyl->Update(dt, glm::mat4(1.0f), .25);
+  m_cyl->Update(dt, glm::mat4(1.0f), 1);
   m_ball->Update(dt, glm::mat4(1.0f), .125);
   m_cube->Update(dt, glm::mat4(1.0f), .125);
 }
@@ -405,6 +428,15 @@ void Graphics::Render()
   if(phong) {
     // Start the correct program
     m_phong->Enable();
+
+    //Send in bunmper 1 light source
+    glUniform3fv(m_bumper1, 1, glm::value_ptr(b_1->pos));     //Position
+    glUniform3fv(m_bumper1_c, 1, glm::value_ptr(b_1->color)); //Color
+
+
+
+
+
 
     //Send in ambient color
     glUniform3fv(m_ambient_color, 1, glm::value_ptr(ambient_color));

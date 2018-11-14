@@ -43,10 +43,10 @@ RM = /home/natalie/Downloads/clion-2018.2.2/bin/cmake/linux/bin/cmake -E remove 
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/natalie/workspaces/cs480Arnold/computer-graphics/PA9
+CMAKE_SOURCE_DIR = /home/natalie/workspaces/cs480Arnold/computer-graphics/PA10
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/natalie/workspaces/cs480Arnold/computer-graphics/PA9/cmake-build-debug
+CMAKE_BINARY_DIR = /home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/cmake-build-debug
 
 # Utility rule file for PA_Ugly_SUCCESSFUL.
 
@@ -54,12 +54,12 @@ CMAKE_BINARY_DIR = /home/natalie/workspaces/cs480Arnold/computer-graphics/PA9/cm
 include CMakeFiles/PA_Ugly_SUCCESSFUL.dir/progress.make
 
 CMakeFiles/PA_Ugly_SUCCESSFUL: PA_Ugly
-	/home/natalie/Downloads/clion-2018.2.2/bin/cmake/linux/bin/cmake -E copy_directory /home/natalie/workspaces/cs480Arnold/computer-graphics/PA9/shaders/ /home/natalie/workspaces/cs480Arnold/computer-graphics/PA9/cmake-build-debug/shaders
+	/home/natalie/Downloads/clion-2018.2.2/bin/cmake/linux/bin/cmake -E copy_directory /home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/shaders/ /home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/cmake-build-debug/shaders
 	/home/natalie/Downloads/clion-2018.2.2/bin/cmake/linux/bin/cmake -E echo 
 	/home/natalie/Downloads/clion-2018.2.2/bin/cmake/linux/bin/cmake -E echo =====================
 	/home/natalie/Downloads/clion-2018.2.2/bin/cmake/linux/bin/cmake -E echo \ \ Compile\ complete!
 	/home/natalie/Downloads/clion-2018.2.2/bin/cmake/linux/bin/cmake -E echo =====================
-	/home/natalie/Downloads/clion-2018.2.2/bin/cmake/linux/bin/cmake -E echo /home/natalie/workspaces/cs480Arnold/computer-graphics/PA9/cmake-build-debug
+	/home/natalie/Downloads/clion-2018.2.2/bin/cmake/linux/bin/cmake -E echo /home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/cmake-build-debug
 
 PA_Ugly_SUCCESSFUL: CMakeFiles/PA_Ugly_SUCCESSFUL
 PA_Ugly_SUCCESSFUL: CMakeFiles/PA_Ugly_SUCCESSFUL.dir/build.make
@@ -76,6 +76,6 @@ CMakeFiles/PA_Ugly_SUCCESSFUL.dir/clean:
 .PHONY : CMakeFiles/PA_Ugly_SUCCESSFUL.dir/clean
 
 CMakeFiles/PA_Ugly_SUCCESSFUL.dir/depend:
-	cd /home/natalie/workspaces/cs480Arnold/computer-graphics/PA9/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/natalie/workspaces/cs480Arnold/computer-graphics/PA9 /home/natalie/workspaces/cs480Arnold/computer-graphics/PA9 /home/natalie/workspaces/cs480Arnold/computer-graphics/PA9/cmake-build-debug /home/natalie/workspaces/cs480Arnold/computer-graphics/PA9/cmake-build-debug /home/natalie/workspaces/cs480Arnold/computer-graphics/PA9/cmake-build-debug/CMakeFiles/PA_Ugly_SUCCESSFUL.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/natalie/workspaces/cs480Arnold/computer-graphics/PA10 /home/natalie/workspaces/cs480Arnold/computer-graphics/PA10 /home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/cmake-build-debug /home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/cmake-build-debug /home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/cmake-build-debug/CMakeFiles/PA_Ugly_SUCCESSFUL.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/PA_Ugly_SUCCESSFUL.dir/depend
 

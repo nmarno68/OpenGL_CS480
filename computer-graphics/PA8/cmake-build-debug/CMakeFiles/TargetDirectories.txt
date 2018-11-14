@@ -1,4 +1,0 @@
-/home/natalie/workspaces/cs480Arnold/computer-graphics/PA8/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/natalie/workspaces/cs480Arnold/computer-graphics/PA8/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/natalie/workspaces/cs480Arnold/computer-graphics/PA8/cmake-build-debug/CMakeFiles/PA_Ugly_SUCCESSFUL.dir
-/home/natalie/workspaces/cs480Arnold/computer-graphics/PA8/cmake-build-debug/CMakeFiles/PA_Ugly.dir

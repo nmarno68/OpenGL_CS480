@@ -4,20 +4,20 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA9/src/camera.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA9/cmake-build-debug/CMakeFiles/PA_Ugly.dir/src/camera.cpp.o"
-  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA9/src/engine.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA9/cmake-build-debug/CMakeFiles/PA_Ugly.dir/src/engine.cpp.o"
-  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA9/src/graphics.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA9/cmake-build-debug/CMakeFiles/PA_Ugly.dir/src/graphics.cpp.o"
-  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA9/src/imgui.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA9/cmake-build-debug/CMakeFiles/PA_Ugly.dir/src/imgui.cpp.o"
-  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA9/src/imgui_demo.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA9/cmake-build-debug/CMakeFiles/PA_Ugly.dir/src/imgui_demo.cpp.o"
-  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA9/src/imgui_draw.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA9/cmake-build-debug/CMakeFiles/PA_Ugly.dir/src/imgui_draw.cpp.o"
-  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA9/src/imgui_impl_opengl3.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA9/cmake-build-debug/CMakeFiles/PA_Ugly.dir/src/imgui_impl_opengl3.cpp.o"
-  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA9/src/imgui_impl_sdl.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA9/cmake-build-debug/CMakeFiles/PA_Ugly.dir/src/imgui_impl_sdl.cpp.o"
-  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA9/src/imgui_widgets.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA9/cmake-build-debug/CMakeFiles/PA_Ugly.dir/src/imgui_widgets.cpp.o"
-  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA9/src/main.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA9/cmake-build-debug/CMakeFiles/PA_Ugly.dir/src/main.cpp.o"
-  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA9/src/mesh.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA9/cmake-build-debug/CMakeFiles/PA_Ugly.dir/src/mesh.cpp.o"
-  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA9/src/object.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA9/cmake-build-debug/CMakeFiles/PA_Ugly.dir/src/object.cpp.o"
-  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA9/src/shader.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA9/cmake-build-debug/CMakeFiles/PA_Ugly.dir/src/shader.cpp.o"
-  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA9/src/window.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA9/cmake-build-debug/CMakeFiles/PA_Ugly.dir/src/window.cpp.o"
+  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/src/camera.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/cmake-build-debug/CMakeFiles/PA_Ugly.dir/src/camera.cpp.o"
+  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/src/engine.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/cmake-build-debug/CMakeFiles/PA_Ugly.dir/src/engine.cpp.o"
+  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/src/graphics.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/cmake-build-debug/CMakeFiles/PA_Ugly.dir/src/graphics.cpp.o"
+  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/src/imgui.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/cmake-build-debug/CMakeFiles/PA_Ugly.dir/src/imgui.cpp.o"
+  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/src/imgui_demo.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/cmake-build-debug/CMakeFiles/PA_Ugly.dir/src/imgui_demo.cpp.o"
+  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/src/imgui_draw.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/cmake-build-debug/CMakeFiles/PA_Ugly.dir/src/imgui_draw.cpp.o"
+  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/src/imgui_impl_opengl3.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/cmake-build-debug/CMakeFiles/PA_Ugly.dir/src/imgui_impl_opengl3.cpp.o"
+  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/src/imgui_impl_sdl.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/cmake-build-debug/CMakeFiles/PA_Ugly.dir/src/imgui_impl_sdl.cpp.o"
+  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/src/imgui_widgets.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/cmake-build-debug/CMakeFiles/PA_Ugly.dir/src/imgui_widgets.cpp.o"
+  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/src/main.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/cmake-build-debug/CMakeFiles/PA_Ugly.dir/src/main.cpp.o"
+  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/src/mesh.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/cmake-build-debug/CMakeFiles/PA_Ugly.dir/src/mesh.cpp.o"
+  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/src/object.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/cmake-build-debug/CMakeFiles/PA_Ugly.dir/src/object.cpp.o"
+  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/src/shader.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/cmake-build-debug/CMakeFiles/PA_Ugly.dir/src/shader.cpp.o"
+  "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/src/window.cpp" "/home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/cmake-build-debug/CMakeFiles/PA_Ugly.dir/src/window.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
