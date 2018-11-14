@@ -43,10 +43,10 @@ RM = /home/natalie/Downloads/clion-2018.2.2/bin/cmake/linux/bin/cmake -E remove 
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/natalie/Desktop/PA7
+CMAKE_SOURCE_DIR = /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/natalie/Desktop/PA7/cmake-build-debug
+CMAKE_BINARY_DIR = /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/SolarSystem.dir/depend.make
@@ -59,185 +59,185 @@ include CMakeFiles/SolarSystem.dir/flags.make
 
 CMakeFiles/SolarSystem.dir/src/camera.cpp.o: CMakeFiles/SolarSystem.dir/flags.make
 CMakeFiles/SolarSystem.dir/src/camera.cpp.o: ../src/camera.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/natalie/Desktop/PA7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/SolarSystem.dir/src/camera.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SolarSystem.dir/src/camera.cpp.o -c /home/natalie/Desktop/PA7/src/camera.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/SolarSystem.dir/src/camera.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SolarSystem.dir/src/camera.cpp.o -c /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/camera.cpp
 
 CMakeFiles/SolarSystem.dir/src/camera.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SolarSystem.dir/src/camera.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/natalie/Desktop/PA7/src/camera.cpp > CMakeFiles/SolarSystem.dir/src/camera.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/camera.cpp > CMakeFiles/SolarSystem.dir/src/camera.cpp.i
 
 CMakeFiles/SolarSystem.dir/src/camera.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SolarSystem.dir/src/camera.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/natalie/Desktop/PA7/src/camera.cpp -o CMakeFiles/SolarSystem.dir/src/camera.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/camera.cpp -o CMakeFiles/SolarSystem.dir/src/camera.cpp.s
 
 CMakeFiles/SolarSystem.dir/src/engine.cpp.o: CMakeFiles/SolarSystem.dir/flags.make
 CMakeFiles/SolarSystem.dir/src/engine.cpp.o: ../src/engine.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/natalie/Desktop/PA7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/SolarSystem.dir/src/engine.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SolarSystem.dir/src/engine.cpp.o -c /home/natalie/Desktop/PA7/src/engine.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/SolarSystem.dir/src/engine.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SolarSystem.dir/src/engine.cpp.o -c /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/engine.cpp
 
 CMakeFiles/SolarSystem.dir/src/engine.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SolarSystem.dir/src/engine.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/natalie/Desktop/PA7/src/engine.cpp > CMakeFiles/SolarSystem.dir/src/engine.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/engine.cpp > CMakeFiles/SolarSystem.dir/src/engine.cpp.i
 
 CMakeFiles/SolarSystem.dir/src/engine.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SolarSystem.dir/src/engine.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/natalie/Desktop/PA7/src/engine.cpp -o CMakeFiles/SolarSystem.dir/src/engine.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/engine.cpp -o CMakeFiles/SolarSystem.dir/src/engine.cpp.s
 
 CMakeFiles/SolarSystem.dir/src/graphics.cpp.o: CMakeFiles/SolarSystem.dir/flags.make
 CMakeFiles/SolarSystem.dir/src/graphics.cpp.o: ../src/graphics.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/natalie/Desktop/PA7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/SolarSystem.dir/src/graphics.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SolarSystem.dir/src/graphics.cpp.o -c /home/natalie/Desktop/PA7/src/graphics.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/SolarSystem.dir/src/graphics.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SolarSystem.dir/src/graphics.cpp.o -c /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/graphics.cpp
 
 CMakeFiles/SolarSystem.dir/src/graphics.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SolarSystem.dir/src/graphics.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/natalie/Desktop/PA7/src/graphics.cpp > CMakeFiles/SolarSystem.dir/src/graphics.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/graphics.cpp > CMakeFiles/SolarSystem.dir/src/graphics.cpp.i
 
 CMakeFiles/SolarSystem.dir/src/graphics.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SolarSystem.dir/src/graphics.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/natalie/Desktop/PA7/src/graphics.cpp -o CMakeFiles/SolarSystem.dir/src/graphics.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/graphics.cpp -o CMakeFiles/SolarSystem.dir/src/graphics.cpp.s
 
 CMakeFiles/SolarSystem.dir/src/imgui.cpp.o: CMakeFiles/SolarSystem.dir/flags.make
 CMakeFiles/SolarSystem.dir/src/imgui.cpp.o: ../src/imgui.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/natalie/Desktop/PA7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/SolarSystem.dir/src/imgui.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SolarSystem.dir/src/imgui.cpp.o -c /home/natalie/Desktop/PA7/src/imgui.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/SolarSystem.dir/src/imgui.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SolarSystem.dir/src/imgui.cpp.o -c /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/imgui.cpp
 
 CMakeFiles/SolarSystem.dir/src/imgui.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SolarSystem.dir/src/imgui.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/natalie/Desktop/PA7/src/imgui.cpp > CMakeFiles/SolarSystem.dir/src/imgui.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/imgui.cpp > CMakeFiles/SolarSystem.dir/src/imgui.cpp.i
 
 CMakeFiles/SolarSystem.dir/src/imgui.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SolarSystem.dir/src/imgui.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/natalie/Desktop/PA7/src/imgui.cpp -o CMakeFiles/SolarSystem.dir/src/imgui.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/imgui.cpp -o CMakeFiles/SolarSystem.dir/src/imgui.cpp.s
 
 CMakeFiles/SolarSystem.dir/src/imgui_demo.cpp.o: CMakeFiles/SolarSystem.dir/flags.make
 CMakeFiles/SolarSystem.dir/src/imgui_demo.cpp.o: ../src/imgui_demo.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/natalie/Desktop/PA7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/SolarSystem.dir/src/imgui_demo.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SolarSystem.dir/src/imgui_demo.cpp.o -c /home/natalie/Desktop/PA7/src/imgui_demo.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/SolarSystem.dir/src/imgui_demo.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SolarSystem.dir/src/imgui_demo.cpp.o -c /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/imgui_demo.cpp
 
 CMakeFiles/SolarSystem.dir/src/imgui_demo.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SolarSystem.dir/src/imgui_demo.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/natalie/Desktop/PA7/src/imgui_demo.cpp > CMakeFiles/SolarSystem.dir/src/imgui_demo.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/imgui_demo.cpp > CMakeFiles/SolarSystem.dir/src/imgui_demo.cpp.i
 
 CMakeFiles/SolarSystem.dir/src/imgui_demo.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SolarSystem.dir/src/imgui_demo.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/natalie/Desktop/PA7/src/imgui_demo.cpp -o CMakeFiles/SolarSystem.dir/src/imgui_demo.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/imgui_demo.cpp -o CMakeFiles/SolarSystem.dir/src/imgui_demo.cpp.s
 
 CMakeFiles/SolarSystem.dir/src/imgui_draw.cpp.o: CMakeFiles/SolarSystem.dir/flags.make
 CMakeFiles/SolarSystem.dir/src/imgui_draw.cpp.o: ../src/imgui_draw.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/natalie/Desktop/PA7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/SolarSystem.dir/src/imgui_draw.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SolarSystem.dir/src/imgui_draw.cpp.o -c /home/natalie/Desktop/PA7/src/imgui_draw.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/SolarSystem.dir/src/imgui_draw.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SolarSystem.dir/src/imgui_draw.cpp.o -c /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/imgui_draw.cpp
 
 CMakeFiles/SolarSystem.dir/src/imgui_draw.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SolarSystem.dir/src/imgui_draw.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/natalie/Desktop/PA7/src/imgui_draw.cpp > CMakeFiles/SolarSystem.dir/src/imgui_draw.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/imgui_draw.cpp > CMakeFiles/SolarSystem.dir/src/imgui_draw.cpp.i
 
 CMakeFiles/SolarSystem.dir/src/imgui_draw.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SolarSystem.dir/src/imgui_draw.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/natalie/Desktop/PA7/src/imgui_draw.cpp -o CMakeFiles/SolarSystem.dir/src/imgui_draw.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/imgui_draw.cpp -o CMakeFiles/SolarSystem.dir/src/imgui_draw.cpp.s
 
 CMakeFiles/SolarSystem.dir/src/imgui_impl_opengl3.cpp.o: CMakeFiles/SolarSystem.dir/flags.make
 CMakeFiles/SolarSystem.dir/src/imgui_impl_opengl3.cpp.o: ../src/imgui_impl_opengl3.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/natalie/Desktop/PA7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/SolarSystem.dir/src/imgui_impl_opengl3.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SolarSystem.dir/src/imgui_impl_opengl3.cpp.o -c /home/natalie/Desktop/PA7/src/imgui_impl_opengl3.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/SolarSystem.dir/src/imgui_impl_opengl3.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SolarSystem.dir/src/imgui_impl_opengl3.cpp.o -c /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/imgui_impl_opengl3.cpp
 
 CMakeFiles/SolarSystem.dir/src/imgui_impl_opengl3.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SolarSystem.dir/src/imgui_impl_opengl3.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/natalie/Desktop/PA7/src/imgui_impl_opengl3.cpp > CMakeFiles/SolarSystem.dir/src/imgui_impl_opengl3.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/imgui_impl_opengl3.cpp > CMakeFiles/SolarSystem.dir/src/imgui_impl_opengl3.cpp.i
 
 CMakeFiles/SolarSystem.dir/src/imgui_impl_opengl3.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SolarSystem.dir/src/imgui_impl_opengl3.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/natalie/Desktop/PA7/src/imgui_impl_opengl3.cpp -o CMakeFiles/SolarSystem.dir/src/imgui_impl_opengl3.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/imgui_impl_opengl3.cpp -o CMakeFiles/SolarSystem.dir/src/imgui_impl_opengl3.cpp.s
 
 CMakeFiles/SolarSystem.dir/src/imgui_impl_sdl.cpp.o: CMakeFiles/SolarSystem.dir/flags.make
 CMakeFiles/SolarSystem.dir/src/imgui_impl_sdl.cpp.o: ../src/imgui_impl_sdl.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/natalie/Desktop/PA7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/SolarSystem.dir/src/imgui_impl_sdl.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SolarSystem.dir/src/imgui_impl_sdl.cpp.o -c /home/natalie/Desktop/PA7/src/imgui_impl_sdl.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/SolarSystem.dir/src/imgui_impl_sdl.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SolarSystem.dir/src/imgui_impl_sdl.cpp.o -c /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/imgui_impl_sdl.cpp
 
 CMakeFiles/SolarSystem.dir/src/imgui_impl_sdl.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SolarSystem.dir/src/imgui_impl_sdl.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/natalie/Desktop/PA7/src/imgui_impl_sdl.cpp > CMakeFiles/SolarSystem.dir/src/imgui_impl_sdl.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/imgui_impl_sdl.cpp > CMakeFiles/SolarSystem.dir/src/imgui_impl_sdl.cpp.i
 
 CMakeFiles/SolarSystem.dir/src/imgui_impl_sdl.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SolarSystem.dir/src/imgui_impl_sdl.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/natalie/Desktop/PA7/src/imgui_impl_sdl.cpp -o CMakeFiles/SolarSystem.dir/src/imgui_impl_sdl.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/imgui_impl_sdl.cpp -o CMakeFiles/SolarSystem.dir/src/imgui_impl_sdl.cpp.s
 
 CMakeFiles/SolarSystem.dir/src/imgui_widgets.cpp.o: CMakeFiles/SolarSystem.dir/flags.make
 CMakeFiles/SolarSystem.dir/src/imgui_widgets.cpp.o: ../src/imgui_widgets.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/natalie/Desktop/PA7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/SolarSystem.dir/src/imgui_widgets.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SolarSystem.dir/src/imgui_widgets.cpp.o -c /home/natalie/Desktop/PA7/src/imgui_widgets.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/SolarSystem.dir/src/imgui_widgets.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SolarSystem.dir/src/imgui_widgets.cpp.o -c /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/imgui_widgets.cpp
 
 CMakeFiles/SolarSystem.dir/src/imgui_widgets.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SolarSystem.dir/src/imgui_widgets.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/natalie/Desktop/PA7/src/imgui_widgets.cpp > CMakeFiles/SolarSystem.dir/src/imgui_widgets.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/imgui_widgets.cpp > CMakeFiles/SolarSystem.dir/src/imgui_widgets.cpp.i
 
 CMakeFiles/SolarSystem.dir/src/imgui_widgets.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SolarSystem.dir/src/imgui_widgets.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/natalie/Desktop/PA7/src/imgui_widgets.cpp -o CMakeFiles/SolarSystem.dir/src/imgui_widgets.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/imgui_widgets.cpp -o CMakeFiles/SolarSystem.dir/src/imgui_widgets.cpp.s
 
 CMakeFiles/SolarSystem.dir/src/main.cpp.o: CMakeFiles/SolarSystem.dir/flags.make
 CMakeFiles/SolarSystem.dir/src/main.cpp.o: ../src/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/natalie/Desktop/PA7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/SolarSystem.dir/src/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SolarSystem.dir/src/main.cpp.o -c /home/natalie/Desktop/PA7/src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/SolarSystem.dir/src/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SolarSystem.dir/src/main.cpp.o -c /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/main.cpp
 
 CMakeFiles/SolarSystem.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SolarSystem.dir/src/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/natalie/Desktop/PA7/src/main.cpp > CMakeFiles/SolarSystem.dir/src/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/main.cpp > CMakeFiles/SolarSystem.dir/src/main.cpp.i
 
 CMakeFiles/SolarSystem.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SolarSystem.dir/src/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/natalie/Desktop/PA7/src/main.cpp -o CMakeFiles/SolarSystem.dir/src/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/main.cpp -o CMakeFiles/SolarSystem.dir/src/main.cpp.s
 
 CMakeFiles/SolarSystem.dir/src/mesh.cpp.o: CMakeFiles/SolarSystem.dir/flags.make
 CMakeFiles/SolarSystem.dir/src/mesh.cpp.o: ../src/mesh.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/natalie/Desktop/PA7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/SolarSystem.dir/src/mesh.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SolarSystem.dir/src/mesh.cpp.o -c /home/natalie/Desktop/PA7/src/mesh.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/SolarSystem.dir/src/mesh.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SolarSystem.dir/src/mesh.cpp.o -c /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/mesh.cpp
 
 CMakeFiles/SolarSystem.dir/src/mesh.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SolarSystem.dir/src/mesh.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/natalie/Desktop/PA7/src/mesh.cpp > CMakeFiles/SolarSystem.dir/src/mesh.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/mesh.cpp > CMakeFiles/SolarSystem.dir/src/mesh.cpp.i
 
 CMakeFiles/SolarSystem.dir/src/mesh.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SolarSystem.dir/src/mesh.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/natalie/Desktop/PA7/src/mesh.cpp -o CMakeFiles/SolarSystem.dir/src/mesh.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/mesh.cpp -o CMakeFiles/SolarSystem.dir/src/mesh.cpp.s
 
 CMakeFiles/SolarSystem.dir/src/object.cpp.o: CMakeFiles/SolarSystem.dir/flags.make
 CMakeFiles/SolarSystem.dir/src/object.cpp.o: ../src/object.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/natalie/Desktop/PA7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/SolarSystem.dir/src/object.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SolarSystem.dir/src/object.cpp.o -c /home/natalie/Desktop/PA7/src/object.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/SolarSystem.dir/src/object.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SolarSystem.dir/src/object.cpp.o -c /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/object.cpp
 
 CMakeFiles/SolarSystem.dir/src/object.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SolarSystem.dir/src/object.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/natalie/Desktop/PA7/src/object.cpp > CMakeFiles/SolarSystem.dir/src/object.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/object.cpp > CMakeFiles/SolarSystem.dir/src/object.cpp.i
 
 CMakeFiles/SolarSystem.dir/src/object.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SolarSystem.dir/src/object.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/natalie/Desktop/PA7/src/object.cpp -o CMakeFiles/SolarSystem.dir/src/object.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/object.cpp -o CMakeFiles/SolarSystem.dir/src/object.cpp.s
 
 CMakeFiles/SolarSystem.dir/src/shader.cpp.o: CMakeFiles/SolarSystem.dir/flags.make
 CMakeFiles/SolarSystem.dir/src/shader.cpp.o: ../src/shader.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/natalie/Desktop/PA7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/SolarSystem.dir/src/shader.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SolarSystem.dir/src/shader.cpp.o -c /home/natalie/Desktop/PA7/src/shader.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/SolarSystem.dir/src/shader.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SolarSystem.dir/src/shader.cpp.o -c /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/shader.cpp
 
 CMakeFiles/SolarSystem.dir/src/shader.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SolarSystem.dir/src/shader.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/natalie/Desktop/PA7/src/shader.cpp > CMakeFiles/SolarSystem.dir/src/shader.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/shader.cpp > CMakeFiles/SolarSystem.dir/src/shader.cpp.i
 
 CMakeFiles/SolarSystem.dir/src/shader.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SolarSystem.dir/src/shader.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/natalie/Desktop/PA7/src/shader.cpp -o CMakeFiles/SolarSystem.dir/src/shader.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/shader.cpp -o CMakeFiles/SolarSystem.dir/src/shader.cpp.s
 
 CMakeFiles/SolarSystem.dir/src/window.cpp.o: CMakeFiles/SolarSystem.dir/flags.make
 CMakeFiles/SolarSystem.dir/src/window.cpp.o: ../src/window.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/natalie/Desktop/PA7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/SolarSystem.dir/src/window.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SolarSystem.dir/src/window.cpp.o -c /home/natalie/Desktop/PA7/src/window.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/SolarSystem.dir/src/window.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SolarSystem.dir/src/window.cpp.o -c /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/window.cpp
 
 CMakeFiles/SolarSystem.dir/src/window.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SolarSystem.dir/src/window.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/natalie/Desktop/PA7/src/window.cpp > CMakeFiles/SolarSystem.dir/src/window.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/window.cpp > CMakeFiles/SolarSystem.dir/src/window.cpp.i
 
 CMakeFiles/SolarSystem.dir/src/window.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SolarSystem.dir/src/window.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/natalie/Desktop/PA7/src/window.cpp -o CMakeFiles/SolarSystem.dir/src/window.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/src/window.cpp -o CMakeFiles/SolarSystem.dir/src/window.cpp.s
 
 # Object files for target SolarSystem
 SolarSystem_OBJECTS = \
@@ -281,7 +281,7 @@ SolarSystem: /usr/lib/x86_64-linux-gnu/libSDL2main.a
 SolarSystem: /usr/lib/x86_64-linux-gnu/libSDL2.so
 SolarSystem: /usr/local/lib/libMagick++-7.Q16HDRI.so
 SolarSystem: CMakeFiles/SolarSystem.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/natalie/Desktop/PA7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Linking CXX executable SolarSystem"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Linking CXX executable SolarSystem"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/SolarSystem.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -294,6 +294,6 @@ CMakeFiles/SolarSystem.dir/clean:
 .PHONY : CMakeFiles/SolarSystem.dir/clean
 
 CMakeFiles/SolarSystem.dir/depend:
-	cd /home/natalie/Desktop/PA7/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/natalie/Desktop/PA7 /home/natalie/Desktop/PA7 /home/natalie/Desktop/PA7/cmake-build-debug /home/natalie/Desktop/PA7/cmake-build-debug /home/natalie/Desktop/PA7/cmake-build-debug/CMakeFiles/SolarSystem.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7 /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7 /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/cmake-build-debug /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/cmake-build-debug /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/cmake-build-debug/CMakeFiles/SolarSystem.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/SolarSystem.dir/depend
 

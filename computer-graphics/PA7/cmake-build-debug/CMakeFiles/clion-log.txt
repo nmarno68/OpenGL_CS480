@@ -1,4 +1,4 @@
-/home/natalie/Downloads/clion-2018.2.2/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/natalie/Desktop/PA7
+/home/natalie/Downloads/clion-2018.2.2/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7
 -- The C compiler identification is GNU 7.3.0
 -- The CXX compiler identification is GNU 7.3.0
 -- Check for working C compiler: /usr/bin/cc
@@ -52,4 +52,4 @@ This warning is for project developers.  Use -Wno-dev to suppress it.
 -- Found ImageMagick: /usr/local/lib/libMagick++-7.Q16HDRI.so (found version "7.0.8-12") 
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/natalie/Desktop/PA7/cmake-build-debug
+-- Build files have been written to: /home/natalie/workspaces/cs480Arnold/computer-graphics/PA7/cmake-build-debug

@@ -7,17 +7,6 @@ set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")
 # The top level Makefile was generated from the following files:
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
-  "../CMakeLists.txt"
-  "../CMakeModules/FindAssimp.cmake"
-  "../CMakeModules/FindGLEW.cmake"
-  "../CMakeModules/FindGLM.cmake"
-  "../CMakeModules/FindImageMagick.cmake"
-  "../CMakeModules/FindSDL2.cmake"
-  "CMakeFiles/3.12.0/CMakeCCompiler.cmake"
-  "CMakeFiles/3.12.0/CMakeCXXCompiler.cmake"
-  "CMakeFiles/3.12.0/CMakeSystem.cmake"
-  "CMakeFiles/feature_tests.c"
-  "CMakeFiles/feature_tests.cxx"
   "/home/natalie/Downloads/clion-2018.2.2/bin/cmake/linux/share/cmake-3.12/Modules/CMakeCCompiler.cmake.in"
   "/home/natalie/Downloads/clion-2018.2.2/bin/cmake/linux/share/cmake-3.12/Modules/CMakeCCompilerABI.c"
   "/home/natalie/Downloads/clion-2018.2.2/bin/cmake/linux/share/cmake-3.12/Modules/CMakeCInformation.cmake"
@@ -114,6 +103,17 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/natalie/Downloads/clion-2018.2.2/bin/cmake/linux/share/cmake-3.12/Modules/Platform/Linux.cmake"
   "/home/natalie/Downloads/clion-2018.2.2/bin/cmake/linux/share/cmake-3.12/Modules/Platform/UnixPaths.cmake"
   "/home/natalie/Downloads/clion-2018.2.2/bin/cmake/linux/share/cmake-3.12/Modules/ProcessorCount.cmake"
+  "../CMakeLists.txt"
+  "../CMakeModules/FindAssimp.cmake"
+  "../CMakeModules/FindGLEW.cmake"
+  "../CMakeModules/FindGLM.cmake"
+  "../CMakeModules/FindImageMagick.cmake"
+  "../CMakeModules/FindSDL2.cmake"
+  "CMakeFiles/3.12.0/CMakeCCompiler.cmake"
+  "CMakeFiles/3.12.0/CMakeCXXCompiler.cmake"
+  "CMakeFiles/3.12.0/CMakeSystem.cmake"
+  "CMakeFiles/feature_tests.c"
+  "CMakeFiles/feature_tests.cxx"
   )
 
 # The corresponding makefile is:
