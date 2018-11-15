@@ -162,6 +162,22 @@ void Engine::Keyboard()
     m_newEvent = true;
 
     //Handling keyboard events
+    if(m_event.key.keysym.sym == SDLK_z)
+    {
+      m_graphics->m_flipper_left->flipping = true;
+    }
+    else if (m_event.key.keysym.sym == SDLK_m)
+    {
+      m_graphics->m_flipper_right->flipping = true;
+    }
+    else
+    {
+      m_graphics->m_flipper_right->flipping = false;
+      m_graphics->m_flipper_left->flipping = false;
+    }
+
+
+
     switch (m_event.key.keysym.sym) {
       case SDLK_ESCAPE:
         m_running = false;
@@ -177,34 +193,43 @@ void Engine::Keyboard()
           m_graphics->m_camera->enableMouse = 1;
         }
         break;
+				case SDLK_UP:
+					m_graphics->m_ball->m_rigidBody->applyForce(btVector3(.2, 0, 0), btVector3(0, 0, 0));
+					break;
+				case SDLK_LEFT:
+					m_graphics->m_ball->m_rigidBody->applyForce(btVector3(0, 0, -.2), btVector3(0, 0, 0));
+					break;
+				case SDLK_DOWN:
+					m_graphics->m_ball->m_rigidBody->applyForce(btVector3(-.2, 0, 0), btVector3(0, 0, 0));
+					break;
+				case SDLK_RIGHT:
+					m_graphics->m_ball->m_rigidBody->applyForce(btVector3(0, 0, .2), btVector3(0, 0, 0));
+					break;
 
-				case SDLK_w:
-					m_graphics->m_cube->m_rigidBody->applyForce(btVector3(.2, 0, 0), btVector3(0, 0, 0));
-					break;
-				case SDLK_a:
-					m_graphics->m_cube->m_rigidBody->applyForce(btVector3(0, 0, -.2), btVector3(0, 0, 0));
-					break;
-				case SDLK_s:
-					m_graphics->m_cube->m_rigidBody->applyForce(btVector3(-.2, 0, 0), btVector3(0, 0, 0));
-					break;
-				case SDLK_d:
-					m_graphics->m_cube->m_rigidBody->applyForce(btVector3(0, 0, .2), btVector3(0, 0, 0));
-					break;
 				case SDLK_SPACE:
-					m_graphics->m_cube->m_rigidBody->applyForce(btVector3(0, 1, 0), btVector3(0, 0, 0));
+					m_graphics->m_ball->m_rigidBody->applyForce(btVector3(0, 1, 0), btVector3(0, 0, 0));
 					break;
-      case SDLK_UP:
+
+      case SDLK_1:
+          m_graphics->m_ball->m_rigidBody->applyForce(btVector3(10, 0, 0), btVector3(0, 0, 0));
+          break;
+
+      case SDLK_w:
           m_graphics->m_camera->MoveForward();
           break;
-      case SDLK_LEFT:
+      case SDLK_a:
           m_graphics->m_camera->MoveLeft();
           break;
-      case SDLK_RIGHT:
+      case SDLK_d:
           m_graphics->m_camera->MoveRight();
           break;
-      case SDLK_DOWN:
+      case SDLK_s:
           m_graphics->m_camera->MoveBackward();
+          /*
+      case SDLK_SPACE:
+          m_graphics->m_camera->MoveUp();
           break;
+           */
 
     }
 }

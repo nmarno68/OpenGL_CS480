@@ -336,62 +336,101 @@ bool Graphics::Initialize(int width, int height)
 
   m_dynamicsWorld = new btDiscreteDynamicsWorld(m_dispatcher, m_broadphase, m_solver, m_collisionConfiguration);
 
-  m_dynamicsWorld->setGravity(btVector3(0, -.05, 0));
+  m_dynamicsWorld->setGravity(btVector3(-.05, -.05, 0));
 
 
 //Initializing objects
 // 1 -> plane, 2 -> sphere, 3 -> cylinder, 4 -> cube, 9 -> triangle mesh
+  //std::string filename, int shape, bool needsLoading, float s_x, float s_y, float s_z, int flipper);
 
-  m_boardy = new Object("PinballBoard.obj", 9, true, 1, 1, 1);
-  m_cyl = new Object("UglyCylinder.obj", 9, true, .3, .3, .3);
-  m_ball = new Object("UglySphere.obj", 2, true, 1, 1, 1);
-  m_cube = new Object("UglyCube.obj", 4, true, 1, 1, 1);
+  m_boardy = new Object("PinballBoard.obj", 9, true, 1, 1.5, 1, 0);
+  m_cyl = new Object("CylinderBumper.obj", 9, true, .2, .2, .2, 0);
+  m_ball = new Object("UglySphere.obj", 2, true, 1, 1, 1, 0);
+  m_cube = new Object("CylinderBumper.obj", 9, true, .2, .2, .2, false);
+  m_backsplash = new Object("PinballBacksplash.obj", -1, true, 1.9, 2, 1.9, 0);
+  m_bumper = new Object("CylinderBumper.obj", 9, true, .2, .2, .2, 0);
+
+  m_triangle_left = new Object("triangleBumpers.obj", 9, true, .3, .7, .3, 0);
+  m_triangle_right = new Object("triangleBumpers.obj", 9, true, .3, .7, .3,0);
+
+  m_flipper_left = new Object("flippers.obj", 9, true, .15, .25, .15, 1);
+  m_flipper_right = new Object("flippers.obj", 9, true, .15, .25, .15, 2);
+
  // m_leftWall = new Object("none", 5, false);
  // m_rightWall = new Object("none", 6, false);
  // m_topWall = new Object("none", 7, false);
- // m_bottomWall = new Object("none", 8, false);
+ m_bottomWall = new Object("none", 8, false, 1, 1, 1, 0);
 
 
-  //SetValues scale_x, scale_y, scale_z, specular_brightness, specular_size (only on rendered objects)
+  //specular_brightness, specular_size (only on rendered objects)
   m_boardy->SetValues(.5, 150);
-  m_cyl->SetValues(.7, 32);
+  m_cyl->SetValues(.7, 150);
   m_ball->SetValues(.7, 150);
-  m_cube->SetValues(.7, 300);
+  m_cube->SetValues(.7, 150);
+  m_backsplash->SetValues(.5, 150);
+  m_bumper->SetValues(.7, 150);
+
+  m_triangle_left->SetValues(.7, 150);
+  m_triangle_right->SetValues(.7, 150);
+
+  m_flipper_left->SetValues(.7, 150);
+  m_flipper_right->SetValues(.7, 150);
+
 
 //Initializing object physics
 
   //inertia vector
 
-  //SetBullet - mass, inertia, kinObject , physics, initial_translate
+  //SetBullet - mass, inertia, kinObject , physics, initial_translate, initial rotate, restitution, friction
   glm::vec3 v(0, 0, 0);
-  m_boardy->SetBullet(0, v, true, true, glm::vec3(0, 0, 0));
+  m_boardy->SetBullet(0, v, true, true, glm::vec3(0, 0, 0), 0, 0, 1);
 
   v = glm::vec3(0, 0, 0);
-  m_cyl->SetBullet(0, v, true, true, glm::vec3(0, 0, 0));
+  m_cyl->SetBullet(0, v, true, true, glm::vec3(1.0, .25, 0), 0, 2.5, 0);
 
   v = glm::vec3(0, 0, 0);
-  m_ball->SetBullet(1, v, false, true, glm::vec3(0, .5, .75));
+  m_ball->SetBullet(1, v, false, true, glm::vec3(0, .5, .75), 0, .5, 1);
 
   v = glm::vec3(0, 0, 0);
-  m_cube->SetBullet(1, v, false, true, glm::vec3(0, .5, -.75));
+  m_cube->SetBullet(0, v, true, true, glm::vec3(0, .25, -.75), 0, 2.5, 0);
+
+  m_bumper->SetBullet(0, v, true, true, glm::vec3(-.25, .25, .4), 0, 2.5, 0);
+
+  m_triangle_right->SetBullet(0, v, true, true, glm::vec3(-2.1, 0.2, .4), -M_PI / 4, 2, 0);
+  m_triangle_left->SetBullet(0, v, true, true, glm::vec3(-2.1, 0.2, -1.3), M_PI * 2.0, 2, 0);
+
+  m_backsplash->SetBullet(0, v, true, false, glm::vec3(5.5, 3.0, -0.15), M_PI, 0, 0);
+
+  m_flipper_right->SetBullet(0, v, true, true, glm::vec3(-2.95, 0.11, .32), - M_PI * 2.0 , 0, 3);
+  m_flipper_left->SetBullet(0, v, true, true, glm::vec3(-2.95, 0.11, -1.2), -M_PI / 20, 0, 3);
+
 
 	//m_leftWall->SetBullet(1, v, true, true, glm::vec3(0, 0, 1.05));
 	//m_rightWall->SetBullet(1, v, true, true, glm::vec3(0, 0, -1.05));
 	//m_topWall->SetBullet(1, v, true, true, glm::vec3(2.05, 0, 0));
-	//m_bottomWall->SetBullet(1, v, true, true, glm::vec3(-2.05, 0, 0));
+	m_bottomWall->SetBullet(0, v, true, true, glm::vec3(0.0, .35, 0), 0, 0, 0);
 
   short mask = 0b11111111;
 
   //Add to dynamics world
+  m_dynamicsWorld->addRigidBody(m_bottomWall->GetRigidBody(), mask, mask);
+
   m_dynamicsWorld->addRigidBody(m_boardy->GetRigidBody(), mask, mask);
   m_dynamicsWorld->addRigidBody(m_cyl->GetRigidBody(), mask, mask);
   m_dynamicsWorld->addRigidBody(m_ball->GetRigidBody(), mask, mask);
   m_dynamicsWorld->addRigidBody(m_cube->GetRigidBody(), mask, mask);
+  m_dynamicsWorld->addRigidBody(m_bumper->GetRigidBody(), mask, mask);
+
+  m_dynamicsWorld->addRigidBody(m_triangle_right->GetRigidBody(), mask, mask);
+  m_dynamicsWorld->addRigidBody(m_triangle_left->GetRigidBody(), mask, mask);
+
+  m_dynamicsWorld->addRigidBody(m_flipper_right->GetRigidBody(), mask, mask);
+  m_dynamicsWorld->addRigidBody(m_flipper_left->GetRigidBody(), mask, mask);
 
 	//m_dynamicsWorld->addRigidBody(m_leftWall->GetRigidBody(), mask, mask);
 	//m_dynamicsWorld->addRigidBody(m_rightWall->GetRigidBody(), mask, mask);
 	//m_dynamicsWorld->addRigidBody(m_topWall->GetRigidBody(), mask, mask);
-	//m_dynamicsWorld->addRigidBody(m_bottomWall->GetRigidBody(), mask, mask);
+
 
 
 
@@ -416,7 +455,17 @@ void Graphics::Update(unsigned int dt)
   m_boardy->Update(dt, glm::mat4(1.0f), 1);
   m_cyl->Update(dt, glm::mat4(1.0f), 1);
   m_ball->Update(dt, glm::mat4(1.0f), .125);
-  m_cube->Update(dt, glm::mat4(1.0f), .125);
+  m_cube->Update(dt, glm::mat4(1.0f), 1);
+  m_bumper->Update(dt, glm::mat4(1.0f), 1);
+
+  m_triangle_left->Update(dt, glm::mat4(1.0f), 1);
+  m_triangle_right->Update(dt, glm::mat4(1.0f), 1);
+
+  m_flipper_right->Update(dt, glm::mat4(1.0f), 1);
+  m_flipper_left->Update(dt, glm::mat4(1.0f), 1);
+
+  m_backsplash->Update(dt, glm::mat4(1.0f), 1);
+
 }
 
 void Graphics::Render()
@@ -432,10 +481,6 @@ void Graphics::Render()
     //Send in bunmper 1 light source
     glUniform3fv(m_bumper1, 1, glm::value_ptr(b_1->pos));     //Position
     glUniform3fv(m_bumper1_c, 1, glm::value_ptr(b_1->color)); //Color
-
-
-
-
 
 
     //Send in ambient color
@@ -489,6 +534,37 @@ void Graphics::Render()
     glUniform1f(m_specular_brightness, (GLfloat) m_cube->specular_brightness);
     glUniform1i(m_specular_size, (GLint) m_cube->specular_size);
     m_cube->Render();
+
+    glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_bumper->GetModel()));
+    glUniform1f(m_specular_brightness, (GLfloat) m_bumper->specular_brightness);
+    glUniform1i(m_specular_size, (GLint) m_bumper->specular_size);
+    m_bumper->Render();
+
+    glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_backsplash->GetModel()));
+    glUniform1f(m_specular_brightness, (GLfloat) m_backsplash->specular_brightness);
+    glUniform1i(m_specular_size, (GLint) m_backsplash->specular_size);
+    m_backsplash->Render();
+
+    glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_triangle_left->GetModel()));
+    glUniform1f(m_specular_brightness, (GLfloat) m_triangle_left->specular_brightness);
+    glUniform1i(m_specular_size, (GLint) m_triangle_left->specular_size);
+    m_triangle_left->Render();
+
+    glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_triangle_right->GetModel()));
+    glUniform1f(m_specular_brightness, (GLfloat) m_triangle_right->specular_brightness);
+    glUniform1i(m_specular_size, (GLint) m_triangle_right->specular_size);
+    m_triangle_right->Render();
+
+    glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_flipper_right->GetModel()));
+    glUniform1f(m_specular_brightness, (GLfloat) m_flipper_right->specular_brightness);
+    glUniform1i(m_specular_size, (GLint) m_flipper_right->specular_size);
+    m_flipper_right->Render();
+
+    glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_flipper_left->GetModel()));
+    glUniform1f(m_specular_brightness, (GLfloat) m_flipper_left->specular_brightness);
+    glUniform1i(m_specular_size, (GLint) m_flipper_left->specular_size);
+    m_flipper_left->Render();
+
   }
 
 
@@ -548,6 +624,26 @@ void Graphics::Render()
     glUniform1f(m_gspecular_brightness, (GLfloat) m_cube->specular_brightness);
     glUniform1i(m_gspecular_size, (GLint) m_cube->specular_size);
     m_cube->Render();
+
+    glUniformMatrix4fv(m_gmodelMatrix, 1, GL_FALSE, glm::value_ptr(m_bumper->GetModel()));
+    glUniform1f(m_gspecular_brightness, (GLfloat) m_bumper->specular_brightness);
+    glUniform1i(m_gspecular_size, (GLint) m_bumper->specular_size);
+    m_bumper->Render();
+
+    glUniformMatrix4fv(m_gmodelMatrix, 1, GL_FALSE, glm::value_ptr(m_backsplash->GetModel()));
+    glUniform1f(m_gspecular_brightness, (GLfloat) m_backsplash->specular_brightness);
+    glUniform1i(m_gspecular_size, (GLint) m_backsplash->specular_size);
+    m_backsplash->Render();
+
+    glUniformMatrix4fv(m_gmodelMatrix, 1, GL_FALSE, glm::value_ptr(m_flipper_right->GetModel()));
+    glUniform1f(m_gspecular_brightness, (GLfloat) m_flipper_right->specular_brightness);
+    glUniform1i(m_gspecular_size, (GLint) m_flipper_right->specular_size);
+    m_flipper_right->Render();
+
+    glUniformMatrix4fv(m_gmodelMatrix, 1, GL_FALSE, glm::value_ptr(m_flipper_left->GetModel()));
+    glUniform1f(m_gspecular_brightness, (GLfloat) m_flipper_left->specular_brightness);
+    glUniform1i(m_gspecular_size, (GLint) m_flipper_left->specular_size);
+    m_flipper_left->Render();
 
   }
 

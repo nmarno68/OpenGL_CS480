@@ -8,7 +8,7 @@
 class Object
 {
   public:
-    Object(std::string filename, int shape, bool needsLoading, float s_x, float s_y, float s_z);
+    Object(std::string filename, int shape, bool needsLoading, float s_x, float s_y, float s_z, int flip);
     ~Object();
     void Update(unsigned int dt, glm::mat4 origin, float scale);
     void Render();
@@ -27,13 +27,15 @@ class Object
     glm::mat4 GetLocation();
     glm::vec3 GetLocationVector();
 
-    void SetBullet(int m, glm::vec3 inert, bool kinObject, bool phys, glm::vec3 start);
+    void SetBullet(int m, glm::vec3 inert, bool kinObject, bool phys, glm::vec3 start, double rotate, float restitution, float friction);
 
     bool m_physics;
     int m_shape;
     float specular_brightness;
     int specular_size;
     bool t_mesh;
+    int flipper;
+    bool flipping;
 
     btRigidBody* m_rigidBody;
 
@@ -63,6 +65,8 @@ class Object
     glm::vec3 initial_translate;
 
     float scale_x, scale_y, scale_z;
+    double m_rotate;
+    glm::vec3 m_translate;
 };
 
 #endif /* OBJECT_H */

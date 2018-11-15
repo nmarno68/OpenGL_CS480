@@ -1,10 +1,13 @@
 #include "object.h"
-Object::Object(std::string filename, int shape, bool needsLoading, float s_x, float s_y, float s_z)
+Object::Object(std::string filename, int shape, bool needsLoading, float s_x, float s_y, float s_z, int flip)
 {
 
   scale_x = s_x;
   scale_y = s_y;
   scale_z = s_z;
+
+  flipper = flip;
+  flipping = false;
 
 	if(needsLoading)
 	{
@@ -20,12 +23,15 @@ Object::Object(std::string filename, int shape, bool needsLoading, float s_x, fl
 	 //Create our importer which reads the file for us, thank god
 		Assimp::Importer importer;
 
+
 		//Reading the file in one line, bless
 		m_scene = importer.ReadFile(m_objDirectory, aiProcess_Triangulate);
 
 		//This is the same process of constructing the vertices and indices that we did when we
 		//were writing our own object loader
+
 		InitMesh();
+
 	}
 
   m_shape = shape;
@@ -42,7 +48,7 @@ Object::Object(std::string filename, int shape, bool needsLoading, float s_x, fl
 			m_collisionShape = new btCylinderShape(btVector3(.24, .24, .24));
 			break;
 		case 4:
-			m_collisionShape = new btBoxShape(btVector3(.13, .13, .13));
+			m_collisionShape = new btBoxShape(btVector3(.13, .13, .4));
 			break;
 		case 5:
 			m_collisionShape = new btStaticPlaneShape(btVector3(0, 0, -1), 0);
@@ -54,7 +60,7 @@ Object::Object(std::string filename, int shape, bool needsLoading, float s_x, fl
 			m_collisionShape = new btStaticPlaneShape(btVector3(-1, 0, 0), 0);
 			break;
 		case 8:
-			m_collisionShape = new btStaticPlaneShape(btVector3(1, 0, 0), 0);
+			m_collisionShape = new btStaticPlaneShape(btVector3(0, -1, 0), 0);
 			break;
 	  case 9:
       m_collisionShape = new btBvhTriangleMeshShape(m_btTriangleObject, true);
@@ -62,6 +68,7 @@ Object::Object(std::string filename, int shape, bool needsLoading, float s_x, fl
 		default:
 			break;
 	}
+
 }
 
 Object::~Object()
@@ -75,15 +82,58 @@ void Object::Update(unsigned int dt, glm::mat4 origin, float scale)
 {
    // model = glm::translate(origin, glm::vec3(0, 0, 0));
     //model = glm::scale(model, glm::vec3(.5, .5, .5));
-
+    if(m_physics) {
       btTransform trans;
       btScalar m[16];
       m_rigidBody->getMotionState()->getWorldTransform(trans);
+
+      if(flipper == 1) //left flipper
+      {
+          if(flipping)
+          {
+            //if max flippage has not been reached
+            if(trans.getRotation().getY() < 3)
+            {
+              btQuaternion newQuat = trans.getRotation() + btQuaternion(0.0, .2, 0.0, 0);
+              trans.setRotation(newQuat);
+              m_rigidBody->getMotionState()->setWorldTransform(trans);
+            }
+
+          }
+          else
+          {
+            //if min flippage has not been reached
+
+
+          }
+
+      }
+      else if(flipper == 2) //right flipper
+      {
+          if(flipping)
+          {
+            //if max flippage has not been reached
+            btQuaternion newQuat = trans.getRotation() + btQuaternion(0.0, .2, 0.0, 0);
+            trans.setRotation(newQuat);
+            m_rigidBody->getMotionState()->setWorldTransform(trans);
+
+          }
+          else
+          {
+            //if min flippage has not been reached
+
+          }
+      }
       trans.getOpenGLMatrix(m);
       model = glm::make_mat4(m);
 
       model = glm::scale(model, glm::vec3(scale, scale, scale));
+    }
+    else{
 
+      model = glm::translate(origin, m_translate);
+      model = glm::rotate(model, (float) m_rotate, glm::vec3(0.0, 1.0, 0.0));
+    }
 
 
 //  model = glm::rotate(model, (rotate_angle), glm::vec3(x_axis, y_axis, z_axis)); //This axis needs to be dependent on tilt
@@ -132,7 +182,6 @@ void Object::InitMesh()
 
   for(int j = 0; j < m_scene->mNumMeshes; j++)
   {
-
     std::vector<Vertex> tempVert;
     std::vector<unsigned int> tempInd;
     std::vector<GLuint> temptexture;
@@ -240,18 +289,21 @@ void Object::SetValues(float specB, int specS )
   specular_size = specS;
 }
 
-void Object::SetBullet(int m, glm::vec3 inert, bool kinObject, bool phys, glm::vec3 start)
+void Object::SetBullet(int m, glm::vec3 inert, bool kinObject, bool phys, glm::vec3 start, double rotate, float restitution, float friction)
 {
-
+    m_translate = start;
+    m_rotate = rotate;
     m_physics = phys;
 
     if(m_physics) {
       m_shapeMotionState = new btDefaultMotionState(
-              btTransform(btQuaternion(0, 0, 0, 1), btVector3(start.x, start.y, start.z)));
+              btTransform(btQuaternion(0, rotate, 0, 1), btVector3(start.x, start.y, start.z)));
       btScalar mass(m);
       btVector3 inertia(inert.x, inert.y, inert.z);
       m_collisionShape->calculateLocalInertia(mass, inertia);
       btRigidBody::btRigidBodyConstructionInfo shapeRigidBodyCI(mass, m_shapeMotionState, m_collisionShape, inertia);
+      shapeRigidBodyCI.m_restitution = restitution;
+      shapeRigidBodyCI.m_friction = friction;
       m_rigidBody = new btRigidBody(shapeRigidBodyCI);
 
       if (kinObject) {

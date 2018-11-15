@@ -27,7 +27,7 @@ void main()
 {
 
     //lightPosition - we should be passing this in as a uniform but we'll get to that later
-    vec3 lightPos = vec3(0.0, 2.0, 0.0);
+    vec3 lightPos = vec3(0.0, 10.0, 0.0);
 
     // ambient
     vec3 ambient = ambientStrength * ambient_color;   //scaling the light color with ambient strength
@@ -82,7 +82,6 @@ void main()
     {
         spot = 1.0;
     }
-
 
     //Finalizing the color
     vec4 textcol = texture2D(gSampler, texture);                        //retrieving the object color from the texture sampler

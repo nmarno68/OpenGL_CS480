@@ -19,7 +19,7 @@ bool Camera::Initialize(int w, int h)
 
   cameraSpeed = .5;
 
-  cameraPosition = glm::vec3(-6.0, 6.0, 0.0);
+  cameraPosition = glm::vec3(-8.0, 10.0, 0.0);
   cameraTarget = glm::vec3(0.0, 0.0, 0.0);
   cameraUp = glm::vec3(0.0, 1.0, 0.0);
   cameraFront = glm::vec3(1.0, -1.0, 0.0);
@@ -148,7 +148,7 @@ void Camera::Reset()
   cameraPosition = glm::vec3(0.0, 0.0, 35.0);
   cameraTarget = glm::vec3(0.0, 0.0, 0.0);
   cameraUp = glm::vec3(0.0, 1.0, 0.0);
-  cameraFront = glm::vec3(0.0, 0.0, -1.0);
+  cameraFront = glm::vec3(1.0, -1.0, 0.0);
   firstMouseMovement = true;
 
   view = glm::lookAt( cameraPosition, cameraPosition + cameraFront , cameraUp);

@@ -26,10 +26,22 @@ class Graphics
     Object* m_cyl;
     Object* m_ball;
     Object* m_cube;
+
+    Object* m_backsplash;
+    Object* m_bumper;
+
+    Object* m_triangle_left;
+    Object* m_triangle_right;
+
+    Object* m_flipper_left;
+    Object* m_flipper_right;
+  /*
 	Object* m_leftWall;
 	Object* m_rightWall;
 	Object* m_topWall;
+   */
 	Object* m_bottomWall;
+
 
   float ambientStrength, spotlight_brightness, spotlight_size;
   bool spot, hard_edge, phong;
