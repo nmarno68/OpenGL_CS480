@@ -50,6 +50,8 @@ bool Graphics::Initialize(int width, int height)
   //initializing camera view flags
   scaled_view = false;
   top_view = false;
+  numBallsLeft = 3;
+  m_ballInPlay = false;
 
 
 
@@ -596,6 +598,18 @@ bool Graphics::Initialize(int width, int height)
 
 void Graphics::Update(unsigned int dt)
 {
+  if(!numBallsLeft)
+  {
+    EndGame();
+  }
+
+  if(IsBallOver())
+  {
+    m_ball->ResetBall();
+    m_ballInPlay = false;
+    numBallsLeft--;
+  }
+
   m_dynamicsWorld->stepSimulation(dt, 10);
 
   //call object updates and camera updates
@@ -903,4 +917,17 @@ std::string Graphics::ErrorString(GLenum error)
   }
 }
 
+bool Graphics::IsBallOver()
+{
+  glm::vec3 ballLocation = m_ball->GetLocationVector();
+  if(ballLocation.x < -3.68 and ballLocation.z < .32 and ballLocation.z > -1.2)
+    return true;
 
+  return false;
+}
+
+void Graphics::EndGame()
+{
+  if(ImGui::Button("Replay"))
+    numBallsLeft = 3;
+}

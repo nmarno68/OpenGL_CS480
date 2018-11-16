@@ -41,7 +41,6 @@ class Engine
     long long m_currentTimeMillis;
     bool m_running;
     float m_plungerForce;
-    bool m_ballInPlay;
 
     //Menu flags
     int submenu;

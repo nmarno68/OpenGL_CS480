@@ -8,7 +8,6 @@ Engine::Engine(string name, int width, int height)
   m_WINDOW_WIDTH = width;
   m_WINDOW_HEIGHT = height;
   m_FULLSCREEN = false;
-  m_ballInPlay = false;
   m_plungerForce = 6.31;
 }
 
@@ -18,7 +17,6 @@ Engine::Engine(string name)
   m_WINDOW_HEIGHT = 0;
   m_WINDOW_WIDTH = 0;
   m_FULLSCREEN = true;
-  m_ballInPlay = false;
   m_plungerForce = 6.306;
 }
 
@@ -141,7 +139,7 @@ void Engine::Run()
       if(ImGui::Button("Reset Ball"))
       {
         m_graphics->m_ball->ResetBall();
-        m_ballInPlay = false;
+        m_graphics->m_ballInPlay = false;
       }
       ImGui::End();
 
@@ -243,7 +241,7 @@ void Engine::Keyboard()
 					m_graphics->m_ball->m_rigidBody->applyForce(btVector3(0, 0, -.2), btVector3(0, 0, 0));
 					break;*/
 				case SDLK_DOWN:
-          if(!m_ballInPlay)
+          if(!m_graphics->m_ballInPlay)
           {
             m_plungerForce += .1;
             if(m_plungerForce > 15.0f)
@@ -299,10 +297,10 @@ void Engine::Keyboard()
         m_graphics->m_flipper_right->flipping = false;
         break;
       case SDLK_DOWN:
-        if(!m_ballInPlay) {
+        if(!m_graphics->m_ballInPlay) {
           m_graphics->m_ball->m_rigidBody->applyForce(btVector3(m_plungerForce, 0, 0), btVector3(0, 0, 0));
           m_plungerForce = 6.31f;
-          m_ballInPlay = true;
+          m_graphics->m_ballInPlay = true;
         }
       default:
         break;
