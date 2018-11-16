@@ -181,6 +181,7 @@ void Engine::Run()
       ImGui::End();
 
 
+      //Reseting or ending the game
       if(!m_graphics->numBallsLeft)
       {
         ImGui::Begin("Play Again?");
@@ -201,11 +202,6 @@ void Engine::Run()
         ImGui::End();
       }
     }
-
-
-
-
-
 
 
     // Update and render the graphics
@@ -249,6 +245,7 @@ void Engine::Keyboard()
         m_running = false;
         break;
 
+        //Enable FPS mode
       case SDLK_e:
         if (m_graphics->m_camera->enableMouse) {
           SDL_SetRelativeMouseMode((SDL_bool) 0);
@@ -265,6 +262,9 @@ void Engine::Keyboard()
 				case SDLK_LEFT:
 					m_graphics->m_ball->m_rigidBody->applyForce(btVector3(0, 0, -.2), btVector3(0, 0, 0));
 					break;*/
+				//
+
+				//Increasing force of the plunger over time
 				case SDLK_DOWN:
           if(!m_graphics->m_ballInPlay)
           {
@@ -281,9 +281,6 @@ void Engine::Keyboard()
 					m_graphics->m_ball->m_rigidBody->applyForce(btVector3(0, 1, 0), btVector3(0, 0, 0));
 					break;
 */
-      case SDLK_1:
-          m_graphics->m_ball->m_rigidBody->applyForce(btVector3(10, 0, 0), btVector3(0, 0, 0));
-          break;
 
       case SDLK_w:
           m_graphics->m_camera->MoveForward();

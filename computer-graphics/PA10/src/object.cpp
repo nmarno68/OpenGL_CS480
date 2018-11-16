@@ -82,11 +82,14 @@ void Object::Update(unsigned int dt, glm::mat4 origin, float scale)
 {
    // model = glm::translate(origin, glm::vec3(0, 0, 0));
     //model = glm::scale(model, glm::vec3(.5, .5, .5));
+
+    //Physics objects update
     if(m_physics) {
       btTransform trans;
       btScalar m[16];
       m_rigidBody->getMotionState()->getWorldTransform(trans);
 
+      //flipping the flippers
       if(flipper == 1) //left flipper
       {
           if(flipping)
@@ -143,11 +146,15 @@ void Object::Update(unsigned int dt, glm::mat4 origin, float scale)
             }
           }
         }
+
+        //rest of physics object update
       trans.getOpenGLMatrix(m);
       model = glm::make_mat4(m);
 
       model = glm::scale(model, glm::vec3(scale, scale, scale));
     }
+
+    //non physics object update
     else{
 
       model = glm::translate(origin, m_translate);
@@ -158,6 +165,7 @@ void Object::Update(unsigned int dt, glm::mat4 origin, float scale)
 //  model = glm::rotate(model, (rotate_angle), glm::vec3(x_axis, y_axis, z_axis)); //This axis needs to be dependent on tilt
 }
 
+//set ball back to start position
 void Object::ResetBall()
 {
   btTransform trans;
@@ -218,7 +226,7 @@ void Object::InitMesh()
       const aiVector3D *pNormal = m_scene->mMeshes[j]->HasNormals() ? &(m_scene->mMeshes[j]->mNormals[i]) : &Zero3D;
       const aiVector3D *pTexCoord = m_scene->mMeshes[j]->HasTextureCoords(0) ? &(m_scene->mMeshes[j]->mTextureCoords[0][i]) : &Zero3D;
 
-      Vertex v(glm::vec3(pPos->x * scale_x, pPos->y * scale_y, pPos->z * scale_z),
+      Vertex v(glm::vec3(pPos->x * scale_x, pPos->y * scale_y, pPos->z * scale_z), //scaling the vertices directly for the bttriangle meshes
                glm::vec2(pTexCoord->x, -pTexCoord->y),
                glm::vec3(pNormal->x, pNormal->y, pNormal->z));
 
@@ -314,6 +322,7 @@ void Object::SetValues(float specB, int specS )
   specular_size = specS;
 }
 
+//Bullet initializations
 void Object::SetBullet(int m, glm::vec3 inert, bool kinObject, bool phys, glm::vec3 start, double rotate, float restitution, float friction)
 {
     m_translate = start;

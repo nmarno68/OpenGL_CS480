@@ -50,6 +50,9 @@ bool Graphics::Initialize(int width, int height)
   //initializing camera view flags
   scaled_view = false;
   top_view = false;
+
+  //Game initializations
+  m_points = 0;
   numBallsLeft = 3;
   m_ballInPlay = false;
 
@@ -477,9 +480,11 @@ bool Graphics::Initialize(int width, int height)
   m_dynamicsWorld->setGravity(btVector3(-.05, -.05, 0));
 
 
-//Initializing objects
-// 1 -> plane, 2 -> sphere, 3 -> cylinder, 4 -> cube, 9 -> triangle mesh
-  //std::string filename, int shape, bool needsLoading, float s_x, float s_y, float s_z, int flipper);
+  //Initializing objects
+  // int shape: 1 -> plane, 2 -> sphere, 3 -> cylinder, 4 -> cube, 9 -> triangle mesh
+  //std::string filename, int shape, bool needsLoading, float s_x, float s_y, float s_z, int flipper)
+  //filename, what shape the bullet primitive is or triangle meshes, whether or not there is an object file to load, scaling variables, whether or not
+  //the object is a flipper (0->not a flipper, 1-left flipper, 2-right flipper
 
   m_boardy = new Object("PinballBoard.obj", 9, true, 1, 1.5, 1, 0);
   m_cyl = new Object("CylinderBumper.obj", 9, true, .2, .2, .2, 0);
@@ -599,15 +604,15 @@ bool Graphics::Initialize(int width, int height)
 void Graphics::Update(unsigned int dt)
 {
 
-  if(IsBallOver())
+  if(IsBallOver())  //Whether or not the ball went past the flippers
   {
     m_ball->ResetBall();
     m_ballInPlay = false;
     numBallsLeft--;
   }
 
-  if(BallHitsBumper1() or BallHitsBumper2() or BallHitsBumper3())
-  {
+  if(BallHitsBumper1() or BallHitsBumper2() or BallHitsBumper3()) //whether or not the ball hit the bumpers in order to
+  {                                                               //add points and change bumper color
     m_points += 50;
   }
 
@@ -647,9 +652,11 @@ void Graphics::Render()
     glUniform3fv(m_bumper1, 1, glm::value_ptr(b_1->pos));     //Position
     glUniform3fv(m_bumper1_c, 1, glm::value_ptr(b_1->color)); //Color
 
+    //Send in beumper 2 light source
     glUniform3fv(m_bumper2, 1, glm::value_ptr(b_2->pos));     //Position
     glUniform3fv(m_bumper2_c, 1, glm::value_ptr(b_2->color)); //Color
 
+    //Send in bumper3 light source
     glUniform3fv(m_bumper3, 1, glm::value_ptr(b_3->pos));     //Position
     glUniform3fv(m_bumper3_c, 1, glm::value_ptr(b_3->color)); //Color
 
@@ -684,7 +691,7 @@ void Graphics::Render()
     glUniformMatrix4fv(m_viewMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetView()));
 
 
-    //send in model matrices and render the objects
+    //send in model matrices, specular size and specular brightness and render the objects
     glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_boardy->GetModel()));
     glUniform1f(m_specular_brightness, (GLfloat) m_boardy->specular_brightness);
     glUniform1i(m_specular_size, (GLint) m_boardy->specular_size);
@@ -736,6 +743,7 @@ void Graphics::Render()
     glUniform1i(m_specular_size, (GLint) m_plunger->specular_size);
     m_plunger->Render();
 
+    //Only wanted part of the backsplash and engage button to be drawn with lighting
     glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_backsplash->GetModel()));
     glUniform1f(m_specular_brightness, (GLfloat) m_backsplash->specular_brightness);
     glUniform1i(m_specular_size, (GLint) m_backsplash->specular_size);
@@ -746,6 +754,7 @@ void Graphics::Render()
     glUniform1i(m_specular_size, (GLint) m_engage->specular_size);
     m_engage->meshes[0].Draw();
 
+    //drawing the light sources with the regular texture shader
     m_texture->Enable();
     glUniformMatrix4fv(m_tprojectionMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetProjection()));
     glUniformMatrix4fv(m_tviewMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetView()));
@@ -763,13 +772,15 @@ void Graphics::Render()
   {
     m_gourand->Enable();
 
-
+    //Send in bumper 1 light source
     glUniform3fv(m_gbumper1, 1, glm::value_ptr(b_1->pos));     //Position
     glUniform3fv(m_gbumper1_c, 1, glm::value_ptr(b_1->color)); //Color
 
+    //Send in bumper 2 light source
     glUniform3fv(m_gbumper2, 1, glm::value_ptr(b_2->pos));     //Position
     glUniform3fv(m_gbumper2_c, 1, glm::value_ptr(b_2->color)); //Color
 
+    //Send in bumper 3 light source
     glUniform3fv(m_gbumper3, 1, glm::value_ptr(b_3->pos));     //Position
     glUniform3fv(m_gbumper3_c, 1, glm::value_ptr(b_3->color)); //Color
 
@@ -804,7 +815,7 @@ void Graphics::Render()
     glUniformMatrix4fv(m_gviewMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetView()));
 
 
-    //send in model matrices and render the objects
+    //send in model matrices, specular size and specular brightness and render the objects
     glUniformMatrix4fv(m_gmodelMatrix, 1, GL_FALSE, glm::value_ptr(m_boardy->GetModel()));
     glUniform1f(m_gspecular_brightness, (GLfloat) m_boardy->specular_brightness);
     glUniform1i(m_gspecular_size, (GLint) m_boardy->specular_size);
@@ -919,6 +930,7 @@ std::string Graphics::ErrorString(GLenum error)
   }
 }
 
+//check if the ball went past the flippers
 bool Graphics::IsBallOver()
 {
   glm::vec3 ballLocation = m_ball->GetLocationVector();
@@ -928,6 +940,7 @@ bool Graphics::IsBallOver()
   return false;
 }
 
+//Check if the ball hit bumper 1, if so change the bumpers color
 bool Graphics::BallHitsBumper1()
 {
   glm::vec3 ballLocation = m_ball->GetLocationVector();
@@ -951,6 +964,7 @@ bool Graphics::BallHitsBumper1()
   return false;
 }
 
+//Check if the ball hit bumper 2, if so change the bumpers color
 bool Graphics::BallHitsBumper2()
 {
   glm::vec3 ballLocation = m_ball->GetLocationVector();
@@ -974,6 +988,7 @@ bool Graphics::BallHitsBumper2()
   return false;
 }
 
+//Check if the ball hit bumper 3, if so change the bumpers color
 bool Graphics::BallHitsBumper3()
 {
   glm::vec3 ballLocation = m_ball->GetLocationVector();
