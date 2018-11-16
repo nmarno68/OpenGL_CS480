@@ -1,4 +1,4 @@
-# PA9: Lighting
+# PA10: Pinball
 
 # Group Information
 Our group is called Tessellation and the members are Natalie Arnold and Terra Williams.  The source code for the project is found here, in Natalie's repository.
