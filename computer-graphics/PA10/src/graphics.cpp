@@ -493,7 +493,7 @@ bool Graphics::Initialize(int width, int height)
   m_flipper_right = new Object("flipper2.obj", 9, true, .15, .25, .15, 2);
 
   m_engage = new Object("Button.obj", -1, true, .2, .2, .2, 0);
-  m_plunger = new Object("plunger.obj", -1, true, .2, .2, .2, 0);
+  m_plunger = new Object("plunger.obj", -1, true, .1, .2, .2, 0);
 
    // m_leftWall = new Object("none", 5, false);
    // m_rightWall = new Object("none", 6, false);
@@ -545,7 +545,7 @@ bool Graphics::Initialize(int width, int height)
   m_engage->SetBullet(0, v, true, false, glm::vec3(-3.6, 1.0, 1.2), 0, 0, 0);
 
 
-  m_plunger->SetBullet(0, v, true, false, glm::vec3(-5.0, .75, 2.0), 0, 0, 0);
+  m_plunger->SetBullet(0, v, true, false, glm::vec3(-4.4, .65, 2.0), 0, 0, 0);
 
 
 

@@ -1,4 +1,4 @@
-# Blender MTL File: 'None'
+# Blender MTL File: 'Plunger.blend'
 # Material Count: 2
 
 newmtl None
@@ -8,7 +8,7 @@ Kd 0.8 0.8 0.8
 Ks 0.8 0.8 0.8
 d 1
 illum 2
-map_Kd StarrySky.jpeg
+map_Kd Grey.jpg
 
 newmtl None_metalBall.jpg
 Ns 0
