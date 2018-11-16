@@ -175,6 +175,26 @@ void Engine::Run()
 
       ImGui::End();
 
+      ImGui::Begin("Lives");
+      ImGui::Text("%d", m_graphics->numBallsLeft);
+      ImGui::End();
+
+
+      if(!m_graphics->numBallsLeft)
+      {
+        ImGui::Begin("Play Again?");
+        ImGui::SameLine(50);
+        if(ImGui::Button("Replay"))
+        {
+          m_graphics->numBallsLeft = 3;
+        }
+        ImGui::SameLine(200);
+        if(ImGui::Button("Exit"))
+        {
+          m_running = false;
+        }
+        ImGui::End();
+      }
     }
 
 

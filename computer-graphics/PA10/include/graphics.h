@@ -18,7 +18,7 @@ class Graphics
     void Update(unsigned int dt);
     void Render();
     bool IsBallOver();
-    void EndGame();
+    void StartGame();
 
     Camera *m_camera;
     bool scaled_view;
@@ -53,7 +53,8 @@ class Graphics
   bool spot, hard_edge, phong;
   glm::vec3 ambient_color;
 
-  bool m_ballInPlay;
+  bool m_ballInPlay, m_gameOver;
+  int numBallsLeft;
 
   private:
 
@@ -125,7 +126,7 @@ class Graphics
     GLint m_tviewMatrix;
     GLint m_tmodelMatrix;
 
-    int numBallsLeft;
+
 
 
     btBroadphaseInterface* m_broadphase;

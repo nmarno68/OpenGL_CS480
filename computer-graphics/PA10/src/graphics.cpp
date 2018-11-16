@@ -532,7 +532,7 @@ bool Graphics::Initialize(int width, int height)
   m_cyl->SetBullet(0, v, true, true, glm::vec3(1.0, .25, 0), 0, 1.5, 0);
 
   v = glm::vec3(0, 0, 0);
-  m_ball->SetBullet(1, v, false, true, glm::vec3(-3, .25, 2.0), 0, 1, 1);
+  m_ball->SetBullet(1, v, false, true, glm::vec3(-3.5, .25, 2.0), 0, 1, 1);
 
   v = glm::vec3(0, 0, 0);
   m_cube->SetBullet(0, v, true, true, glm::vec3(0, .25, -.75), 0, 1.5, 0);
@@ -598,10 +598,6 @@ bool Graphics::Initialize(int width, int height)
 
 void Graphics::Update(unsigned int dt)
 {
-  if(!numBallsLeft)
-  {
-    EndGame();
-  }
 
   if(IsBallOver())
   {
@@ -926,8 +922,7 @@ bool Graphics::IsBallOver()
   return false;
 }
 
-void Graphics::EndGame()
+void Graphics::StartGame()
 {
-  if(ImGui::Button("Replay"))
     numBallsLeft = 3;
 }
