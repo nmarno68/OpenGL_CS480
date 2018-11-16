@@ -116,9 +116,61 @@ void Engine::Run()
       ImGui::Text("Specular Brightness");
       ImGui::SliderFloat("Ball", &m_graphics->m_ball->specular_brightness, 0, 1);
       ImGui::SliderFloat("Board", &m_graphics->m_boardy->specular_brightness, 0, 1);
-      ImGui::SliderFloat("Cube", &m_graphics->m_cube->specular_brightness, 0, 1);
-      ImGui::SliderFloat("Cylinder", &m_graphics->m_cyl->specular_brightness, 0, 1);
+      ImGui::SliderFloat("Bumper 1", &m_graphics->m_cube->specular_brightness, 0, 1);
+      ImGui::SliderFloat("Bumper 2", &m_graphics->m_cyl->specular_brightness, 0, 1);
+      ImGui::SliderFloat("Bumper 3", &m_graphics->m_bumper->specular_brightness, 0, 1);
+      ImGui::SliderFloat("Left Flipper", &m_graphics->m_flipper_left->specular_brightness, 0 , 1);
+      ImGui::SliderFloat("Right Flipper", &m_graphics->m_flipper_right->specular_brightness, 0, 1);
       ImGui::End();
+
+      ImGui::Begin("Board Controls");
+      ImGui::Text("Left Flipper");
+      ImGui::SameLine(200);
+      ImGui::Text("Z");
+      ImGui::Text("Right Flipper");
+      ImGui::SameLine(200);
+      ImGui::Text("M");
+      ImGui::Text("Launch Ball");
+      ImGui::SameLine(138);
+      ImGui::Text("Down Arrow");
+      if(ImGui::Button("Reset Ball"))
+      {
+        m_graphics->m_ball->ResetBall();
+      }
+      ImGui::End();
+
+
+      ImGui::Begin("Camera Controls");
+      if(ImGui::Button("Reset View"))
+      {
+        m_graphics->m_camera->Reset();
+      }
+      ImGui::Text("Enable/Disable FPS");
+      ImGui::SameLine(200);
+      ImGui::Text("E");
+
+      ImGui::Text("Move Forward");
+      ImGui::SameLine(200);
+      ImGui::Text("W");
+
+      ImGui::Text("Move Left");
+      ImGui::SameLine(200);
+      ImGui::Text("A");
+
+      ImGui::Text("Move Backwards");
+      ImGui::SameLine(200);
+      ImGui::Text("S");
+
+      ImGui::Text("Move Right");
+      ImGui::SameLine(200);
+      ImGui::Text("D");
+
+      ImGui::Text("Move Up");
+      ImGui::SameLine(175);
+      ImGui::Text("SPACE");
+
+      ImGui::End();
+
     }
 
 
@@ -190,11 +242,11 @@ void Engine::Keyboard()
 				case SDLK_RIGHT:
 					m_graphics->m_ball->m_rigidBody->applyForce(btVector3(0, 0, .2), btVector3(0, 0, 0));
 					break;
-
+/*
 				case SDLK_SPACE:
 					m_graphics->m_ball->m_rigidBody->applyForce(btVector3(0, 1, 0), btVector3(0, 0, 0));
 					break;
-
+*/
       case SDLK_1:
           m_graphics->m_ball->m_rigidBody->applyForce(btVector3(10, 0, 0), btVector3(0, 0, 0));
           break;
@@ -217,11 +269,11 @@ void Engine::Keyboard()
       case SDLK_m:
           m_graphics->m_flipper_right->flipping = true;
           break;
-          /*
+
       case SDLK_SPACE:
           m_graphics->m_camera->MoveUp();
           break;
-           */
+
 
     }
   }

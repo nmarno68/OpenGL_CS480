@@ -17,12 +17,12 @@ bool Camera::Initialize(int w, int h)
   //  ...Like you should update it before you render more dynamic 
   //  for this project having them static will be fine
 
-  cameraSpeed = .5;
+  cameraSpeed = .3;
 
-  cameraPosition = glm::vec3(-7.0, 9.0, 0.0);
+  cameraPosition = glm::vec3(-9.0, 9.0, 0.0);
   cameraTarget = glm::vec3(0.0, 0.0, 0.0);
   cameraUp = glm::vec3(0.0, 1.0, 0.0);
-  cameraFront = glm::vec3(1.0, -.95, 0.0);
+  cameraFront = glm::vec3(1.0, -.80, 0.0);
 
   //The target of the camera for the entirety of the program is simply directly
   //in front of it
@@ -36,8 +36,8 @@ bool Camera::Initialize(int w, int h)
   enableMouse = 0;        //mouse motion flag
   last_x = 1000;         //set mouse to middle of screen
   last_y = 500;
-  pitch = 0;
-  yaw = -90;
+  pitch = -38;
+  yaw = 0;
   firstMouseMovement = 1; //flag to start the mouse in the center of the screen (no sudden jerks)
 
   return true;
@@ -145,15 +145,15 @@ void Camera::EnableMouse()
 //resets camera info (for planet view/ top view jumping
 void Camera::Reset()
 {
-  cameraPosition = glm::vec3(0.0, 0.0, 35.0);
+  cameraPosition = glm::vec3(-9.0, 9.0, 0.0);
   cameraTarget = glm::vec3(0.0, 0.0, 0.0);
   cameraUp = glm::vec3(0.0, 1.0, 0.0);
-  cameraFront = glm::vec3(1.0, -1.0, 0.0);
+  cameraFront = glm::vec3(1.0, -.80, 0.0);
   firstMouseMovement = true;
 
   view = glm::lookAt( cameraPosition, cameraPosition + cameraFront , cameraUp);
-  pitch = 0;
-  yaw = -90;
+  pitch = -38;
+  yaw = 0;
 
 }
 

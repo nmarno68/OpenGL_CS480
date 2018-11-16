@@ -94,7 +94,7 @@ void Object::Update(unsigned int dt, glm::mat4 origin, float scale)
             //if max flippage has not been reached
             if(trans.getRotation().getY() < .4)
             {
-              btQuaternion newQuat = trans.getRotation() + btQuaternion(0.0, .2, 0.0, 0);
+              btQuaternion newQuat = trans.getRotation() + btQuaternion(0.0, .1, 0.0, 0);
               trans.setRotation(newQuat);
               m_rigidBody->getMotionState()->setWorldTransform(trans);
             }
@@ -105,7 +105,7 @@ void Object::Update(unsigned int dt, glm::mat4 origin, float scale)
             //if min flippage has not been reached
             if( trans.getRotation().getY() > -0.155176)
             {
-              btQuaternion newQuat = trans.getRotation() - btQuaternion(0.0, .2, 0.0, 0);
+              btQuaternion newQuat = trans.getRotation() - btQuaternion(0.0, .1, 0.0, 0);
               trans.setRotation(newQuat);
               m_rigidBody->getMotionState()->setWorldTransform(trans);
             }
@@ -123,7 +123,7 @@ void Object::Update(unsigned int dt, glm::mat4 origin, float scale)
           if (flipping) {
             //if max flippage has not been reached
             if (trans.getRotation().getY() > -.4) {
-              btQuaternion newQuat = trans.getRotation() - btQuaternion(0.0, .2, 0.0, 0);
+              btQuaternion newQuat = trans.getRotation() - btQuaternion(0.0, .1, 0.0, 0);
               trans.setRotation(newQuat);
               m_rigidBody->getMotionState()->setWorldTransform(trans);
             }
@@ -132,7 +132,7 @@ void Object::Update(unsigned int dt, glm::mat4 origin, float scale)
           else {
             //if min flippage has not been reached
             if (trans.getRotation().getY() < 0.155176) {
-              btQuaternion newQuat = trans.getRotation() + btQuaternion(0.0, .2, 0.0, 0);
+              btQuaternion newQuat = trans.getRotation() + btQuaternion(0.0, .1, 0.0, 0);
               trans.setRotation(newQuat);
               m_rigidBody->getMotionState()->setWorldTransform(trans);
             }
@@ -156,10 +156,16 @@ void Object::Update(unsigned int dt, glm::mat4 origin, float scale)
 
 
 //  model = glm::rotate(model, (rotate_angle), glm::vec3(x_axis, y_axis, z_axis)); //This axis needs to be dependent on tilt
-
-
-
 }
+
+void Object::ResetBall()
+{
+  btTransform trans;
+  m_rigidBody->getMotionState()->getWorldTransform(trans);
+  trans.getOrigin() = btVector3(m_translate.x, m_translate.y, m_translate.z);
+  m_rigidBody->setWorldTransform(trans);
+}
+
 
 glm::mat4 Object::GetModel()
 {
@@ -337,3 +343,5 @@ btRigidBody* Object::GetRigidBody()
 {
   return m_rigidBody;
 }
+
+

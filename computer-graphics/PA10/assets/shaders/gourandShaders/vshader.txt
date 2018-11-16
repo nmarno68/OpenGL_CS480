@@ -98,6 +98,7 @@ void main()
         spot = 1.0;
     }
 
+/*
     //bumper1
     vec3 bumper1_dir = normalize(bumper1 - aPos);
     vec3 light_to_bumper1 = normalize(bumper1 - (bumper1 - vec3(0.0, 1.0, 0.0)));
@@ -115,9 +116,9 @@ void main()
     vec3 light_to_bumper3 = normalize(bumper3 - (bumper3 - vec3(0.0, 1.0, 0.0)));
     float bp3 = pow(max(dot( light_to_bumper3, bumper3_dir ), 0.0), 5);
     vec3 bp3r = bumper3_c * bp3 * 2;
-
+*/
 
     //Finalizing the lighting
-    lighting_result = bp2r + bp2r + bp1r + ambient +  spot * (diffuse + specular);   //adding together all the components and multiplying with the
+    lighting_result = ambient +  spot * (diffuse + specular);   //adding together all the components and multiplying with the
                                                                         //objects color to determine light absorbed and reflected
 }

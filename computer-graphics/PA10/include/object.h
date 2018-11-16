@@ -28,6 +28,7 @@ class Object
     glm::vec3 GetLocationVector();
 
     void SetBullet(int m, glm::vec3 inert, bool kinObject, bool phys, glm::vec3 start, double rotate, float restitution, float friction);
+    void ResetBall();
 
     bool m_physics;
     int m_shape;

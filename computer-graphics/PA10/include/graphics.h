@@ -37,6 +37,8 @@ class Graphics
     Object* m_flipper_right;
 
     Object* m_engage;
+
+    Object* m_plunger;
   /*
 	Object* m_leftWall;
 	Object* m_rightWall;

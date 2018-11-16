@@ -456,10 +456,10 @@ bool Graphics::Initialize(int width, int height)
 
 
   //initialize lighting values
-  spotlight_size = 0; //initialize to no spotlight
+  spotlight_size = 250; //initialize to no spotlight
   spotlight_brightness = .7; //cause this amount looks nice
   ambientStrength = .3; //cause this also looks nice
-  spot = true;
+  spot = false;
   hard_edge = true;
   phong = true;
   ambient_color = glm::vec3(1.0, 1.0, 1.0);
@@ -493,6 +493,7 @@ bool Graphics::Initialize(int width, int height)
   m_flipper_right = new Object("flipper2.obj", 9, true, .15, .25, .15, 2);
 
   m_engage = new Object("Button.obj", -1, true, .2, .2, .2, 0);
+  m_plunger = new Object("plunger.obj", -1, true, .2, .2, .2, 0);
 
    // m_leftWall = new Object("none", 5, false);
    // m_rightWall = new Object("none", 6, false);
@@ -508,6 +509,7 @@ bool Graphics::Initialize(int width, int height)
   m_backsplash->SetValues(.5, 150);
   m_bumper->SetValues(.7, 150);
   m_engage->SetValues(.7, 150);
+  m_plunger->SetValues(.8, 200);
 
   m_triangle_left->SetValues(.7, 150);
   m_triangle_right->SetValues(.7, 150);
@@ -542,8 +544,13 @@ bool Graphics::Initialize(int width, int height)
 
   m_engage->SetBullet(0, v, true, false, glm::vec3(-3.6, 1.0, 1.2), 0, 0, 0);
 
-  m_flipper_right->SetBullet(0, v, true, true, glm::vec3(-2.95, 0.11, .32), M_PI / 20, 0, 3);
-  m_flipper_left->SetBullet(0, v, true, true, glm::vec3(-2.95, 0.11, -1.2), -M_PI / 20, 0, 3);
+
+  m_plunger->SetBullet(0, v, true, false, glm::vec3(-5.0, .75, 2.0), 0, 0, 0);
+
+
+
+  m_flipper_right->SetBullet(0, v, true, true, glm::vec3(-2.95, 0.11, .32), M_PI / 20, .2, 3);
+  m_flipper_left->SetBullet(0, v, true, true, glm::vec3(-2.95, 0.11, -1.2), -M_PI / 20, .2, 3);
 
 
 	//m_leftWall->SetBullet(1, v, true, true, glm::vec3(0, 0, 1.05));
@@ -606,6 +613,7 @@ void Graphics::Update(unsigned int dt)
 
   m_backsplash->Update(dt, glm::mat4(1.0f), 1);
   m_engage->Update(dt, glm::mat4(1.0f), 1);
+  m_plunger->Update(dt, glm::mat4(1.0f), 1);
 
 }
 
@@ -707,6 +715,10 @@ void Graphics::Render()
     glUniform1i(m_specular_size, (GLint) m_flipper_left->specular_size);
     m_flipper_left->Render();
 
+    glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_plunger->GetModel()));
+    glUniform1f(m_specular_brightness, (GLfloat) m_plunger->specular_brightness);
+    glUniform1i(m_specular_size, (GLint) m_plunger->specular_size);
+    m_plunger->Render();
 
     glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_backsplash->GetModel()));
     glUniform1f(m_specular_brightness, (GLfloat) m_backsplash->specular_brightness);
@@ -822,6 +834,10 @@ void Graphics::Render()
     glUniform1i(m_gspecular_size, (GLint) m_triangle_right->specular_size);
     m_triangle_right->Render();
 
+    glUniformMatrix4fv(m_gmodelMatrix, 1, GL_FALSE, glm::value_ptr(m_plunger->GetModel()));
+    glUniform1f(m_gspecular_brightness, (GLfloat) m_plunger->specular_brightness);
+    glUniform1i(m_gspecular_size, (GLint) m_plunger->specular_size);
+    m_plunger->Render();
 
     glUniformMatrix4fv(m_gmodelMatrix, 1, GL_FALSE, glm::value_ptr(m_backsplash->GetModel()));
     glUniform1f(m_gspecular_brightness, (GLfloat) m_backsplash->specular_brightness);

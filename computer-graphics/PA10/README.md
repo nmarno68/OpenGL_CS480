@@ -69,6 +69,7 @@ OpenGL 3.3 will run on the [ubuntu.cse.unr.edu](https://ubuntu.cse.unr.edu/) web
 ```
 # Project Description
 This project introduces lighting to the foundational object and texture loading accomplished in previous projects. Gourand and Phong lighting are demonstrated and controls are available for a spotlight, specular strength of objects, ambient strength and ambient color in the menus.
+Bullet was utilized to create a semi-realistic pinball game.
 
 ## Lighting Controls
 Our lighting controls include:    
@@ -79,16 +80,45 @@ Turning a spotlight on and off
 Switching between a spotlight with a sharp edge and a spotlight with a soft edge    
 Adjusting spotlight size     
 Adjusting spotlight brightness    
-Adjusting specular brightness on the cube, ball, cylinder, and board      
+Adjusting specular brightness on the bumpers, ball, flippers, and board
      
 All of our lighting controls can be found in the menus labeled appropriately.   
 
-## Cube Controls
+## Board Controls
 
 <table>
     <tr>
         <th>Action</th>
         <th>Control</th>
+    </tr>
+    <tr>
+        <td>Left Flipper</td>
+        <td><kbd>Z</kbd></td>
+    </tr>
+    <tr>
+        <td>Right Flipper</td>
+        <td><kbd>M</kbd></td>
+    </tr>
+    <tr>
+        <td>Launch Ball</td>
+        <td><kbd>🡳</kbd></td>
+    </tr>
+    <tr>
+        <td>Reset Ball</td>
+        <td><kbd>Menu</kbd></td>
+    </tr>
+</table>
+
+## Camera Controls
+
+<table>
+    <tr>
+        <th>Action</th>
+        <th>Control</th>
+    </tr>
+    <tr>
+        <td>Enable/Disable FPS Camera Mode</td>
+        <td><kbd>E</kbd></td>
     </tr>
     <tr>
         <td>Move Forward</td>
@@ -99,22 +129,23 @@ All of our lighting controls can be found in the menus labeled appropriately.
         <td><kbd>A</kbd></td>
     </tr>
     <tr>
-        <td>Move Back</td>
-        <td><kbd>S</kbd></td>
-    </tr>
-    <tr>
         <td>Move Right</td>
         <td><kbd>D</kbd></td>
     </tr>
     <tr>
-        <td>Jump</td>
+        <td>Move Backward</td>
+        <td><kbd>S</kbd></td>
+    </tr>
+    <tr>
+        <td>Move Up</td>
         <td><kbd>SPACE</kbd></td>
     </tr>
-
 </table>
 
-## Extra Credit (?)
-Two versions of a spotlight were implemented, one with a very sharp edge and one with a more faded edge. The two versions can be swapped around in the menu. Sliders controlling ambient color were also implemented.
 
-## Comments
-We weren't sure if the spotlight was broken on Gourand shading, but we made the assumption that since our objects have so few vertices that the spotlight was behaving appropriately for that shader, the light interpolating very poorly across our objects (especially the board). We also noted that for the ball Gourand and Phong had very similar effects due to our sphere having a large number of faces/vertices for such a small object. Unfortunately the menus were a little "clunky" but all controls available can be found on them.
+
+## Extra Credit
+1. Changing ambient color
+2. Spotlight following the ball
+3. Lit bumpers
+
