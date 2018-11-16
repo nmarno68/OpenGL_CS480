@@ -9,7 +9,7 @@ Engine::Engine(string name, int width, int height)
   m_WINDOW_HEIGHT = height;
   m_FULLSCREEN = false;
   m_ballInPlay = false;
-  m_plungerForce = 6.301;
+  m_plungerForce = 6.31;
 }
 
 Engine::Engine(string name)
@@ -19,7 +19,7 @@ Engine::Engine(string name)
   m_WINDOW_WIDTH = 0;
   m_FULLSCREEN = true;
   m_ballInPlay = false;
-  m_plungerForce = 6.301;
+  m_plungerForce = 6.306;
 }
 
 Engine::~Engine()
@@ -299,9 +299,11 @@ void Engine::Keyboard()
         m_graphics->m_flipper_right->flipping = false;
         break;
       case SDLK_DOWN:
-        m_graphics->m_ball->m_rigidBody->applyForce(btVector3(m_plungerForce, 0, 0), btVector3(0, 0, 0));
-        m_plungerForce = 6.301f;
-        m_ballInPlay = true;
+        if(!m_ballInPlay) {
+          m_graphics->m_ball->m_rigidBody->applyForce(btVector3(m_plungerForce, 0, 0), btVector3(0, 0, 0));
+          m_plungerForce = 6.31f;
+          m_ballInPlay = true;
+        }
       default:
         break;
     }
