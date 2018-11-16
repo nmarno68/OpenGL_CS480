@@ -119,6 +119,40 @@ bool Graphics::Initialize(int width, int height)
 
 
 
+  //
+  //Initializing the texture lighting shader
+  //
+  m_texture = new Shader();
+  if(!m_texture->Initialize())
+  {
+    printf("Shader Failed to Initialize\n");
+    return false;
+  }
+
+  // Add the vertex shader
+  if(!m_texture->AddShader(GL_VERTEX_SHADER, "textureShaders"))
+  {
+    printf("Vertex Shader failed to Initialize\n");
+    return false;
+  }
+
+  // Add the fragment shader
+  if(!m_texture->AddShader(GL_FRAGMENT_SHADER, "textureShaders"))
+  {
+    printf("Fragment Shader failed to Initialize\n");
+    return false;
+  }
+
+  // Connect the program
+  if(!m_texture->Finalize())
+  {
+    printf("Program to Finalize\n");
+    return false;
+  }
+
+
+
+
 
   //
   //Locating uniforms in the phong shader
@@ -207,6 +241,7 @@ bool Graphics::Initialize(int width, int height)
     return false;
   }
 
+  //bumper 1
   m_bumper1 = m_phong->GetUniformLocation("bumper1");
   if (m_bumper1 == INVALID_UNIFORM_LOCATION)
   {
@@ -221,6 +256,35 @@ bool Graphics::Initialize(int width, int height)
     return false;
   }
 
+  //bumper2
+  m_bumper2 = m_phong->GetUniformLocation("bumper2");
+  if (m_bumper2 == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_bumper1 not found\n");
+    return false;
+  }
+
+  m_bumper2_c = m_phong->GetUniformLocation("bumper2_c");
+  if (m_bumper2_c == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_bumper1_c not found\n");
+    return false;
+  }
+
+  //bumper3
+  m_bumper3 = m_phong->GetUniformLocation("bumper3");
+  if (m_bumper3 == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_bumper1 not found\n");
+    return false;
+  }
+
+  m_bumper3_c = m_phong->GetUniformLocation("bumper3_c");
+  if (m_bumper3_c == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_bumper1_c not found\n");
+    return false;
+  }
 
 
 
@@ -316,6 +380,78 @@ bool Graphics::Initialize(int width, int height)
     return false;
   }
 
+  //bumper 1
+  m_gbumper1 = m_gourand->GetUniformLocation("bumper1");
+  if (m_gbumper1 == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_bumper1 not found\n");
+    return false;
+  }
+
+  m_gbumper1_c = m_gourand->GetUniformLocation("bumper1_c");
+  if (m_gbumper1_c == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_bumper1_c not found\n");
+    return false;
+  }
+
+  //bumper2
+  m_gbumper2 = m_gourand->GetUniformLocation("bumper2");
+  if (m_gbumper2 == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_bumper1 not found\n");
+    return false;
+  }
+
+  m_gbumper2_c = m_gourand->GetUniformLocation("bumper2_c");
+  if (m_gbumper2_c == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_bumper1_c not found\n");
+    return false;
+  }
+
+  //bumper3
+  m_gbumper3 = m_gourand->GetUniformLocation("bumper3");
+  if (m_gbumper3 == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_bumper1 not found\n");
+    return false;
+  }
+
+  m_gbumper3_c = m_gourand->GetUniformLocation("bumper3_c");
+  if (m_gbumper3_c == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_bumper1_c not found\n");
+    return false;
+  }
+
+
+
+
+
+
+
+  //INitializing texture shader stuff
+  m_tprojectionMatrix = m_texture->GetUniformLocation("projectionMatrix");
+  if (m_tprojectionMatrix == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_projectionMatrix not found\n");
+    return false;
+  }
+
+  m_tviewMatrix = m_texture->GetUniformLocation("viewMatrix");
+  if (m_tviewMatrix == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_viewMatrix not found\n");
+    return false;
+  }
+
+  m_tmodelMatrix = m_texture->GetUniformLocation("modelMatrix");
+  if (m_tmodelMatrix == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_modelMatrix not found\n");
+    return false;
+  }
 
 
 
@@ -356,19 +492,22 @@ bool Graphics::Initialize(int width, int height)
   m_flipper_left = new Object("flippers.obj", 9, true, .15, .25, .15, 1);
   m_flipper_right = new Object("flipper2.obj", 9, true, .15, .25, .15, 2);
 
- // m_leftWall = new Object("none", 5, false);
- // m_rightWall = new Object("none", 6, false);
- // m_topWall = new Object("none", 7, false);
- m_bottomWall = new Object("none", 8, false, 1, 1, 1, 0);
+  m_engage = new Object("Button.obj", -1, true, .2, .2, .2, 0);
+
+   // m_leftWall = new Object("none", 5, false);
+   // m_rightWall = new Object("none", 6, false);
+   // m_topWall = new Object("none", 7, false);
+   m_bottomWall = new Object("none", 8, false, 1, 1, 1, 0);
 
 
   //specular_brightness, specular_size (only on rendered objects)
-  m_boardy->SetValues(.5, 150);
+  m_boardy->SetValues(.5, 50);
   m_cyl->SetValues(.7, 150);
   m_ball->SetValues(.7, 150);
   m_cube->SetValues(.7, 150);
   m_backsplash->SetValues(.5, 150);
   m_bumper->SetValues(.7, 150);
+  m_engage->SetValues(.7, 150);
 
   m_triangle_left->SetValues(.7, 150);
   m_triangle_right->SetValues(.7, 150);
@@ -389,7 +528,7 @@ bool Graphics::Initialize(int width, int height)
   m_cyl->SetBullet(0, v, true, true, glm::vec3(1.0, .25, 0), 0, 1.5, 0);
 
   v = glm::vec3(0, 0, 0);
-  m_ball->SetBullet(1, v, false, true, glm::vec3(0, .5, .75), 0, 1, 1);
+  m_ball->SetBullet(1, v, false, true, glm::vec3(-3, .25, 2.0), 0, 1, 1);
 
   v = glm::vec3(0, 0, 0);
   m_cube->SetBullet(0, v, true, true, glm::vec3(0, .25, -.75), 0, 1.5, 0);
@@ -400,6 +539,8 @@ bool Graphics::Initialize(int width, int height)
   m_triangle_left->SetBullet(0, v, true, true, glm::vec3(-2.1, 0.2, -1.3), M_PI * 2.0, 1.5, 0);
 
   m_backsplash->SetBullet(0, v, true, false, glm::vec3(5.5, 3.0, -0.15), M_PI, 0, 0);
+
+  m_engage->SetBullet(0, v, true, false, glm::vec3(-3.6, 1.0, 1.2), 0, 0, 0);
 
   m_flipper_right->SetBullet(0, v, true, true, glm::vec3(-2.95, 0.11, .32), M_PI / 20, 0, 3);
   m_flipper_left->SetBullet(0, v, true, true, glm::vec3(-2.95, 0.11, -1.2), -M_PI / 20, 0, 3);
@@ -436,9 +577,8 @@ bool Graphics::Initialize(int width, int height)
 
 	//Additional Light Sources
 	b_1 = new lightSource(glm::vec3 (1.0, 0.0, 0.0), glm::vec3(1.0, .25, 0) + glm::vec3(0.0, 0.5, 0.0));
-
-
-
+	b_2 = new lightSource(glm::vec3 (0.0, 1.0, 0.0), glm::vec3(0, .25, -.75) + glm::vec3(0.0, 0.5, 0.0));
+	b_3 = new lightSource(glm::vec3 (0.0, 0.5, 1.0), glm::vec3(-.25, .25, .4) + glm::vec3(0.0, 0.5, 0.0));
 
   //enable depth testing
   glEnable(GL_DEPTH_TEST);
@@ -465,6 +605,7 @@ void Graphics::Update(unsigned int dt)
   m_flipper_left->Update(dt, glm::mat4(1.0f), 1);
 
   m_backsplash->Update(dt, glm::mat4(1.0f), 1);
+  m_engage->Update(dt, glm::mat4(1.0f), 1);
 
 }
 
@@ -482,6 +623,11 @@ void Graphics::Render()
     glUniform3fv(m_bumper1, 1, glm::value_ptr(b_1->pos));     //Position
     glUniform3fv(m_bumper1_c, 1, glm::value_ptr(b_1->color)); //Color
 
+    glUniform3fv(m_bumper2, 1, glm::value_ptr(b_2->pos));     //Position
+    glUniform3fv(m_bumper2_c, 1, glm::value_ptr(b_2->color)); //Color
+
+    glUniform3fv(m_bumper3, 1, glm::value_ptr(b_3->pos));     //Position
+    glUniform3fv(m_bumper3_c, 1, glm::value_ptr(b_3->color)); //Color
 
     //Send in ambient color
     glUniform3fv(m_ambient_color, 1, glm::value_ptr(ambient_color));
@@ -540,10 +686,6 @@ void Graphics::Render()
     glUniform1i(m_specular_size, (GLint) m_bumper->specular_size);
     m_bumper->Render();
 
-    glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_backsplash->GetModel()));
-    glUniform1f(m_specular_brightness, (GLfloat) m_backsplash->specular_brightness);
-    glUniform1i(m_specular_size, (GLint) m_backsplash->specular_size);
-    m_backsplash->Render();
 
     glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_triangle_left->GetModel()));
     glUniform1f(m_specular_brightness, (GLfloat) m_triangle_left->specular_brightness);
@@ -565,6 +707,26 @@ void Graphics::Render()
     glUniform1i(m_specular_size, (GLint) m_flipper_left->specular_size);
     m_flipper_left->Render();
 
+
+    glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_backsplash->GetModel()));
+    glUniform1f(m_specular_brightness, (GLfloat) m_backsplash->specular_brightness);
+    glUniform1i(m_specular_size, (GLint) m_backsplash->specular_size);
+    m_backsplash->meshes[1].Draw();
+
+    glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_engage->GetModel()));
+    glUniform1f(m_specular_brightness, (GLfloat) m_engage->specular_brightness);
+    glUniform1i(m_specular_size, (GLint) m_engage->specular_size);
+    m_engage->meshes[0].Draw();
+
+    m_texture->Enable();
+    glUniformMatrix4fv(m_tprojectionMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetProjection()));
+    glUniformMatrix4fv(m_tviewMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetView()));
+    glUniformMatrix4fv(m_tmodelMatrix, 1, GL_FALSE, glm::value_ptr(m_backsplash->GetModel()));
+    m_backsplash->meshes[0].Draw();
+
+    glUniformMatrix4fv(m_tmodelMatrix, 1, GL_FALSE, glm::value_ptr(m_engage->GetModel()));
+    m_engage->meshes[1].Draw();
+
   }
 
 
@@ -572,6 +734,16 @@ void Graphics::Render()
   else
   {
     m_gourand->Enable();
+
+
+    glUniform3fv(m_gbumper1, 1, glm::value_ptr(b_1->pos));     //Position
+    glUniform3fv(m_gbumper1_c, 1, glm::value_ptr(b_1->color)); //Color
+
+    glUniform3fv(m_gbumper2, 1, glm::value_ptr(b_2->pos));     //Position
+    glUniform3fv(m_gbumper2_c, 1, glm::value_ptr(b_2->color)); //Color
+
+    glUniform3fv(m_gbumper3, 1, glm::value_ptr(b_3->pos));     //Position
+    glUniform3fv(m_gbumper3_c, 1, glm::value_ptr(b_3->color)); //Color
 
     //Send in ambient color
     glUniform3fv(m_gambient_color, 1, glm::value_ptr(ambient_color));
@@ -630,11 +802,6 @@ void Graphics::Render()
     glUniform1i(m_gspecular_size, (GLint) m_bumper->specular_size);
     m_bumper->Render();
 
-    glUniformMatrix4fv(m_gmodelMatrix, 1, GL_FALSE, glm::value_ptr(m_backsplash->GetModel()));
-    glUniform1f(m_gspecular_brightness, (GLfloat) m_backsplash->specular_brightness);
-    glUniform1i(m_gspecular_size, (GLint) m_backsplash->specular_size);
-    m_backsplash->Render();
-
     glUniformMatrix4fv(m_gmodelMatrix, 1, GL_FALSE, glm::value_ptr(m_flipper_right->GetModel()));
     glUniform1f(m_gspecular_brightness, (GLfloat) m_flipper_right->specular_brightness);
     glUniform1i(m_gspecular_size, (GLint) m_flipper_right->specular_size);
@@ -654,6 +821,26 @@ void Graphics::Render()
     glUniform1f(m_gspecular_brightness, (GLfloat) m_triangle_right->specular_brightness);
     glUniform1i(m_gspecular_size, (GLint) m_triangle_right->specular_size);
     m_triangle_right->Render();
+
+
+    glUniformMatrix4fv(m_gmodelMatrix, 1, GL_FALSE, glm::value_ptr(m_backsplash->GetModel()));
+    glUniform1f(m_gspecular_brightness, (GLfloat) m_backsplash->specular_brightness);
+    glUniform1i(m_gspecular_size, (GLint) m_backsplash->specular_size);
+    m_backsplash->meshes[1].Draw();
+
+    glUniformMatrix4fv(m_gmodelMatrix, 1, GL_FALSE, glm::value_ptr(m_engage->GetModel()));
+    glUniform1f(m_gspecular_brightness, (GLfloat) m_engage->specular_brightness);
+    glUniform1i(m_gspecular_size, (GLint) m_engage->specular_size);
+    m_engage->meshes[0].Draw();
+
+    m_texture->Enable();
+    glUniformMatrix4fv(m_tprojectionMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetProjection()));
+    glUniformMatrix4fv(m_tviewMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetView()));
+    glUniformMatrix4fv(m_tmodelMatrix, 1, GL_FALSE, glm::value_ptr(m_backsplash->GetModel()));
+    m_backsplash->meshes[0].Draw();
+
+    glUniformMatrix4fv(m_tmodelMatrix, 1, GL_FALSE, glm::value_ptr(m_engage->GetModel()));
+    m_engage->meshes[1].Draw();
 
   }
 

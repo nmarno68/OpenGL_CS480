@@ -37,6 +37,7 @@ class Object
     int flipper;
     bool flipping;
 
+    std::vector<Mesh> meshes;
     btRigidBody* m_rigidBody;
 
   private:
@@ -58,7 +59,7 @@ class Object
     std::string m_textDirectory;
     std::string m_objDirectory;
 
-    std::vector<Mesh> meshes;
+
     std::vector<Vertex> Vertices;
     std::vector<unsigned int> Indices;
 

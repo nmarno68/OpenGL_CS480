@@ -23,10 +23,18 @@ uniform vec3 ambient_color;
 uniform vec3 bumper1;
 uniform vec3 bumper1_c;
 
+uniform vec3 bumper2;
+uniform vec3 bumper2_c;
+
+uniform vec3 bumper3;
+uniform vec3 bumper3_c;
+
 void main()
 {
 
     vec3 bumper1_dir = normalize(bumper1 - FragPos);
+    vec3 bumper2_dir = normalize(bumper2 - FragPos);
+    vec3 bumper3_dir = normalize(bumper3 - FragPos);
 
     //lightPosition - we should be passing this in as a uniform but we'll get to that later
     vec3 lightPos = vec3(0.0, 10.0, 0.0);
@@ -87,16 +95,26 @@ void main()
 
     //light to frag distance?
     //bumper1
-    vec3 light_to_bumper = normalize(bumper1 - (bumper1 - vec3(0.0, 1.0, 0.0)));
-    float bp1 = pow(max(dot( light_to_bumper, bumper1_dir ), 0.0), 10);
+    vec3 light_to_bumper1 = normalize(bumper1 - (bumper1 - vec3(0.0, 1.0, 0.0)));
+    float bp1 = pow(max(dot( light_to_bumper1, bumper1_dir ), 0.0), 10);
     vec3 bp1r = bumper1_c * bp1;
+
+    //bumper2
+    vec3 light_to_bumper2 = normalize(bumper2 - (bumper2 - vec3(0.0, 1.0, 0.0)));
+    float bp2 = pow(max(dot( light_to_bumper2, bumper2_dir ), 0.0), 10);
+    vec3 bp2r = bumper2_c * bp2;
+
+    //bumper3
+    vec3 light_to_bumper3 = normalize(bumper3 - (bumper3 - vec3(0.0, 1.0, 0.0)));
+    float bp3 = pow(max(dot( light_to_bumper3, bumper3_dir ), 0.0), 10);
+    vec3 bp3r = bumper3_c * bp3 * 2;
 
 
 
     //Finalizing the color
     vec4 textcol = texture2D(gSampler, texture);                        //retrieving the object color from the texture sampler
     vec3 objcol = vec3(textcol[0], textcol[1], textcol[2]);             //converting to a vec3
-    vec3 result = (bp1r + ambient +  spot * (diffuse + specular) ) * objcol;   //adding together all the components and multiplying with the
+    vec3 result = (bp2r + bp3r + bp1r + ambient +  spot * (diffuse + specular) ) * objcol;   //adding together all the components and multiplying with the
                                                                         //objects color to determine light absorbed and reflected
 
 

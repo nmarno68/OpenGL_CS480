@@ -35,6 +35,8 @@ class Graphics
 
     Object* m_flipper_left;
     Object* m_flipper_right;
+
+    Object* m_engage;
   /*
 	Object* m_leftWall;
 	Object* m_rightWall;
@@ -53,9 +55,12 @@ class Graphics
 
     Shader *m_phong;
     Shader *m_gourand;
+    Shader *m_texture;
 
     //lighting variables
     lightSource* b_1;
+    lightSource* b_2;
+    lightSource* b_3;
 
 
     //phong
@@ -76,6 +81,12 @@ class Graphics
     GLint m_bumper1;
     GLint m_bumper1_c;
 
+    GLint m_bumper2;
+    GLint m_bumper2_c;
+
+    GLint m_bumper3;
+    GLint m_bumper3_c;
+
 
     //gourand
     GLint m_gprojectionMatrix;
@@ -94,6 +105,21 @@ class Graphics
 
     GLint m_gbumper1;
     GLint m_gbumper1_c;
+
+    GLint m_gbumper2;
+    GLint m_gbumper2_c;
+
+    GLint m_gbumper3;
+    GLint m_gbumper3_c;
+
+
+
+    //texture
+    GLint m_tprojectionMatrix;
+    GLint m_tviewMatrix;
+    GLint m_tmodelMatrix;
+
+
 
 
     btBroadphaseInterface* m_broadphase;
