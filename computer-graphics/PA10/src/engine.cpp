@@ -107,7 +107,7 @@ void Engine::Run()
       {
          ImGui::Checkbox("Hard edge/Soft edge", &m_graphics->hard_edge);
       }
-      ImGui::SliderFloat("Spotlight Size", &m_graphics->spotlight_size, 300, .001);
+      ImGui::SliderFloat("Spotlight Size", &m_graphics->spotlight_size, 500, .001);
       ImGui::SliderFloat("Spotlight Brightness", &m_graphics->spotlight_brightness, 0, 1);
       ImGui::End();
 

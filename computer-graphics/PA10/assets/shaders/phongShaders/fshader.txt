@@ -26,6 +26,8 @@ uniform vec3 bumper1_c;
 void main()
 {
 
+    vec3 bumper1_dir = normalize(bumper1 - FragPos);
+
     //lightPosition - we should be passing this in as a uniform but we'll get to that later
     vec3 lightPos = vec3(0.0, 10.0, 0.0);
 
@@ -83,10 +85,18 @@ void main()
         spot = 1.0;
     }
 
+    //light to frag distance?
+    //bumper1
+    vec3 light_to_bumper = normalize(bumper1 - (bumper1 - vec3(0.0, 1.0, 0.0)));
+    float bp1 = pow(max(dot( light_to_bumper, bumper1_dir ), 0.0), 10);
+    vec3 bp1r = bumper1_c * bp1;
+
+
+
     //Finalizing the color
     vec4 textcol = texture2D(gSampler, texture);                        //retrieving the object color from the texture sampler
     vec3 objcol = vec3(textcol[0], textcol[1], textcol[2]);             //converting to a vec3
-    vec3 result = (ambient +  spot * (diffuse + specular) ) * objcol;   //adding together all the components and multiplying with the
+    vec3 result = (bp1r + ambient +  spot * (diffuse + specular) ) * objcol;   //adding together all the components and multiplying with the
                                                                         //objects color to determine light absorbed and reflected
 
 

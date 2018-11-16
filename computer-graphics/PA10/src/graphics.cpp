@@ -208,7 +208,7 @@ bool Graphics::Initialize(int width, int height)
   }
 
   m_bumper1 = m_phong->GetUniformLocation("bumper1");
-  if (m_ambient_color == INVALID_UNIFORM_LOCATION)
+  if (m_bumper1 == INVALID_UNIFORM_LOCATION)
   {
     printf("m_bumper1 not found\n");
     return false;
@@ -435,7 +435,7 @@ bool Graphics::Initialize(int width, int height)
 
 
 	//Additional Light Sources
-	b_1 = new lightSource(glm::vec3 (1.0, 0.0, 1.0), m_cyl->GetLocationVector() * (float) 1.1);
+	b_1 = new lightSource(glm::vec3 (1.0, 0.0, 0.0), glm::vec3(1.0, .25, 0) + glm::vec3(0.0, 0.5, 0.0));
 
 
 
