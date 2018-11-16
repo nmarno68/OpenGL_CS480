@@ -92,7 +92,7 @@ void Object::Update(unsigned int dt, glm::mat4 origin, float scale)
           if(flipping)
           {
             //if max flippage has not been reached
-            if(trans.getRotation().getY() < 3)
+            if(trans.getRotation().getY() < .4)
             {
               btQuaternion newQuat = trans.getRotation() + btQuaternion(0.0, .2, 0.0, 0);
               trans.setRotation(newQuat);
@@ -103,27 +103,46 @@ void Object::Update(unsigned int dt, glm::mat4 origin, float scale)
           else
           {
             //if min flippage has not been reached
-
+            if( trans.getRotation().getY() > -0.155176)
+            {
+              btQuaternion newQuat = trans.getRotation() - btQuaternion(0.0, .2, 0.0, 0);
+              trans.setRotation(newQuat);
+              m_rigidBody->getMotionState()->setWorldTransform(trans);
+            }
+            else{
+              btQuaternion newQuat = btQuaternion(0.0, (-M_PI / 20), 0.0, 1);
+              trans.setRotation(newQuat);
+              m_rigidBody->getMotionState()->setWorldTransform(trans);
+            }
 
           }
 
       }
       else if(flipper == 2) //right flipper
-      {
-          if(flipping)
-          {
+        {
+          if (flipping) {
             //if max flippage has not been reached
-            btQuaternion newQuat = trans.getRotation() + btQuaternion(0.0, .2, 0.0, 0);
-            trans.setRotation(newQuat);
-            m_rigidBody->getMotionState()->setWorldTransform(trans);
+            if (trans.getRotation().getY() > -.4) {
+              btQuaternion newQuat = trans.getRotation() - btQuaternion(0.0, .2, 0.0, 0);
+              trans.setRotation(newQuat);
+              m_rigidBody->getMotionState()->setWorldTransform(trans);
+            }
 
           }
-          else
-          {
+          else {
             //if min flippage has not been reached
-
+            if (trans.getRotation().getY() < 0.155176) {
+              btQuaternion newQuat = trans.getRotation() + btQuaternion(0.0, .2, 0.0, 0);
+              trans.setRotation(newQuat);
+              m_rigidBody->getMotionState()->setWorldTransform(trans);
+            }
+            else{
+              btQuaternion newQuat = btQuaternion(0.0, (M_PI / 20), 0.0, 1);
+              trans.setRotation(newQuat);
+              m_rigidBody->getMotionState()->setWorldTransform(trans);
+            }
           }
-      }
+        }
       trans.getOpenGLMatrix(m);
       model = glm::make_mat4(m);
 

@@ -107,7 +107,7 @@ void Engine::Run()
       {
          ImGui::Checkbox("Hard edge/Soft edge", &m_graphics->hard_edge);
       }
-      ImGui::SliderFloat("Spotlight Size", &m_graphics->spotlight_size, 200, .001);
+      ImGui::SliderFloat("Spotlight Size", &m_graphics->spotlight_size, 300, .001);
       ImGui::SliderFloat("Spotlight Brightness", &m_graphics->spotlight_brightness, 0, 1);
       ImGui::End();
 
@@ -162,21 +162,6 @@ void Engine::Keyboard()
     m_newEvent = true;
 
     //Handling keyboard events
-    if(m_event.key.keysym.sym == SDLK_z)
-    {
-      m_graphics->m_flipper_left->flipping = true;
-    }
-    else if (m_event.key.keysym.sym == SDLK_m)
-    {
-      m_graphics->m_flipper_right->flipping = true;
-    }
-    else
-    {
-      m_graphics->m_flipper_right->flipping = false;
-      m_graphics->m_flipper_left->flipping = false;
-    }
-
-
 
     switch (m_event.key.keysym.sym) {
       case SDLK_ESCAPE:
@@ -225,6 +210,13 @@ void Engine::Keyboard()
           break;
       case SDLK_s:
           m_graphics->m_camera->MoveBackward();
+          break;
+      case SDLK_z:
+          m_graphics->m_flipper_left->flipping = true;
+          break;
+      case SDLK_m:
+          m_graphics->m_flipper_right->flipping = true;
+          break;
           /*
       case SDLK_SPACE:
           m_graphics->m_camera->MoveUp();
@@ -232,7 +224,24 @@ void Engine::Keyboard()
            */
 
     }
-}
+  }
+  else if (m_event.type == SDL_KEYUP)
+  {
+    switch (m_event.key.keysym.sym)
+    {
+      case SDLK_z:
+        m_graphics->m_flipper_left->flipping = false;
+        break;
+      case SDLK_m:
+        m_graphics->m_flipper_right->flipping = false;
+        break;
+      default:
+        break;
+    }
+  }
+
+
+
   else if (m_event.type == SDL_MOUSEMOTION )
   {
     if(m_graphics->m_camera->enableMouse)

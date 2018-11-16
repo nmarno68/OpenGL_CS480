@@ -354,7 +354,7 @@ bool Graphics::Initialize(int width, int height)
   m_triangle_right = new Object("triangleBumpers.obj", 9, true, .3, .7, .3,0);
 
   m_flipper_left = new Object("flippers.obj", 9, true, .15, .25, .15, 1);
-  m_flipper_right = new Object("flippers.obj", 9, true, .15, .25, .15, 2);
+  m_flipper_right = new Object("flipper2.obj", 9, true, .15, .25, .15, 2);
 
  // m_leftWall = new Object("none", 5, false);
  // m_rightWall = new Object("none", 6, false);
@@ -386,29 +386,29 @@ bool Graphics::Initialize(int width, int height)
   m_boardy->SetBullet(0, v, true, true, glm::vec3(0, 0, 0), 0, 0, 1);
 
   v = glm::vec3(0, 0, 0);
-  m_cyl->SetBullet(0, v, true, true, glm::vec3(1.0, .25, 0), 0, 2.5, 0);
+  m_cyl->SetBullet(0, v, true, true, glm::vec3(1.0, .25, 0), 0, 1.5, 0);
 
   v = glm::vec3(0, 0, 0);
-  m_ball->SetBullet(1, v, false, true, glm::vec3(0, .5, .75), 0, .5, 1);
+  m_ball->SetBullet(1, v, false, true, glm::vec3(0, .5, .75), 0, 1, 1);
 
   v = glm::vec3(0, 0, 0);
-  m_cube->SetBullet(0, v, true, true, glm::vec3(0, .25, -.75), 0, 2.5, 0);
+  m_cube->SetBullet(0, v, true, true, glm::vec3(0, .25, -.75), 0, 1.5, 0);
 
-  m_bumper->SetBullet(0, v, true, true, glm::vec3(-.25, .25, .4), 0, 2.5, 0);
+  m_bumper->SetBullet(0, v, true, true, glm::vec3(-.25, .25, .4), 0, 1.5, 0);
 
-  m_triangle_right->SetBullet(0, v, true, true, glm::vec3(-2.1, 0.2, .4), -M_PI / 4, 2, 0);
-  m_triangle_left->SetBullet(0, v, true, true, glm::vec3(-2.1, 0.2, -1.3), M_PI * 2.0, 2, 0);
+  m_triangle_right->SetBullet(0, v, true, true, glm::vec3(-2.1, 0.2, .4), -M_PI / 4, 1.5, 0);
+  m_triangle_left->SetBullet(0, v, true, true, glm::vec3(-2.1, 0.2, -1.3), M_PI * 2.0, 1.5, 0);
 
   m_backsplash->SetBullet(0, v, true, false, glm::vec3(5.5, 3.0, -0.15), M_PI, 0, 0);
 
-  m_flipper_right->SetBullet(0, v, true, true, glm::vec3(-2.95, 0.11, .32), - M_PI * 2.0 , 0, 3);
+  m_flipper_right->SetBullet(0, v, true, true, glm::vec3(-2.95, 0.11, .32), M_PI / 20, 0, 3);
   m_flipper_left->SetBullet(0, v, true, true, glm::vec3(-2.95, 0.11, -1.2), -M_PI / 20, 0, 3);
 
 
 	//m_leftWall->SetBullet(1, v, true, true, glm::vec3(0, 0, 1.05));
 	//m_rightWall->SetBullet(1, v, true, true, glm::vec3(0, 0, -1.05));
 	//m_topWall->SetBullet(1, v, true, true, glm::vec3(2.05, 0, 0));
-	m_bottomWall->SetBullet(0, v, true, true, glm::vec3(0.0, .35, 0), 0, 0, 0);
+	m_bottomWall->SetBullet(0, v, true, true, glm::vec3(0.0, .3, 0), 0, 0, 0);
 
   short mask = 0b11111111;
 
@@ -644,6 +644,16 @@ void Graphics::Render()
     glUniform1f(m_gspecular_brightness, (GLfloat) m_flipper_left->specular_brightness);
     glUniform1i(m_gspecular_size, (GLint) m_flipper_left->specular_size);
     m_flipper_left->Render();
+
+    glUniformMatrix4fv(m_gmodelMatrix, 1, GL_FALSE, glm::value_ptr(m_triangle_left->GetModel()));
+    glUniform1f(m_gspecular_brightness, (GLfloat) m_triangle_left->specular_brightness);
+    glUniform1i(m_gspecular_size, (GLint) m_triangle_left->specular_size);
+    m_triangle_left->Render();
+
+    glUniformMatrix4fv(m_gmodelMatrix, 1, GL_FALSE, glm::value_ptr(m_triangle_right->GetModel()));
+    glUniform1f(m_gspecular_brightness, (GLfloat) m_triangle_right->specular_brightness);
+    glUniform1i(m_gspecular_size, (GLint) m_triangle_right->specular_size);
+    m_triangle_right->Render();
 
   }
 

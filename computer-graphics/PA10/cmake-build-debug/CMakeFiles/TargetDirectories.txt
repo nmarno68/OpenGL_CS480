@@ -1,4 +1,4 @@
 /home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/cmake-build-debug/CMakeFiles/rebuild_cache.dir
 /home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/cmake-build-debug/CMakeFiles/PA_Ugly_SUCCESSFUL.dir
-/home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/cmake-build-debug/CMakeFiles/PA_Ugly.dir
+/home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/cmake-build-debug/CMakeFiles/PA_Pinball_SUCCESSFUL.dir
+/home/natalie/workspaces/cs480Arnold/computer-graphics/PA10/cmake-build-debug/CMakeFiles/PA_Pinball.dir
