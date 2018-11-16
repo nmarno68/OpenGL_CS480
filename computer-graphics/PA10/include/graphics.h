@@ -18,7 +18,10 @@ class Graphics
     void Update(unsigned int dt);
     void Render();
     bool IsBallOver();
-    void StartGame();
+    bool BallHitsBumper1();
+    bool BallHitsBumper2();
+    bool BallHitsBumper3();
+
 
     Camera *m_camera;
     bool scaled_view;
@@ -54,7 +57,12 @@ class Graphics
   glm::vec3 ambient_color;
 
   bool m_ballInPlay, m_gameOver;
-  int numBallsLeft;
+  int numBallsLeft, m_points;
+
+  //lighting variables
+  lightSource* b_1;
+  lightSource* b_2;
+  lightSource* b_3;
 
   private:
 
@@ -64,10 +72,7 @@ class Graphics
     Shader *m_gourand;
     Shader *m_texture;
 
-    //lighting variables
-    lightSource* b_1;
-    lightSource* b_2;
-    lightSource* b_3;
+
 
 
     //phong

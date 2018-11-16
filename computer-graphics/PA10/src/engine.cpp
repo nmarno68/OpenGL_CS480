@@ -175,8 +175,9 @@ void Engine::Run()
 
       ImGui::End();
 
-      ImGui::Begin("Lives");
-      ImGui::Text("%d", m_graphics->numBallsLeft);
+      ImGui::Begin("Game");
+      ImGui::Text("Points: %d", m_graphics->m_points);
+      ImGui::Text("Lives: %d", m_graphics->numBallsLeft);
       ImGui::End();
 
 
@@ -187,6 +188,10 @@ void Engine::Run()
         if(ImGui::Button("Replay"))
         {
           m_graphics->numBallsLeft = 3;
+          m_graphics->m_points = 0;
+          m_graphics->b_1->color = glm::vec3(1.0, 0.0, 0.0);
+          m_graphics->b_2->color = glm::vec3(0.0, 1.0, 0.0);
+          m_graphics->b_3->color = glm::vec3(0.0, 0.5, 1.0);
         }
         ImGui::SameLine(200);
         if(ImGui::Button("Exit"))

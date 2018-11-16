@@ -585,9 +585,9 @@ bool Graphics::Initialize(int width, int height)
 
 
 	//Additional Light Sources
-	b_1 = new lightSource(glm::vec3 (1.0, 0.0, 0.0), glm::vec3(1.0, .25, 0) + glm::vec3(0.0, 0.5, 0.0));
-	b_2 = new lightSource(glm::vec3 (0.0, 1.0, 0.0), glm::vec3(0, .25, -.75) + glm::vec3(0.0, 0.5, 0.0));
-	b_3 = new lightSource(glm::vec3 (0.0, 0.5, 1.0), glm::vec3(-.25, .25, .4) + glm::vec3(0.0, 0.5, 0.0));
+	b_1 = new lightSource(glm::vec3 (1.0, 0.0, 0.0), glm::vec3(1.0, .25, 0) + glm::vec3(0.0, 0.5, 0.0)); //cyl
+	b_2 = new lightSource(glm::vec3 (0.0, 1.0, 0.0), glm::vec3(0, .25, -.75) + glm::vec3(0.0, 0.5, 0.0)); //cube
+	b_3 = new lightSource(glm::vec3 (0.0, 0.5, 1.0), glm::vec3(-.25, .25, .4) + glm::vec3(0.0, 0.5, 0.0)); //bumper
 
   //enable depth testing
   glEnable(GL_DEPTH_TEST);
@@ -605,6 +605,12 @@ void Graphics::Update(unsigned int dt)
     m_ballInPlay = false;
     numBallsLeft--;
   }
+
+  if(BallHitsBumper1() or BallHitsBumper2() or BallHitsBumper3())
+  {
+    m_points += 50;
+  }
+
 
   m_dynamicsWorld->stepSimulation(dt, 10);
 
@@ -922,7 +928,72 @@ bool Graphics::IsBallOver()
   return false;
 }
 
-void Graphics::StartGame()
+bool Graphics::BallHitsBumper1()
 {
-    numBallsLeft = 3;
+  glm::vec3 ballLocation = m_ball->GetLocationVector();
+
+  if(ballLocation.x < 1.3f and ballLocation.x > .7f and ballLocation.z < .3f and ballLocation.z > -.3f)
+  {
+    if(b_1->color.x == 1)
+    {
+      b_1->color = glm::vec3(0.0, 1.0, 0.0);
+    }
+    else if(b_1->color.y == 1)
+    {
+      b_1->color = glm::vec3(0.0, .5, 1.0);
+    }
+    else
+    {
+      b_1->color = glm::vec3(1.0, 0.0, 0.0);
+    }
+    return true;
+  }
+  return false;
 }
+
+bool Graphics::BallHitsBumper2()
+{
+  glm::vec3 ballLocation = m_ball->GetLocationVector();
+
+  if(ballLocation.x < .3f and ballLocation.x > -.3f and ballLocation.z < -.45f and ballLocation.z > -1.05f)
+  {
+    if(b_2->color.x == 1)
+    {
+      b_2->color = glm::vec3(0.0, 1.0, 0.0);
+    }
+    else if(b_2->color.y == 1)
+    {
+      b_2->color = glm::vec3(0.0, .5, 1.0);
+    }
+    else
+    {
+      b_2->color = glm::vec3(1.0, 0.0, 0.0);
+    }
+    return true;
+  }
+  return false;
+}
+
+bool Graphics::BallHitsBumper3()
+{
+  glm::vec3 ballLocation = m_ball->GetLocationVector();
+
+  if(ballLocation.x < .05f and ballLocation.x > -.55f and ballLocation.z < .7f and ballLocation.z > .1f)
+  {
+    if(b_3->color.x == 1)
+    {
+      b_3->color = glm::vec3(0.0, 1.0, 0.0);
+    }
+    else if(b_3->color.y == 1)
+    {
+      b_3->color = glm::vec3(0.0, .5, 1.0);
+    }
+    else
+    {
+      b_3->color = glm::vec3(1.0, 0.0, 0.0);
+    }
+    return true;
+  }
+  return false;
+}
+
