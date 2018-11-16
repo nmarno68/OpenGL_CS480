@@ -22,10 +22,10 @@ class Engine
     void Keyboard();
     unsigned int getDT();
     long long GetCurrentTimeMillis();
-  
+
   private:
     // Window related variables
-    Window *m_window;    
+    Window *m_window;
     string m_WINDOW_NAME;
     int m_WINDOW_WIDTH;
     int m_WINDOW_HEIGHT;
@@ -40,6 +40,8 @@ class Engine
     unsigned int m_DT;
     long long m_currentTimeMillis;
     bool m_running;
+    float m_plungerForce;
+    bool m_ballInPlay;
 
     //Menu flags
     int submenu;

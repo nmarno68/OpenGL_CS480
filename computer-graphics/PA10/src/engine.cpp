@@ -1,4 +1,5 @@
 
+
 #include "engine.h"
 
 Engine::Engine(string name, int width, int height)
@@ -7,6 +8,8 @@ Engine::Engine(string name, int width, int height)
   m_WINDOW_WIDTH = width;
   m_WINDOW_HEIGHT = height;
   m_FULLSCREEN = false;
+  m_ballInPlay = false;
+  m_plungerForce = 6.301;
 }
 
 Engine::Engine(string name)
@@ -15,6 +18,8 @@ Engine::Engine(string name)
   m_WINDOW_HEIGHT = 0;
   m_WINDOW_WIDTH = 0;
   m_FULLSCREEN = true;
+  m_ballInPlay = false;
+  m_plungerForce = 6.301;
 }
 
 Engine::~Engine()
@@ -136,6 +141,7 @@ void Engine::Run()
       if(ImGui::Button("Reset Ball"))
       {
         m_graphics->m_ball->ResetBall();
+        m_ballInPlay = false;
       }
       ImGui::End();
 
@@ -230,18 +236,23 @@ void Engine::Keyboard()
           m_graphics->m_camera->enableMouse = 1;
         }
         break;
-				case SDLK_UP:
+				/*case SDLK_UP:
 					m_graphics->m_ball->m_rigidBody->applyForce(btVector3(.2, 0, 0), btVector3(0, 0, 0));
 					break;
 				case SDLK_LEFT:
 					m_graphics->m_ball->m_rigidBody->applyForce(btVector3(0, 0, -.2), btVector3(0, 0, 0));
-					break;
+					break;*/
 				case SDLK_DOWN:
-					m_graphics->m_ball->m_rigidBody->applyForce(btVector3(-.2, 0, 0), btVector3(0, 0, 0));
+          if(!m_ballInPlay)
+          {
+            m_plungerForce += .1;
+            if(m_plungerForce > 15.0f)
+              m_plungerForce = 15.0f;
+          }
 					break;
-				case SDLK_RIGHT:
+				/*case SDLK_RIGHT:
 					m_graphics->m_ball->m_rigidBody->applyForce(btVector3(0, 0, .2), btVector3(0, 0, 0));
-					break;
+					break;*/
 /*
 				case SDLK_SPACE:
 					m_graphics->m_ball->m_rigidBody->applyForce(btVector3(0, 1, 0), btVector3(0, 0, 0));
@@ -287,6 +298,10 @@ void Engine::Keyboard()
       case SDLK_m:
         m_graphics->m_flipper_right->flipping = false;
         break;
+      case SDLK_DOWN:
+        m_graphics->m_ball->m_rigidBody->applyForce(btVector3(m_plungerForce, 0, 0), btVector3(0, 0, 0));
+        m_plungerForce = 6.301f;
+        m_ballInPlay = true;
       default:
         break;
     }
@@ -322,4 +337,3 @@ long long Engine::GetCurrentTimeMillis()
   long long ret = t.tv_sec * 1000 + t.tv_usec / 1000;
   return ret;
 }
-
