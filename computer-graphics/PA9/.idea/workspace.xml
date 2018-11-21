@@ -15,138 +15,6 @@
     <list default="true" id="9be3b723-3ba0-43e1-98a3-6b55a1380ba9" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/../.." afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/CMakeLists.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/CMakeModules/FindAssimp.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/CMakeModules/FindBullet.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/CMakeModules/FindGLEW.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/CMakeModules/FindGLM.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/CMakeModules/FindImageMagick.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/CMakeModules/FindSDL2.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/assets/objects/UglyBoard.mtl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/assets/objects/UglyBoard.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/assets/objects/UglyCube.mtl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/assets/objects/UglyCube.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/assets/objects/UglyCylinder.mtl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/assets/objects/UglyCylinder.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/assets/objects/UglySphere.mtl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/assets/objects/UglySphere.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/assets/shaders/gourandShaders/fshader.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/assets/shaders/gourandShaders/vshader.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/assets/shaders/orbitShaders/fshader.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/assets/shaders/orbitShaders/vshader.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/assets/shaders/phongShaders/fshader.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/assets/shaders/phongShaders/vshader.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/assets/shaders/sunShaders/fshader.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/assets/shaders/sunShaders/vshader.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/assets/shaders/textureShaders/fshader.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/assets/shaders/textureShaders/vshader.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/assets/textures/BrightPaisley.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/assets/textures/Paisley.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/assets/textures/Plaid.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/assets/textures/YellowPlaid.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/assets/textures/black.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/assets/textures/metal.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/assets/textures/navy.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/assets/textures/redwood.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/assets/textures/steel.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/assets/textures/wood.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/assets/textures/wood2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeCache.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/3.12.0/CMakeCCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/3.12.0/CMakeCXXCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/3.12.0/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/3.12.0/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/3.12.0/CMakeSystem.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/3.12.0/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/3.12.0/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/CMakeError.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/CMakeRuleHashes.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/PA_Ugly.dir/DependInfo.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/PA_Ugly.dir/build.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/PA_Ugly.dir/cmake_clean.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/PA_Ugly.dir/depend.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/PA_Ugly.dir/flags.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/PA_Ugly.dir/link.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/PA_Ugly.dir/progress.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/PA_Ugly_SUCCESSFUL.dir/DependInfo.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/PA_Ugly_SUCCESSFUL.dir/build.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/PA_Ugly_SUCCESSFUL.dir/cmake_clean.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/PA_Ugly_SUCCESSFUL.dir/progress.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/Pinball.dir/DependInfo.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/Pinball.dir/build.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/Pinball.dir/cmake_clean.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/Pinball.dir/depend.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/Pinball.dir/flags.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/Pinball.dir/link.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/Pinball.dir/progress.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/Pinball_SUCCESSFUL.dir/DependInfo.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/Pinball_SUCCESSFUL.dir/build.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/Pinball_SUCCESSFUL.dir/cmake_clean.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/Pinball_SUCCESSFUL.dir/progress.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/SolarSystem.dir/DependInfo.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/SolarSystem.dir/build.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/SolarSystem.dir/cmake_clean.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/SolarSystem.dir/depend.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/SolarSystem.dir/flags.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/SolarSystem.dir/link.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/SolarSystem.dir/progress.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/SolarSystem_SUCCESSFUL.dir/DependInfo.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/SolarSystem_SUCCESSFUL.dir/build.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/SolarSystem_SUCCESSFUL.dir/cmake_clean.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/SolarSystem_SUCCESSFUL.dir/progress.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/cmake.check_cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/feature_tests.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/feature_tests.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/feature_tests.cxx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/PA_Ugly.cbp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/Pinball.cbp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/SolarSystem.cbp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/Textures.cbp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/Tutorial" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/Tutorial.cbp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/cmake-build-debug/cmake_install.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/include/camera.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/include/engine.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/include/graphics.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/include/graphics_headers.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/include/imconfig.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/include/imgui.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/include/imgui_impl_opengl3.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/include/imgui_impl_sdl.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/include/imgui_internal.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/include/imstb_rectpack.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/include/imstb_textedit.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/include/imstb_truetype.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/include/mesh.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/include/object.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/include/shader.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/include/window.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/src/camera.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/src/engine.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/src/graphics.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/src/imgui.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/src/imgui_demo.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/src/imgui_draw.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/src/imgui_impl_opengl3.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/src/imgui_impl_sdl.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/src/imgui_widgets.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/src/main.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/src/mesh.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/src/object.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/src/shader.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PA8/src/window.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -212,12 +80,13 @@
     <session id="-1562194618">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
+          <entry key="project.closed" value="6" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.14" value="1" />
+          <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.5" value="2" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -492,16 +361,17 @@
       <workItem from="1541809222877" duration="510000" />
       <workItem from="1542158270915" duration="924000" />
       <workItem from="1542159358082" duration="64000" />
+      <workItem from="1542369630075" duration="14000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="105277000" />
+    <option name="totallyTimeSpent" value="105291000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18871057" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19092418" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />

@@ -1,0 +1,124 @@
+#version 330
+layout (location = 0) in vec3 aPos;
+layout (location = 1) in vec2 vtexture;
+layout (location = 2) in vec3 aNormal;
+
+smooth out vec2 texture;
+smooth out vec3 lighting_result;
+
+uniform mat4 modelMatrix;
+uniform mat4 viewMatrix;
+uniform mat4 projectionMatrix;
+
+uniform vec3 viewPos;
+uniform vec3 ballPos;                   //for spotlight
+uniform bool hard_edge;
+uniform float spotlight_size;             //similar to glint radius hopefully
+uniform float spotlight_bright;         //similar to specular strength
+uniform int glint_radius;               //determines how quickly the specular glint "drops off", the higher the number
+                                        //the smaller the glint
+uniform float specularStrength;         //specular brightness, probably keep this consistent
+
+uniform float ambientStrength;
+uniform vec3 ambient_color;
+
+uniform vec3 bumper1;
+uniform vec3 bumper1_c;
+
+uniform vec3 bumper2;
+uniform vec3 bumper2_c;
+
+uniform vec3 bumper3;
+uniform vec3 bumper3_c;
+
+
+void main()
+{
+    vec4 v = vec4(aPos, 1.0);
+    gl_Position = (projectionMatrix * viewMatrix * modelMatrix) * v;
+    texture = vtexture;
+
+    vec3 Normal = mat3(transpose(inverse(modelMatrix))) * aNormal;
+    vec3 pos = vec3(modelMatrix * vec4(aPos, 1.0));
+
+    //lightPosition - we should be passing this in as a uniform but we'll get to that later
+    vec3 lightPos = vec3(0.0, 10.0, 0.0);
+
+    // ambient
+    vec3 ambient = ambientStrength * ambient_color;   //scaling the light color with ambient strength
+
+    // diffuse
+    vec3 norm = normalize(Normal);
+    vec3 lightDir = normalize(lightPos - pos);   //lightPos - fragPos results in our to source vector
+    float diff = max(dot(norm, lightDir), 0.0);                 //dot product between the normal and the source results in the scalar
+                                                                //"amount" of the light vector traveling in the same direction as the
+                                                                //normal. If its negative, no light is bouncing off the surface so we
+                                                                //use 0
+    vec3 diffuse = diff * vec3(1.0, 1.0, 1.0);                  //scaling the light color with % of light bouncing off frag
+
+
+    //specular
+    vec3 viewDir = normalize(viewPos - aPos);                            //to viewer vector
+    vec3 reflectDir = reflect(-lightDir, norm);                             //reflect function calculates the perfect reflector between normal
+                                                                            //and light source (I think it returns a normalized vector, but Im
+                                                                            //not sure)
+    float spec = pow(max(dot(viewDir, reflectDir), 0.0), glint_radius);     //determines the brightness for a particular spot on
+                                                                            //the glint (not total brightness, but kind of percentage
+                                                                            //percentage brightness
+    vec3 specular = specularStrength * spec * vec3(1.0, 1.0, 1.0);          //adjusting the total specular brightness for the
+                                                                            //placement on the glint thing with the lightcolor
+
+    //Spotlight lighting
+
+    float spot;
+    if(spotlight_size > 0)
+    {
+        vec3 light_to_ball = normalize(lightPos - ballPos);
+        float dot_product = dot(light_to_ball, lightDir);
+        spot = pow(max(dot_product, 0.0), spotlight_size);
+        spot *= spotlight_bright;
+
+        float threshold = 0.1;  //random cutoff that I liked
+
+        if(hard_edge)
+        {
+            if(spot > threshold)
+            {
+                spot = spotlight_bright;
+            }
+            else
+            {
+                spot = 0.0;
+            }
+        }
+
+    }
+    else
+    {
+        spot = 1.0;
+    }
+
+/*
+    //bumper1
+    vec3 bumper1_dir = normalize(bumper1 - aPos);
+    vec3 light_to_bumper1 = normalize(bumper1 - (bumper1 - vec3(0.0, 1.0, 0.0)));
+    float bp1 = pow(max(dot( light_to_bumper1, bumper1_dir ), 0.0), 5);
+    vec3 bp1r = bumper1_c * bp1;
+
+    //bumper2
+    vec3 bumper2_dir = normalize(bumper2 - aPos);
+    vec3 light_to_bumper2 = normalize(bumper2 - (bumper2 - vec3(0.0, 1.0, 0.0)));
+    float bp2 = pow(max(dot( light_to_bumper2, bumper2_dir ), 0.0), 5);
+    vec3 bp2r = bumper2_c * bp2;
+
+    //bumper3
+    vec3 bumper3_dir = normalize(bumper3 - aPos);
+    vec3 light_to_bumper3 = normalize(bumper3 - (bumper3 - vec3(0.0, 1.0, 0.0)));
+    float bp3 = pow(max(dot( light_to_bumper3, bumper3_dir ), 0.0), 5);
+    vec3 bp3r = bumper3_c * bp3 * 2;
+*/
+
+    //Finalizing the lighting
+    lighting_result = ambient +  spot * (diffuse + specular);   //adding together all the components and multiplying with the
+                                                                        //objects color to determine light absorbed and reflected
+}
