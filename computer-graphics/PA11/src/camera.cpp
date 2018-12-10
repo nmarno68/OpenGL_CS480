@@ -19,7 +19,7 @@ bool Camera::Initialize(int w, int h)
 
   cameraSpeed = .3;
 
-  cameraPosition = glm::vec3(0.0, 1.0, 0.0);
+  cameraPosition = glm::vec3(1.0, 1.0, 0.0);
   cameraTarget = glm::vec3(0.0, 0.0, 0.0);
   cameraUp = glm::vec3(0.0, 1.0, 0.0);
   cameraFront = glm::vec3(1.0, 0.0, 0.0);
@@ -62,7 +62,6 @@ glm::mat4 Camera::GetLocation()
 void Camera::MoveForward()
 {
   cameraPosition += cameraSpeed * cameraFront;
-  cameraPosition.y = 1.0;
   view = glm::lookAt( cameraPosition, cameraPosition + cameraFront , cameraUp);
 }
 
@@ -146,7 +145,7 @@ void Camera::EnableMouse()
 //resets camera info (for planet view/ top view jumping
 void Camera::Reset()
 {
-  cameraPosition = glm::vec3(0.0, 1.0, 0.0);
+  cameraPosition = glm::vec3(1.0, 1.0, 0.0);
   cameraTarget = glm::vec3(0.0, 0.0, 0.0);
   cameraUp = glm::vec3(0.0, 1.0, 0.0);
   cameraFront = glm::vec3(1.0, -.80, 0.0);

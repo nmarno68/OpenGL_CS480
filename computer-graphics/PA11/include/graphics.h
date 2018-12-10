@@ -24,11 +24,21 @@ class Graphics
     Object *m_skybox;
     Object *m_skyboxSunset;
 
+    Object *m_tree;
+    Object *m_rock1;
+    Object *m_rock2;
+    Object *m_well;
+
+    Object *m_wiz1;
+
+    vector<Object*> m_fence;
+
   float ambientStrength;
   bool phong;
   glm::vec3 ambient_color;
   int skybox_used;
   bool normals;
+  glm::vec3 l_C, l_D;
 
   private:
 
@@ -52,6 +62,8 @@ class Graphics
     GLint m_ambientStrength;
     GLint m_ambient_color;
 
+    GLint m_lightDirection;
+    GLint m_lightColor;
 
 
     //gourand

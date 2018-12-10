@@ -106,14 +106,6 @@ void Object::Update(unsigned int dt, glm::mat4 origin, float scale)
 }
 
 //set ball back to start position
-void Object::ResetBall()
-{
-  btTransform trans;
-  m_rigidBody->getMotionState()->getWorldTransform(trans);
-  trans.getOrigin() = btVector3(m_translate.x, m_translate.y, m_translate.z);
-  m_rigidBody->setWorldTransform(trans);
-}
-
 
 glm::mat4 Object::GetModel()
 {

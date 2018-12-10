@@ -144,6 +144,11 @@ void Engine::Keyboard()
         break;
 
       case SDLK_w:
+        /*  glm::vec3 mf;
+          mf = m_graphics->m_camera->cameraPosition + m_graphics->m_camera->cameraFront;
+          mf.y = 0;
+          m_graphics->m_wiz1->m_rigidBody->applyForce(btVector3(mf.x, mf.y, mf.z) * 5, btVector3(0.0, 0.0, 0.0));
+          */
           m_graphics->m_camera->MoveForward();
           break;
       case SDLK_a:
@@ -159,10 +164,16 @@ void Engine::Keyboard()
           m_graphics->m_camera->MoveUp();
           break;
       case SDLK_f:
-        if(m_graphics->skybox_used == 1)
+        if(m_graphics->skybox_used == 1) {
           m_graphics->skybox_used = 2;
-        else
+          m_graphics->l_C = glm::vec3(1.0, .8, .73);
+          m_graphics->l_D = glm::vec3(0.0, .3, 1.0);
+        }
+        else {
           m_graphics->skybox_used = 1;
+          m_graphics->l_C = glm::vec3(1.0, 1.0, 1.0);
+          m_graphics->l_D = glm::vec3(0.3, 1.0, 0.0);
+        }
         break;
       case SDLK_p:
         m_graphics->normals = !m_graphics->normals;

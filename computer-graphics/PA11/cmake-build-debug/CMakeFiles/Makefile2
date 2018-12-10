@@ -65,76 +65,76 @@ CMAKE_SOURCE_DIR = /home/natalie/workspaces/cs480Arnold/computer-graphics/PA11
 CMAKE_BINARY_DIR = /home/natalie/workspaces/cs480Arnold/computer-graphics/PA11/cmake-build-debug
 
 #=============================================================================
-# Target rules for target CMakeFiles/PA_Pinball_SUCCESSFUL.dir
+# Target rules for target CMakeFiles/Wizard_Duel_SUCCESSFUL.dir
 
 # All Build rule for target.
-CMakeFiles/PA_Pinball_SUCCESSFUL.dir/all: CMakeFiles/PA_Pinball.dir/all
-	$(MAKE) -f CMakeFiles/PA_Pinball_SUCCESSFUL.dir/build.make CMakeFiles/PA_Pinball_SUCCESSFUL.dir/depend
-	$(MAKE) -f CMakeFiles/PA_Pinball_SUCCESSFUL.dir/build.make CMakeFiles/PA_Pinball_SUCCESSFUL.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/natalie/workspaces/cs480Arnold/computer-graphics/PA11/cmake-build-debug/CMakeFiles --progress-num= "Built target PA_Pinball_SUCCESSFUL"
-.PHONY : CMakeFiles/PA_Pinball_SUCCESSFUL.dir/all
+CMakeFiles/Wizard_Duel_SUCCESSFUL.dir/all: CMakeFiles/Wizard_Duel.dir/all
+	$(MAKE) -f CMakeFiles/Wizard_Duel_SUCCESSFUL.dir/build.make CMakeFiles/Wizard_Duel_SUCCESSFUL.dir/depend
+	$(MAKE) -f CMakeFiles/Wizard_Duel_SUCCESSFUL.dir/build.make CMakeFiles/Wizard_Duel_SUCCESSFUL.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/natalie/workspaces/cs480Arnold/computer-graphics/PA11/cmake-build-debug/CMakeFiles --progress-num= "Built target Wizard_Duel_SUCCESSFUL"
+.PHONY : CMakeFiles/Wizard_Duel_SUCCESSFUL.dir/all
 
 # Include target in all.
-all: CMakeFiles/PA_Pinball_SUCCESSFUL.dir/all
+all: CMakeFiles/Wizard_Duel_SUCCESSFUL.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/PA_Pinball_SUCCESSFUL.dir/rule: cmake_check_build_system
+CMakeFiles/Wizard_Duel_SUCCESSFUL.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/natalie/workspaces/cs480Arnold/computer-graphics/PA11/cmake-build-debug/CMakeFiles 15
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/PA_Pinball_SUCCESSFUL.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Wizard_Duel_SUCCESSFUL.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/natalie/workspaces/cs480Arnold/computer-graphics/PA11/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/PA_Pinball_SUCCESSFUL.dir/rule
+.PHONY : CMakeFiles/Wizard_Duel_SUCCESSFUL.dir/rule
 
 # Convenience name for target.
-PA_Pinball_SUCCESSFUL: CMakeFiles/PA_Pinball_SUCCESSFUL.dir/rule
+Wizard_Duel_SUCCESSFUL: CMakeFiles/Wizard_Duel_SUCCESSFUL.dir/rule
 
-.PHONY : PA_Pinball_SUCCESSFUL
-
-# clean rule for target.
-CMakeFiles/PA_Pinball_SUCCESSFUL.dir/clean:
-	$(MAKE) -f CMakeFiles/PA_Pinball_SUCCESSFUL.dir/build.make CMakeFiles/PA_Pinball_SUCCESSFUL.dir/clean
-.PHONY : CMakeFiles/PA_Pinball_SUCCESSFUL.dir/clean
+.PHONY : Wizard_Duel_SUCCESSFUL
 
 # clean rule for target.
-clean: CMakeFiles/PA_Pinball_SUCCESSFUL.dir/clean
+CMakeFiles/Wizard_Duel_SUCCESSFUL.dir/clean:
+	$(MAKE) -f CMakeFiles/Wizard_Duel_SUCCESSFUL.dir/build.make CMakeFiles/Wizard_Duel_SUCCESSFUL.dir/clean
+.PHONY : CMakeFiles/Wizard_Duel_SUCCESSFUL.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/Wizard_Duel_SUCCESSFUL.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/PA_Pinball.dir
+# Target rules for target CMakeFiles/Wizard_Duel.dir
 
 # All Build rule for target.
-CMakeFiles/PA_Pinball.dir/all:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/depend
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/natalie/workspaces/cs480Arnold/computer-graphics/PA11/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 "Built target PA_Pinball"
-.PHONY : CMakeFiles/PA_Pinball.dir/all
+CMakeFiles/Wizard_Duel.dir/all:
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/depend
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/natalie/workspaces/cs480Arnold/computer-graphics/PA11/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 "Built target Wizard_Duel"
+.PHONY : CMakeFiles/Wizard_Duel.dir/all
 
 # Include target in all.
-all: CMakeFiles/PA_Pinball.dir/all
+all: CMakeFiles/Wizard_Duel.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/PA_Pinball.dir/rule: cmake_check_build_system
+CMakeFiles/Wizard_Duel.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/natalie/workspaces/cs480Arnold/computer-graphics/PA11/cmake-build-debug/CMakeFiles 15
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/PA_Pinball.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Wizard_Duel.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/natalie/workspaces/cs480Arnold/computer-graphics/PA11/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/PA_Pinball.dir/rule
+.PHONY : CMakeFiles/Wizard_Duel.dir/rule
 
 # Convenience name for target.
-PA_Pinball: CMakeFiles/PA_Pinball.dir/rule
+Wizard_Duel: CMakeFiles/Wizard_Duel.dir/rule
 
-.PHONY : PA_Pinball
-
-# clean rule for target.
-CMakeFiles/PA_Pinball.dir/clean:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/clean
-.PHONY : CMakeFiles/PA_Pinball.dir/clean
+.PHONY : Wizard_Duel
 
 # clean rule for target.
-clean: CMakeFiles/PA_Pinball.dir/clean
+CMakeFiles/Wizard_Duel.dir/clean:
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/clean
+.PHONY : CMakeFiles/Wizard_Duel.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/Wizard_Duel.dir/clean
 
 .PHONY : clean
 

@@ -205,6 +205,19 @@ bool Graphics::Initialize(int width, int height)
     return false;
   }
 
+  m_lightDirection = m_phong->GetUniformLocation("lightDirection");
+  if (m_lightDirection == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_lightDirection not found\n");
+    return false;
+  }
+
+  m_lightColor = m_phong->GetUniformLocation("lightColor");
+  if (m_lightColor == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_lightColor not found\n");
+    return false;
+  }
 
 
 
@@ -307,10 +320,12 @@ bool Graphics::Initialize(int width, int height)
   normals = true;
 
   //initialize lighting values
-  ambientStrength = .7; //cause this also looks nice
+  ambientStrength = .3; //cause this also looks nice
   phong = true;
-  ambient_color = glm::vec3(1.0, .8, .9);
+  ambient_color = glm::vec3(1.0, 1.0, 1.0);
   skybox_used = 1;
+  l_C = glm::vec3(1.0, 1.0, 1.0);
+  l_D = glm::vec3(0.3, 1.0, 0.0);
 
   //Creating physics world
   m_broadphase = new btDbvtBroadphase();
@@ -320,7 +335,7 @@ bool Graphics::Initialize(int width, int height)
 
   m_dynamicsWorld = new btDiscreteDynamicsWorld(m_dispatcher, m_broadphase, m_solver, m_collisionConfiguration);
 
-  m_dynamicsWorld->setGravity(btVector3(-.05, -.05, 0));
+  m_dynamicsWorld->setGravity(btVector3(0, -1, 0));
 
 
   //Initializing objects
@@ -329,9 +344,21 @@ bool Graphics::Initialize(int width, int height)
   //filename, what shape the bullet primitive is or triangle meshes, whether or not there is an object file to load, scaling variables, whether or not
   //the object is a flipper (0->not a flipper, 1-left flipper, 2-right flipper
 
-  m_ground = new Object("ground.obj", -1, true, 1.0, 1.0, 1.0, 0);
+  m_ground = new Object("map.obj", 9, true, 1.0, 1.0, 1.0, 0);
   m_skybox = new Object("skybox.obj", -1, true, 80, 80, 80, 0);
   m_skyboxSunset = new Object("sunsetBox.obj", -1, true, 80, 80, 80, 0);
+  m_tree  = new Object("smolTree.obj", 9, true, .03, .04, .03, 0);
+  m_rock1 = new Object("Rock_6.obj", 9, true, 1.0, 1.0, 1.0, 0);
+  m_rock2 = new Object("Rock_6.obj", 9, true, .5, .5, .5, 0);
+  m_well = new Object("well.obj", 9, true, .9, .9, .9, 0);
+  for(int i = 0; i < 5; i++)
+  {
+    Object* temp = new Object("railing_1.obj", 9, true, 1.5, 1.5, 1.0, 0);
+    m_fence.push_back(temp);
+  }
+
+
+  m_wiz1 = new Object("Rock_6.obj", 4, true, .3, .3, .3, 0);
 
 
 
@@ -339,23 +366,59 @@ bool Graphics::Initialize(int width, int height)
   m_ground->SetValues(.1, 10);
   m_skybox->SetValues(.1, 10);
   m_skyboxSunset->SetValues(.1, 10);
+  m_tree->SetValues(.1, 10);
+  m_rock1->SetValues(.1, 10);
+  m_rock2->SetValues(.1, 10);
+  m_well->SetValues(.1, 10);
+
+  for(int i = 0; i < 5; i++)
+  {
+    m_fence[i]->SetValues(.5, 50);
+  }
+
+
+  m_wiz1->SetValues(.1, 10);
 
 
   //Initializing object physics
   //inertia vector
   glm::vec3 v = glm::vec3(0.0, 0.0, 0.0);
 
+
   //SetBullet - mass, inertia, kinObject , physics, initial_translate, initial rotate, restitution, friction
-  m_ground->SetBullet(0, v, false, false, glm::vec3(0.0, 0.0, 0.0), 0, 0, 0);
+  m_ground->SetBullet(0, v, true, true, glm::vec3(0.0, 0.0, 0.0), 0, 0, 0);
+
   m_skybox->SetBullet(0, v, false, false, m_camera->cameraPosition + glm::vec3(0.0, -10.0, 0.0), M_PI, 0, 0);
   m_skyboxSunset->SetBullet(0, v, false, false, m_camera->cameraPosition + glm::vec3(0.0, 0.0, 0.0), 0, 0, 0);
 
+  m_tree->SetBullet(0, v, true, true, glm::vec3(-1.5, 0.3, 0.0), 0, 0, 0);
+  m_rock1->SetBullet(0, v, true, true, glm::vec3(-7.5, 0.3, -7.5), 0, 0, 0);
+  m_rock2->SetBullet(0, v, true, true, glm::vec3(5.0, 0.4, 5.0), 0, 0, 0);
+  m_well->SetBullet(0, v, true, true, glm::vec3(0.0, 0.5, 0.0), 0, 0, 0);
+
+  float disp = 0;
+  for(int i = 0; i < 5; i++)
+  {
+    m_fence[i]->SetBullet(0, v, true, true, glm::vec3(4.5 - disp, 0.3, 1.5), 0, 0, 0);
+    disp += 3.5;
+  }
+
+  m_wiz1->SetBullet(1, v, false, true, glm::vec3(1.0, 20.0, 0.0), 0, 0, 0);
 
 
   short mask = 0b11111111;
 
   //Add to dynamics world
+  m_dynamicsWorld->addRigidBody(m_ground->GetRigidBody(), mask, mask);
+  m_dynamicsWorld->addRigidBody(m_tree->GetRigidBody(), mask, mask);
+  m_dynamicsWorld->addRigidBody(m_rock1->GetRigidBody(), mask, mask);
+  m_dynamicsWorld->addRigidBody(m_rock2->GetRigidBody(), mask, mask);
+  m_dynamicsWorld->addRigidBody(m_well->GetRigidBody(), mask, mask);
+  for(int i = 0; i < 5; i++) {
+    m_dynamicsWorld->addRigidBody(m_fence[i]->GetRigidBody(), mask, mask);
+  }
 
+  m_dynamicsWorld->addRigidBody(m_wiz1->GetRigidBody(), mask, mask);
 
 
 
@@ -375,6 +438,18 @@ bool Graphics::Initialize(int width, int height)
 void Graphics::Update(unsigned int dt)
 {
   m_ground->Update(dt, glm::mat4(1.0f), 1);
+  m_tree->Update(dt, glm::mat4(1.0f), 1);
+  m_rock1->Update(dt, glm::mat4(1.0f), 1);
+  m_rock2->Update(dt, glm::mat4(1.0f), 1);
+  m_well->Update(dt, glm::mat4(1.0f), 1);
+
+  for(int i = 0; i < 5; i++)
+  {
+    m_fence[i]->Update(dt, glm::mat4(1.0f), 1);
+  }
+
+ // m_camera->PlanetView(m_wiz1->GetLocationVector(), glm::vec3(0.0, 1.0, 0.0));
+
   switch(skybox_used) {
     case 1:
       m_skybox->Update(dt, m_camera->GetLocationSkybox(skybox_used), 1);
@@ -383,6 +458,8 @@ void Graphics::Update(unsigned int dt)
       m_skyboxSunset->Update(dt, m_camera->GetLocationSkybox(skybox_used), 1);
       break;
   }
+
+  m_wiz1->Update(dt, glm::mat4(1.0f), 1);
 
 }
 
@@ -395,8 +472,14 @@ void Graphics::Render()
 
     // Start the correct program
     if(normals) {
+
       if (phong) {
         m_phong->Enable();
+
+        //Send in Light direction and color
+
+        glUniform3fv(m_lightDirection, 1, glm::value_ptr(l_D));
+        glUniform3fv(m_lightColor, 1, glm::value_ptr(l_C));
 
 
         //Send in ambient color
@@ -416,7 +499,43 @@ void Graphics::Render()
         glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_ground->GetModel()));
         glUniform1f(m_specular_brightness, (GLfloat) m_ground->specular_brightness);
         glUniform1i(m_specular_size, (GLint) m_ground->specular_size);
-        m_ground->Render();
+        for(int i = 0; i < m_ground->meshes.size(); i++) {
+          if(i != 14)
+          m_ground->meshes[i].Draw();
+        }
+
+        glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_tree->GetModel()));
+        glUniform1f(m_specular_brightness, (GLfloat) m_tree->specular_brightness);
+        glUniform1i(m_specular_size, (GLint) m_tree->specular_size);
+        m_tree->Render();
+
+        for(int i = 0; i < 5; i++) {
+          glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_fence[i]->GetModel()));
+          glUniform1f(m_specular_brightness, (GLfloat) m_fence[i]->specular_brightness);
+          glUniform1i(m_specular_size, (GLint) m_fence[i]->specular_size);
+          m_fence[i]->Render();
+        }
+
+        glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_rock1->GetModel()));
+        glUniform1f(m_specular_brightness, (GLfloat) m_rock1->specular_brightness);
+        glUniform1i(m_specular_size, (GLint) m_rock1->specular_size);
+        m_rock1->Render();
+
+        glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_rock2->GetModel()));
+        glUniform1f(m_specular_brightness, (GLfloat) m_rock2->specular_brightness);
+        glUniform1i(m_specular_size, (GLint) m_rock2->specular_size);
+        m_rock2->Render();
+
+        glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_well->GetModel()));
+        glUniform1f(m_specular_brightness, (GLfloat) m_well->specular_brightness);
+        glUniform1i(m_specular_size, (GLint) m_well->specular_size);
+        m_well->Render();
+
+
+        glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_wiz1->GetModel()));
+        glUniform1f(m_specular_brightness, (GLfloat) m_wiz1->specular_brightness);
+        glUniform1i(m_specular_size, (GLint) m_wiz1->specular_size);
+        m_wiz1->Render();
       }
 
       else {
@@ -444,6 +563,24 @@ void Graphics::Render()
       m_texture->Enable();
       glUniformMatrix4fv(m_tmodelMatrix, 1, GL_FALSE, glm::value_ptr(m_ground->GetModel()));
       m_ground->Render();
+
+      glUniformMatrix4fv(m_tmodelMatrix, 1, GL_FALSE, glm::value_ptr(m_tree->GetModel()));
+      m_tree->Render();
+
+      for(int i = 0; i < 5; i++) {
+        glUniformMatrix4fv(m_tmodelMatrix, 1, GL_FALSE, glm::value_ptr(m_fence[i]->GetModel()));
+        m_fence[i]->Render();
+      }
+
+      glUniformMatrix4fv(m_tmodelMatrix, 1, GL_FALSE, glm::value_ptr(m_rock1->GetModel()));
+      m_rock1->Render();
+
+      glUniformMatrix4fv(m_tmodelMatrix, 1, GL_FALSE, glm::value_ptr(m_rock2->GetModel()));
+      m_rock2->Render();
+
+      glUniformMatrix4fv(m_tmodelMatrix, 1, GL_FALSE, glm::value_ptr(m_well->GetModel()));
+      m_well->Render();
+
     }
     m_texture->Enable();
 

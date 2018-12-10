@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /home/natalie/workspaces/cs480Arnold/computer-graphics/PA11/c
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/home/natalie/Downloads/clion-2018.2.2/bin/cmake/linux/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -77,6 +66,17 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/home/natalie/Downloads/clion-2018.2.2/bin/cmake/linux/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -111,30 +111,30 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named PA_Pinball_SUCCESSFUL
+# Target rules for targets named Wizard_Duel_SUCCESSFUL
 
 # Build rule for target.
-PA_Pinball_SUCCESSFUL: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 PA_Pinball_SUCCESSFUL
-.PHONY : PA_Pinball_SUCCESSFUL
+Wizard_Duel_SUCCESSFUL: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Wizard_Duel_SUCCESSFUL
+.PHONY : Wizard_Duel_SUCCESSFUL
 
 # fast build rule for target.
-PA_Pinball_SUCCESSFUL/fast:
-	$(MAKE) -f CMakeFiles/PA_Pinball_SUCCESSFUL.dir/build.make CMakeFiles/PA_Pinball_SUCCESSFUL.dir/build
-.PHONY : PA_Pinball_SUCCESSFUL/fast
+Wizard_Duel_SUCCESSFUL/fast:
+	$(MAKE) -f CMakeFiles/Wizard_Duel_SUCCESSFUL.dir/build.make CMakeFiles/Wizard_Duel_SUCCESSFUL.dir/build
+.PHONY : Wizard_Duel_SUCCESSFUL/fast
 
 #=============================================================================
-# Target rules for targets named PA_Pinball
+# Target rules for targets named Wizard_Duel
 
 # Build rule for target.
-PA_Pinball: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 PA_Pinball
-.PHONY : PA_Pinball
+Wizard_Duel: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Wizard_Duel
+.PHONY : Wizard_Duel
 
 # fast build rule for target.
-PA_Pinball/fast:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/build
-.PHONY : PA_Pinball/fast
+Wizard_Duel/fast:
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/build
+.PHONY : Wizard_Duel/fast
 
 src/camera.o: src/camera.cpp.o
 
@@ -142,7 +142,7 @@ src/camera.o: src/camera.cpp.o
 
 # target to build an object file
 src/camera.cpp.o:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/camera.cpp.o
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/camera.cpp.o
 .PHONY : src/camera.cpp.o
 
 src/camera.i: src/camera.cpp.i
@@ -151,7 +151,7 @@ src/camera.i: src/camera.cpp.i
 
 # target to preprocess a source file
 src/camera.cpp.i:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/camera.cpp.i
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/camera.cpp.i
 .PHONY : src/camera.cpp.i
 
 src/camera.s: src/camera.cpp.s
@@ -160,7 +160,7 @@ src/camera.s: src/camera.cpp.s
 
 # target to generate assembly for a file
 src/camera.cpp.s:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/camera.cpp.s
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/camera.cpp.s
 .PHONY : src/camera.cpp.s
 
 src/engine.o: src/engine.cpp.o
@@ -169,7 +169,7 @@ src/engine.o: src/engine.cpp.o
 
 # target to build an object file
 src/engine.cpp.o:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/engine.cpp.o
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/engine.cpp.o
 .PHONY : src/engine.cpp.o
 
 src/engine.i: src/engine.cpp.i
@@ -178,7 +178,7 @@ src/engine.i: src/engine.cpp.i
 
 # target to preprocess a source file
 src/engine.cpp.i:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/engine.cpp.i
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/engine.cpp.i
 .PHONY : src/engine.cpp.i
 
 src/engine.s: src/engine.cpp.s
@@ -187,7 +187,7 @@ src/engine.s: src/engine.cpp.s
 
 # target to generate assembly for a file
 src/engine.cpp.s:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/engine.cpp.s
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/engine.cpp.s
 .PHONY : src/engine.cpp.s
 
 src/graphics.o: src/graphics.cpp.o
@@ -196,7 +196,7 @@ src/graphics.o: src/graphics.cpp.o
 
 # target to build an object file
 src/graphics.cpp.o:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/graphics.cpp.o
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/graphics.cpp.o
 .PHONY : src/graphics.cpp.o
 
 src/graphics.i: src/graphics.cpp.i
@@ -205,7 +205,7 @@ src/graphics.i: src/graphics.cpp.i
 
 # target to preprocess a source file
 src/graphics.cpp.i:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/graphics.cpp.i
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/graphics.cpp.i
 .PHONY : src/graphics.cpp.i
 
 src/graphics.s: src/graphics.cpp.s
@@ -214,7 +214,7 @@ src/graphics.s: src/graphics.cpp.s
 
 # target to generate assembly for a file
 src/graphics.cpp.s:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/graphics.cpp.s
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/graphics.cpp.s
 .PHONY : src/graphics.cpp.s
 
 src/imgui.o: src/imgui.cpp.o
@@ -223,7 +223,7 @@ src/imgui.o: src/imgui.cpp.o
 
 # target to build an object file
 src/imgui.cpp.o:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/imgui.cpp.o
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/imgui.cpp.o
 .PHONY : src/imgui.cpp.o
 
 src/imgui.i: src/imgui.cpp.i
@@ -232,7 +232,7 @@ src/imgui.i: src/imgui.cpp.i
 
 # target to preprocess a source file
 src/imgui.cpp.i:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/imgui.cpp.i
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/imgui.cpp.i
 .PHONY : src/imgui.cpp.i
 
 src/imgui.s: src/imgui.cpp.s
@@ -241,7 +241,7 @@ src/imgui.s: src/imgui.cpp.s
 
 # target to generate assembly for a file
 src/imgui.cpp.s:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/imgui.cpp.s
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/imgui.cpp.s
 .PHONY : src/imgui.cpp.s
 
 src/imgui_demo.o: src/imgui_demo.cpp.o
@@ -250,7 +250,7 @@ src/imgui_demo.o: src/imgui_demo.cpp.o
 
 # target to build an object file
 src/imgui_demo.cpp.o:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/imgui_demo.cpp.o
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/imgui_demo.cpp.o
 .PHONY : src/imgui_demo.cpp.o
 
 src/imgui_demo.i: src/imgui_demo.cpp.i
@@ -259,7 +259,7 @@ src/imgui_demo.i: src/imgui_demo.cpp.i
 
 # target to preprocess a source file
 src/imgui_demo.cpp.i:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/imgui_demo.cpp.i
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/imgui_demo.cpp.i
 .PHONY : src/imgui_demo.cpp.i
 
 src/imgui_demo.s: src/imgui_demo.cpp.s
@@ -268,7 +268,7 @@ src/imgui_demo.s: src/imgui_demo.cpp.s
 
 # target to generate assembly for a file
 src/imgui_demo.cpp.s:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/imgui_demo.cpp.s
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/imgui_demo.cpp.s
 .PHONY : src/imgui_demo.cpp.s
 
 src/imgui_draw.o: src/imgui_draw.cpp.o
@@ -277,7 +277,7 @@ src/imgui_draw.o: src/imgui_draw.cpp.o
 
 # target to build an object file
 src/imgui_draw.cpp.o:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/imgui_draw.cpp.o
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/imgui_draw.cpp.o
 .PHONY : src/imgui_draw.cpp.o
 
 src/imgui_draw.i: src/imgui_draw.cpp.i
@@ -286,7 +286,7 @@ src/imgui_draw.i: src/imgui_draw.cpp.i
 
 # target to preprocess a source file
 src/imgui_draw.cpp.i:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/imgui_draw.cpp.i
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/imgui_draw.cpp.i
 .PHONY : src/imgui_draw.cpp.i
 
 src/imgui_draw.s: src/imgui_draw.cpp.s
@@ -295,7 +295,7 @@ src/imgui_draw.s: src/imgui_draw.cpp.s
 
 # target to generate assembly for a file
 src/imgui_draw.cpp.s:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/imgui_draw.cpp.s
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/imgui_draw.cpp.s
 .PHONY : src/imgui_draw.cpp.s
 
 src/imgui_impl_opengl3.o: src/imgui_impl_opengl3.cpp.o
@@ -304,7 +304,7 @@ src/imgui_impl_opengl3.o: src/imgui_impl_opengl3.cpp.o
 
 # target to build an object file
 src/imgui_impl_opengl3.cpp.o:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/imgui_impl_opengl3.cpp.o
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/imgui_impl_opengl3.cpp.o
 .PHONY : src/imgui_impl_opengl3.cpp.o
 
 src/imgui_impl_opengl3.i: src/imgui_impl_opengl3.cpp.i
@@ -313,7 +313,7 @@ src/imgui_impl_opengl3.i: src/imgui_impl_opengl3.cpp.i
 
 # target to preprocess a source file
 src/imgui_impl_opengl3.cpp.i:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/imgui_impl_opengl3.cpp.i
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/imgui_impl_opengl3.cpp.i
 .PHONY : src/imgui_impl_opengl3.cpp.i
 
 src/imgui_impl_opengl3.s: src/imgui_impl_opengl3.cpp.s
@@ -322,7 +322,7 @@ src/imgui_impl_opengl3.s: src/imgui_impl_opengl3.cpp.s
 
 # target to generate assembly for a file
 src/imgui_impl_opengl3.cpp.s:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/imgui_impl_opengl3.cpp.s
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/imgui_impl_opengl3.cpp.s
 .PHONY : src/imgui_impl_opengl3.cpp.s
 
 src/imgui_impl_sdl.o: src/imgui_impl_sdl.cpp.o
@@ -331,7 +331,7 @@ src/imgui_impl_sdl.o: src/imgui_impl_sdl.cpp.o
 
 # target to build an object file
 src/imgui_impl_sdl.cpp.o:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/imgui_impl_sdl.cpp.o
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/imgui_impl_sdl.cpp.o
 .PHONY : src/imgui_impl_sdl.cpp.o
 
 src/imgui_impl_sdl.i: src/imgui_impl_sdl.cpp.i
@@ -340,7 +340,7 @@ src/imgui_impl_sdl.i: src/imgui_impl_sdl.cpp.i
 
 # target to preprocess a source file
 src/imgui_impl_sdl.cpp.i:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/imgui_impl_sdl.cpp.i
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/imgui_impl_sdl.cpp.i
 .PHONY : src/imgui_impl_sdl.cpp.i
 
 src/imgui_impl_sdl.s: src/imgui_impl_sdl.cpp.s
@@ -349,7 +349,7 @@ src/imgui_impl_sdl.s: src/imgui_impl_sdl.cpp.s
 
 # target to generate assembly for a file
 src/imgui_impl_sdl.cpp.s:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/imgui_impl_sdl.cpp.s
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/imgui_impl_sdl.cpp.s
 .PHONY : src/imgui_impl_sdl.cpp.s
 
 src/imgui_widgets.o: src/imgui_widgets.cpp.o
@@ -358,7 +358,7 @@ src/imgui_widgets.o: src/imgui_widgets.cpp.o
 
 # target to build an object file
 src/imgui_widgets.cpp.o:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/imgui_widgets.cpp.o
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/imgui_widgets.cpp.o
 .PHONY : src/imgui_widgets.cpp.o
 
 src/imgui_widgets.i: src/imgui_widgets.cpp.i
@@ -367,7 +367,7 @@ src/imgui_widgets.i: src/imgui_widgets.cpp.i
 
 # target to preprocess a source file
 src/imgui_widgets.cpp.i:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/imgui_widgets.cpp.i
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/imgui_widgets.cpp.i
 .PHONY : src/imgui_widgets.cpp.i
 
 src/imgui_widgets.s: src/imgui_widgets.cpp.s
@@ -376,7 +376,7 @@ src/imgui_widgets.s: src/imgui_widgets.cpp.s
 
 # target to generate assembly for a file
 src/imgui_widgets.cpp.s:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/imgui_widgets.cpp.s
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/imgui_widgets.cpp.s
 .PHONY : src/imgui_widgets.cpp.s
 
 src/main.o: src/main.cpp.o
@@ -385,7 +385,7 @@ src/main.o: src/main.cpp.o
 
 # target to build an object file
 src/main.cpp.o:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/main.cpp.o
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -394,7 +394,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/main.cpp.i
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -403,7 +403,7 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/main.cpp.s
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
 src/mesh.o: src/mesh.cpp.o
@@ -412,7 +412,7 @@ src/mesh.o: src/mesh.cpp.o
 
 # target to build an object file
 src/mesh.cpp.o:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/mesh.cpp.o
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/mesh.cpp.o
 .PHONY : src/mesh.cpp.o
 
 src/mesh.i: src/mesh.cpp.i
@@ -421,7 +421,7 @@ src/mesh.i: src/mesh.cpp.i
 
 # target to preprocess a source file
 src/mesh.cpp.i:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/mesh.cpp.i
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/mesh.cpp.i
 .PHONY : src/mesh.cpp.i
 
 src/mesh.s: src/mesh.cpp.s
@@ -430,7 +430,7 @@ src/mesh.s: src/mesh.cpp.s
 
 # target to generate assembly for a file
 src/mesh.cpp.s:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/mesh.cpp.s
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/mesh.cpp.s
 .PHONY : src/mesh.cpp.s
 
 src/object.o: src/object.cpp.o
@@ -439,7 +439,7 @@ src/object.o: src/object.cpp.o
 
 # target to build an object file
 src/object.cpp.o:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/object.cpp.o
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/object.cpp.o
 .PHONY : src/object.cpp.o
 
 src/object.i: src/object.cpp.i
@@ -448,7 +448,7 @@ src/object.i: src/object.cpp.i
 
 # target to preprocess a source file
 src/object.cpp.i:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/object.cpp.i
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/object.cpp.i
 .PHONY : src/object.cpp.i
 
 src/object.s: src/object.cpp.s
@@ -457,7 +457,7 @@ src/object.s: src/object.cpp.s
 
 # target to generate assembly for a file
 src/object.cpp.s:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/object.cpp.s
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/object.cpp.s
 .PHONY : src/object.cpp.s
 
 src/shader.o: src/shader.cpp.o
@@ -466,7 +466,7 @@ src/shader.o: src/shader.cpp.o
 
 # target to build an object file
 src/shader.cpp.o:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/shader.cpp.o
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/shader.cpp.o
 .PHONY : src/shader.cpp.o
 
 src/shader.i: src/shader.cpp.i
@@ -475,7 +475,7 @@ src/shader.i: src/shader.cpp.i
 
 # target to preprocess a source file
 src/shader.cpp.i:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/shader.cpp.i
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/shader.cpp.i
 .PHONY : src/shader.cpp.i
 
 src/shader.s: src/shader.cpp.s
@@ -484,7 +484,7 @@ src/shader.s: src/shader.cpp.s
 
 # target to generate assembly for a file
 src/shader.cpp.s:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/shader.cpp.s
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/shader.cpp.s
 .PHONY : src/shader.cpp.s
 
 src/window.o: src/window.cpp.o
@@ -493,7 +493,7 @@ src/window.o: src/window.cpp.o
 
 # target to build an object file
 src/window.cpp.o:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/window.cpp.o
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/window.cpp.o
 .PHONY : src/window.cpp.o
 
 src/window.i: src/window.cpp.i
@@ -502,7 +502,7 @@ src/window.i: src/window.cpp.i
 
 # target to preprocess a source file
 src/window.cpp.i:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/window.cpp.i
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/window.cpp.i
 .PHONY : src/window.cpp.i
 
 src/window.s: src/window.cpp.s
@@ -511,7 +511,7 @@ src/window.s: src/window.cpp.s
 
 # target to generate assembly for a file
 src/window.cpp.s:
-	$(MAKE) -f CMakeFiles/PA_Pinball.dir/build.make CMakeFiles/PA_Pinball.dir/src/window.cpp.s
+	$(MAKE) -f CMakeFiles/Wizard_Duel.dir/build.make CMakeFiles/Wizard_Duel.dir/src/window.cpp.s
 .PHONY : src/window.cpp.s
 
 # Help Target
@@ -520,10 +520,10 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... PA_Pinball_SUCCESSFUL"
-	@echo "... PA_Pinball"
+	@echo "... rebuild_cache"
+	@echo "... Wizard_Duel_SUCCESSFUL"
+	@echo "... Wizard_Duel"
 	@echo "... src/camera.o"
 	@echo "... src/camera.i"
 	@echo "... src/camera.s"

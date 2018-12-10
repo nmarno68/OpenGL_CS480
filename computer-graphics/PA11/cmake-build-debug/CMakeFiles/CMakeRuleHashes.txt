@@ -1,2 +1,2 @@
 # Hashes of file build rules.
-2709bd81f3c7bb56b86e931eaddfcaf2 CMakeFiles/PA_Pinball_SUCCESSFUL
+2709bd81f3c7bb56b86e931eaddfcaf2 CMakeFiles/Wizard_Duel_SUCCESSFUL

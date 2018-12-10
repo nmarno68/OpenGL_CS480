@@ -171,7 +171,7 @@ CMAKE_OBJCOPY:FILEPATH=/usr/bin/objcopy
 CMAKE_OBJDUMP:FILEPATH=/usr/bin/objdump
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=PA_Pinball
+CMAKE_PROJECT_NAME:STATIC=Wizard_Duel
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
@@ -321,6 +321,12 @@ SDL2_INCLUDE_DIR:PATH=/usr/include/SDL2
 
 //Where the SDL2 Library can be found
 SDL2_LIBRARY:STRING=/usr/lib/x86_64-linux-gnu/libSDL2main.a;/usr/lib/x86_64-linux-gnu/libSDL2.so;-lpthread
+
+//Value Computed by CMake
+Wizard_Duel_BINARY_DIR:STATIC=/home/natalie/workspaces/cs480Arnold/computer-graphics/PA11/cmake-build-debug
+
+//Value Computed by CMake
+Wizard_Duel_SOURCE_DIR:STATIC=/home/natalie/workspaces/cs480Arnold/computer-graphics/PA11
 
 //Path to a file.
 assimp_INCLUDE_DIRS:PATH=assimp_INCLUDE_DIRS-NOTFOUND
@@ -599,7 +605,7 @@ PKG_CONFIG_EXECUTABLE-ADVANCED:INTERNAL=1
 ProcessorCount_cmd_getconf-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: ProcessorCount_cmd_sysctl
 ProcessorCount_cmd_sysctl-ADVANCED:INTERNAL=1
-SDL2_LIBRARY_TEMP:INTERNAL=/usr/lib/x86_64-linux-gnu/libSDL2main.a;/usr/lib/x86_64-linux-gnu/libSDL2.so;-lpthread
+SDL2_LIBRARY_TEMP:INTERNAL=/usr/lib/x86_64-linux-gnu/libSDL2main.a;/usr/lib/x86_64-linux-gnu/libSDL2main.a;/usr/lib/x86_64-linux-gnu/libSDL2.so;-lpthread;-lpthread
 __pkg_config_arguments_PC_Magick++:INTERNAL=QUIET;Magick++
 __pkg_config_checked_PC_Magick++:INTERNAL=1
 prefix_result:INTERNAL=/usr/local/lib
