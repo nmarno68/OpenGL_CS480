@@ -335,7 +335,7 @@ bool Graphics::Initialize(int width, int height)
 
   m_dynamicsWorld = new btDiscreteDynamicsWorld(m_dispatcher, m_broadphase, m_solver, m_collisionConfiguration);
 
-  m_dynamicsWorld->setGravity(btVector3(0, -1, 0));
+  m_dynamicsWorld->setGravity(btVector3(0, -.1, 0));
 
 
   //Initializing objects
@@ -344,6 +344,10 @@ bool Graphics::Initialize(int width, int height)
   //filename, what shape the bullet primitive is or triangle meshes, whether or not there is an object file to load, scaling variables, whether or not
   //the object is a flipper (0->not a flipper, 1-left flipper, 2-right flipper
 
+  //tester = new Object(".obj", -1, true, .7, .3, .7, 0);
+  //tester = new Object("Grass_02.obj", -1, true, .7, .3, .7, 0);
+
+  m_grass1 = new Object("Grass_02.obj", -1, true, .7, .3, .7, 0);
   m_ground = new Object("map.obj", 9, true, 1.0, 1.0, 1.0, 0);
   m_skybox = new Object("skybox.obj", -1, true, 80, 80, 80, 0);
   m_skyboxSunset = new Object("sunsetBox.obj", -1, true, 80, 80, 80, 0);
@@ -358,11 +362,14 @@ bool Graphics::Initialize(int width, int height)
   }
 
 
-  m_wiz1 = new Object("Rock_6.obj", 4, true, .3, .3, .3, 0);
+  m_wiz1 = new Object("NONE", 2, false, .3, .3, .3, 0);
 
 
 
   //specular_brightness, specular_size (only on rendered objects)
+  //tester->SetValues(.1, 10);
+
+  m_grass1->SetValues(.1, 10);
   m_ground->SetValues(.1, 10);
   m_skybox->SetValues(.1, 10);
   m_skyboxSunset->SetValues(.1, 10);
@@ -386,7 +393,10 @@ bool Graphics::Initialize(int width, int height)
 
 
   //SetBullet - mass, inertia, kinObject , physics, initial_translate, initial rotate, restitution, friction
-  m_ground->SetBullet(0, v, true, true, glm::vec3(0.0, 0.0, 0.0), 0, 0, 0);
+  //tester->SetBullet(0, v, false, false, glm::vec3(2.0, .2, 0.0), 0, 0, 0);
+
+  m_grass1->SetBullet(0, v, false, false, glm::vec3(0.0, .2, 0.0), 0, 0, 0);
+  m_ground->SetBullet(0, v, true, true, glm::vec3(0.0, 0.0, 0.0), 0, 0, 3);
 
   m_skybox->SetBullet(0, v, false, false, m_camera->cameraPosition + glm::vec3(0.0, -10.0, 0.0), M_PI, 0, 0);
   m_skyboxSunset->SetBullet(0, v, false, false, m_camera->cameraPosition + glm::vec3(0.0, 0.0, 0.0), 0, 0, 0);
@@ -403,7 +413,7 @@ bool Graphics::Initialize(int width, int height)
     disp += 3.5;
   }
 
-  m_wiz1->SetBullet(1, v, false, true, glm::vec3(1.0, 20.0, 0.0), 0, 0, 0);
+  m_wiz1->SetBullet(1, v, false, true, glm::vec3(1.0, 0.5, 0.0), 0, 0, 3);
 
 
   short mask = 0b11111111;
@@ -437,6 +447,11 @@ bool Graphics::Initialize(int width, int height)
 
 void Graphics::Update(unsigned int dt)
 {
+  m_dynamicsWorld->stepSimulation(dt, 10);
+
+  //tester->Update(dt, glm::mat4(1.0f), 1);
+
+  m_grass1->Update(dt, glm::mat4(1.0f), 1);
   m_ground->Update(dt, glm::mat4(1.0f), 1);
   m_tree->Update(dt, glm::mat4(1.0f), 1);
   m_rock1->Update(dt, glm::mat4(1.0f), 1);
@@ -448,7 +463,7 @@ void Graphics::Update(unsigned int dt)
     m_fence[i]->Update(dt, glm::mat4(1.0f), 1);
   }
 
- // m_camera->PlanetView(m_wiz1->GetLocationVector(), glm::vec3(0.0, 1.0, 0.0));
+  m_camera->PlanetView(m_wiz1->GetLocationVector(), glm::vec3(0.0, .75, 0.0));
 
   switch(skybox_used) {
     case 1:
@@ -531,11 +546,25 @@ void Graphics::Render()
         glUniform1i(m_specular_size, (GLint) m_well->specular_size);
         m_well->Render();
 
-
+/*
         glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_wiz1->GetModel()));
         glUniform1f(m_specular_brightness, (GLfloat) m_wiz1->specular_brightness);
         glUniform1i(m_specular_size, (GLint) m_wiz1->specular_size);
         m_wiz1->Render();
+*/
+
+        glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_grass1->GetModel()));
+        glUniform1f(m_specular_brightness, (GLfloat) m_grass1->specular_brightness);
+        glUniform1i(m_specular_size, (GLint) m_grass1->specular_size);
+        m_grass1->Render();
+
+/*
+        glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(tester->GetModel()));
+        glUniform1f(m_specular_brightness, (GLfloat) tester->specular_brightness);
+        glUniform1i(m_specular_size, (GLint) tester->specular_size);
+        tester->Render();
+*/
+
       }
 
       else {

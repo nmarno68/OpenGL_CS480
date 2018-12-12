@@ -24,6 +24,7 @@ class Camera
     void TopView();
     void FaceFront();
     glm::mat4 GetLocationSkybox(int skybox);
+    glm::vec3 RetrieveForceForward();
 
     glm::vec3 cameraPosition;
     glm::vec3 cameraTarget;

@@ -1,0 +1,39 @@
+#
+## Alias OBJ Material File
+# Exported from SketchUp, (c) 2000-2012 Trimble Navigation Limited
+
+newmtl Material_2
+Ka 0.000000 0.000000 0.000000
+Kd 0.729412 0.015686 0.050980
+Ks 0.330000 0.330000 0.330000
+
+newmtl blad_groen
+Ka 0.000000 0.000000 0.000000
+Kd 0.501961 0.501961 0.501961
+Ks 0.000000 0.000000 0.000000
+map_Kd heavenly bamboo/blad_groen.png
+
+newmtl tak1
+Ka 0.000000 0.000000 0.000000
+Kd 0.501961 0.501961 0.501961
+Ks 0.000000 0.000000 0.000000
+map_Kd heavenly bamboo/tak1.png
+
+newmtl blad_roo1
+Ka 0.000000 0.000000 0.000000
+Kd 0.501961 0.501961 0.501961
+Ks 0.000000 0.000000 0.000000
+map_Kd heavenly bamboo/blad_roo1.png
+
+newmtl blad_gro2
+Ka 0.000000 0.000000 0.000000
+Kd 0.501961 0.501961 0.501961
+Ks 0.000000 0.000000 0.000000
+map_Kd heavenly bamboo/blad_gro2.png
+
+newmtl TwiLight1
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.330000 0.330000 0.330000
+d 0.250000
+

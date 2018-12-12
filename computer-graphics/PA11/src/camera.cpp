@@ -204,3 +204,9 @@ glm::mat4 Camera::GetLocationSkybox(int skybox)
   }
   return result;
 }
+glm::vec3 Camera::RetrieveForceForward()
+{
+  glm::vec3 v = cameraFront;
+  v.y = 0.0;
+  return v;
+}

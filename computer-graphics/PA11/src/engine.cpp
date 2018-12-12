@@ -59,7 +59,7 @@ bool Engine::Initialize()
 
   // Set the time
   m_currentTimeMillis = GetCurrentTimeMillis();
-
+  moving = false;
   // No errors
   return true;
 }
@@ -107,6 +107,11 @@ void Engine::Run()
 
 void Engine::Keyboard()
 {
+  if(moving)
+  {
+    m_graphics->m_wiz1->m_rigidBody->setLinearVelocity(btVector3(m_graphics->m_camera->cameraFront.x, 0.0, m_graphics->m_camera->cameraFront.z) / 2);
+  }
+
   if(m_event.type == SDL_QUIT)
   {
     m_running = false;
@@ -144,12 +149,9 @@ void Engine::Keyboard()
         break;
 
       case SDLK_w:
-        /*  glm::vec3 mf;
-          mf = m_graphics->m_camera->cameraPosition + m_graphics->m_camera->cameraFront;
-          mf.y = 0;
-          m_graphics->m_wiz1->m_rigidBody->applyForce(btVector3(mf.x, mf.y, mf.z) * 5, btVector3(0.0, 0.0, 0.0));
-          */
-          m_graphics->m_camera->MoveForward();
+          //if(glm::length(m_graphics->m_wiz1->m_rigidBody->getLocalInertia()))
+          moving = true;
+          //m_graphics->m_camera->MoveForward();
           break;
       case SDLK_a:
           m_graphics->m_camera->MoveLeft();
@@ -159,9 +161,6 @@ void Engine::Keyboard()
           break;
       case SDLK_s:
           m_graphics->m_camera->MoveBackward();
-          break;
-      case SDLK_SPACE:
-          m_graphics->m_camera->MoveUp();
           break;
       case SDLK_f:
         if(m_graphics->skybox_used == 1) {
@@ -186,6 +185,10 @@ void Engine::Keyboard()
   {
     switch (m_event.key.keysym.sym)
     {
+      case SDLK_w:
+        moving = false;
+        m_graphics->m_wiz1->m_rigidBody->setAngularVelocity(btVector3(0.0, 0.0, 0.0));
+        m_graphics->m_wiz1->m_rigidBody->setLinearVelocity(btVector3(0.0, 0.0, 0.0));
       default:
         break;
     }

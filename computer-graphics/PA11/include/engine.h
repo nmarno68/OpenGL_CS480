@@ -46,6 +46,10 @@ class Engine
     int submenu;
     int subsubmenu;
 
+    glm::vec3 mf;
+    btVector3 inertia;
+    bool moving;
+
 };
 
 #endif // ENGINE_H

@@ -48,7 +48,7 @@ Object::Object(std::string filename, int shape, bool needsLoading, float s_x, fl
 			m_collisionShape = new btCylinderShape(btVector3(.24, .24, .24));
 			break;
 		case 4:
-			m_collisionShape = new btBoxShape(btVector3(.13, .13, .4));
+			m_collisionShape = new btBoxShape(btVector3(.25, .05, .25));
 			break;
 		case 5:
 			m_collisionShape = new btStaticPlaneShape(btVector3(0, 0, -1), 0);

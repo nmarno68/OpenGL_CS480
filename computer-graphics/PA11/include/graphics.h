@@ -23,6 +23,7 @@ class Graphics
     Object *m_ground;
     Object *m_skybox;
     Object *m_skyboxSunset;
+    Object *m_grass1;
 
     Object *m_tree;
     Object *m_rock1;
@@ -30,6 +31,8 @@ class Graphics
     Object *m_well;
 
     Object *m_wiz1;
+
+    Object *tester;
 
     vector<Object*> m_fence;
 
