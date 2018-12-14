@@ -499,7 +499,7 @@ bool Graphics::Initialize(int width, int height)
   //tester->SetBullet(0, v, false, false, glm::vec3(2.0, .2, 0.0), 0, 0, 0);
 
   m_grass1->SetBullet(0, v, false, false, glm::vec3(0.0, .2, 0.0), 0, 0, 0);
-  m_ground->SetBullet(0, v, true, true, glm::vec3(0.0, 0.0, 0.0), 0, 0, 3);
+  m_ground->SetBullet(0, v, true, true, glm::vec3(0.0, 0.0, 0.0), 0, .5, 3);
 
   m_skybox->SetBullet(0, v, false, false, m_camera->cameraPosition + glm::vec3(0.0, -10.0, 0.0), M_PI, 0, 0);
   m_skyboxSunset->SetBullet(0, v, false, false, m_camera->cameraPosition + glm::vec3(0.0, 0.0, 0.0), 0, 0, 0);
@@ -518,7 +518,7 @@ bool Graphics::Initialize(int width, int height)
 
   m_wiz1->SetBullet(1, v, false, true, glm::vec3(1.0, 0.5, 0.0), 0, 0, 3);
 
-  m_spell->SetBullet(1, v, false, true, glm::vec3(0.0, 10.0, 1.0), 0, 0, 0);
+  m_spell->SetBullet(1, v, false, true, glm::vec3(0.0, 10.0, 1.0), 0, 1.0, 0);
 
 
 
