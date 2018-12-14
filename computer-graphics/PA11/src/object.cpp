@@ -290,5 +290,40 @@ btRigidBody* Object::GetRigidBody()
 {
   return m_rigidBody;
 }
+void Object::BeginCast(btVector3 direction, btVector3 position){
 
+  spellCasting = true;
+  m_begin = 0;
+  btTransform newTrans;
+  newTrans = m_rigidBody->getWorldTransform();
+  newTrans.setOrigin(position);
+  m_rigidBody->setWorldTransform(newTrans);
+
+  m_rigidBody->applyForce(direction, btVector3(0.0, 0.0, 0.0));
+
+}
+void Object::EndCast()
+{
+  spellCasting = false;
+  m_begin = 0;
+  m_rigidBody->setAngularVelocity(btVector3(0.0, 0.0, 0.0));
+  m_rigidBody->setLinearVelocity(btVector3(0.0, 0.0, 0.0));
+
+  btTransform newTrans;
+  newTrans = m_rigidBody->getWorldTransform();
+  newTrans.setOrigin(btVector3(0.0, 10, 0.0));
+  m_rigidBody->setWorldTransform(newTrans);
+
+}
+bool Object::StillCasting()
+{
+  m_begin++;
+  if((m_begin > 100))
+  {
+    EndCast();
+    return false;
+  }
+  return true;
+
+}
 

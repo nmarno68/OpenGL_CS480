@@ -59,7 +59,6 @@ bool Engine::Initialize()
 
   // Set the time
   m_currentTimeMillis = GetCurrentTimeMillis();
-  moving = false;
   // No errors
   return true;
 }
@@ -107,11 +106,6 @@ void Engine::Run()
 
 void Engine::Keyboard()
 {
-  if(moving)
-  {
-    m_graphics->m_wiz1->m_rigidBody->setLinearVelocity(btVector3(m_graphics->m_camera->cameraFront.x, 0.0, m_graphics->m_camera->cameraFront.z) / 2);
-  }
-
   if(m_event.type == SDL_QUIT)
   {
     m_running = false;
@@ -150,7 +144,7 @@ void Engine::Keyboard()
 
       case SDLK_w:
           //if(glm::length(m_graphics->m_wiz1->m_rigidBody->getLocalInertia()))
-          moving = true;
+          m_graphics->moving = true;
           //m_graphics->m_camera->MoveForward();
           break;
       case SDLK_a:
@@ -177,7 +171,16 @@ void Engine::Keyboard()
       case SDLK_p:
         m_graphics->normals = !m_graphics->normals;
         break;
-
+      case SDLK_m:
+        //m_graphics->m_spell->GetRigidBody()->applyForce(btVector3(m_graphics->m_camera->cameraFront.x, 0.0, m_graphics->m_camera->cameraFront.z)*4, btVector3(0, 0, 0));
+        if(m_graphics->m_spell->spellCasting) {
+          m_graphics->m_spell->EndCast();
+        }
+          m_graphics->m_spell->BeginCast(btVector3(m_graphics->m_camera->cameraFront.x, 0.0,
+                                                         m_graphics->m_camera->cameraFront.z) * 5,
+                                         btVector3(m_graphics->m_camera->cameraPosition.x, m_graphics->m_camera->cameraPosition.y - .25 ,
+                                                   m_graphics->m_camera->cameraPosition.z));
+        //}
 
     }
   }
@@ -186,9 +189,7 @@ void Engine::Keyboard()
     switch (m_event.key.keysym.sym)
     {
       case SDLK_w:
-        moving = false;
-        m_graphics->m_wiz1->m_rigidBody->setAngularVelocity(btVector3(0.0, 0.0, 0.0));
-        m_graphics->m_wiz1->m_rigidBody->setLinearVelocity(btVector3(0.0, 0.0, 0.0));
+        m_graphics->moving = false;
       default:
         break;
     }

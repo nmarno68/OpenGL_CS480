@@ -1,0 +1,35 @@
+#version 330
+
+in vec3 Normal;
+in vec3 FragPos;
+
+out vec4 FragColor;
+
+uniform vec3 cameraPos;
+uniform vec3 color;
+
+void main()
+{
+    vec3 norm = normalize(Normal);
+    vec3 result = normalize(cameraPos - FragPos);
+
+
+    vec3 white = vec3(1.0, 1.0, 1.0);
+
+
+    float dot = dot(norm, result);
+
+
+   // dot =  dot - .2;
+   // dot = max(dot, 0.0);
+
+    white = dot * dot * white;
+
+    vec3 new_color = white + color;
+
+    new_color.x = min(new_color.x, 1.0);
+    new_color.y = min(new_color.y, 1.0);
+    new_color.z = min(new_color.z, 1.0);
+
+    FragColor = vec4(new_color, 1.0);
+}

@@ -43,8 +43,10 @@ void Mesh::setUp()
 //rendering a single mesh
 void Mesh::Draw()
 {
-  glActiveTexture(GL_TEXTURE0);
-  glBindTexture(GL_TEXTURE_2D, Textures[0]);
+  if(!Textures.empty()) {
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, Textures[0]);
+  }
 
   if(!Normals.empty())
   {

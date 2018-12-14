@@ -28,6 +28,9 @@ class Object
     glm::vec3 GetLocationVector();
 
     void SetBullet(int m, glm::vec3 inert, bool kinObject, bool phys, glm::vec3 start, double rotate, float restitution, float friction);
+    void BeginCast(btVector3 direction, btVector3 position);
+    void EndCast();
+    bool StillCasting();
 
     bool m_physics;
     int m_shape;
@@ -39,6 +42,7 @@ class Object
 
     std::vector<Mesh> meshes;
     btRigidBody* m_rigidBody;
+    bool spellCasting;
 
   private:
     glm::mat4 model;
@@ -68,6 +72,8 @@ class Object
     float scale_x, scale_y, scale_z;
     double m_rotate;
     glm::vec3 m_translate;
+    unsigned int m_begin;
+
 };
 
 #endif /* OBJECT_H */

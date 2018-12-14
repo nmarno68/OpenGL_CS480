@@ -25,9 +25,13 @@ uniform vec3 ambient_color;
 uniform vec3 lightDirection;
 uniform vec3 lightColor;
 
+uniform vec3 pointSources;
+uniform vec3 lightSourceColor;
+
 void main()
 {
 
+    vec3 lightSDir = normalize(pointSources - FragPos);
 
     //lightPosition - we should be passing this in as a uniform but we'll get to that later
     vec3 lightPos = vec3(0.0, 10.0, 0.0);
@@ -62,14 +66,17 @@ void main()
     vec3 specular = specularStrength * spec * vec3(1.0, 1.0, 1.0);          //adjusting the total specular brightness for the
                                                                             //placement on the glint thing with the lightcolor
 
-    //Spotlight lighting
+    //point source
+    vec3 ptsource = normalize(pointSources - FragPos);
+    float diff2 = pow(max(dot(norm,ptsource), 0.0), 10);
+    vec3 diffuse2 = diff2 * lightSourceColor;
 
 
 
     //Finalizing the color
     vec4 textcol = texture2D(gSampler, texture);                        //retrieving the object color from the texture sampler
     vec3 objcol = vec3(textcol[0], textcol[1], textcol[2]);             //converting to a vec3
-    vec3 result = (ambient +  diffuse + specular) * objcol;   //adding together all the components and multiplying with the
+    vec3 result = (diffuse2 + ambient +  diffuse + specular) * objcol;   //adding together all the components and multiplying with the
                                                                         //objects color to determine light absorbed and reflected
 
 

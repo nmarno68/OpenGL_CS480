@@ -145,9 +145,41 @@ bool Graphics::Initialize(int width, int height)
 
 
 
+  //
+  //Initializing the color shader
+  //
+  m_color = new Shader();
+  if(!m_color->Initialize())
+  {
+    printf("Shader Failed to Initialize\n");
+    return false;
+  }
+
+  // Add the vertex shader
+  if(!m_color->AddShader(GL_VERTEX_SHADER, "ColorShader"))
+  {
+    printf("Vertex Shader failed to Initialize\n");
+    return false;
+  }
+
+  // Add the fragment shader
+  if(!m_color->AddShader(GL_FRAGMENT_SHADER, "ColorShader"))
+  {
+    printf("Fragment Shader failed to Initialize\n");
+    return false;
+  }
+
+  // Connect the program
+  if(!m_color->Finalize())
+  {
+    printf("Program to Finalize\n");
+    return false;
+  }
+
+
 
   //
-  //Locating uniforms in the phong shader
+  //Locating uniforms in the color shader
   //
   m_projectionMatrix = m_phong->GetUniformLocation("projectionMatrix");
   if (m_projectionMatrix == INVALID_UNIFORM_LOCATION)
@@ -216,6 +248,20 @@ bool Graphics::Initialize(int width, int height)
   if (m_lightColor == INVALID_UNIFORM_LOCATION)
   {
     printf("m_lightColor not found\n");
+    return false;
+  }
+
+  m_pointSourceColor = m_phong->GetUniformLocation("lightSourceColor");
+  if(m_pointSourceColor == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_pointSourceColor not found\n");
+    return false;
+  }
+
+  m_pointSources = m_phong->GetUniformLocation("pointSources");
+  if(m_pointSources == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_pointSource not found\n");
     return false;
   }
 
@@ -288,12 +334,6 @@ bool Graphics::Initialize(int width, int height)
 
 
 
-
-
-
-
-
-
   //INitializing texture shader stuff
   m_tprojectionMatrix = m_texture->GetUniformLocation("projectionMatrix");
   if (m_tprojectionMatrix == INVALID_UNIFORM_LOCATION)
@@ -317,6 +357,56 @@ bool Graphics::Initialize(int width, int height)
   }
 
 
+  //
+ //color shader uniforms
+//
+  m_cPM = m_color->GetUniformLocation("projectionMatrix");
+  if(m_cPM == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_cPM not found\n");
+    return false;
+  }
+
+  m_cVM = m_color->GetUniformLocation("viewMatrix");
+  if(m_cVM == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_cVM not found\n");
+    return false;
+  }
+
+  m_cMM = m_color->GetUniformLocation("modelMatrix");
+  if(m_cMM == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_cMM not found\n");
+    return false;
+  }
+
+  m_cColor = m_color->GetUniformLocation("color");
+  if(m_cColor == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_cColor not found\n");
+    return false;
+  }
+
+  m_cCamPos = m_color->GetUniformLocation("cameraPos");
+  if(m_cCamPos == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_cCamPos not found\n");
+    return false;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
   normals = true;
 
   //initialize lighting values
@@ -326,6 +416,7 @@ bool Graphics::Initialize(int width, int height)
   skybox_used = 1;
   l_C = glm::vec3(1.0, 1.0, 1.0);
   l_D = glm::vec3(0.3, 1.0, 0.0);
+  moving = false;
 
   //Creating physics world
   m_broadphase = new btDbvtBroadphase();
@@ -347,6 +438,8 @@ bool Graphics::Initialize(int width, int height)
   //tester = new Object(".obj", -1, true, .7, .3, .7, 0);
   //tester = new Object("Grass_02.obj", -1, true, .7, .3, .7, 0);
 
+
+
   m_grass1 = new Object("Grass_02.obj", -1, true, .7, .3, .7, 0);
   m_ground = new Object("map.obj", 9, true, 1.0, 1.0, 1.0, 0);
   m_skybox = new Object("skybox.obj", -1, true, 80, 80, 80, 0);
@@ -363,6 +456,8 @@ bool Graphics::Initialize(int width, int height)
 
 
   m_wiz1 = new Object("NONE", 2, false, .3, .3, .3, 0);
+
+  m_spell = new Object("spell_ball.obj", 2, true, 0.1, .1, .1, 0);
 
 
 
@@ -386,6 +481,7 @@ bool Graphics::Initialize(int width, int height)
 
   m_wiz1->SetValues(.1, 10);
 
+  m_spell->SetValues(.1, 10);
 
   //Initializing object physics
   //inertia vector
@@ -415,6 +511,12 @@ bool Graphics::Initialize(int width, int height)
 
   m_wiz1->SetBullet(1, v, false, true, glm::vec3(1.0, 0.5, 0.0), 0, 0, 3);
 
+  m_spell->SetBullet(1, v, false, true, glm::vec3(0.0, 10.0, 1.0), 0, 0, 0);
+
+
+
+
+
 
   short mask = 0b11111111;
 
@@ -429,14 +531,11 @@ bool Graphics::Initialize(int width, int height)
   }
 
   m_dynamicsWorld->addRigidBody(m_wiz1->GetRigidBody(), mask, mask);
-
-
-
-
+  m_dynamicsWorld->addRigidBody(m_spell->GetRigidBody(), mask, mask);
 
 
 	//Additional Light Sources
-
+  good_spell = new lightSource(glm::vec3(0, 0.5, 1.0), m_spell->GetLocationVector());
 
   //enable depth testing
   glEnable(GL_DEPTH_TEST);
@@ -447,7 +546,23 @@ bool Graphics::Initialize(int width, int height)
 
 void Graphics::Update(unsigned int dt)
 {
+
   m_dynamicsWorld->stepSimulation(dt, 10);
+
+  if(moving)
+  {
+    m_wiz1->m_rigidBody->setLinearVelocity(btVector3(m_camera->cameraFront.x, -0.2, m_camera->cameraFront.z) / 3);
+  }
+  else
+  {
+    m_wiz1->m_rigidBody->setAngularVelocity(btVector3(0.0, -.2, 0.0));
+    m_wiz1->m_rigidBody->setLinearVelocity(btVector3(0.0, -.2, 0.0));
+  }
+
+
+
+  //Spell zero gravity
+  m_spell->GetRigidBody()->setGravity(btVector3(0, 0, 0));
 
   //tester->Update(dt, glm::mat4(1.0f), 1);
 
@@ -476,6 +591,15 @@ void Graphics::Update(unsigned int dt)
 
   m_wiz1->Update(dt, glm::mat4(1.0f), 1);
 
+  if(m_spell->spellCasting) {
+    m_spell->StillCasting();
+  }
+  m_spell->Update(dt, glm::mat4(1.0f), 1);
+
+
+  //updating light source position
+  good_spell->pos = m_spell->GetLocationVector();
+
 }
 
 void Graphics::Render()
@@ -492,6 +616,8 @@ void Graphics::Render()
         m_phong->Enable();
 
         //Send in Light direction and color
+        glUniform3fv(m_pointSources, 1, glm::value_ptr(good_spell->pos));
+        glUniform3fv(m_pointSourceColor, 1, glm::value_ptr(good_spell->color));
 
         glUniform3fv(m_lightDirection, 1, glm::value_ptr(l_D));
         glUniform3fv(m_lightColor, 1, glm::value_ptr(l_C));
@@ -565,6 +691,8 @@ void Graphics::Render()
         tester->Render();
 */
 
+
+
       }
 
       else {
@@ -631,8 +759,21 @@ void Graphics::Render()
       break;
   }
 
+if(m_spell->spellCasting) {
+  m_color->Enable();
 
+  glUniformMatrix4fv(m_cPM, 1, GL_FALSE, glm::value_ptr(m_camera->GetProjection()));
 
+  glUniformMatrix4fv(m_cVM, 1, GL_FALSE, glm::value_ptr(m_camera->GetView()));
+
+  glUniformMatrix4fv(m_cMM, 1, GL_FALSE, glm::value_ptr(m_spell->GetModel()));
+
+  glUniform3fv(m_cColor, 1, glm::value_ptr(good_spell->color));
+
+  glUniform3fv(m_cCamPos, 1, glm::value_ptr(m_camera->cameraPosition));
+
+  m_spell->Render();
+}
 
 
 

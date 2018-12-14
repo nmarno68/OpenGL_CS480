@@ -34,13 +34,15 @@ class Graphics
 
     Object *tester;
 
+    Object *m_spell;
+
     vector<Object*> m_fence;
 
   float ambientStrength;
   bool phong;
   glm::vec3 ambient_color;
   int skybox_used;
-  bool normals;
+  bool normals, moving;
   glm::vec3 l_C, l_D;
 
   private:
@@ -50,6 +52,7 @@ class Graphics
     Shader *m_phong;
     Shader *m_gourand;
     Shader *m_texture;
+    Shader *m_color;
 
 
 
@@ -67,6 +70,9 @@ class Graphics
 
     GLint m_lightDirection;
     GLint m_lightColor;
+
+    GLint m_pointSources;
+    GLint m_pointSourceColor;
 
 
     //gourand
@@ -87,6 +93,9 @@ class Graphics
     GLint m_tmodelMatrix;
 
 
+    //Color
+    GLint m_cPM, m_cVM, m_cMM;
+    GLint m_cColor, m_cCamPos;
 
 
     btBroadphaseInterface* m_broadphase;
@@ -94,6 +103,10 @@ class Graphics
     btCollisionDispatcher* m_dispatcher;
     btSequentialImpulseConstraintSolver* m_solver;
     btDiscreteDynamicsWorld* m_dynamicsWorld;
+
+    lightSource* good_spell;
+
+
 
 };
 

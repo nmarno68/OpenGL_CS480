@@ -48,7 +48,6 @@ class Engine
 
     glm::vec3 mf;
     btVector3 inertia;
-    bool moving;
 
 };
 
