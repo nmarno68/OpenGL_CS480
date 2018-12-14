@@ -189,6 +189,8 @@ void Object::InitMesh()
     temptexture = loadMaterialTextures(m_scene->mMaterials[m_scene->mMeshes[j]->mMaterialIndex], aiTextureType_DIFFUSE);
     tempNormals = loadMaterialTextures(m_scene->mMaterials[m_scene->mMeshes[j]->mMaterialIndex], aiTextureType_NORMALS);
 
+    std::cout << tempNormals.size() << std::endl;
+
     Mesh* v = new Mesh(tempVert, tempInd, temptexture, tempNormals);
     meshes.push_back(*v);
 

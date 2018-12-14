@@ -519,6 +519,7 @@ bool Graphics::Initialize(int width, int height)
   m_wiz1->SetBullet(1, v, false, true, glm::vec3(1.0, 0.5, 0.0), 0, 0, 3);
 
   m_spell->SetBullet(1, v, false, true, glm::vec3(0.0, 10.0, 1.0), 0, 1.0, 0);
+  m_spell->spellCasting = false;
 
 
 
@@ -622,6 +623,9 @@ void Graphics::Render()
       if (phong) {
         m_phong->Enable();
 
+        glUniform1i(glGetUniformLocation(m_phong->GetProgram(), "gSampler"), 0);
+        glUniform1i(glGetUniformLocation(m_phong->GetProgram(), "nSampler"), 1);
+
         //Send in Light direction and color
         glUniform1i(m_calcSpellLight, (GLint) m_spell->spellCasting);
 
@@ -649,8 +653,8 @@ void Graphics::Render()
         glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_ground->GetModel()));
         glUniform1f(m_specular_brightness, (GLfloat) m_ground->specular_brightness);
         glUniform1i(m_specular_size, (GLint) m_ground->specular_size);
-        for(int i = 0; i < m_ground->meshes.size(); i++) {
-          if(i != 14)
+        for(int i = 0; i < m_ground->meshes.size(); i++) {    //ground is mesh 17
+          if(i != 14)     //i!=14
           m_ground->meshes[i].Draw();
         }
 

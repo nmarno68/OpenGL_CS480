@@ -16,6 +16,7 @@ class Shader
     void LoadShader(std::string* s, std::string foldername, std::string filename);
     bool Finalize();
     GLint GetUniformLocation(const char* pUniformName);
+    GLuint GetProgram();
 
   private:
     GLuint m_shaderProg;    

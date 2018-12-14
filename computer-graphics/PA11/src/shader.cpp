@@ -160,3 +160,7 @@ GLint Shader::GetUniformLocation(const char* pUniformName)
 
     return Location;
 }
+GLuint Shader::GetProgram()
+{
+  return m_shaderProg;
+}
