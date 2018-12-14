@@ -28,6 +28,8 @@ uniform vec3 lightColor;
 uniform vec3 pointSources;
 uniform vec3 lightSourceColor;
 
+uniform int calcLightSource;
+
 void main()
 {
 
@@ -67,10 +69,27 @@ void main()
                                                                             //placement on the glint thing with the lightcolor
 
     //point source
-    vec3 ptsource = normalize(pointSources - FragPos);
-    float diff2 = pow(max(dot(norm,ptsource), 0.0), 10);
-    vec3 diffuse2 = diff2 * lightSourceColor;
+    float diff2;
+    vec3 diffuse2 = vec3(0.0,0.0,0.0);
+    vec3 ptsource;
+    bool calc;
+    if(calcLightSource == 0)
+    {
+        calc = false;
+    }
+    else
+    {
+        calc = true;
+    }
 
+
+
+    if(calc)
+    {
+        ptsource = normalize(pointSources - FragPos);
+        diff2 = pow(max(dot(norm,ptsource), 0.0), 10);
+        diffuse2 = diff2 * lightSourceColor;
+    }
 
 
     //Finalizing the color

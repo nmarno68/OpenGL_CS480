@@ -74,6 +74,8 @@ class Graphics
     GLint m_pointSources;
     GLint m_pointSourceColor;
 
+    GLint m_calcSpellLight;
+
 
     //gourand
     GLint m_gprojectionMatrix;

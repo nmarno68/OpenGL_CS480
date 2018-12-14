@@ -265,6 +265,13 @@ bool Graphics::Initialize(int width, int height)
     return false;
   }
 
+  m_calcSpellLight = m_phong->GetUniformLocation("calcLightSource");
+  if(m_calcSpellLight == INVALID_UNIFORM_LOCATION)
+  {
+    printf("m_calcSpellLight not found\n");
+    return false;
+  }
+
 
 
 
@@ -616,6 +623,8 @@ void Graphics::Render()
         m_phong->Enable();
 
         //Send in Light direction and color
+        glUniform1i(m_calcSpellLight, (GLint) m_spell->spellCasting);
+
         glUniform3fv(m_pointSources, 1, glm::value_ptr(good_spell->pos));
         glUniform3fv(m_pointSourceColor, 1, glm::value_ptr(good_spell->color));
 
