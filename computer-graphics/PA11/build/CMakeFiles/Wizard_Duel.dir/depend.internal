@@ -120,6 +120,7 @@ CMakeFiles/Wizard_Duel.dir/src/engine.cpp.o
  ../include/mesh.h
  ../include/object.h
  ../include/shader.h
+ ../include/sound.h
  ../include/window.h
  /home/natalie/workspaces/cs480Arnold/computer-graphics/PA11/src/engine.cpp
  /usr/include/bullet/BulletCollision/BroadphaseCollision/btAxisSweep3.h
@@ -688,6 +689,7 @@ CMakeFiles/Wizard_Duel.dir/src/main.cpp.o
  ../include/mesh.h
  ../include/object.h
  ../include/shader.h
+ ../include/sound.h
  ../include/window.h
  /home/natalie/workspaces/cs480Arnold/computer-graphics/PA11/src/main.cpp
  /usr/include/bullet/BulletCollision/BroadphaseCollision/btAxisSweep3.h

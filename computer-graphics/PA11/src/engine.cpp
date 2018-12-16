@@ -1,5 +1,3 @@
-
-
 #include "engine.h"
 
 Engine::Engine(string name, int width, int height)
@@ -60,6 +58,16 @@ bool Engine::Initialize()
   // Set the time
   m_currentTimeMillis = GetCurrentTimeMillis();
   // No errors
+
+  background = new SoundManager();
+  effects = new SoundManager();
+
+
+
+
+  count = 0;
+
+
   return true;
 }
 
@@ -67,8 +75,18 @@ void Engine::Run()
 {
   m_running = true;
 
+  background->LoadSound("../assets/sounds/Chasing-Villains.wav");
+  background->PlaySound();
+
   while(m_running)
   {
+    count++;
+    if(count > 6300) {
+      background->LoadSound("../assets/sounds/Chasing-Villains.wav");
+      background->PlaySound();
+      count = 0;
+    }
+
     // Update the DT
     m_DT = getDT();
 
@@ -191,12 +209,18 @@ void Engine::Keyboard()
       case SDLK_m:
         for(int i = 0; i < 3; i++) {
 
+
+
           if(!m_graphics->m_spells[i]->spellCasting) {
             m_graphics->m_spells[i]->BeginCast(
                     btVector3(m_graphics->m_camera->cameraFront.x, m_graphics->m_camera->cameraFront.y,
                               m_graphics->m_camera->cameraFront.z) * 5,
                     btVector3(m_graphics->m_camera->cameraPosition.x, m_graphics->m_camera->cameraPosition.y - .25,
                               m_graphics->m_camera->cameraPosition.z));
+
+            effects->LoadSound("../assets/sounds/fireball_cast.wav");
+            effects->PlaySound();
+
             i = 10;
           }
         }

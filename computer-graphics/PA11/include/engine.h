@@ -7,7 +7,7 @@
 
 #include "window.h"
 #include "graphics.h"
-
+#include "sound.h"
 
 
 
@@ -41,10 +41,14 @@ class Engine
     long long m_currentTimeMillis;
     bool m_running;
     float m_plungerForce;
+    int count;
 
     //Menu flags
     int submenu;
     int subsubmenu;
+
+    SoundManager* background;
+    SoundManager* effects;
 
     glm::vec3 mf;
     btVector3 inertia;

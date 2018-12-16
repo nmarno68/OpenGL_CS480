@@ -21,6 +21,8 @@ window.h
 ../include/window.h
 graphics.h
 ../include/graphics.h
+sound.h
+../include/sound.h
 
 ../include/graphics.h
 iostream
@@ -161,6 +163,10 @@ mesh.h
 ../include/shader.h
 vector
 -
+graphics_headers.h
+../include/graphics_headers.h
+
+../include/sound.h
 graphics_headers.h
 ../include/graphics_headers.h
 

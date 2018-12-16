@@ -119,6 +119,7 @@ CMakeFiles/Wizard_Duel.dir/src/engine.cpp.o: ../include/imgui_impl_sdl.h
 CMakeFiles/Wizard_Duel.dir/src/engine.cpp.o: ../include/mesh.h
 CMakeFiles/Wizard_Duel.dir/src/engine.cpp.o: ../include/object.h
 CMakeFiles/Wizard_Duel.dir/src/engine.cpp.o: ../include/shader.h
+CMakeFiles/Wizard_Duel.dir/src/engine.cpp.o: ../include/sound.h
 CMakeFiles/Wizard_Duel.dir/src/engine.cpp.o: ../include/window.h
 CMakeFiles/Wizard_Duel.dir/src/engine.cpp.o: ../src/engine.cpp
 CMakeFiles/Wizard_Duel.dir/src/engine.cpp.o: /usr/include/bullet/BulletCollision/BroadphaseCollision/btAxisSweep3.h
@@ -687,6 +688,7 @@ CMakeFiles/Wizard_Duel.dir/src/main.cpp.o: ../include/imgui_impl_sdl.h
 CMakeFiles/Wizard_Duel.dir/src/main.cpp.o: ../include/mesh.h
 CMakeFiles/Wizard_Duel.dir/src/main.cpp.o: ../include/object.h
 CMakeFiles/Wizard_Duel.dir/src/main.cpp.o: ../include/shader.h
+CMakeFiles/Wizard_Duel.dir/src/main.cpp.o: ../include/sound.h
 CMakeFiles/Wizard_Duel.dir/src/main.cpp.o: ../include/window.h
 CMakeFiles/Wizard_Duel.dir/src/main.cpp.o: ../src/main.cpp
 CMakeFiles/Wizard_Duel.dir/src/main.cpp.o: /usr/include/bullet/BulletCollision/BroadphaseCollision/btAxisSweep3.h
