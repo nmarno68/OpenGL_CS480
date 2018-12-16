@@ -9,6 +9,8 @@ Object::Object(std::string filename, int shape, bool needsLoading, float s_x, fl
   flipper = flip;
   flipping = false;
   m_begin = 0;
+  maxHealth = 100;
+  currentHealth = maxHealth;
 
 	if(needsLoading)
 	{
@@ -347,5 +349,17 @@ bool Object::Cast()
     return true;
   }
   return false;
+}
+
+int Object::ReduceHealth()
+{
+    currentHealth -= 5;
+    std::cout << "Current Health: " << currentHealth << std::endl;
+    return currentHealth;
+}
+
+int Object::GetCurrentHealth()
+{
+    return currentHealth;
 }
 

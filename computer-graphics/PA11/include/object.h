@@ -32,6 +32,8 @@ class Object
     void EndCast();
     bool StillCasting();
     bool Cast();
+    int ReduceHealth();
+    int GetCurrentHealth();
 
     bool m_physics;
     int m_shape;
@@ -74,6 +76,8 @@ class Object
     double m_rotate;
     glm::vec3 m_translate;
     unsigned int m_begin;
+    int maxHealth;
+    int currentHealth;
 
 };
 

@@ -17,6 +17,7 @@ class Graphics
     bool Initialize(int width, int height);
     void Update(unsigned int dt);
     void Render();
+    bool Collide(glm::vec3 objLocation1, glm::vec3 objLocation2);
 
     Camera *m_camera;
 
