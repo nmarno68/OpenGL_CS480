@@ -47,6 +47,7 @@ class Object
     std::vector<Mesh> meshes;
     btRigidBody* m_rigidBody;
     bool spellCasting;
+    int currentHealth;
 
   private:
     glm::mat4 model;
@@ -78,7 +79,7 @@ class Object
     glm::vec3 m_translate;
     unsigned int m_begin;
     int maxHealth;
-    int currentHealth;
+
 
 };
 

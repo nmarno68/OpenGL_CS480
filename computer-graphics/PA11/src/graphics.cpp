@@ -883,8 +883,8 @@ void Graphics::Render()
           glUniform1f(m_specular_brightness, (GLfloat) m_enemySprite->specular_brightness);
           glUniform1i(m_specular_size, (GLint) m_enemySprite->specular_size);
 
-          for (int i = 0; i < 14; i++) {
-            if ( i!=2 && i != 1 && i != 0) {
+          for (int i = 0; i < 13; i++) {
+            if (i != 1 && i != 0) {
               m_enemySprite->meshes[i].Draw();
             }
           }
@@ -955,9 +955,6 @@ void Graphics::Render()
   //glUniformMatrix4fv(m_tmodelMatrix, 1, GL_FALSE, glm::value_ptr(m_ground->GetModel()));
   //m_ground->Render();
 
-  glUniformMatrix4fv(m_tmodelMatrix, 1, GL_FALSE, glm::value_ptr(m_enemySprite->GetModel()));
-  m_enemySprite->meshes[0].Draw();
-
   switch(skybox_used) {
     case 1:
       glUniformMatrix4fv(m_tmodelMatrix, 1, GL_FALSE, glm::value_ptr(m_skybox->GetModel()));
@@ -978,8 +975,8 @@ void Graphics::Render()
 
     glUniformMatrix4fv(m_cMM, 1, GL_FALSE, glm::value_ptr(m_enemySprite->GetModel()));
     glUniform3fv(m_cColor, 1, glm::value_ptr(glm::vec3(1.0, 0.0, 0.0)));
+    m_enemySprite->meshes[0].Draw();
     m_enemySprite->meshes[1].Draw();
-    m_enemySprite->meshes[2].Draw();
 
 
   for(int i = 0; i < NUM_SPELLS; i++) {

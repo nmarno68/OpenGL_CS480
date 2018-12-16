@@ -83,6 +83,7 @@ void Engine::Run()
 
     count++;
 
+    //Play battle music when game is running
     if (m_graphics->game_running) {
       if (count > 6300) {
         background->LoadSound("../assets/sounds/Chasing-Villains.wav");
@@ -91,12 +92,8 @@ void Engine::Run()
       }
     }
 
-    else if (count > 1570){
-        background->LoadSound("../assets/sounds/ChillingMusic.wav");
-        background->PlaySound();
-        count = 0;
-    }
 
+    //if the game just ended, stop battle music, start chilling music, reset timer
     if(m_graphics->GameOver())
     {
       background->PauseSound();
@@ -122,12 +119,55 @@ void Engine::Run()
 
 
     //menu code here plz
-    ImGui::Begin("Menu");
-    if(ImGui::Button("Start Match!"))
-    {
+    //if the game is not runnin play start menu music and display menu
+    if(!m_graphics->game_running) {
 
+        if (count > 1570){
+          background->LoadSound("../assets/sounds/ChillingMusic.wav");
+          background->PlaySound();
+          count = 0;
+
+        }
+
+      ImGui::Begin("Menu");
+        if (ImGui::Button("Start Match!")) {
+          m_graphics->game_running = true;
+          background->PauseSound();
+          background->LoadSound("../assets/sounds/Chasing-Villains.wav");
+          background->PlaySound();
+          count = 0;
+
+          SDL_SetRelativeMouseMode((SDL_bool) 1);
+          m_graphics->m_camera->enableMouse = 1;
+        }
+        if (ImGui::BeginMenu("Skybox Select"))
+        {
+          if(ImGui::MenuItem("Day Box"))
+          {
+            m_graphics->skybox_used = 1;
+            m_graphics->l_C = glm::vec3(1.0, 1.0, 1.0);
+            m_graphics->l_D = glm::vec3(0.3, 1.0, 0.3);
+          }
+          if(ImGui::MenuItem("Sunset Box"))
+          {
+            m_graphics->skybox_used = 2;
+            m_graphics->l_C = glm::vec3(1.0, .8, .73);
+            m_graphics->l_D = glm::vec3(0.0, .3, 1.0);
+          }
+
+          ImGui::EndMenu();
+
+        }
+
+
+      ImGui::End();
     }
-    ImGui::End();
+
+    if(m_graphics->game_running){
+      ImGui::Begin("Remaining Health");
+      ImGui::Text("%d", m_graphics->m_wiz1->currentHealth);
+      ImGui::End();
+    }
 
 
 
@@ -174,18 +214,6 @@ void Engine::Keyboard()
         m_running = false;
         break;
 
-        //Enable FPS mode
-      case SDLK_e:
-        if (m_graphics->m_camera->enableMouse) {
-          SDL_SetRelativeMouseMode((SDL_bool) 0);
-          m_graphics->m_camera->enableMouse = 0;
-        }
-        else {
-          SDL_SetRelativeMouseMode((SDL_bool) 1);
-          m_graphics->m_camera->enableMouse = 1;
-        }
-        break;
-
       case SDLK_w:
           //if(glm::length(m_graphics->m_wiz1->m_rigidBody->getLocalInertia()))
           m_graphics->moving = true;
@@ -217,7 +245,14 @@ void Engine::Keyboard()
         }
         break;
       case SDLK_p:
-        m_graphics->normals = !m_graphics->normals;
+        if (m_graphics->m_camera->enableMouse) {
+          SDL_SetRelativeMouseMode((SDL_bool) 0);
+          m_graphics->m_camera->enableMouse = 0;
+        }
+        else {
+          SDL_SetRelativeMouseMode((SDL_bool) 1);
+          m_graphics->m_camera->enableMouse = 1;
+        }
         break;
       case SDLK_l:
         for(int i = 3; i < 6; i++) {
@@ -232,30 +267,24 @@ void Engine::Keyboard()
           }
         }
         break;
-      case SDLK_m:
-        if(!m_graphics->game_running) {
-          m_graphics->game_running = true;
-          background->PauseSound();
-          background->LoadSound("../assets/sounds/Chasing-Villains.wav");
-          background->PlaySound();
-          count = 0;
-        }
-        for(int i = 0; i < 3; i++) {
 
+      case SDLK_e:
 
+        if(m_graphics->game_running) {
+          for (int i = 0; i < 3; i++) {
+            if (!m_graphics->m_spells[i]->spellCasting) {
+              m_graphics->m_spells[i]->BeginCast(
+                      btVector3(m_graphics->m_camera->cameraFront.x, m_graphics->m_camera->cameraFront.y,
+                                m_graphics->m_camera->cameraFront.z) * 5,
+                      btVector3(m_graphics->m_camera->cameraPosition.x, m_graphics->m_camera->cameraPosition.y - .25,
+                                m_graphics->m_camera->cameraPosition.z));
 
-          if(!m_graphics->m_spells[i]->spellCasting) {
-            m_graphics->m_spells[i]->BeginCast(
-                    btVector3(m_graphics->m_camera->cameraFront.x, m_graphics->m_camera->cameraFront.y,
-                              m_graphics->m_camera->cameraFront.z) * 5,
-                    btVector3(m_graphics->m_camera->cameraPosition.x, m_graphics->m_camera->cameraPosition.y - .25,
-                              m_graphics->m_camera->cameraPosition.z));
+              SoundManager *temp = new SoundManager();
+              temp->LoadSound("../assets/sounds/fireball_cast.wav");
+              temp->PlaySound();
 
-            SoundManager* temp = new SoundManager();
-            temp->LoadSound("../assets/sounds/fireball_cast.wav");
-            temp->PlaySound();
-
-            i = 10;
+              i = 10;
+            }
           }
         }
         //}
@@ -284,7 +313,6 @@ void Engine::Keyboard()
   }
 
 
-
   else if (m_event.type == SDL_MOUSEMOTION )
   {
     if(m_graphics->m_camera->enableMouse)
@@ -295,6 +323,7 @@ void Engine::Keyboard()
       m_graphics->m_camera->MouseMovement(x, y);
     }
   }
+
 }
 
 unsigned int Engine::getDT()
