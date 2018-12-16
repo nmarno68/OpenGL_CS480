@@ -1,4 +1,4 @@
-/home/natalie/workspaces/cs480Arnold/computer-graphics/PA11/build/CMakeFiles/edit_cache.dir
-/home/natalie/workspaces/cs480Arnold/computer-graphics/PA11/build/CMakeFiles/rebuild_cache.dir
-/home/natalie/workspaces/cs480Arnold/computer-graphics/PA11/build/CMakeFiles/Wizard_Duel.dir
-/home/natalie/workspaces/cs480Arnold/computer-graphics/PA11/build/CMakeFiles/Wizard_Duel_SUCCESSFUL.dir
+/home/terrawilliams/GitHub/cs480Arnold/computer-graphics/PA11/build/CMakeFiles/edit_cache.dir
+/home/terrawilliams/GitHub/cs480Arnold/computer-graphics/PA11/build/CMakeFiles/rebuild_cache.dir
+/home/terrawilliams/GitHub/cs480Arnold/computer-graphics/PA11/build/CMakeFiles/Wizard_Duel_SUCCESSFUL.dir
+/home/terrawilliams/GitHub/cs480Arnold/computer-graphics/PA11/build/CMakeFiles/Wizard_Duel.dir

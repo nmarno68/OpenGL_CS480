@@ -704,8 +704,38 @@ void Graphics::Update(unsigned int dt)
     spell_position[i] = m_spells[i]->GetLocationVector();
   }
 
+  for(int i = 0; i < (NUM_SPELLS / 2); i++)
+  {
+    if(Collide(m_spells[i]->GetLocationVector(), m_enemy->GetLocationVector()))	//Enemy hit by spell
+    {
+				std::cout << "Enemy ";
+				m_enemy->ReduceHealth();
+        m_spells[i]->EndCast();
+    }
+  }
 
+  for(int i = (NUM_SPELLS / 2); i < NUM_SPELLS; i++)
+  {
+    if(Collide(m_spells[i]->GetLocationVector(), m_wiz1->GetLocationVector()))	//Player hit by spell
+    {
+				std::cout << "Player ";
+    		m_wiz1->ReduceHealth();
+        m_spells[i]->EndCast();
+    }
+  }
 
+  if(m_enemy->GetCurrentHealth() <= 0)
+  {
+		std::cout << "You are great!" << std::endl;
+		exit(EXIT_SUCCESS);
+    //Player Wins Game
+  }
+  else if(m_wiz1->GetCurrentHealth() <= 0)
+  {
+		std::cout << "You are not great!" << std::endl;
+		exit(EXIT_FAILURE);
+    //Player Loses Game
+  }
 
 }
 
@@ -1001,5 +1031,16 @@ std::string Graphics::ErrorString(GLenum error)
   {
     return "None";
   }
+}
+
+bool Graphics::Collide(glm::vec3 objLocation1, glm::vec3 objLocation2)
+{
+    if(objLocation1.x < (objLocation2.x + .5) and
+       objLocation1.x > (objLocation2.x - .5) and
+       objLocation1.z < (objLocation2.z + .5) and
+       objLocation1.z > (objLocation2.z - .5))
+	return true;
+
+    return false;
 }
 

@@ -12,6 +12,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/Wizard_Duel.dir/src/mesh.cpp.o"
   "CMakeFiles/Wizard_Duel.dir/src/object.cpp.o"
   "CMakeFiles/Wizard_Duel.dir/src/shader.cpp.o"
+  "CMakeFiles/Wizard_Duel.dir/src/sound.cpp.o"
   "CMakeFiles/Wizard_Duel.dir/src/window.cpp.o"
   "Wizard_Duel.pdb"
   "Wizard_Duel"
