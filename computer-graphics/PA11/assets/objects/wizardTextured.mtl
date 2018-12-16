@@ -1,5 +1,5 @@
 # Blender MTL File: 'wizardTextured.blend'
-# Material Count: 7
+# Material Count: 8
 
 newmtl Material
 Ns 96.078431
@@ -40,7 +40,7 @@ Kd 0.8 0.8 0.8
 Ks 0.8 0.8 0.8
 d 1
 illum 2
-map_Kd Shiny Green.jpg
+map_Kd eyeRed.jpg
 
 newmtl None_Brown.jpg
 Ns 0
@@ -50,6 +50,15 @@ Ks 0.8 0.8 0.8
 d 1
 illum 2
 map_Kd Brown.jpg
+
+newmtl None_Shiny_Green.jpg
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd Shiny Green.jpg
 
 newmtl None_greyFabric.jpg
 Ns 0

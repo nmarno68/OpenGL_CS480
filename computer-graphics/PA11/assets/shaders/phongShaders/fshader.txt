@@ -25,15 +25,16 @@ uniform vec3 ambient_color;
 uniform vec3 lightDirection;
 uniform vec3 lightColor;
 
-uniform vec3 pointSources;
-uniform vec3 lightSourceColor;
+uniform vec3 pointSources[6];
+uniform vec3 lightSourceColor[6];
 
-uniform int calcLightSource;
+uniform int calcLightSource[6];
+uniform int useNorm;
 
 void main()
 {
 
-    vec3 lightSDir = normalize(pointSources - FragPos);
+
 
     //lightPosition - we should be passing this in as a uniform but we'll get to that later
     vec3 lightPos = vec3(0.0, 10.0, 0.0);
@@ -42,12 +43,21 @@ void main()
     vec3 ambient = ambientStrength * ambient_color;   //scaling the light color with ambient strength
 
 
-    //vec4 Normal_map = texture2D(nSampler, texture);
 
-    //vec3 Normal_convert = vec3(Normal_map.x * 2 - 1, Normal_map.y * 2 - 1, Normal_map.z * 2 -1);
 
     // diffuse
-    vec3 norm = normalize(Normal);
+    vec3 norm;
+    if(useNorm == 1)
+    {
+        norm = texture2D(nSampler, texture).rgb;
+        norm = -normalize(norm * 2.0 - 1.0);
+    }
+    else{
+        norm = normalize(Normal);
+    }
+
+
+
     //vec3 lightDir = normalize(lightPos - FragPos);              //lightPos - fragPos results in our to source vector
     vec3 lightDir = normalize(lightDirection);
     float diff = max(dot(norm, lightDir), 0.0);                 //dot product between the normal and the source results in the scalar
@@ -72,25 +82,17 @@ void main()
     float diff2;
     vec3 diffuse2 = vec3(0.0,0.0,0.0);
     vec3 ptsource;
-    bool calc;
-    if(calcLightSource == 0)
+
+    for(int i = 0; i < 6; i++)
     {
-        calc = false;
+        if(calcLightSource[i] == 1)
+        {
+            ptsource = normalize(pointSources[i] - FragPos);
+
+            diff2 = pow(max(dot(normalize(Normal),ptsource), 0.0), 10);
+            diffuse2 += diff2 * lightSourceColor[i];
+        }
     }
-    else
-    {
-        calc = true;
-    }
-
-
-
-    if(calc)
-    {
-        ptsource = normalize(pointSources - FragPos);
-        diff2 = pow(max(dot(norm,ptsource), 0.0), 10);
-        diffuse2 = diff2 * lightSourceColor;
-    }
-
 
     //Finalizing the color
     vec4 textcol = texture2D(gSampler, texture);                        //retrieving the object color from the texture sampler

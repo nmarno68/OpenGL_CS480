@@ -145,16 +145,20 @@ void Engine::Keyboard()
       case SDLK_w:
           //if(glm::length(m_graphics->m_wiz1->m_rigidBody->getLocalInertia()))
           m_graphics->moving = true;
+          m_graphics->movement = 'f';
           //m_graphics->m_camera->MoveForward();
           break;
       case SDLK_a:
-          m_graphics->m_camera->MoveLeft();
+        m_graphics->moving = true;
+        m_graphics->movement = 'l';
           break;
       case SDLK_d:
-          m_graphics->m_camera->MoveRight();
+        m_graphics->moving = true;
+        m_graphics->movement = 'r';
           break;
       case SDLK_s:
-          m_graphics->m_camera->MoveBackward();
+          m_graphics->moving = true;
+          m_graphics-> movement = 'b';
           break;
       case SDLK_f:
         if(m_graphics->skybox_used == 1) {
@@ -165,21 +169,37 @@ void Engine::Keyboard()
         else {
           m_graphics->skybox_used = 1;
           m_graphics->l_C = glm::vec3(1.0, 1.0, 1.0);
-          m_graphics->l_D = glm::vec3(0.3, 1.0, 0.0);
+          m_graphics->l_D = glm::vec3(0.3, 1.0, 0.3);
         }
         break;
       case SDLK_p:
         m_graphics->normals = !m_graphics->normals;
         break;
-      case SDLK_m:
-        //m_graphics->m_spell->GetRigidBody()->applyForce(btVector3(m_graphics->m_camera->cameraFront.x, 0.0, m_graphics->m_camera->cameraFront.z)*4, btVector3(0, 0, 0));
-        if(m_graphics->m_spell->spellCasting) {
-          m_graphics->m_spell->EndCast();
+      case SDLK_l:
+        for(int i = 3; i < 6; i++) {
+
+          if(!m_graphics->m_spells[i]->spellCasting) {
+            m_graphics->m_spells[i]->BeginCast(
+                    btVector3(m_graphics->m_camera->cameraFront.x, m_graphics->m_camera->cameraFront.y,
+                              m_graphics->m_camera->cameraFront.z) * 5,
+                    btVector3(m_graphics->m_camera->cameraPosition.x, m_graphics->m_camera->cameraPosition.y - .25,
+                              m_graphics->m_camera->cameraPosition.z));
+            i = 10;
+          }
         }
-          m_graphics->m_spell->BeginCast(btVector3(m_graphics->m_camera->cameraFront.x, 0.0,
-                                                         m_graphics->m_camera->cameraFront.z) * 5,
-                                         btVector3(m_graphics->m_camera->cameraPosition.x, m_graphics->m_camera->cameraPosition.y - .25 ,
-                                                   m_graphics->m_camera->cameraPosition.z));
+        break;
+      case SDLK_m:
+        for(int i = 0; i < 3; i++) {
+
+          if(!m_graphics->m_spells[i]->spellCasting) {
+            m_graphics->m_spells[i]->BeginCast(
+                    btVector3(m_graphics->m_camera->cameraFront.x, m_graphics->m_camera->cameraFront.y,
+                              m_graphics->m_camera->cameraFront.z) * 5,
+                    btVector3(m_graphics->m_camera->cameraPosition.x, m_graphics->m_camera->cameraPosition.y - .25,
+                              m_graphics->m_camera->cameraPosition.z));
+            i = 10;
+          }
+        }
         //}
 
     }
@@ -190,6 +210,16 @@ void Engine::Keyboard()
     {
       case SDLK_w:
         m_graphics->moving = false;
+        break;
+      case SDLK_s:
+        m_graphics->moving = false;
+        break;
+      case SDLK_a:
+        m_graphics->moving = false;
+        break;
+      case SDLK_d:
+        m_graphics->moving = false;
+        break;
       default:
         break;
     }

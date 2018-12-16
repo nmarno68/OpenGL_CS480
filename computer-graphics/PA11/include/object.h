@@ -10,7 +10,7 @@ class Object
   public:
     Object(std::string filename, int shape, bool needsLoading, float s_x, float s_y, float s_z, int flip);
     ~Object();
-    void Update(unsigned int dt, glm::mat4 origin, float scale);
+    void Update(unsigned int dt, glm::mat4 origin, float scale, bool isEnemySprite, glm::vec2 vector);
     void Render();
     void InitMesh();
     std::vector<GLuint> loadMaterialTextures(aiMaterial *mat, aiTextureType type);
@@ -31,6 +31,7 @@ class Object
     void BeginCast(btVector3 direction, btVector3 position);
     void EndCast();
     bool StillCasting();
+    bool Cast();
 
     bool m_physics;
     int m_shape;

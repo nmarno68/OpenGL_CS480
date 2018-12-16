@@ -8,9 +8,11 @@ Object::Object(std::string filename, int shape, bool needsLoading, float s_x, fl
 
   flipper = flip;
   flipping = false;
+  m_begin = 0;
 
 	if(needsLoading)
 	{
+
 
 	 //File Path to find object name
 		m_objDirectory = "../assets/objects/";
@@ -42,7 +44,7 @@ Object::Object(std::string filename, int shape, bool needsLoading, float s_x, fl
 			m_collisionShape = new btStaticPlaneShape(btVector3(0, 1, 0), 0);
 			break;
 		case 2:
-			m_collisionShape = new btSphereShape(.13);
+			m_collisionShape = new btSphereShape(.22);
 			break;
 		case 3:
 			m_collisionShape = new btCylinderShape(btVector3(.24, .24, .24));
@@ -78,7 +80,7 @@ Object::~Object()
 }
 
 //Update the object's model using all of its unique values
-void Object::Update(unsigned int dt, glm::mat4 origin, float scale)
+void Object::Update(unsigned int dt, glm::mat4 origin, float scale, bool isEnemySprite, glm::vec2 vector)
 {
    // model = glm::translate(origin, glm::vec3(0, 0, 0));
     //model = glm::scale(model, glm::vec3(.5, .5, .5));
@@ -99,6 +101,16 @@ void Object::Update(unsigned int dt, glm::mat4 origin, float scale)
 
       model = glm::translate(origin, m_translate);
       model = glm::rotate(model, (float) m_rotate, glm::vec3(1.0, 0.0, 0.0));
+
+      if(isEnemySprite){
+
+        float radians = atan2(-vector.y, vector.x);
+        model = glm::rotate(model, radians, glm::vec3(0.0, 1.0, 0.0));
+
+      }
+
+
+
     }
 
 
@@ -145,6 +157,7 @@ void Object::InitMesh()
 
   const aiVector3D Zero3D(0.0f, 0.0f, 0.0f);
 
+
   for(int j = 0; j < m_scene->mNumMeshes; j++)
   {
     std::vector<Vertex> tempVert;
@@ -189,8 +202,6 @@ void Object::InitMesh()
     temptexture = loadMaterialTextures(m_scene->mMaterials[m_scene->mMeshes[j]->mMaterialIndex], aiTextureType_DIFFUSE);
     tempNormals = loadMaterialTextures(m_scene->mMaterials[m_scene->mMeshes[j]->mMaterialIndex], aiTextureType_NORMALS);
 
-    std::cout << tempNormals.size() << std::endl;
-
     Mesh* v = new Mesh(tempVert, tempInd, temptexture, tempNormals);
     meshes.push_back(*v);
 
@@ -220,7 +231,6 @@ std::vector<GLuint> Object::loadMaterialTextures(aiMaterial *mat, aiTextureType 
 
     t_path = m_textDirectory + str.C_Str();
 
-    std::cout << t_path << std::endl;
 
     Magick::Blob my_blob;
     Magick::Image image;
@@ -313,7 +323,7 @@ void Object::EndCast()
 
   btTransform newTrans;
   newTrans = m_rigidBody->getWorldTransform();
-  newTrans.setOrigin(btVector3(0.0, 10, 0.0));
+  newTrans.setOrigin(btVector3(m_translate.x, m_translate.y, m_translate.z));
   m_rigidBody->setWorldTransform(newTrans);
 
 }
@@ -327,5 +337,15 @@ bool Object::StillCasting()
   }
   return true;
 
+}
+bool Object::Cast()
+{
+  m_begin++;
+  if(m_begin > 50)
+  {
+    m_begin = 0;
+    return true;
+  }
+  return false;
 }
 

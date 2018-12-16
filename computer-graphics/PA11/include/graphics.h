@@ -8,7 +8,7 @@ using namespace std;
 #include "camera.h"
 #include "shader.h"
 #include "object.h"
-
+#define NUM_SPELLS 6
 class Graphics
 {
   public:
@@ -31,10 +31,12 @@ class Graphics
     Object *m_well;
 
     Object *m_wiz1;
+    Object *m_enemy;
+    Object *m_enemySprite;
 
     Object *tester;
 
-    Object *m_spell;
+    Object *m_spells[NUM_SPELLS];
 
     vector<Object*> m_fence;
 
@@ -42,8 +44,10 @@ class Graphics
   bool phong;
   glm::vec3 ambient_color;
   int skybox_used;
+  char movement;
   bool normals, moving;
   glm::vec3 l_C, l_D;
+  int spellToCast;
 
   private:
 
@@ -75,6 +79,7 @@ class Graphics
     GLint m_pointSourceColor;
 
     GLint m_calcSpellLight;
+    GLint m_useNorm;
 
 
     //gourand
@@ -106,7 +111,9 @@ class Graphics
     btSequentialImpulseConstraintSolver* m_solver;
     btDiscreteDynamicsWorld* m_dynamicsWorld;
 
-    lightSource* good_spell;
+    glm::vec3 spell_position[NUM_SPELLS];
+    glm::vec3 spell_colors[NUM_SPELLS];
+    int spell_casting[NUM_SPELLS];
 
 
 
