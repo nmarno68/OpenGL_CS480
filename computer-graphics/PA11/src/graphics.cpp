@@ -534,8 +534,8 @@ bool Graphics::Initialize(int width, int height)
     disp += 3.5;
   }
 
-  m_wiz1->SetBullet(1, v, false, true, glm::vec3(1.0, 0.5, 0.0), 0, 0, 3);
-  m_enemy->SetBullet(1, v, false, true, glm::vec3(0, .5, 1.0), 0, 0, 3);
+  m_wiz1->SetBullet(1, v, false, true, glm::vec3(-6.0, 0.5, -7.0), 0, 0, 3);
+  m_enemy->SetBullet(1, v, false, true, glm::vec3(6.0, .5, 7.0), 0, 0, 3);
   m_enemySprite->SetBullet(0, v, false, false, glm::vec3(0.0, 0.0, 0.0), 0, 0, 0);
 
   for(int i = 0; i < NUM_SPELLS; i++) {
