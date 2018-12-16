@@ -18,6 +18,7 @@ class Graphics
     void Update(unsigned int dt);
     void Render();
     bool Collide(glm::vec3 objLocation1, glm::vec3 objLocation2);
+    bool GameOver();
 
     Camera *m_camera;
 
@@ -49,6 +50,7 @@ class Graphics
   bool normals, moving;
   glm::vec3 l_C, l_D;
   int spellToCast;
+  bool game_running;
 
   private:
 

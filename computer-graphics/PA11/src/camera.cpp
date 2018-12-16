@@ -17,7 +17,8 @@ bool Camera::Initialize(int w, int h)
   //  ...Like you should update it before you render more dynamic 
   //  for this project having them static will be fine
 
-  cameraSpeed = .3;
+  cameraSpeed = .01;
+  camera_angle = 1;
 
   cameraPosition = glm::vec3(1.0, 1.0, 0.0);
   cameraTarget = glm::vec3(0.0, 0.0, 0.0);
@@ -209,4 +210,12 @@ glm::vec3 Camera::RetrieveForceForward()
   glm::vec3 v = cameraFront;
   v.y = 0.0;
   return v;
+}
+void Camera::menuView(unsigned int time)
+{
+  camera_angle += (time * M_PI / 1000) * cameraSpeed;
+
+  double x = sin(camera_angle) * 20.0;
+  double z = cos(camera_angle) * 20.0;
+  view = glm::lookAt(glm::vec3(x, 10.0, z), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
 }

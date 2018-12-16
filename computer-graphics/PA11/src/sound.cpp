@@ -34,7 +34,7 @@ void SoundManager::PlaySound()
 	if(engineIsRunning)
 	{
 		SDL_PauseAudioDevice(deviceId, 0);
-		SDL_Delay(200);
+		//SDL_Delay(200);
 	}
 }
 void SoundManager::PauseSound()

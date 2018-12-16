@@ -34,6 +34,7 @@ class Object
     bool Cast();
     int ReduceHealth();
     int GetCurrentHealth();
+    void SetCurrentHealth(int health);
 
     bool m_physics;
     int m_shape;

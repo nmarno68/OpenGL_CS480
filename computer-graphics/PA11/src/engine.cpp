@@ -68,6 +68,7 @@ bool Engine::Initialize()
   count = 0;
 
 
+
   return true;
 }
 
@@ -75,14 +76,31 @@ void Engine::Run()
 {
   m_running = true;
 
-  background->LoadSound("../assets/sounds/Chasing-Villains.wav");
+  background->LoadSound("../assets/sounds/ChillingMusic.wav");
   background->PlaySound();
 
-  while(m_running)
-  {
+  while(m_running) {
+
     count++;
-    if(count > 6300) {
-      background->LoadSound("../assets/sounds/Chasing-Villains.wav");
+
+    if (m_graphics->game_running) {
+      if (count > 6300) {
+        background->LoadSound("../assets/sounds/Chasing-Villains.wav");
+        background->PlaySound();
+        count = 0;
+      }
+    }
+
+    else if (count > 1570){
+        background->LoadSound("../assets/sounds/ChillingMusic.wav");
+        background->PlaySound();
+        count = 0;
+    }
+
+    if(m_graphics->GameOver())
+    {
+      background->PauseSound();
+      background->LoadSound("../assets/sounds/ChillingMusic.wav");
       background->PlaySound();
       count = 0;
     }
@@ -104,6 +122,14 @@ void Engine::Run()
 
 
     //menu code here plz
+    ImGui::Begin("Menu");
+    if(ImGui::Button("Start Match!"))
+    {
+
+    }
+    ImGui::End();
+
+
 
 
 
@@ -207,6 +233,13 @@ void Engine::Keyboard()
         }
         break;
       case SDLK_m:
+        if(!m_graphics->game_running) {
+          m_graphics->game_running = true;
+          background->PauseSound();
+          background->LoadSound("../assets/sounds/Chasing-Villains.wav");
+          background->PlaySound();
+          count = 0;
+        }
         for(int i = 0; i < 3; i++) {
 
 
@@ -218,8 +251,9 @@ void Engine::Keyboard()
                     btVector3(m_graphics->m_camera->cameraPosition.x, m_graphics->m_camera->cameraPosition.y - .25,
                               m_graphics->m_camera->cameraPosition.z));
 
-            effects->LoadSound("../assets/sounds/fireball_cast.wav");
-            effects->PlaySound();
+            SoundManager* temp = new SoundManager();
+            temp->LoadSound("../assets/sounds/fireball_cast.wav");
+            temp->PlaySound();
 
             i = 10;
           }

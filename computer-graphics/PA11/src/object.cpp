@@ -362,4 +362,8 @@ int Object::GetCurrentHealth()
 {
     return currentHealth;
 }
+void Object::SetCurrentHealth(int health)
+{
+    currentHealth = health;
+}
 

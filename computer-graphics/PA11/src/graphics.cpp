@@ -433,6 +433,7 @@ bool Graphics::Initialize(int width, int height)
   moving = false;
   movement = 'N';
   spellToCast = 3;
+  game_running = false;
 
   //Creating physics world
   m_broadphase = new btDbvtBroadphase();
@@ -461,7 +462,7 @@ bool Graphics::Initialize(int width, int height)
   m_skybox = new Object("skybox.obj", -1, true, 80, 80, 80, 0);
   m_skyboxSunset = new Object("sunsetBox.obj", -1, true, 80, 80, 80, 0);
   m_tree  = new Object("smolTree.obj", 9, true, .03, .04, .03, 0);
-  m_rock1 = new Object("Rock_6.obj", 9, true, 1.0, 1.0, 1.0, 0);
+  m_rock1 = new Object("Rock_6.obj", 9, true, .7, .7, .7, 0);
   m_rock2 = new Object("Rock_6.obj", 9, true, .5, .5, .5, 0);
   m_well = new Object("well.obj", 9, true, .9, .9, .9, 0);
   for(int i = 0; i < 5; i++)
@@ -653,7 +654,7 @@ void Graphics::Update(unsigned int dt)
     m_fence[i]->Update(dt, glm::mat4(1.0f), 1, false, zeroVec);
   }
 
-  m_camera->PlanetView(m_wiz1->GetLocationVector(), glm::vec3(0.0, .75, 0.0));
+
 
   switch(skybox_used) {
     case 1:
@@ -667,26 +668,34 @@ void Graphics::Update(unsigned int dt)
   m_wiz1->Update(dt, glm::mat4(1.0f), 1, false, zeroVec);
   m_enemy->Update(dt, glm::mat4(1.0f), 1, false, zeroVec);
 
-  glm::vec2 rotation;
-  rotation.x = m_wiz1->GetLocationVector().x - m_enemy->GetLocationVector().x;
-  rotation.y = m_wiz1->GetLocationVector().z - m_enemy->GetLocationVector().z;
-  m_enemySprite->Update(dt, m_enemy->GetLocation(), 1, true, rotation);
+  if(game_running) {
+    glm::vec2 rotation;
+    rotation.x = m_wiz1->GetLocationVector().x - m_enemy->GetLocationVector().x;
+    rotation.y = m_wiz1->GetLocationVector().z - m_enemy->GetLocationVector().z;
+    m_enemySprite->Update(dt, m_enemy->GetLocation(), 1, true, rotation);
 
-  if(m_enemySprite->Cast())
-  {
-    if(spellToCast == 6)
-    {
-      spellToCast = 3;
+
+    if (m_enemySprite->Cast()) {
+      if (spellToCast == 6) {
+        spellToCast = 3;
+      }
+
+      m_spells[spellToCast]->EndCast();
+
+      glm::vec3 tempDir = normalize(m_wiz1->GetLocationVector() - m_enemy->GetLocationVector());
+
+      m_spells[spellToCast]->BeginCast(btVector3(tempDir.x, 0.0, tempDir.z) * 5,
+                                       btVector3(m_enemySprite->GetLocationVector().x,
+                                                 m_enemySprite->GetLocationVector().y + .5,
+                                                 m_enemySprite->GetLocationVector().z));
+
+      spellToCast++;
     }
-
-    m_spells[spellToCast]->EndCast();
-
-    glm::vec3 tempDir = normalize(m_wiz1->GetLocationVector() - m_enemy->GetLocationVector());
-
-    m_spells[spellToCast]->BeginCast( btVector3(tempDir.x, 0.0, tempDir.z)*5 , btVector3(m_enemySprite->GetLocationVector().x,
-            m_enemySprite->GetLocationVector().y + .5, m_enemySprite->GetLocationVector().z));
-
-    spellToCast++;
+    m_camera->PlanetView(m_wiz1->GetLocationVector(), glm::vec3(0.0, .75, 0.0));
+  }
+  else
+  {
+    m_camera->menuView(dt);
   }
 
 
@@ -704,38 +713,28 @@ void Graphics::Update(unsigned int dt)
     spell_position[i] = m_spells[i]->GetLocationVector();
   }
 
-  for(int i = 0; i < (NUM_SPELLS / 2); i++)
-  {
-    if(Collide(m_spells[i]->GetLocationVector(), m_enemy->GetLocationVector()))	//Enemy hit by spell
-    {
-				std::cout << "Enemy ";
-				m_enemy->ReduceHealth();
-        m_spells[i]->EndCast();
-    }
-  }
 
-  for(int i = (NUM_SPELLS / 2); i < NUM_SPELLS; i++)
-  {
-    if(Collide(m_spells[i]->GetLocationVector(), m_wiz1->GetLocationVector()))	//Player hit by spell
-    {
-				std::cout << "Player ";
-    		m_wiz1->ReduceHealth();
+  //if(game_running) {
+    for (int i = 0; i < (NUM_SPELLS / 2); i++) {
+      if (Collide(m_spells[i]->GetLocationVector(), m_enemy->GetLocationVector()))  //Enemy hit by spell
+      {
+        std::cout << "Enemy ";
+        m_enemy->ReduceHealth();
         m_spells[i]->EndCast();
+      }
     }
-  }
 
-  if(m_enemy->GetCurrentHealth() <= 0)
-  {
-		std::cout << "You are great!" << std::endl;
-		exit(EXIT_SUCCESS);
-    //Player Wins Game
-  }
-  else if(m_wiz1->GetCurrentHealth() <= 0)
-  {
-		std::cout << "You are not great!" << std::endl;
-		exit(EXIT_FAILURE);
-    //Player Loses Game
-  }
+    for (int i = (NUM_SPELLS / 2); i < NUM_SPELLS; i++) {
+      if (Collide(m_spells[i]->GetLocationVector(), m_wiz1->GetLocationVector()))  //Player hit by spell
+      {
+        std::cout << "Player ";
+        m_wiz1->ReduceHealth();
+        m_spells[i]->EndCast();
+      }
+    }
+
+
+  //}
 
 }
 
@@ -879,15 +878,16 @@ void Graphics::Render()
         m_grass1->Render();
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_enemySprite->GetModel()));
-        glUniform1f(m_specular_brightness, (GLfloat) m_enemySprite->specular_brightness);
-        glUniform1i(m_specular_size, (GLint) m_enemySprite->specular_size);
 
-        for(int i = 0; i < 13; i++) {
-          if(i != 1 && i != 0) {
-            m_enemySprite->meshes[i].Draw();
+          glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_enemySprite->GetModel()));
+          glUniform1f(m_specular_brightness, (GLfloat) m_enemySprite->specular_brightness);
+          glUniform1i(m_specular_size, (GLint) m_enemySprite->specular_size);
+
+          for (int i = 0; i < 14; i++) {
+            if ( i!=2 && i != 1 && i != 0) {
+              m_enemySprite->meshes[i].Draw();
+            }
           }
-        }
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -955,6 +955,9 @@ void Graphics::Render()
   //glUniformMatrix4fv(m_tmodelMatrix, 1, GL_FALSE, glm::value_ptr(m_ground->GetModel()));
   //m_ground->Render();
 
+  glUniformMatrix4fv(m_tmodelMatrix, 1, GL_FALSE, glm::value_ptr(m_enemySprite->GetModel()));
+  m_enemySprite->meshes[0].Draw();
+
   switch(skybox_used) {
     case 1:
       glUniformMatrix4fv(m_tmodelMatrix, 1, GL_FALSE, glm::value_ptr(m_skybox->GetModel()));
@@ -972,10 +975,12 @@ void Graphics::Render()
   glUniformMatrix4fv(m_cVM, 1, GL_FALSE, glm::value_ptr(m_camera->GetView()));
   glUniform3fv(m_cCamPos, 1, glm::value_ptr(m_camera->cameraPosition));
 
-  glUniformMatrix4fv(m_cMM, 1, GL_FALSE, glm::value_ptr(m_enemySprite->GetModel()));
-  glUniform3fv(m_cColor, 1, glm::value_ptr(glm::vec3(1.0, 0.0, 0.0)));
-  m_enemySprite->meshes[0].Draw();
-  m_enemySprite->meshes[1].Draw();
+
+    glUniformMatrix4fv(m_cMM, 1, GL_FALSE, glm::value_ptr(m_enemySprite->GetModel()));
+    glUniform3fv(m_cColor, 1, glm::value_ptr(glm::vec3(1.0, 0.0, 0.0)));
+    m_enemySprite->meshes[1].Draw();
+    m_enemySprite->meshes[2].Draw();
+
 
   for(int i = 0; i < NUM_SPELLS; i++) {
 
@@ -1042,5 +1047,29 @@ bool Graphics::Collide(glm::vec3 objLocation1, glm::vec3 objLocation2)
 	return true;
 
     return false;
+}
+bool Graphics::GameOver()
+{
+  if (m_enemy->GetCurrentHealth() <= 0) {
+    std::cout << "You are great!" << std::endl;
+    game_running = false;
+    m_enemy->SetCurrentHealth(100);
+    m_wiz1->SetCurrentHealth(100);
+    exit(EXIT_SUCCESS);
+    //Player Wins Game
+    return true;
+  }
+  else if (m_wiz1->GetCurrentHealth() <= 0) {
+      std::cout << "You are not great!" << std::endl;
+      game_running = false;
+      m_enemy->SetCurrentHealth(100);
+      m_wiz1->SetCurrentHealth(100);
+      exit(EXIT_FAILURE);
+      //Player Loses Game
+      return true;
+  }
+
+  return false;
+
 }
 

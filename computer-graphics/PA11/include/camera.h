@@ -25,6 +25,7 @@ class Camera
     void FaceFront();
     glm::mat4 GetLocationSkybox(int skybox);
     glm::vec3 RetrieveForceForward();
+    void menuView(unsigned int time);
 
     glm::vec3 cameraPosition;
     glm::vec3 cameraTarget;
@@ -37,6 +38,8 @@ class Camera
   private:
     glm::mat4 projection;
     glm::mat4 view;
+
+    double camera_angle;
 
     double last_x, last_y, pitch, yaw;
 
