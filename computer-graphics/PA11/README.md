@@ -1,4 +1,4 @@
-# PA10: Pinball
+# PA11: Wizard Duel
 
 # Group Information
 Our group is called Tessellation and the members are Natalie Arnold and Terra Williams.  The source code for the project is found here, in Natalie's repository.
@@ -48,7 +48,7 @@ mkdir build
 cd build
 cmake ..
 make
-./PA_Ugly
+./Wizard_Duel
 ```
 
 ### Makefile Instructions
@@ -59,77 +59,34 @@ mkdir build
 cd build
 cp ../makefile .
 make
-./PA_Ugly
+./Wizard_Duel
 ```
 
 ## Ubuntu.cse.unr.edu
 OpenGL 3.3 will run on the [ubuntu.cse.unr.edu](https://ubuntu.cse.unr.edu/) website. To do so follow the build instructions, but when running the Tutorial executable use this line to execute.
 ```bash
-/usr/NX/scripts/vgl/vglrun ./PA_Ugly
+/usr/NX/scripts/vgl/vglrun ./Wizard_Duel
 ```
 # Project Description
-This project introduces lighting to the foundational object and texture loading accomplished in previous projects. Gourand and Phong lighting are demonstrated and controls are available for a spotlight, specular strength of objects, ambient strength and ambient color in the menus.
-Bullet was utilized to create a semi-realistic pinball game.
+We created a first-person shooter that takes place as a duel between two wizards. The player character can move around the map and will be chased by the enemy wizard. The player and the enemy can both shoot spells which will damage the other. 
 
-## Lighting Controls
-Our lighting controls include:    
-Switching between Phong and Gourand shading   
-Adjusting ambient strength   
-Adjusting ambient color (RGB)      
-Turning a spotlight on and off    
-Switching between a spotlight with a sharp edge and a spotlight with a soft edge    
-Adjusting spotlight size     
-Adjusting spotlight brightness    
-Adjusting specular brightness on the bumpers, ball, flippers, and board
-     
-All of our lighting controls can be found in the menus labeled appropriately.   
-
-## Board Controls
+## Player Controls
 
 <table>
     <tr>
         <th>Action</th>
         <th>Control</th>
-    </tr>
-    <tr>
-        <td>Left Flipper</td>
-        <td><kbd>Z</kbd></td>
-    </tr>
-    <tr>
-        <td>Right Flipper</td>
-        <td><kbd>M</kbd></td>
-    </tr>
-    <tr>
-        <td>Launch Ball</td>
-        <td><kbd>🡳</kbd></td>
-    </tr>
-    <tr>
-        <td>Reset Ball</td>
-        <td><kbd>Menu</kbd></td>
-    </tr>
-</table>
-
-## Camera Controls
-
-<table>
-    <tr>
-        <th>Action</th>
-        <th>Control</th>
-    </tr>
-    <tr>
-        <td>Enable/Disable FPS Camera Mode</td>
-        <td><kbd>E</kbd></td>
     </tr>
     <tr>
         <td>Move Forward</td>
         <td><kbd>W</kbd></td>
     </tr>
     <tr>
-        <td>Move Left</td>
+        <td>Strafe Left</td>
         <td><kbd>A</kbd></td>
     </tr>
     <tr>
-        <td>Move Right</td>
+        <td>Strafe Right</td>
         <td><kbd>D</kbd></td>
     </tr>
     <tr>
@@ -137,15 +94,8 @@ All of our lighting controls can be found in the menus labeled appropriately.
         <td><kbd>S</kbd></td>
     </tr>
     <tr>
-        <td>Move Up</td>
-        <td><kbd>SPACE</kbd></td>
+        <td>Cast Spell</td>
+        <td><kbd>E</kbd></td>
     </tr>
 </table>
-
-
-
-## Extra Credit
-1. Changing ambient color
-2. Spotlight following the ball
-3. Lit bumpers
 
